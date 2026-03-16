@@ -1,0 +1,27 @@
+﻿
+=== Device Pattern Test ===
+
+IN:  Administrators using trusted workstations can modify system settings.
+  [spatial/device] 'trusted workstations' (using)
+
+IN:  Doctors using hospital-issued devices can access patient records.
+  [spatial/device] 'hospital - issued devices' (using)
+
+IN:  Staff via VPN can access internal systems.
+  [spatial/network] 'VPN' (via)
+
+IN:  IT staff through the admin console can view server logs.
+  [spatial/device] 'the admin console' (through)
+
+IN:  A doctor can view patient records during business hours.
+  [temporal/relative] 'business hours' (during)
+
+IN:  Nurses from the hospital network can update patient charts.
+  [spatial/network] 'the hospital network' (from)
+
+IN:  A senior nurse on night shift may change approved lab procedures.
+  [temporal/relative] 'night shift' (on)
+
+IN:  A registered patient may view his full health record.
+  (none)
+

@@ -1,0 +1,42 @@
+BƯỚC 1 — Mở terminal
+Nhấn Win + R → gõ cmd → Enter
+
+BƯỚC 2 — Di chuyển vào thư mục dự án
+bashcd C:\Users\PAV\Downloads\ABAC_demo4
+
+BƯỚC 3 — Kích hoạt môi trường ảo
+bashvenv\Scripts\activate
+Thành công khi terminal hiện (venv) ở đầu dòng.
+
+BƯỚC 4 — Cài thư viện (chỉ làm 1 lần)
+bashpip install spacy scikit-learn
+python -m spacy download en_core_web_sm
+
+BƯỚC 5 — Chạy pipeline
+bashpython main.py
+```
+
+---
+
+## BƯỚC 6 — Nhập câu demo theo thứ tự này
+```
+A doctor can view patient medical records.
+```
+```
+Nurses assigned to a patient can update the patient chart.
+```
+```
+Managers in the finance department can approve expense reports.
+```
+```
+An on-call senior nurse may change the list of approved lab procedures.
+```
+```
+Students enrolled in the course can access lecture materials.
+```
+```
+exit
+
+BƯỚC 7 — Kiểm tra kết quả
+bashtype dataset\policy_dataset.json
+bashtype dataset\attribute_clusters.json

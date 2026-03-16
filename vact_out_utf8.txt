@@ -1,0 +1,45 @@
+
+Evaluating: C:\Users\PAV\Downloads\ABAC_demo4 (1)\data\annotated\vact_env_annotated.json (100 sentences)
+
+  [ERR] Training department staff can modify network configurations between 8am and 5pm....
+    FP: ('temporal', 'between 8')
+    FP: ('temporal', '8am and')
+    FN: ('temporal', 'between 8am')
+
+  [ERR] System administrators can review research papers at the headquarters building af...
+    FP: ('temporal', 'at the')
+
+  [ERR] Faculty members can delete and access exam grades between 8am and 5pm....
+    FP: ('temporal', 'between 8')
+    FN: ('temporal', 'between 8am')
+
+  [ERR] Training department staff can access and review thesis submissions between 8am a...
+    FP: ('temporal', 'between 8')
+    FN: ('temporal', 'between 8am')
+
+  [ERR] Lecturers can review cryptography datasets between 8am and 5pm during business h...
+    FP: ('temporal', 'between 8')
+    FN: ('temporal', 'between 8am')
+  Overall   : P=0.9520  R=0.9675  F1=0.9597
+
+  [ERR] Training department staff can modify network configurations between 8am and 5pm....
+    FP: ('temporal', 'between 8')
+    FP: ('temporal', '8am and')
+    FN: ('temporal', 'between 8am')
+
+  [ERR] System administrators can review research papers at the headquarters building af...
+    FP: ('temporal', 'at the')
+
+  [ERR] Faculty members can delete and access exam grades between 8am and 5pm....
+    FP: ('temporal', 'between 8')
+    FN: ('temporal', 'between 8am')
+
+  [ERR] Training department staff can access and review thesis submissions between 8am a...
+    FP: ('temporal', 'between 8')
+    FN: ('temporal', 'between 8am')
+
+  [ERR] Lecturers can review cryptography datasets between 8am and 5pm during business h...
+    FP: ('temporal', 'between 8')
+    FN: ('temporal', 'between 8am')
+  Temporal  : P=0.8776  R=0.9149  F1=0.8958
+  Spatial   : P=1.0000  R=1.0000  F1=1.0000

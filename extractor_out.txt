@@ -1,0 +1,30 @@
+﻿
+============================================================
+  Env-Att Extractor Test (Hybrid Rule + NER)
+============================================================
+
+Input:  A doctor can view patient records during business hours.
+  [temporal/relative    ] "business hours"  (trigger: during, rule)
+
+Input:  Nurses from the hospital network can update patient charts.
+  [spatial /network     ] "the hospital network"  (trigger: from, rule)
+
+Input:  A senior nurse on night shift may change approved lab procedures.
+  [temporal/relative    ] "night shift"  (trigger: on, rule)
+
+Input:  Administrators using trusted workstations can modify system settings.
+  (no env-att detected)
+
+Input:  Managers accessing from internal VPN can approve expense reports.
+  [spatial /network     ] "internal VPN"  (trigger: from, rule)
+
+Input:  A registered patient may view his full health record.
+  (no env-att detected)
+
+Input:  Physicians within the ICU can override standard protocols.
+  [spatial /ner_org     ] "ICU"  (trigger: NER:ORG, ner)
+
+Input:  Staff can access data only between 8am and 5pm on weekdays.
+  [temporal/recurring   ] "weekdays"  (trigger: on, rule)
+  [temporal/ner_detected] "8am and"  (trigger: NER:TIME, ner)
+  [temporal/ner_detected] "5pm"  (trigger: NER:TIME, ner)
