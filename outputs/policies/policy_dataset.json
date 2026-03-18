@@ -1,0 +1,290 @@
+{
+    "policies": [
+        {
+            "id": 1,
+            "sentence": "An on-call senior nurse may change the list of approved lab procedures.",
+            "subject": "nurse",
+            "action": "change",
+            "object": "procedures",
+            "attributes": [
+                {
+                    "name": "senior",
+                    "value": "nurse",
+                    "category": "subject",
+                    "dep": "amod",
+                    "data_type": "string"
+                },
+                {
+                    "name": "approved",
+                    "value": "procedures",
+                    "category": "object",
+                    "dep": "amod",
+                    "data_type": "string"
+                },
+                {
+                    "name": "lab",
+                    "value": "procedures",
+                    "category": "object",
+                    "dep": "compound",
+                    "data_type": "string"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "sentence": "A junior lab technician can request follow-up lab procedures.",
+            "subject": "technician",
+            "action": "request",
+            "object": "procedures",
+            "attributes": [
+                {
+                    "name": "lab",
+                    "value": "technician",
+                    "category": "subject",
+                    "dep": "compound",
+                    "data_type": "string"
+                },
+                {
+                    "name": "follow",
+                    "value": "procedures",
+                    "category": "object",
+                    "dep": "amod",
+                    "data_type": "string"
+                },
+                {
+                    "name": "lab",
+                    "value": "procedures",
+                    "category": "object",
+                    "dep": "compound",
+                    "data_type": "string"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "sentence": "Managers in the finance department can approve expense reports.",
+            "subject": "Managers",
+            "action": "approve",
+            "object": "reports",
+            "attributes": [
+                {
+                    "name": "finance",
+                    "value": "department",
+                    "category": "object",
+                    "dep": "compound",
+                    "data_type": "string"
+                },
+                {
+                    "name": "expense",
+                    "value": "reports",
+                    "category": "object",
+                    "dep": "compound",
+                    "data_type": "string"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "sentence": "Students enrolled in the course can access lecture materials.",
+            "subject": "Students",
+            "action": "enrolled",
+            "object": "materials",
+            "attributes": [
+                {
+                    "name": "lecture",
+                    "value": "materials",
+                    "category": "object",
+                    "dep": "compound",
+                    "data_type": "string"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "sentence": "A registered patient may view his full health record.",
+            "subject": "patient",
+            "action": "view",
+            "object": "record",
+            "attributes": [
+                {
+                    "name": "registered",
+                    "value": "patient",
+                    "category": "subject",
+                    "dep": "amod",
+                    "data_type": "string"
+                },
+                {
+                    "name": "health",
+                    "value": "record",
+                    "category": "object",
+                    "dep": "compound",
+                    "data_type": "string"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "sentence": "A senior nurse can approve medical records during business hours within the hospital.",
+            "subject": "nurse",
+            "action": null,
+            "object": "hospital",
+            "attributes": [
+                {
+                    "name": "senior",
+                    "value": "nurse",
+                    "category": "subject",
+                    "dep": "amod",
+                    "short_name": "senior_nurse",
+                    "namespace": "subject:role:senior_nurse",
+                    "data_type": "string"
+                },
+                {
+                    "name": "medical",
+                    "value": "records",
+                    "category": "object",
+                    "dep": "amod",
+                    "short_name": "medical_record",
+                    "namespace": "object:type:medical_record",
+                    "data_type": "string"
+                },
+                {
+                    "name": "business",
+                    "value": "hours",
+                    "category": "object",
+                    "dep": "compound",
+                    "short_name": "business_hour",
+                    "namespace": "object:prop:business_hour",
+                    "data_type": "datetime"
+                },
+                {
+                    "name": "within",
+                    "value": "hours",
+                    "category": "object",
+                    "dep": "prep",
+                    "short_name": "hour",
+                    "namespace": "object:prop:hour",
+                    "data_type": "datetime"
+                },
+                {
+                    "category": "environment",
+                    "subcategory": "relative",
+                    "value": "during business hours within the hospital",
+                    "trigger": "during",
+                    "method": "rule",
+                    "short_name": "business_hour_hospital",
+                    "namespace": "environment:time:business_hour_hospital",
+                    "sub_category": "temporal",
+                    "data_type": "string"
+                },
+                {
+                    "category": "environment",
+                    "subcategory": "physical",
+                    "value": "within the hospital",
+                    "trigger": "within",
+                    "method": "rule",
+                    "short_name": "hospital",
+                    "namespace": "object:prop:hospital",
+                    "sub_category": "spatial",
+                    "data_type": "string"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "sentence": "A senior nurse can read and write medical records during business hours within the hospital.",
+            "subject": "nurse",
+            "action": null,
+            "object": "hospital",
+            "attributes": [
+                {
+                    "name": "senior",
+                    "value": "nurse",
+                    "category": "subject",
+                    "dep": "amod",
+                    "short_name": "senior_nurse",
+                    "namespace": "subject:role:senior_nurse",
+                    "data_type": "string"
+                },
+                {
+                    "name": "medical",
+                    "value": "records",
+                    "category": "object",
+                    "dep": "amod",
+                    "short_name": "medical_record",
+                    "namespace": "object:type:medical_record",
+                    "data_type": "string"
+                },
+                {
+                    "name": "business",
+                    "value": "hours",
+                    "category": "object",
+                    "dep": "compound",
+                    "short_name": "business_hour",
+                    "namespace": "object:prop:business_hour",
+                    "data_type": "datetime"
+                },
+                {
+                    "name": "within",
+                    "value": "hours",
+                    "category": "object",
+                    "dep": "prep",
+                    "short_name": "hour",
+                    "namespace": "object:prop:hour",
+                    "data_type": "datetime"
+                },
+                {
+                    "category": "environment",
+                    "subcategory": "relative",
+                    "value": "during business hours within the hospital",
+                    "trigger": "during",
+                    "method": "rule",
+                    "short_name": "business_hour_hospital",
+                    "namespace": "environment:time:business_hour_hospital",
+                    "sub_category": "temporal",
+                    "data_type": "string"
+                },
+                {
+                    "category": "environment",
+                    "subcategory": "physical",
+                    "value": "within the hospital",
+                    "trigger": "within",
+                    "method": "rule",
+                    "short_name": "hospital",
+                    "namespace": "object:prop:hospital",
+                    "sub_category": "spatial",
+                    "data_type": "string"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "sentence": "Doctors may approve medical records during business hours.",
+            "subject": "Doctors",
+            "action": "Update",
+            "object": "records",
+            "attributes": [
+                {
+                    "name": "medical",
+                    "value": "records",
+                    "category": "object",
+                    "dep": "amod",
+                    "namespace": "object:prop:",
+                    "short_name": "medical_record",
+                    "data_type": "string"
+                }
+            ],
+            "environment": [
+                {
+                    "type": "temporal",
+                    "preposition": "during",
+                    "head": "hours",
+                    "modifier": "business",
+                    "full_value": "during business hours",
+                    "normalized": "during_business_hour",
+                    "namespace": "environment:time:",
+                    "data_type": "datetime"
+                }
+            ]
+        }
+    ]
+}

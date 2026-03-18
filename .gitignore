@@ -21,3 +21,7 @@ __pycache__/
 # OS specific
 .DS_Store
 Thumbs.db
+
+all_code.txt
+all_code.zip
+outputs/models/*.pt

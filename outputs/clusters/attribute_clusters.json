@@ -1,0 +1,18 @@
+{
+    "clusters": [
+        {
+            "cluster_id": 0,
+            "attributes": [
+                "lab",
+                "senior",
+                "lecture",
+                "finance",
+                "registered",
+                "approved",
+                "follow",
+                "expense",
+                "health"
+            ]
+        }
+    ]
+}
