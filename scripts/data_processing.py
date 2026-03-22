@@ -181,7 +181,7 @@ def run_validation():
             "id":              rel["id"],
             "sentence":        rel["sentence"],
             "subject":         rel.get("subject"),
-            "actions":         rel.get("actions", []),
+            "action":          rel.get("actions")[0] if rel.get("actions") else None,
             "object":          rel.get("object"),
             "environment":     [],       # se duoc dien o Step 2
             "attributes":      valid_attrs,

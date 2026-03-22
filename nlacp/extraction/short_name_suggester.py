@@ -6,7 +6,7 @@ import spacy
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    pass # Assume loaded in pipeline if failed
+    nlp = None # Assume loaded in pipeline if failed
 
 # Module 2: Suggesting attributes' short names
 # Steps: 
@@ -31,6 +31,9 @@ def standardize_value(value_str, preserve_triggers=False):
     """
     if not value_str:
         return ""
+        
+    if nlp is None:
+        return re.sub(r'\W+', '_', value_str.lower()).strip('_')
         
     doc = nlp(value_str.lower())
     clean_tokens = []

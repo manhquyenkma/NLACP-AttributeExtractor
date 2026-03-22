@@ -47,12 +47,12 @@ def identify_categories(attributes, sentence):
 
 if __name__ == "__main__":
     sample_attrs = [
-        {"namespace": "subject:role:senior_nurse", "category": "subject"},
-        {"namespace": "environment:time:business_hour", "category": "temporal"},
-        {"namespace": "unknown:approved", "category": ""}
+        {"name": "senior", "value": "nurse", "category": "subject", "dep": "amod"},
+        {"name": "", "value": "business_hour", "category": "temporal", "sub_category": "business_hours"},
+        {"name": "approved", "value": "approved", "category": ""}
     ]
     
     print("Testing Module 4: Category Identification")
     results = identify_categories(sample_attrs, "A senior nurse views records during business hours.")
     for r in results:
-        print(f"Namespace: '{r['namespace']}' -> Final Category: '{r['category']}'")
+        print(f"Attr: '{r.get('value')}' -> Final Category: '{r['category']}'")
