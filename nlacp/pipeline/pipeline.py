@@ -103,36 +103,34 @@ def main():
         result = process_sentence(sentence)
 
         print("\n--- Extracted ABAC Policy (6 Modules) ---")
-        print(f"Subject:     {result.get('subject')}")
-        print(f"Action:      {', '.join(result.get('actions', []))}")
-        print(f"Object:      {result.get('object')}")
-        
-        env_strings = []
-        other_attrs = []
-        if result["attributes"]:
-            for attr in result["attributes"]:
-                cat = attr.get("category", "")
-                ns = attr.get("namespace", "?")
-                val = attr.get("short_name", "?")
-                dtype = attr.get("data_type", "String")
-                formatted = f"{ns} = \"{val}\" (Type: {dtype})"
-                
-                if cat == "environment":
-                    env_strings.append(formatted)
+        print(f"  Subject  : {result.get('subject')}")
+        print(f"  Actions  : {', '.join(result.get('actions', []))}")
+        print(f"  Object   : {result.get('object')}")
+
+        # Environment — nằm trong result["environment"], không phải attributes
+        env_list = result.get("environment", [])
+        if env_list:
+            print(f"  Environment ({len(env_list)}):")
+            for e in env_list:
+                # canonical format: có 'namespace' và 'full_value'
+                if "namespace" in e:
+                    print(f"    [{e.get('type','?')}] {e.get('full_value','?')} "
+                          f"-> {e.get('namespace','?')}")
                 else:
-                    other_attrs.append(f"[{cat.upper()}] {formatted}")
-                    
-        if env_strings:
-            print(f"Environment: {', '.join(env_strings)}")
+                    # raw format fallback
+                    print(f"    {e.get('value', e)}")
         else:
-            print("Environment: (none detected)")
-            
-        if other_attrs:
-            print("Other Attributes:")
-            for a in other_attrs:
-                print(f"  {a}")
+            print("  Environment: (none detected)")
+
+        # SA/OA Attributes — nằm trong result["attributes"]
+        sa_oa = result.get("attributes", [])
+        if sa_oa:
+            print(f"  Attributes ({len(sa_oa)}):")
+            for a in sa_oa:
+                print(f"    [{a.get('category','?').upper()}] "
+                      f"{a.get('namespace','?')} = \"{a.get('short_name','?')}\"")
         else:
-            print("Other Attributes: (none detected)")
+            print("  Attributes: (none detected)")
         print()
 
 

@@ -14,7 +14,16 @@ import os
 #   Pattern 5: pobj + amod       → "approved procedures"
 # ===================================================================
 
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    try:
+        nlp = spacy.load("en_core_web_md")
+    except OSError:
+        raise OSError(
+            "[ERROR] Khong tim thay spaCy model.\n"
+            "Cai bang lenh: python -m spacy download en_core_web_sm"
+        )
 
 SUBJECT_DEPS = {"nsubj", "nsubjpass", "csubj"}
 OBJECT_DEPS  = {"dobj", "pobj", "attr"}

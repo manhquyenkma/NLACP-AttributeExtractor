@@ -14,11 +14,11 @@ import os
 #   5. Lưu vào namespace_hierarchy.json
 # ===================================================================
 
-# nlacp/mining/ → nlacp/ → project root
-BASE_DIR        = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATASET_PATH    = os.path.join(BASE_DIR, "outputs", "policies",  "policy_dataset.json")
-CLUSTERS_PATH   = os.path.join(BASE_DIR, "outputs", "clusters",  "attribute_clusters.json")
-OUTPUT_PATH     = os.path.join(BASE_DIR, "outputs", "hierarchy", "namespace_hierarchy.json")
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from nlacp.paths import (POLICY_DATASET_PATH as DATASET_PATH,
+                          ATTRIBUTE_CLUSTERS_PATH as CLUSTERS_PATH,
+                          NAMESPACE_HIERARCHY_PATH as OUTPUT_PATH)
 
 
 # ===================================================================

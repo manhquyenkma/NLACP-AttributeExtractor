@@ -1,42 +1,56 @@
-BƯỚC 1 — Mở terminal
-Nhấn Win + R → gõ cmd → Enter
+=======================================================
+ NLACP-ATTRIBUTE EXTRACTOR - HƯỚNG DẪN CHẠY
+=======================================================
 
-BƯỚC 2 — Di chuyển vào thư mục dự án
-bashcd C:\Users\PAV\Downloads\ABAC_demo4
+1. THIẾT LẬP MÔI TRƯỜNG
+-------------------------------------------------------
+Đảm bảo đã cài đặt Python 3.8 trở lên. 
+Từ thư mục gốc của dự án, cài đặt môi trường ảo (virtual environment):
 
-BƯỚC 3 — Kích hoạt môi trường ảo
-bashvenv\Scripts\activate
-Thành công khi terminal hiện (venv) ở đầu dòng.
+  > python -m venv venv
+  > .\venv\Scripts\activate            (Windows)
+  > source venv/bin/activate           (Mac/Linux)
 
-BƯỚC 4 — Cài thư viện (chỉ làm 1 lần)
-bashpip install spacy scikit-learn
-python -m spacy download en_core_web_sm
+2. CÀI ĐẶT THƯ VIỆN BẮT BUỘC
+-------------------------------------------------------
+Cài đặt các thư viện cần thiết và tải mô hình NLP của spaCy:
 
-BƯỚC 5 — Chạy pipeline
-bashpython main.py
-```
+  > pip install spacy scikit-learn numpy pytest
+  > python -m spacy download en_core_web_md
+  > python -m spacy download en_core_web_sm
 
----
+3. CÁCH CHẠY DỰ ÁN (PIPELINE 2 BƯỚC)
+-------------------------------------------------------
+Dự án hiện tại chạy theo 2 bước riêng biệt để cho phép quy trình "human-in-the-loop" (người dùng tương tác) nhằm tăng độ chính xác.
 
-## BƯỚC 6 — Nhập câu demo theo thứ tự này
-```
-A doctor can view patient medical records.
-```
-```
-Nurses assigned to a patient can update the patient chart.
-```
-```
-Managers in the finance department can approve expense reports.
-```
-```
-An on-call senior nurse may change the list of approved lab procedures.
-```
-```
-Students enrolled in the course can access lecture materials.
-```
-```
-exit
+BƯỚC 1: Data Processing (Trích xuất & Xác thực ứng viên quan hệ)
+  > python scripts/data_processing.py
+  - Nhập một câu chính sách (policy) khi được yêu cầu.
+  - Script sẽ trích xuất các cặp ứng viên (Subject-Attribute, Object-Attribute).
+  - Bạn sẽ được hỏi để xác nhận từng cặp (y = đúng, n = sai).
+  - Kết quả: Lưu vào dataset/relation_candidate.json và dataset/policy_dataset.json.
 
-BƯỚC 7 — Kiểm tra kết quả
-bashtype dataset\policy_dataset.json
-bashtype dataset\attribute_clusters.json
+BƯỚC 2: ABAC Extraction (Trích xuất Môi trường & Hậu xử lý)
+  > python scripts/abac_extraction.py
+  - Đọc các policy đã được xác thực từ Bước 1.
+  - Tạo cấu trúc chi tiết cho Môi trường (Thời gian/Không gian).
+  - Tự động suy luận short names, namespaces và kiểu dữ liệu.
+  - Kết quả: Các policy hoàn chỉnh được ghi đè vào dataset/policy_dataset.json.
+
+CHẠY RÚT GỌN TẤT CẢ TRONG MỘT:
+  > python scripts/run_pipeline.py --sentence "A doctor can read patient records during the night shift."
+
+4. CÁC LỖI THƯỜNG GẶP & CÁCH SỬA
+-------------------------------------------------------
+Lỗi: "[ERROR] Khong tim thay spaCy model."
+Cách sửa: Bạn quên chưa tải mô hình spaCy. Hãy chạy lệnh:
+       > python -m spacy download en_core_web_md
+       > python -m spacy download en_core_web_sm
+
+Lỗi: "ModuleNotFoundError: No module named 'nlacp'"
+Cách sửa: Bạn bắt buộc phải chạy lệnh từ THƯ MỤC GỐC của dự án, KHÔNG PHẢI chui vào thư mục scripts.
+       Đúng: > python scripts/data_processing.py
+       Sai:  > cd scripts && python data_processing.py
+
+Lỗi: FileNotFoundError cho dataset/policy_dataset.json khi chạy Bước 2
+Cách sửa: Bạn phải chạy Bước 1 (data_processing.py) trước để tạo file JSON thì mới có thể chạy Bước 2 (abac_extraction.py).

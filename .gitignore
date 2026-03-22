@@ -1,27 +1,5 @@
-# Virtual Environment
 venv/
-env/
-.env
-
-# Python Cache
 __pycache__/
-*.py[cod]
-*$py.class
-
-# IDE specific
+*.pyc
 .vs/
-.idea/
-.vscode/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# OS specific
-.DS_Store
-Thumbs.db
-
-all_code.txt
-all_code.zip
-outputs/models/*.pt
+*.egg-info/

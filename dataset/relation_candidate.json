@@ -1,0 +1,42 @@
+{
+    "relations": [
+        {
+            "id": 1,
+            "sentence": "After the meeting, the reviewers’ comments are sent back to the authors, so that they can improve their paper.\",After the meeting,,CHECK,CHECK,After the meeting,,,,pending",
+            "subject": "they",
+            "actions": [
+                "send",
+                "improve",
+                "\",after",
+                "meeting,,,,pende"
+            ],
+            "object": "meeting,,CHECK",
+            "attributes": [],
+            "relation_pairs": []
+        },
+        {
+            "id": 2,
+            "sentence": "L0006,cyber,\"After the PC meeting, the PCC must inform the maintainer about the accepted papers, so that the notifications can be sent to the authors.",
+            "subject": "notifications",
+            "actions": [
+                "inform",
+                "send"
+            ],
+            "object": "maintainer",
+            "attributes": [
+                {
+                    "name": "accepted",
+                    "value": "papers",
+                    "category": "object",
+                    "dep": "amod"
+                }
+            ],
+            "relation_pairs": [
+                [
+                    "papers",
+                    "accepted"
+                ]
+            ]
+        }
+    ]
+}

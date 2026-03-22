@@ -1,106 +1,107 @@
 #!/usr/bin/env python
 """
 scripts/run_pipeline.py
-Entry point — chạy toàn bộ ABAC pipeline.
+Entry point — chay toan bo ABAC pipeline (2-step).
 
 Usage:
-    python scripts/run_pipeline.py
-    python scripts/run_pipeline.py --sentence "Nurses can read records during business hours."
+    python scripts/run_pipeline.py                         # Full 2-step pipeline
+    python scripts/run_pipeline.py --sentence "..."        # Quick single-sentence test (old mode)
+    python scripts/run_pipeline.py --step2                 # Chi chay Step 2 (da co policy_dataset.json)
 """
 import argparse
 import json
 import os
 import sys
 
-# ── Ensure project root on path ───────────────────────────────────────
+# Ensure project root on path
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 
 from nlacp.pipeline.pipeline import process_sentence
-from nlacp.mining.attribute_cluster import main as run_clustering
-from nlacp.mining.namespace_hierarchy import main as run_hierarchy
 
 
-def run_interactive():
-    print("\n" + "="*55)
-    print("  ABAC Policy Extractor — Full Pipeline")
-    print("  (Alohaly et al. 2019 — 6-Module Framework)")
-    print("="*55)
-    print("\nType 'exit' to stop. Example:")
-    print("  A senior nurse can read medical records during business hours.\n")
+def run_single_sentence(sentence):
+    """Quick test: xu ly 1 cau va in ra ket qua."""
+    result = process_sentence(sentence)
 
-    while True:
-        try:
-            sentence = input("Enter policy sentence: ").strip()
-        except (EOFError, KeyboardInterrupt):
-            break
+    print("\n--- Extracted ABAC Policy ---")
+    print(f"  Subject  : {result.get('subject')}")
+    print(f"  Actions  : {result.get('actions', [])}")
+    print(f"  Object   : {result.get('object')}")
 
-        if not sentence:
-            continue
-        if sentence.lower() == "exit":
-            break
+    # Environment dung cho: result["environment"]
+    env_list = result.get("environment", [])
+    if env_list:
+        print(f"  Environment ({len(env_list)}):")
+        for e in env_list:
+            if "namespace" in e:
+                print(f"    [{e.get('type','?')}] {e.get('full_value','?')} "
+                      f"-> {e.get('namespace','?')}  [{e.get('data_type','?')}]")
+            else:
+                print(f"    {e.get('value', e)}")
+    else:
+        print("  Environment: (none detected)")
 
-        result = process_sentence(sentence)
+    # SA/OA Attributes dung cho: result["attributes"]
+    attrs = result.get("attributes", [])
+    if attrs:
+        print(f"  Attributes ({len(attrs)}):")
+        for a in attrs:
+            print(f"    [{a.get('category','?').upper()}] "
+                  f"{a.get('namespace','?')} = \"{a.get('short_name','?')}\"")
+    else:
+        print("  Attributes: (none detected)")
+    print()
 
-        print("\n--- Extracted ABAC Policy ---")
-        print(f"  Subject:  {result.get('subject')}")
-        print(f"  Actions:  {result.get('actions', [])}")
-        print(f"  Object:   {result.get('object')}")
-
-        env_attrs   = [a for a in result.get("attributes", []) if a.get("category") == "environment"]
-        other_attrs = [a for a in result.get("attributes", []) if a.get("category") != "environment"]
-
-        if env_attrs:
-            print("  Environment:")
-            for a in env_attrs:
-                print(f"    {a.get('namespace','?')} = \"{a.get('short_name','?')}\"  [{a.get('data_type','?')}]")
-        if other_attrs:
-            print("  Attributes:")
-            for a in other_attrs:
-                print(f"    [{a.get('category','?').upper()}] {a.get('namespace','?')} = \"{a.get('short_name','?')}\"")
-        print()
+    # Also print raw JSON for debugging
+    import json
+    print(json.dumps(result, indent=2, ensure_ascii=False))
 
 
 def run_full_pipeline():
-    """Chạy toàn bộ pipeline: NLP → Clustering → Hierarchy."""
-    print("\n" + "="*55)
-    print("  ABAC Full Pipeline Run")
-    print("="*55)
-    print("\n[Step 1/3] NLP extraction... (enter sentences, type 'done' to finish)")
+    """Chay full 2-step pipeline."""
+    print("\n" + "=" * 55)
+    print("  ABAC Full Pipeline (2-Step)")
+    print("=" * 55)
 
-    sentences_processed = 0
-    while True:
-        try:
-            sentence = input("  Sentence (or 'done'): ").strip()
-        except (EOFError, KeyboardInterrupt):
-            break
-        if sentence.lower() in ("done", "exit", ""):
-            break
-        process_sentence(sentence)
-        sentences_processed += 1
+    # Step 1
+    print("\n[STEP 1] Data Processing...")
+    from scripts.data_processing import main as run_step1
+    run_step1()
 
-    if sentences_processed > 0:
-        print(f"\n[Step 2/3] Attribute clustering...")
-        run_clustering()
-        print(f"\n[Step 3/3] Building namespace hierarchy...")
-        run_hierarchy()
+    # Step 2
+    print("\n[STEP 2] ABAC Extraction...")
+    from scripts.ABAC_extraction import main as run_step2
+    run_step2()
 
-    print("\n" + "="*55)
-    print("  Pipeline done!")
-    print("  Outputs in: outputs/policies/, outputs/clusters/, outputs/hierarchy/")
-    print("="*55)
+    print("\n" + "=" * 55)
+    print("  Pipeline HOAN TAT!")
+    print("=" * 55)
+
+
+def run_step2_only():
+    """Chi chay Step 2 tren policy_dataset.json co san."""
+    policy_path = os.path.join(PROJECT_ROOT, "dataset", "policy_dataset.json")
+    if not os.path.exists(policy_path):
+        print(f"[ERROR] {policy_path} khong ton tai. Chay Step 1 truoc.")
+        return
+
+    print("\n[STEP 2] ABAC Extraction (FAST MODE)...")
+    from scripts.ABAC_extraction import main as run_step2
+    run_step2()
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="ABAC Policy Extractor Pipeline")
-    parser.add_argument("--sentence", default=None, help="Process a single sentence (non-interactive)")
-    parser.add_argument("--full",     action="store_true", help="Run full pipeline (NLP + clustering + hierarchy)")
+    parser.add_argument("--sentence", default=None,
+                        help="Xu ly 1 cau (non-interactive, backward compatible)")
+    parser.add_argument("--step2", action="store_true",
+                        help="Chi chay Step 2 (da co policy_dataset.json)")
     args = parser.parse_args()
 
     if args.sentence:
-        result = process_sentence(args.sentence)
-        print(json.dumps(result, indent=2, ensure_ascii=False))
-    elif args.full:
-        run_full_pipeline()
+        run_single_sentence(args.sentence)
+    elif args.step2:
+        run_step2_only()
     else:
-        run_interactive()
+        run_full_pipeline()

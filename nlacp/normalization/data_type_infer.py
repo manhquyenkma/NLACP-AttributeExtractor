@@ -14,7 +14,13 @@ import spacy
 #   Không xác định được                                       → string (default)
 # ===================================================================
 
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    try:
+        nlp = spacy.load("en_core_web_md")
+    except OSError:
+        nlp = None  # data_type_infer dung NER — neu khong co model thi fallback "string"
 
 
 NE_TO_DATATYPE = {
@@ -44,6 +50,8 @@ def infer_data_type(value_text, category=None, sub_category=None):
     Trả về: "string" | "integer" | "float" | "datetime" | "boolean"
     FIX 5: Nhận thêm category và sub_category để infer chính xác hơn.
     """
+    if nlp is None:
+        return "string"
     if not value_text:
         return "string"
 

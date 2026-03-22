@@ -10,7 +10,16 @@ Chạy: python src/env_extractor.py
 """
 import spacy
 
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    try:
+        nlp = spacy.load("en_core_web_md")
+    except OSError:
+        raise OSError(
+            "[ERROR] Khong tim thay spaCy model.\n"
+            "Cai bang lenh: python -m spacy download en_core_web_sm"
+        )
 
 # ─── TEMPORAL config ─────────────────────────────────────────────
 TEMPORAL_PREPS  = {"during", "between", "after", "before",

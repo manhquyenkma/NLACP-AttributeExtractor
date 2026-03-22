@@ -12,10 +12,9 @@ from sklearn.neighbors import NearestNeighbors
 #   GloVe Vectors + auto-tune eps + DBSCAN min_samples=2
 # ===================================================================
 
-# nlacp/mining/ → nlacp/ → project root
-BASE_DIR      = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATASET_PATH  = os.path.join(BASE_DIR, "outputs", "policies", "policy_dataset.json")
-OUTPUT_PATH   = os.path.join(BASE_DIR, "outputs", "clusters",  "attribute_clusters.json")
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from nlacp.paths import POLICY_DATASET_PATH as DATASET_PATH, ATTRIBUTE_CLUSTERS_PATH as OUTPUT_PATH
 
 # Dùng model lớn có GloVe vectors
 try:
