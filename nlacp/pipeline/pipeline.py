@@ -12,7 +12,7 @@ except ImportError:
     HAS_DTYPE = False
 
 # ===================================================================
-# nlp_engine.py
+# pipeline.py
 # Full ABAC Pipeline (Alohaly et al. 2019)
 #
 # Pipeline:
@@ -32,7 +32,7 @@ def _cnn_filter(attributes):
     """
     return attributes
 
-def process_sentence(sentence):
+def process_sentence(sentence: str, save: bool = False) -> dict:
     """
     Xử lý một câu policy qua 6 Module để xuất ra ABAC policy với kiến trúc chuẩn.
     """
@@ -50,7 +50,7 @@ def process_sentence(sentence):
     all_raw_attrs = sa_oa_attrs + env_attrs
 
     # Bước 3: Đảm bảo category đúng (TRƯỚC namespace)
-    attrs_mod4 = identify_categories(all_raw_attrs, sentence)
+    attrs_mod4 = identify_categories(all_raw_attrs, sentence, relation.get("object", ""))
 
     # Bước 4: Tạo short_name ròi gán namespace
     attrs_mod2 = suggest_short_names(attrs_mod4)
@@ -72,8 +72,9 @@ def process_sentence(sentence):
     relation["attributes"]  = sa_oa
     relation["environment"] = ea
     
-    # Lưu vào DB (format mới)
-    add_policy(relation)
+    # Lưu vào DB (format mới) nếu có save=True
+    if save:
+        add_policy(relation)
     return relation
 
 

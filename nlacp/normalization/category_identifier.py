@@ -4,7 +4,7 @@
 # Our pipeline already handles some categorization via dependency parsing (subject/object)
 # and Regex/NER (temporal/spatial). This module ensures any orphaned attribute is caught.
 
-def identify_categories(attributes, sentence):
+def identify_categories(attributes, sentence, object_name=""):
     """
     Source of truth cho category. Chạy TRƯỚC namespace_assigner.
     FIX 4: Không đọc namespace để tránh circular dependency.
@@ -12,7 +12,8 @@ def identify_categories(attributes, sentence):
     """
     categorized = []
 
-    for attr in attributes:
+    for attr_orig in attributes:
+        attr = attr_orig.copy()
         cat     = attr.get("category", "")
         sub_cat = attr.get("sub_category", attr.get("subcategory", ""))
 
@@ -39,7 +40,10 @@ def identify_categories(attributes, sentence):
         # 4. Fallback: suy luận từ dep field
         elif not cat:
             dep = attr.get("dep", "")
-            attr["category"] = "subject" if dep else "context"
+            if object_name and attr.get("value", "") in object_name:
+                attr["category"] = "object"
+            else:
+                attr["category"] = "subject" if dep else "context"
 
         categorized.append(attr)
 

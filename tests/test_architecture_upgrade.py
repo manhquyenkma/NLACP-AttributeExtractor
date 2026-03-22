@@ -9,6 +9,12 @@ try:
 except ImportError:
     HAS_TORCH = False
 
+try:
+    from experiments.cnn.cnn_classifier import RelationDataset
+    HAS_CNN = True
+except (ImportError, ModuleNotFoundError):
+    HAS_CNN = False
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 
@@ -19,7 +25,6 @@ from nlacp.normalization.namespace_assigner import assign_namespaces
 from nlacp.extraction.short_name_suggester import suggest_short_names
 from nlacp.normalization.data_type_infer import infer_data_type
 from nlacp.pipeline.pipeline import process_sentence
-from experiments.cnn.cnn_classifier import RelationDataset
 
 class TestArchitectureUpgrade(unittest.TestCase):
 
@@ -107,7 +112,7 @@ class TestArchitectureUpgrade(unittest.TestCase):
         self.assertIn("category", cands[0])
         self.assertIn("valid", cands[0])
 
-    @unittest.skipIf(not HAS_TORCH, "PyTorch not installed")
+    @unittest.skipIf(not HAS_TORCH or not HAS_CNN, "PyTorch or CNN module not available")
     def test_8_cnn_dataset_loader(self):
         # TEST 8
         dummy_corpus = {

@@ -24,7 +24,7 @@ from nlacp.normalization.namespace_assigner import assign_namespaces
 from nlacp.normalization.data_type_infer import annotate_attributes_with_type
 
 DATASET_DIR  = os.path.join(PROJECT_ROOT, "dataset")
-POLICY_PATH  = os.path.join(DATASET_DIR, "policy_dataset.json")
+from nlacp.paths import POLICY_DATASET_PATH as POLICY_PATH
 
 
 # =====================================================================

@@ -14,13 +14,8 @@ import spacy
 #   Không xác định được                                       → string (default)
 # ===================================================================
 
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    try:
-        nlp = spacy.load("en_core_web_md")
-    except OSError:
-        nlp = None  # data_type_infer dung NER — neu khong co model thi fallback "string"
+from nlacp.utils.nlp_utils import get_spacy_model
+nlp = get_spacy_model(fallback_to_none=True)
 
 
 NE_TO_DATATYPE = {

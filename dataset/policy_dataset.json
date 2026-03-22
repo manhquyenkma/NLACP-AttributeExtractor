@@ -2,31 +2,104 @@
     "policies": [
         {
             "id": 1,
-            "sentence": "After the meeting, the reviewers’ comments are sent back to the authors, so that they can improve their paper.\",After the meeting,,CHECK,CHECK,After the meeting,,,,pending",
-            "subject": "they",
+            "sentence": "A senior nurse can approve medical records during business hours within the hospital.",
+            "subject": "nurse",
             "actions": [
-                "send",
-                "improve",
-                "\",after",
-                "meeting,,,,pende"
+                "Update"
             ],
-            "object": "meeting,,CHECK",
-            "environment": [],
-            "attributes": [],
-            "relation_pairs": []
+            "object": "records",
+            "environment": [
+                {
+                    "type": "temporal",
+                    "preposition": "during",
+                    "head": "hospital",
+                    "modifier": "business",
+                    "full_value": "during business hours within the hospital",
+                    "normalized": "business_hours_within_hospital",
+                    "namespace": "env:time:business_hours_within_hospital",
+                    "data_type": "time"
+                },
+                {
+                    "type": "spatial_physical",
+                    "preposition": "within",
+                    "head": "hospital",
+                    "modifier": null,
+                    "full_value": "within the hospital",
+                    "normalized": "hospital",
+                    "namespace": "env:location:hospital",
+                    "data_type": "location"
+                }
+            ],
+            "attributes": [
+                {
+                    "name": "senior",
+                    "value": "nurse",
+                    "category": "subject",
+                    "dep": "amod",
+                    "short_name": "senior_nurse",
+                    "namespace": "subject:role:senior_nurse",
+                    "data_type": "string"
+                },
+                {
+                    "name": "medical",
+                    "value": "records",
+                    "category": "object",
+                    "dep": "amod",
+                    "short_name": "medical_record",
+                    "namespace": "object:type:medical_record",
+                    "data_type": "string"
+                }
+            ],
+            "relation_pairs": [
+                [
+                    "nurse",
+                    "senior"
+                ],
+                [
+                    "records",
+                    "medical"
+                ]
+            ]
         },
         {
             "id": 2,
-            "sentence": "L0006,cyber,\"After the PC meeting, the PCC must inform the maintainer about the accepted papers, so that the notifications can be sent to the authors.",
-            "subject": "notifications",
+            "sentence": "Managers in the finance department can approve expense reports.",
+            "subject": "Managers",
             "actions": [
-                "inform",
-                "send"
+                "Update"
             ],
-            "object": "maintainer",
+            "object": "reports",
             "environment": [],
-            "attributes": [],
-            "relation_pairs": []
+            "attributes": [
+                {
+                    "name": "finance",
+                    "value": "department",
+                    "category": "object",
+                    "dep": "compound",
+                    "short_name": "finance_department",
+                    "namespace": "object:prop:finance_department",
+                    "data_type": "string"
+                },
+                {
+                    "name": "expense",
+                    "value": "reports",
+                    "category": "object",
+                    "dep": "compound",
+                    "short_name": "expense_report",
+                    "namespace": "object:type:expense_report",
+                    "data_type": "string"
+                }
+            ],
+            "relation_pairs": [
+                [
+                    "department",
+                    "finance"
+                ],
+                [
+                    "reports",
+                    "expense"
+                ]
+            ]
         }
     ]
 }

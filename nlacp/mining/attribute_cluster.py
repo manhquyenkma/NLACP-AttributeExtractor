@@ -17,12 +17,8 @@ _sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.absp
 from nlacp.paths import POLICY_DATASET_PATH as DATASET_PATH, ATTRIBUTE_CLUSTERS_PATH as OUTPUT_PATH
 
 # Dùng model lớn có GloVe vectors
-try:
-    nlp_vec = spacy.load("en_core_web_md")
-    print("[INFO] Using en_core_web_md (300d GloVe vectors)")
-except OSError:
-    print("[WARNING] en_core_web_md not found. Falling back to en_core_web_sm (WARNING: poor embeddings!)")
-    nlp_vec = spacy.load("en_core_web_sm")
+from nlacp.utils.nlp_utils import get_spacy_model
+nlp_vec = get_spacy_model()
 
 
 def load_dataset():
@@ -61,7 +57,8 @@ def compute_auto_eps(X, min_pts=2):
     nbrs = NearestNeighbors(n_neighbors=min_pts, metric="euclidean").fit(X)
     distances, _ = nbrs.kneighbors(X)
     eps = float(np.mean(distances[:, -1]))
-    print(f"Auto-computed eps = {eps:.4f}")
+    import logging
+    logging.debug(f"Auto-computed eps = {eps:.4f}")
     return eps
 
 

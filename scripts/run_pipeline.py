@@ -81,9 +81,9 @@ def run_full_pipeline():
 
 def run_step2_only():
     """Chi chay Step 2 tren policy_dataset.json co san."""
-    policy_path = os.path.join(PROJECT_ROOT, "dataset", "policy_dataset.json")
-    if not os.path.exists(policy_path):
-        print(f"[ERROR] {policy_path} khong ton tai. Chay Step 1 truoc.")
+    from nlacp.paths import POLICY_DATASET_PATH
+    if not os.path.exists(POLICY_DATASET_PATH):
+        print(f"[ERROR] {POLICY_DATASET_PATH} khong ton tai. Chay Step 1 truoc.")
         return
 
     print("\n[STEP 2] ABAC Extraction (FAST MODE)...")

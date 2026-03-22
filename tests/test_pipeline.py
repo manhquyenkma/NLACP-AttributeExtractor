@@ -26,8 +26,8 @@ lines = [
     f"Object:   {result.get('object')}",
 ]
 
-env_attrs   = [a for a in result.get("attributes", []) if a.get("category") == "environment"]
-other_attrs = [a for a in result.get("attributes", []) if a.get("category") != "environment"]
+env_attrs   = result.get("environment", [])
+other_attrs = result.get("attributes", [])
 
 env_strings = [
     f"{a.get('namespace','?')} = \"{a.get('short_name','?')}\""
@@ -49,7 +49,6 @@ print(f"[OK] Output written to {OUTPUT_FILE}")
 # Basic assertions
 assert result.get("object") == "records",   f"FAIL: object={result.get('object')!r}, expected 'records'"
 assert "Write" in result.get("actions", []), f"FAIL: 'Write' not in actions={result.get('actions')}"
-assert any(a.get("namespace","").startswith("environment:") for a in result.get("attributes",[])), \
-    "FAIL: no environment namespace found"
+assert len(result.get("environment", [])) > 0, "FAIL: no environment found"
 
 print("[PASS] All basic assertions passed.")

@@ -21,7 +21,7 @@ from nlacp.extraction.relation_candidate import extract_relations, parse_sentenc
 
 DATASET_DIR      = os.path.join(PROJECT_ROOT, "dataset")
 CANDIDATE_PATH   = os.path.join(DATASET_DIR, "relation_candidate.json")
-POLICY_PATH      = os.path.join(DATASET_DIR, "policy_dataset.json")
+from nlacp.paths import POLICY_DATASET_PATH as POLICY_PATH
 
 
 # =====================================================================
@@ -181,7 +181,7 @@ def run_validation():
             "id":              rel["id"],
             "sentence":        rel["sentence"],
             "subject":         rel.get("subject"),
-            "action":          rel.get("actions")[0] if rel.get("actions") else None,
+            "actions":         rel.get("actions", []),
             "object":          rel.get("object"),
             "environment":     [],       # se duoc dien o Step 2
             "attributes":      valid_attrs,

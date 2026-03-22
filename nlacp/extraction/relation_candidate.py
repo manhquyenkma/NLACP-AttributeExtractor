@@ -14,16 +14,8 @@ import os
 #   Pattern 5: pobj + amod       → "approved procedures"
 # ===================================================================
 
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    try:
-        nlp = spacy.load("en_core_web_md")
-    except OSError:
-        raise OSError(
-            "[ERROR] Khong tim thay spaCy model.\n"
-            "Cai bang lenh: python -m spacy download en_core_web_sm"
-        )
+from nlacp.utils.nlp_utils import get_spacy_model
+nlp = get_spacy_model()
 
 SUBJECT_DEPS = {"nsubj", "nsubjpass", "csubj"}
 OBJECT_DEPS  = {"dobj", "pobj", "attr"}
@@ -97,6 +89,17 @@ def extract_relations(sentence, tokens):
                 continue
             if obj_pobj is None:  # keep first valid pobj
                 obj_pobj = token.text
+
+    # FIX 7: Handle "light noun" object coreference pattern
+    LIGHT_NOUNS = {"list", "set", "group", "collection", "series", "range", "array", "type", "kind", "class"}
+    if obj_dobj and obj_dobj.lower() in LIGHT_NOUNS:
+        for token in doc:
+            if token.text == obj_dobj and token.dep_ == "dobj":
+                for child in token.children:
+                    if child.dep_ == "prep" and child.text.lower() == "of":
+                        for pobj in child.children:
+                            if pobj.dep_ == "pobj":
+                                obj_dobj = pobj.text
 
     obj = obj_dobj or obj_pobj   # dobj luôn thắng pobj
 

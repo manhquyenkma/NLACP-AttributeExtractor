@@ -18,7 +18,8 @@ def assign_namespaces(attributes, subject_name, object_name):
     resource_keywords = {"record", "procedure", "report", "paper", "data",
                          "log", "material", "file", "grade", "submission"}
 
-    for attr in attributes:
+    for attr_orig in attributes:
+        attr = attr_orig.copy()
         short_name = attr.get("short_name", "")
         cat        = attr.get("category", "")
         sub_cat    = attr.get("sub_category", attr.get("subcategory", ""))

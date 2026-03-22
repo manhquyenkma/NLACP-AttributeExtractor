@@ -64,10 +64,11 @@ def suggest_short_names(attributes):
     processed_attrs = []
     
     for attr in attributes:
-        # attr is typically a dict from Module 1
-        name  = attr.get("name", "")
-        value = attr.get("value", "")
-        cat   = attr.get("category", "")
+        # Clone attributes before mutation
+        new_attr = attr.copy()
+        name  = new_attr.get("name", "")
+        value = new_attr.get("value", "")
+        cat   = new_attr.get("category", "")
 
         # FIX 2: detect env attrs — không có name hoặc category là temporal/spatial
         is_env = cat in ("temporal", "spatial") or not name
@@ -82,8 +83,8 @@ def suggest_short_names(attributes):
         else:
             short_name = "unknown"
             
-        attr["short_name"] = short_name
-        processed_attrs.append(attr)
+        new_attr["short_name"] = short_name
+        processed_attrs.append(new_attr)
         
     return processed_attrs
 

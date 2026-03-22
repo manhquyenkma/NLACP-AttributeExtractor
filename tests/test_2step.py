@@ -1,10 +1,11 @@
 """Quick test: runs Step 1 and Step 2 non-interactively."""
 import json, os, sys
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
 
 from nlacp.extraction.relation_candidate import extract_relations, parse_sentence
 
-DATASET_DIR    = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dataset")
+DATASET_DIR  = os.path.join(PROJECT_ROOT, "dataset")
 CANDIDATE_PATH = os.path.join(DATASET_DIR, "relation_candidate.json")
 POLICY_PATH    = os.path.join(DATASET_DIR, "policy_dataset.json")
 
@@ -56,6 +57,7 @@ print(f"[OK] Step 1B: {len(policies)} policies saved to policy_dataset.json")
 
 # --- Step 2: ABAC Extraction ---
 print("\n[INFO] Running Step 2...")
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "scripts"))
 from ABAC_extraction import fill_environment, fill_attributes
 
 with open(POLICY_PATH, "r", encoding="utf-8") as f:

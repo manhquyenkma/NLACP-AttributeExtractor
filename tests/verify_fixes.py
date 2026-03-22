@@ -3,7 +3,8 @@ verify_fixes.py — Quick verification script for all 8 bug fixes
 """
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
 
 print("Loading spaCy..."); import spacy  # noqa
 print("=" * 60)
@@ -12,7 +13,7 @@ print("=" * 60)
 
 # ─── STEP 1: relation_candidate ───────────────────────────────
 print("\n--- STEP 1: relation_candidate ---")
-from relation_candidate import parse_sentence, extract_relations
+from nlacp.extraction.relation_candidate import parse_sentence, extract_relations
 
 tests_rc = [
     ("Nurses can read and write medical records during business hours within the hospital.",
@@ -32,7 +33,7 @@ for s, expect in tests_rc:
 
 # ─── STEP 2: short_name_suggester ─────────────────────────────
 print("\n--- STEP 2: short_name_suggester ---")
-from short_name_suggester import suggest_short_names
+from nlacp.extraction.short_name_suggester import suggest_short_names
 
 env_attrs = [
     {"category": "temporal", "value": "during business hours"},
@@ -46,8 +47,8 @@ for r in result_sn:
 
 # ─── STEP 3 & 4: category_identifier + namespace_assigner ─────
 print("\n--- STEP 3 & 4: category_identifier + namespace_assigner ---")
-from category_identifier import identify_categories
-from namespace_assigner   import assign_namespaces
+from nlacp.normalization.category_identifier import identify_categories
+from nlacp.normalization.namespace_assigner import assign_namespaces
 
 cat_test = [
     {"category": "temporal", "value": "during business hours", "short_name": "during_business_hour"},
@@ -64,7 +65,7 @@ for r in ns_result:
 
 # ─── STEP 5: nlp_engine (swap order) ──────────────────────────
 print("\n--- STEP 5: nlp_engine ---")
-from nlp_engine import process_sentence
+from nlacp.pipeline.pipeline import process_sentence
 result_pipeline = process_sentence(
     "A senior nurse can read and write medical records during business hours within the hospital."
 )
@@ -77,13 +78,13 @@ for a in result_pipeline.get("attributes", []):
 
 obj_ok = result_pipeline.get("object") == "records"
 env_ok = any(a.get("namespace", "").startswith("environment:time:") 
-             for a in result_pipeline.get("attributes", []))
+             for a in result_pipeline.get("environment", []))
 print(f"\n  [{'OK' if obj_ok else 'FAIL'}] object == 'records'")
 print(f"  [{'OK' if env_ok else 'FAIL'}] environment:time namespace exists")
 
 # ─── STEP 6: data_type_infer ──────────────────────────────────
 print("\n--- STEP 6: data_type_infer ---")
-from data_type_infer import infer_data_type
+from nlacp.normalization.data_type_infer import infer_data_type
 dt = infer_data_type("during business hours", category="environment", sub_category="temporal")
 print(f"  [{'OK' if dt == 'datetime' else 'FAIL'}] 'during business hours' => {dt!r} (want 'datetime')")
 

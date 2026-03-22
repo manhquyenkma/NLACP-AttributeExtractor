@@ -2,39 +2,67 @@
     "relations": [
         {
             "id": 1,
-            "sentence": "After the meeting, the reviewers’ comments are sent back to the authors, so that they can improve their paper.\",After the meeting,,CHECK,CHECK,After the meeting,,,,pending",
-            "subject": "they",
+            "sentence": "A senior nurse can approve medical records during business hours within the hospital.",
+            "subject": "nurse",
             "actions": [
-                "send",
-                "improve",
-                "\",after",
-                "meeting,,,,pende"
+                "Update"
             ],
-            "object": "meeting,,CHECK",
-            "attributes": [],
-            "relation_pairs": []
-        },
-        {
-            "id": 2,
-            "sentence": "L0006,cyber,\"After the PC meeting, the PCC must inform the maintainer about the accepted papers, so that the notifications can be sent to the authors.",
-            "subject": "notifications",
-            "actions": [
-                "inform",
-                "send"
-            ],
-            "object": "maintainer",
+            "object": "records",
             "attributes": [
                 {
-                    "name": "accepted",
-                    "value": "papers",
+                    "name": "senior",
+                    "value": "nurse",
+                    "category": "subject",
+                    "dep": "amod"
+                },
+                {
+                    "name": "medical",
+                    "value": "records",
                     "category": "object",
                     "dep": "amod"
                 }
             ],
             "relation_pairs": [
                 [
-                    "papers",
-                    "accepted"
+                    "nurse",
+                    "senior"
+                ],
+                [
+                    "records",
+                    "medical"
+                ]
+            ]
+        },
+        {
+            "id": 2,
+            "sentence": "Managers in the finance department can approve expense reports.",
+            "subject": "Managers",
+            "actions": [
+                "Update"
+            ],
+            "object": "reports",
+            "attributes": [
+                {
+                    "name": "finance",
+                    "value": "department",
+                    "category": "object",
+                    "dep": "compound"
+                },
+                {
+                    "name": "expense",
+                    "value": "reports",
+                    "category": "object",
+                    "dep": "compound"
+                }
+            ],
+            "relation_pairs": [
+                [
+                    "department",
+                    "finance"
+                ],
+                [
+                    "reports",
+                    "expense"
                 ]
             ]
         }

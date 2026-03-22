@@ -51,7 +51,7 @@ def build_element_attr_map(dataset, clusters):
         short_name  = cluster.get("short_name", f"attr_{cluster['cluster_id']}")
         cluster_id  = cluster["cluster_id"]
         for attr in cluster.get("attributes", []):
-            attr_name = attr.get("name", "").lower()
+            attr_name = attr.lower() if isinstance(attr, str) else attr.get("name", "").lower()
             if attr_name:
                 attr_to_cluster[attr_name] = {
                     "cluster_id": cluster_id,
@@ -136,7 +136,7 @@ def compute_hierarchy(element_attrs):
             attrs1 = element_attrs[ns1]["attrs"]
             attrs2 = element_attrs[ns2]["attrs"]
 
-            if is_ancestor(ns1, ns2):
+            if is_ancestor(attrs1, attrs2):
                 # ns1 là cha của ns2 — nhưng chỉ thêm parent trực tiếp
                 # (parent trực tiếp = không có intermediate ns)
                 is_direct = True
@@ -144,7 +144,7 @@ def compute_hierarchy(element_attrs):
                     if ns3 in (ns1, ns2):
                         continue
                     attrs3 = element_attrs[ns3]["attrs"]
-                    if is_ancestor(ns1, ns3) and is_ancestor(ns3, ns2):
+                    if is_ancestor(attrs1, attrs3) and is_ancestor(attrs3, attrs2):
                         is_direct = False
                         break
                 if is_direct:

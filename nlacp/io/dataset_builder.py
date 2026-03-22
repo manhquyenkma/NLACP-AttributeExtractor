@@ -65,13 +65,12 @@ def add_policy(relation_data):
     new_id = len(dataset["policies"]) + 1
 
     actions_list = relation_data.get("actions", [])
-    action_str = ", ".join(actions_list) if actions_list else None
 
     policy = {
         "id":          new_id,
         "sentence":    relation_data["sentence"],
         "subject":     relation_data.get("subject"),
-        "action":      action_str,
+        "actions":     actions_list,
         "object":      relation_data.get("object"),
         "attributes":  relation_data.get("attributes", []),
         "environment": _format_environment(relation_data.get("environment", []))
