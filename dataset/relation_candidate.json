@@ -12,14 +12,32 @@
                 {
                     "name": "senior",
                     "value": "nurse",
-                    "category": "subject",
+                    "category": "unclassified",
                     "dep": "amod"
+                },
+                {
+                    "name": "during",
+                    "value": "approve",
+                    "category": "unclassified",
+                    "dep": "prep"
                 },
                 {
                     "name": "medical",
                     "value": "records",
-                    "category": "object",
+                    "category": "unclassified",
                     "dep": "amod"
+                },
+                {
+                    "name": "business",
+                    "value": "hours",
+                    "category": "unclassified",
+                    "dep": "compound"
+                },
+                {
+                    "name": "within",
+                    "value": "hours",
+                    "category": "unclassified",
+                    "dep": "prep"
                 }
             ],
             "relation_pairs": [
@@ -28,8 +46,20 @@
                     "senior"
                 ],
                 [
+                    "approve",
+                    "during"
+                ],
+                [
                     "records",
                     "medical"
+                ],
+                [
+                    "hours",
+                    "business"
+                ],
+                [
+                    "hours",
+                    "within"
                 ]
             ]
         },
@@ -45,13 +75,13 @@
                 {
                     "name": "finance",
                     "value": "department",
-                    "category": "object",
+                    "category": "unclassified",
                     "dep": "compound"
                 },
                 {
                     "name": "expense",
                     "value": "reports",
-                    "category": "object",
+                    "category": "unclassified",
                     "dep": "compound"
                 }
             ],

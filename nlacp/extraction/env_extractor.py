@@ -154,10 +154,26 @@ def extract_env_attributes(sentence):
 
 
 def _get_noun_phrase(prep_token):
-    """Lấy noun phrase đi sau giới từ (dùng subtree)."""
+    """Lấy noun phrase sau giới từ — dừng tại prep boundary tiếp theo.
+    
+    Chi tiết bug cũ: child.subtree lấy toàn bộ cây con của noun head,
+    khiến "during business hours" nuốt luôn "within the hospital" khi
+    spaCy gắn within-clause vào subtree của "hours".
+    Fix: dừng traversal ngay khi gặp token có dep_=="prep" và token đó
+    không phải chính child đang xét.
+    """
     for child in prep_token.children:
         if child.pos_ in ("NOUN", "PROPN", "ADJ", "NUM"):
-            return " ".join(t.text for t in child.subtree)
+            tokens = []
+            for t in child.subtree:
+                # Dừng khi gặp prep mới (vd: "within" trong subtree của "hours")
+                if t.dep_ == "prep" and t != child:
+                    break
+                # Dừng tại dấu câu
+                if t.is_punct:
+                    break
+                tokens.append(t.text)
+            return " ".join(tokens)
     return ""
 
 
@@ -168,19 +184,35 @@ def _has_hint(text, hints):
 
 def _get_device_phrase(trigger_token):
     """Lấy phrase của device trigger (using/via/through + NP).
-    Xử lý cả trường hợp dep=advcl, acl, prep."""
+    Xử lý cả trường hợp dep=advcl, acl, prep.
+    Dừng tại prep boundary để tránh overreach."""
     parts = []
     for child in trigger_token.children:
         if child.pos_ in ("NOUN", "PROPN", "ADJ"):
-            # Lấy toàn bộ subtree: "trusted workstations"
-            parts.append(" ".join(t.text for t in child.subtree))
+            tokens = []
+            for t in child.subtree:
+                if t.dep_ == "prep" and t != child:
+                    break
+                if t.is_punct:
+                    break
+                tokens.append(t.text)
+            if tokens:
+                parts.append(" ".join(tokens))
     if parts:
         return " ".join(parts)
     # Nếu không có con trực tiếp, tìm trong head children
     head = trigger_token.head
     for child in head.children:
         if child != trigger_token and child.pos_ in ("NOUN", "PROPN"):
-            return " ".join(t.text for t in child.subtree)
+            tokens = []
+            for t in child.subtree:
+                if t.dep_ == "prep" and t != child:
+                    break
+                if t.is_punct:
+                    break
+                tokens.append(t.text)
+            if tokens:
+                return " ".join(tokens)
     return ""
 
 
@@ -261,6 +293,11 @@ if __name__ == "__main__":
         "A registered patient may view his full health record.",          # no env-att
         "Physicians within the ICU can override standard protocols.",
         "Staff can access data only between 8am and 5pm on weekdays.",
+        # BOUNDARY BUG test cases
+        "A senior nurse can view medical records during business hours within the hospital.",
+        "Staff may access records at night in the lab.",
+        "Users can submit forms on weekends.",
+        "Managers can access records within the campus.",
     ]
 
     print("\n" + "="*60)

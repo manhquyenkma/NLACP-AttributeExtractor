@@ -93,6 +93,7 @@ for i in range(100):
 
 output_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "annotated", "vact_env_annotated.json")
 
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
 with open(output_path, "w", encoding="utf-8") as f:
     json.dump(sentences, f, indent=2)
 

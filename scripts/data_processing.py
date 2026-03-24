@@ -29,7 +29,8 @@ from nlacp.paths import POLICY_DATASET_PATH as POLICY_PATH
 # =====================================================================
 
 def run_extraction():
-    """Nhap cau tu terminal, trich xuat S-A-O + relation_pairs, ghi ra JSON."""
+    """Nhap cau tu terminal, trich xuat relation_pairs, ghi ra JSON.
+    Chi luu sentence + pairs. S/A/O se duoc trich xuat o Step 2."""
     print("\n" + "=" * 60)
     print("  STEP 1A: NLP Relation Extraction")
     print("=" * 60)
@@ -39,7 +40,19 @@ def run_extraction():
     print("  Managers in the finance department can approve expense reports.\n")
 
     relations = []
-    idx = 0
+    
+    # Doc ID hien tai neu file da ton tai
+    start_idx = 0
+    if os.path.exists(CANDIDATE_PATH):
+        try:
+            with open(CANDIDATE_PATH, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                ids = [r.get("id", 0) for r in old_data.get("relations", [])]
+                start_idx = max(ids) if ids else 0
+        except Exception:
+            pass
+            
+    idx = start_idx
 
     while True:
         try:
@@ -50,13 +63,25 @@ def run_extraction():
         if not sentence or sentence.lower() in ("done", "exit"):
             break
 
+        # Validate input: minimum 3 words, at least one alphabetic word
+        words = sentence.split()
+        if len(words) < 3:
+            print("  [SKIP] Câu quá ngắn — cần ít nhất 3 từ (vd: 'Doctors can view records').")
+            continue
+        if not any(w.isalpha() for w in words):
+            print("  [SKIP] Câu không hợp lệ — cần chứa chữ cái.")
+            continue
+
         idx += 1
         tokens  = parse_sentence(sentence)
         result  = extract_relations(sentence, tokens)
 
-        # Tao relation_pairs tu attributes
+        # Chi lay relation_pairs thuc su, loai bo pairs la prep
+        ENV_PREPS = {"during","within","after","before","between","via","through","using","at","on","from"}
         relation_pairs = []
         for attr in result.get("attributes", []):
+            if attr["name"].lower() in ENV_PREPS:
+                continue
             pair = [attr["value"], attr["name"]]
             if pair not in relation_pairs:
                 relation_pairs.append(pair)
@@ -67,7 +92,6 @@ def run_extraction():
             "subject":         result.get("subject"),
             "actions":         result.get("actions", []),
             "object":          result.get("object"),
-            "attributes":      result.get("attributes", []),
             "relation_pairs":  relation_pairs
         }
         relations.append(entry)
@@ -81,9 +105,21 @@ def run_extraction():
         print("[WARN] Khong co cau nao duoc nhap.")
         return False
 
-    # Ghi de relation_candidate.json
+    # Doc du lieu cu hoac tao moi (relation_candidate.json)
     os.makedirs(DATASET_DIR, exist_ok=True)
-    data = {"relations": relations}
+    all_relations = []
+    if os.path.exists(CANDIDATE_PATH):
+        try:
+            with open(CANDIDATE_PATH, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                all_relations = old_data.get("relations", [])
+        except Exception:
+            pass
+            
+    all_relations.extend(relations)
+    
+    # Ghi de (data cu + data moi vao file)
+    data = {"relations": all_relations}
     with open(CANDIDATE_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
     print(f"\n[OK] Saved {len(relations)} relation(s) to {CANDIDATE_PATH}")
@@ -96,7 +132,8 @@ def run_extraction():
 
 def run_validation():
     """Doc relation_candidate.json, hien tung cap de user xac nhan dung/sai.
-    Ghi ra policy_dataset.json chi voi cac cap dung."""
+    Ghi ra policy_dataset.json CHI voi sentence + validated pairs.
+    S/A/O va attributes se duoc dien o Step 2 (ABAC_extraction.py)."""
 
     print("\n" + "=" * 60)
     print("  STEP 1B: CNN Validation (Interactive)")
@@ -114,7 +151,25 @@ def run_validation():
         print("[WARN] relation_candidate.json rong.")
         return False
 
-    print(f"\nCo {len(relations)} relation(s) can xac nhan.")
+    # Read processed IDs from policy_dataset.json to skip them
+    processed_ids = set()
+    if os.path.exists(POLICY_PATH):
+        try:
+            with open(POLICY_PATH, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                for p in old_data.get("policies", []):
+                    processed_ids.add(p.get("id"))
+        except Exception:
+            pass
+
+    # Filter out already validated relations
+    relations_to_validate = [r for r in relations if r["id"] not in processed_ids]
+
+    if not relations_to_validate:
+        print("[INFO] Khong co relation nao moi can xac nhan (tat ca da duoc tu dong bo qua vi da xu ly roi).")
+        return True
+
+    print(f"\nCo {len(relations_to_validate)} relation(s) MOI can xac nhan (da bo qua {len(relations) - len(relations_to_validate)} relation cu).")
     print("Voi moi cap relation_pair, nhap:")
     print("  y = dung (giu lai)")
     print("  n = sai  (loai bo)")
@@ -123,25 +178,21 @@ def run_validation():
 
     policies = []
 
-    for rel in relations:
+    for rel in relations_to_validate:
         print("-" * 50)
         print(f"Relation #{rel['id']}: {rel['sentence']}")
-        print(f"  Subject: {rel.get('subject')}  |  Actions: {rel.get('actions')}  |  Object: {rel.get('object')}")
-        print(f"  Relation pairs ({len(rel.get('relation_pairs', []))}):")
-
-        valid_attrs = []
-        auto_mode = None  # None, 'accept_all', 'skip_all'
 
         pairs = rel.get("relation_pairs", [])
-        attrs = rel.get("attributes", [])
+        print(f"  Relation pairs ({len(pairs)}):")
 
-        # Map pair -> attribute dict
-        pair_attr_map = {}
-        for attr in attrs:
-            key = (attr["value"], attr["name"])
-            pair_attr_map[key] = attr
+        valid_pairs = []
+        auto_mode = None
 
+        ENV_PREPS = {"during","within","after","before","between","via","through","using","at","on","from"}
         for i, pair in enumerate(pairs):
+            if pair[1].lower() in ENV_PREPS:
+                continue
+                
             if auto_mode == "accept_all":
                 choice = "y"
             elif auto_mode == "skip_all":
@@ -160,38 +211,42 @@ def run_validation():
                     auto_mode = "skip_all"
                     choice = "n"
                 elif choice not in ("y", "n"):
-                    choice = "y"  # default accept
+                    choice = "y"
 
             if choice == "y":
-                key = (pair[0], pair[1])
-                attr = pair_attr_map.get(key)
-                if attr:
-                    valid_attrs.append(attr)
-                else:
-                    # Fallback: tao attr tu pair
-                    valid_attrs.append({
-                        "name":     pair[1],
-                        "value":    pair[0],
-                        "category": "unknown",
-                        "dep":      "unknown"
-                    })
+                valid_pairs.append(pair)
 
-        # Tao policy entry
+        # Luu sentence + validated pairs + S/A/O
         policy = {
             "id":              rel["id"],
             "sentence":        rel["sentence"],
             "subject":         rel.get("subject"),
             "actions":         rel.get("actions", []),
             "object":          rel.get("object"),
-            "environment":     [],       # se duoc dien o Step 2
-            "attributes":      valid_attrs,
-            "relation_pairs":  [[a["value"], a["name"]] for a in valid_attrs]
+            "relation_pairs":  valid_pairs
         }
         policies.append(policy)
-        print(f"  -> Giu lai {len(valid_attrs)}/{len(pairs)} cap.\n")
+        print(f"  -> Giu lai {len(valid_pairs)}/{len(pairs)} cap.\n")
 
-    # Ghi policy_dataset.json
-    output = {"policies": policies}
+    # Ghi them policy_dataset.json (chi co pairs)
+    os.makedirs(os.path.dirname(POLICY_PATH), exist_ok=True)
+    all_policies = []
+    if os.path.exists(POLICY_PATH):
+        try:
+            with open(POLICY_PATH, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                all_policies = old_data.get("policies", [])
+        except Exception:
+            pass
+            
+    # Filter out entries with the same ID or same sentence
+    new_ids = {p["id"] for p in policies}
+    new_sentences = {p["sentence"].lower().strip() for p in policies}
+    
+    all_policies = [p for p in all_policies if p.get("id") not in new_ids and p.get("sentence", "").lower().strip() not in new_sentences]
+    all_policies.extend(policies)
+    
+    output = {"policies": all_policies}
     with open(POLICY_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=4, ensure_ascii=False)
     print(f"[OK] Saved {len(policies)} policy(ies) to {POLICY_PATH}")

@@ -15,3 +15,7 @@ RELATION_CANDIDATE_PATH = os.path.join(DATASET_DIR, "relation_candidate.json")
 POLICY_DATASET_PATH     = os.path.join(BASE_DIR, "outputs", "policies",  "policy_dataset.json")
 ATTRIBUTE_CLUSTERS_PATH = os.path.join(BASE_DIR, "outputs", "clusters",  "attribute_clusters.json")
 NAMESPACE_HIERARCHY_PATH = os.path.join(BASE_DIR, "outputs", "hierarchy", "namespace_hierarchy.json")
+
+# Namespace Constants
+NS_ENV_TIME      = "env:time"
+NS_ENV_LOC       = "env:location"

@@ -38,15 +38,21 @@ class TestArchitectureUpgrade(unittest.TestCase):
         self.assertNotIn("hospital", rel_data["object"])
         self.assertNotIn("hours", rel_data["object"])
 
-    def test_2_env_phrases_not_saoa_attrs(self):
-        # TEST 2
+    def test_2_env_phrases_included_in_raw_extraction(self):
+        # TEST 2: Alohaly 2019 — extract_relations() trả về TẤT CẢ pairs
+        # (bao gồm env). Env chỉ bị loại ở bước pipeline/ABAC_extraction.
         s = "Doctors may read and write medical records during business hours within the hospital."
         tokens = parse_sentence(s)
         rel = extract_relations(s, tokens)
         
         attr_values = [a["value"] for a in rel["attributes"]]
-        self.assertNotIn("hours", attr_values, "hours should be excluded from SA/OA attrs")
-        self.assertNotIn("hospital", attr_values, "hospital should be excluded from SA/OA attrs")
+        # Env pairs PHẢI có mặt ở raw extraction
+        self.assertIn("hours", attr_values, "hours should be in raw extraction pairs")
+        
+        # Nhưng sau khi qua pipeline, env phải bị tách riêng
+        result = process_sentence(s)
+        sa_values = [a.get("value") for a in result["attributes"]]
+        self.assertNotIn("hours", sa_values, "hours must be filtered from SA/OA by pipeline")
 
     def test_3_category_normalization(self):
         # TEST 3
@@ -69,8 +75,8 @@ class TestArchitectureUpgrade(unittest.TestCase):
         ]
         named = assign_namespaces(attrs, "", "")
         
-        self.assertEqual(named[0]["namespace"], "environment:time:business_hour")
-        self.assertEqual(named[1]["namespace"], "environment:location:hospital")
+        self.assertEqual(named[0]["namespace"], "env:time:business_hour")
+        self.assertEqual(named[1]["namespace"], "env:location:hospital")
 
     def test_5_short_name_generation_env_attrs(self):
         # TEST 5
@@ -164,11 +170,10 @@ class TestArchitectureUpgrade(unittest.TestCase):
         # Environment should be separated
         self.assertTrue(len(res["environment"]) > 0)
         env0 = res["environment"][0]
-        self.assertEqual(env0["category"], "environment")
-        self.assertEqual(env0["sub_category"], "temporal")
-        self.assertIn("during_business_hour", env0["short_name"])
-        self.assertEqual(env0["data_type"], "datetime")
-        self.assertEqual(env0["namespace"], "environment:time:during_business_hour")
+        self.assertEqual(env0["type"], "temporal")
+        self.assertIn("business", env0.get("full_value", ""))
+        self.assertEqual(env0["data_type"], "time")
+        self.assertTrue(env0["namespace"].startswith("env:time:"))
         
         # SA/OA should not contain "hours"
         sa_values = [a.get("value") for a in res["attributes"]]

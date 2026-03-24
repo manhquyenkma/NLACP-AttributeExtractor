@@ -24,20 +24,19 @@ def assign_namespaces(attributes, subject_name, object_name):
         cat        = attr.get("category", "")
         sub_cat    = attr.get("sub_category", attr.get("subcategory", ""))
 
-        # FIX 3: ENV TRƯỚC — tránh false route vào subject/object
         if cat == "environment":
             if sub_cat == "temporal":
-                namespace = f"environment:time:{short_name}"
+                namespace = f"env:time:{short_name}"
             elif sub_cat in ("network",) or any(
                     k in short_name for k in ("network", "vpn", "intranet")):
-                namespace = f"environment:network:{short_name}"
+                namespace = f"env:network:{short_name}"
             elif sub_cat == "device" or any(
                     k in short_name for k in ("device", "workstation", "platform")):
-                namespace = f"environment:device:{short_name}"
+                namespace = f"env:device:{short_name}"
             elif sub_cat in ("spatial", "physical"):
-                namespace = f"environment:location:{short_name}"
+                namespace = f"env:location:{short_name}"
             else:
-                namespace = f"environment:context:{short_name}"
+                namespace = f"env:context:{short_name}"
 
         # Subject attrs
         elif cat == "subject":
@@ -56,7 +55,6 @@ def assign_namespaces(attributes, subject_name, object_name):
                 namespace = f"object:prop:{short_name}"
 
         else:
-            # FIX 3: không còn "unknown:" — dùng "context:" thay thế
             namespace = f"context:{short_name}"
 
         attr["namespace"] = namespace

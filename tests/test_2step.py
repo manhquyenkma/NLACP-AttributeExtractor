@@ -7,7 +7,7 @@ from nlacp.extraction.relation_candidate import extract_relations, parse_sentenc
 
 DATASET_DIR  = os.path.join(PROJECT_ROOT, "dataset")
 CANDIDATE_PATH = os.path.join(DATASET_DIR, "relation_candidate.json")
-POLICY_PATH    = os.path.join(DATASET_DIR, "policy_dataset.json")
+from nlacp.paths import POLICY_DATASET_PATH as POLICY_PATH
 
 # --- Step 1A: Extract ---
 sentences = [

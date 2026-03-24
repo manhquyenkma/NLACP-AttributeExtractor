@@ -37,10 +37,17 @@ def identify_categories(attributes, sentence, object_name=""):
                                      "ner_gpe", "ner_loc", "ner_fac", "ner_org"):
             attr["category"] = "environment"
 
-        # 4. Fallback: suy luận từ dep field
-        elif not cat:
+        # 4. Fallback: suy luận từ dep field (bao gồm 'unclassified' từ Module 1)
+        elif not cat or cat == "unclassified":
             dep = attr.get("dep", "")
-            if object_name and attr.get("value", "") in object_name:
+            val = attr.get("value", "").lower()
+            obj_lower = object_name.lower()
+            # Dùng "in" bidirectional thay vì startswith(val[:5])
+            # để tránh false positive với string ngắn
+            _MIN_LEN = 4
+            if (object_name and val
+                    and len(val) >= _MIN_LEN and len(obj_lower) >= _MIN_LEN
+                    and (val in obj_lower or obj_lower in val)):
                 attr["category"] = "object"
             else:
                 attr["category"] = "subject" if dep else "context"

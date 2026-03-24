@@ -1,0 +1,34 @@
+{
+    "root_subjects": [
+        "nurse"
+    ],
+    "root_objects": [
+        "records"
+    ],
+    "namespaces": [
+        {
+            "namespace": "records",
+            "category": "object",
+            "all_attributes": [
+                "medical"
+            ],
+            "assigned_attributes": [
+                "medical"
+            ],
+            "parents": [],
+            "children": []
+        },
+        {
+            "namespace": "nurse",
+            "category": "subject",
+            "all_attributes": [
+                "medical"
+            ],
+            "assigned_attributes": [
+                "medical"
+            ],
+            "parents": [],
+            "children": []
+        }
+    ]
+}

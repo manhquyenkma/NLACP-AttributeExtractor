@@ -4,6 +4,7 @@ from nlacp.extraction.short_name_suggester import suggest_short_names
 from nlacp.normalization.namespace_assigner import assign_namespaces
 from nlacp.normalization.category_identifier import identify_categories
 from nlacp.io.dataset_builder import add_policy
+from nlacp.paths import NS_ENV_TIME, NS_ENV_LOC
 
 try:
     from nlacp.normalization.data_type_infer import annotate_attributes_with_type
@@ -28,35 +29,115 @@ def _cnn_filter(attributes):
     """
     Placeholder cho CNN filter. 
     Trong tương lai, gọi model Predict để lọc attributes.
-    Hiện tại pass-through toàn bộ SA/OA attrs.
+    Hiện tại pass-through toàn bộ attrs.
     """
     return attributes
 
+# --- Spatial classification helpers (dùng cho single-pass pipeline) ---
+_NETWORK_HINTS = {"network", "vpn", "intranet", "internet", "internal", "external", "remote"}
+_DEVICE_HINTS  = {"workstation", "device", "terminal", "laptop", "system", "portal", "platform"}
+
+def _format_env_for_pipeline(raw_env):
+    """Chuyển output từ env_extractor sang format chuẩn policy_dataset."""
+    value   = raw_env.get("value", "")
+    trigger = raw_env.get("trigger", "")
+    cat     = raw_env.get("category", "")
+    subcat  = raw_env.get("subcategory", raw_env.get("sub_category", ""))
+
+    parts = value.split()
+    preposition = trigger if trigger and not trigger.startswith("NER:") else (parts[0] if parts else "")
+    content_parts = [p for p in parts if p.lower() not in {"a", "an", "the", preposition.lower()}]
+
+    head     = content_parts[-1] if content_parts else value
+    modifier = content_parts[0] if len(content_parts) > 1 else None
+    if modifier and modifier.lower() == head.lower():
+        modifier = None
+
+    if cat == "temporal" or subcat in ("relative", "absolute", "recurring", "event",
+                                       "ner_detected", "business_hours"):
+        env_type  = "temporal"
+        data_type = "time"
+        ns_prefix = NS_ENV_TIME
+    else:
+        val = value.lower()
+        if any(h in val for h in _NETWORK_HINTS):
+            env_type = "spatial_network"
+        elif any(h in val for h in _DEVICE_HINTS):
+            env_type = "spatial_device"
+        else:
+            env_type = "spatial_physical"
+        data_type = "location"
+        ns_prefix = NS_ENV_LOC
+
+    normalized = "_".join(p.lower() for p in content_parts) if content_parts else head.lower()
+
+    return {
+        "type":        env_type,
+        "preposition": preposition,
+        "head":        head,
+        "modifier":    modifier,
+        "full_value":  value,
+        "normalized":  normalized,
+        "namespace":   f"{ns_prefix}:{normalized}",
+        "data_type":   data_type
+    }
+
 def process_sentence(sentence: str, save: bool = False) -> dict:
     """
-    Xử lý một câu policy qua 6 Module để xuất ra ABAC policy với kiến trúc chuẩn.
+    Xử lý một câu policy theo đúng chuẩn Alohaly 2019:
+      1. Extract ALL candidate pairs (không phân loại)
+      2. Extract environment attributes → tách env pairs ra
+      3. Loại bỏ env overlap khỏi candidate pairs
+      4. Classify pairs còn lại → Subject/Object attributes
+      5. Short name → Namespace → Data type
     """
-    # [Module 1] Extract core attributes & relations
+    # [Module 1] Extract ALL candidate pairs + S/A/O metadata
     tokens   = parse_sentence(sentence)
     relation = extract_relations(sentence, tokens)
     
-    # [Module 1b] Extract environment attributes (Layer 1-3 hybrid)
+    # [Module 1b] Extract environment attributes
     env_attrs = extract_env_attributes(sentence)
 
-    # Bước 2: CNN filter cho SA/OA (nếu mô hình đã train, hiện pass-through)
-    sa_oa_attrs = _cnn_filter(relation["attributes"])
+    # Lấy tập token thuộc environment để loại khỏi pairs
+    env_tokens = set()
+    for env in env_attrs:
+        val = env.get("value", "")
+        for word in val.lower().split():
+            if word not in {"a", "an", "the"}:
+                env_tokens.add(word)
+        trigger = (env.get("trigger") or "").lower()
+        if trigger and not trigger.startswith("ner:"):
+            env_tokens.add(trigger)
 
-    # Gộp lại để chạy qua các module xử lý tên và namespace
-    all_raw_attrs = sa_oa_attrs + env_attrs
+    # [Module 2] CNN filter (hiện pass-through)
+    all_pairs = _cnn_filter(relation["attributes"])
 
-    # Bước 3: Đảm bảo category đúng (TRƯỚC namespace)
-    attrs_mod4 = identify_categories(all_raw_attrs, sentence, relation.get("object", ""))
+    # Loại bỏ pairs mà CẢ name VÀ value đều là env token
+    sa_oa_pairs = []
+    for attr in all_pairs:
+        name  = (attr.get("name") or "").lower()
+        value = (attr.get("value") or "").lower()
+        rel_sub = (relation.get("subject") or "").lower()
+        rel_obj = (relation.get("object") or "").lower()
+        if name in env_tokens or (value in env_tokens and value not in [rel_sub, rel_obj]):
+            continue
+        # Bỏ qua preposition tokens (during, within, ...)
+        if name in {"during", "between", "after", "before", "within",
+                     "throughout", "until", "from", "via", "through",
+                     "using", "at", "on", "inside", "outside"}:
+            continue
+        sa_oa_pairs.append(attr)
 
-    # Bước 4: Tạo short_name ròi gán namespace
+    # [Module 4] Category Identification cho SA/OA pairs
+    attrs_mod4 = identify_categories(sa_oa_pairs, sentence, relation.get("object", ""))
+
+    # [Module 2] Suggest short names
     attrs_mod2 = suggest_short_names(attrs_mod4)
+
+    # [Module 3] Assign namespaces
     attrs_mod3 = assign_namespaces(attrs_mod2, relation.get("subject"), relation.get("object"))
 
-    # Bước 5: Annotate data type
+    # [Module 5] Annotate data type
     if HAS_DTYPE:
         final_attrs = annotate_attributes_with_type(attrs_mod3)
     else:
@@ -65,14 +146,18 @@ def process_sentence(sentence: str, save: bool = False) -> dict:
             a["data_type"] = "string"
             final_attrs.append(a)
 
-    # Bước 6: Tách riêng SA/OA và Environment
+    # [Module 6] Tách riêng SA/OA và gắn env đã format
     sa_oa = [a for a in final_attrs if a.get("category") in ("subject", "object")]
-    ea    = [a for a in final_attrs if a.get("category") == "environment"]
+    
+    # Format env attrs theo chuẩn policy_dataset
+    formatted_env = []
+    for env in env_attrs:
+        formatted_env.append(_format_env_for_pipeline(env))
 
     relation["attributes"]  = sa_oa
-    relation["environment"] = ea
+    relation["environment"] = formatted_env
     
-    # Lưu vào DB (format mới) nếu có save=True
+    # Lưu vào DB nếu có save=True
     if save:
         add_policy(relation)
     return relation

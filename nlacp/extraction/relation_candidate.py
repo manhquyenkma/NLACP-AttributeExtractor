@@ -6,7 +6,6 @@ import os
 # relation_candidate.py
 # Module 1: Attribute Extraction (Alohaly et al. 2019)
 #
-# Top-5 Dependency Patterns (theo FIX 1 — Roadmap):
 #   Pattern 1: nsubj + amod      → "senior nurse"
 #   Pattern 2: nsubj + compound  → "lab technician"
 #   Pattern 3: nsubj + prep      → "nurse at hospital"
@@ -45,7 +44,7 @@ def parse_sentence(sentence):
     return tokens
 
 
-def extract_relations(sentence, tokens):
+def extract_relations(sentence, tokens, _doc=None):
     """
     Trích xuất subject, action, object và attributes từ
     dependency tree theo Top-5 patterns của bài báo.
@@ -56,7 +55,7 @@ def extract_relations(sentence, tokens):
         category — "subject" hoặc "object"
         dep      — dependency relation dùng để tìm ra nó
     """
-    doc = nlp(sentence)
+    doc = _doc if _doc is not None else nlp(sentence)
 
     subject  = None
     raw_actions = []
@@ -80,7 +79,6 @@ def extract_relations(sentence, tokens):
             if token.lemma_ not in raw_actions:
                raw_actions.append(token.lemma_)
 
-        # FIX 1a: ưu tiên dobj > pobj, bỏ qua pobj của env prep
         if token.dep_ == "dobj":
             obj_dobj = token.text
         elif token.dep_ in ("pobj", "attr"):
@@ -90,7 +88,6 @@ def extract_relations(sentence, tokens):
             if obj_pobj is None:  # keep first valid pobj
                 obj_pobj = token.text
 
-    # FIX 7: Handle "light noun" object coreference pattern
     LIGHT_NOUNS = {"list", "set", "group", "collection", "series", "range", "array", "type", "kind", "class"}
     if obj_dobj and obj_dobj.lower() in LIGHT_NOUNS:
         for token in doc:
@@ -118,15 +115,12 @@ def extract_relations(sentence, tokens):
         if mapped not in actions:
             actions.append(mapped)
 
-    # ── Attributes: duyệt qua token, lấy children theo ATTR_DEPS ──
+    # ── Attributes: quét MỌI token có child thuộc ATTR_DEPS ──
+    # (Đúng chuẩn Alohaly 2019 Module 1: trích xuất TẤT CẢ pairs,
+    #  bao gồm cả env pairs. Category sẽ được gán ở Step 2.)
     for token in doc:
-        if token.dep_ in SUBJECT_DEPS:
-            category = "subject"
-        elif token.dep_ in OBJECT_DEPS:
-            if token.dep_ in ("pobj",) and token.head.text.lower() in ENV_PREPS:
-                continue
-            category = "object"
-        else:
+        # Chỉ xét danh từ và động từ (head noun của pair)
+        if token.pos_ not in ("NOUN", "PROPN", "VERB", "ADJ"):
             continue
 
         for child in token.children:
@@ -134,21 +128,18 @@ def extract_relations(sentence, tokens):
                 name = child.text.lower()
                 if name in STOPWORDS:
                     continue
-                # FIX 1b: bỏ qua prep trỏ đến temporal/spatial phrase
-                if child.dep_ == "prep" and name in ENV_PREPS:
-                    continue
                 attributes.append({
                     "name":     child.text,
                     "value":    token.text,
-                    "category": category,
+                    "category": "unclassified",
                     "dep":      child.dep_
                 })
 
-    # Loại bỏ trùng lặp (name + category)
+    # Loại bỏ trùng lặp (name + value)
     seen   = set()
     unique = []
     for attr in attributes:
-        key = (attr["name"].lower(), attr["category"])
+        key = (attr["name"].lower(), attr["value"].lower())
         if key not in seen:
             seen.add(key)
             unique.append(attr)
@@ -183,7 +174,7 @@ def generate_candidates(sentence):
     """
     doc = nlp(sentence)
     tokens = [ { "text": t.text, "lemma": t.lemma_, "pos": t.pos_, "dep": t.dep_, "head": t.head.text, "ent_type": t.ent_type_ } for t in doc ]
-    relation = extract_relations(sentence, tokens)
+    relation = extract_relations(sentence, tokens, _doc=doc)
     
     positives = set()
     for attr in relation["attributes"]:

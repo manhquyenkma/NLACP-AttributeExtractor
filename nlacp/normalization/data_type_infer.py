@@ -50,7 +50,6 @@ def infer_data_type(value_text, category=None, sub_category=None):
     if not value_text:
         return "string"
 
-    # FIX 5: Category-aware override TRƯỚC NER
     if category == "environment":
         if sub_category == "temporal":
             return "datetime"   # "during business hours" → datetime, không cần NER

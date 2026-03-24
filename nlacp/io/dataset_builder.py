@@ -7,8 +7,10 @@ import os
 # ===================================================================
 
 # nlacp/io/ → nlacp/ → project root
-BASE_DIR      = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATASET_PATH  = os.path.join(BASE_DIR, "outputs", "policies", "policy_dataset.json")
+from nlacp.paths import POLICY_DATASET_PATH as DATASET_PATH
+
+# Stop determiners that should never be stored as modifier
+_STOP_DETS = {"a", "an", "the", "this", "that", "these", "those"}
 
 
 def ensure_dataset():
@@ -34,13 +36,24 @@ def _format_environment(env_attrs):
     """Chuyển từ env_extractor format sang format mới có preposition/head/modifier."""
     result = []
     for ea in env_attrs:
+        if "full_value" in ea:
+            result.append(ea)
+            continue
+            
         value = ea.get("value", "")
         parts = value.split()
+        prep  = ea.get("trigger", parts[0] if parts else "")
+        # Lọc bỏ preposition gốc + stop determiners
+        content = [p for p in parts
+                   if p.lower() not in _STOP_DETS
+                   and p.lower() != prep.lower()]
+        head     = content[-1] if content else (parts[-1] if parts else value)
+        modifier = content[0]  if len(content) > 1 else None
         result.append({
             "type":        ea.get("sub_category", ea.get("subcategory", "")),
-            "preposition": ea.get("trigger", parts[0] if parts else ""),
-            "head":        parts[-1] if len(parts) > 1 else value,
-            "modifier":    parts[1] if len(parts) > 2 else None,
+            "preposition": prep,
+            "head":        head,
+            "modifier":    modifier,
             "full_value":  value,
             "normalized":  ea.get("short_name", ""),
             "namespace":   ea.get("namespace", ""),

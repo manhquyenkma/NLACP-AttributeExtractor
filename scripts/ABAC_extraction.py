@@ -21,6 +21,7 @@ sys.path.insert(0, PROJECT_ROOT)
 from nlacp.extraction.env_extractor import extract_env_attributes
 from nlacp.extraction.short_name_suggester import suggest_short_names
 from nlacp.normalization.namespace_assigner import assign_namespaces
+from nlacp.normalization.category_identifier import identify_categories
 from nlacp.normalization.data_type_infer import annotate_attributes_with_type
 
 DATASET_DIR  = os.path.join(PROJECT_ROOT, "dataset")
@@ -51,7 +52,7 @@ def _format_env_entry(raw_env):
     value   = raw_env.get("value", "")
     trigger = raw_env.get("trigger", "")
     cat     = raw_env.get("category", "")
-    subcat  = raw_env.get("subcategory", "")
+    subcat  = raw_env.get("subcategory", raw_env.get("sub_category", ""))
 
     # Parse value into parts
     parts = value.split()
@@ -71,13 +72,15 @@ def _format_env_entry(raw_env):
     # Xac dinh type
     if cat == "temporal" or subcat in ("relative", "absolute", "recurring", "event",
                                        "ner_detected", "business_hours"):
+        from nlacp.paths import NS_ENV_TIME
         env_type  = "temporal"
         data_type = "time"
-        ns_prefix = "env:time"
+        ns_prefix = NS_ENV_TIME
     else:
+        from nlacp.paths import NS_ENV_LOC
         env_type  = _classify_spatial_type(value)
         data_type = "location"
-        ns_prefix = "env:location"
+        ns_prefix = NS_ENV_LOC
 
     # Normalized name
     normalized = "_".join(p.lower() for p in content_parts) if content_parts else head.lower()
@@ -132,25 +135,50 @@ def _get_env_tokens(env_list):
 
 
 def fill_attributes(policy):
-    """Xu ly attributes: loai env overlap, them short_name, namespace, data_type."""
+    """Xu ly attributes tu validated pairs:
+    1. Loai env overlap
+    2. Classify SA/OA
+    3. Short name, namespace, data_type
+    """
+    assert "environment" in policy, "Call fill_environment() first"
     env_tokens = _get_env_tokens(policy.get("environment", []))
-    raw_attrs  = policy.get("attributes", [])
+    
+    obj_name = (policy.get("object") or "").lower()
+    sub_name = (policy.get("subject") or "").lower()
+    
+    # Lay validated pairs va chuyen thanh attribute dicts
+    raw_attrs = []
+    for pair in policy.get("relation_pairs", []):
+        val = pair[0].lower()
+        if val == obj_name:
+            cat = "object"
+        elif val == sub_name:
+            cat = "subject"
+        else:
+            cat = "unclassified"
+            
+        raw_attrs.append({
+            "name":     pair[1],
+            "value":    pair[0],
+            "category": cat
+        })
 
     # Loc bo cac attribute ma name hoac value trung voi env token
     clean_attrs = []
     for attr in raw_attrs:
         name  = (attr.get("name") or "").lower()
         value = (attr.get("value") or "").lower()
-        # Chi loai neu CA HAI name va value deu la env token,
-        # hoac neu name la preposition cua env
-        if name in env_tokens and value in env_tokens:
+        if name in env_tokens or (value in env_tokens and value not in [sub_name, obj_name]):
             continue
-        # Loai preposition tokens (during, within, between...)
         if name in {"during", "between", "after", "before", "within",
                      "throughout", "until", "from", "via", "through",
                      "using", "at", "on", "inside", "outside"}:
             continue
         clean_attrs.append(attr)
+
+    # [Module 4] Classify pairs con lai thanh SA/OA
+    obj_name = policy.get("object", "")
+    clean_attrs = identify_categories(clean_attrs, policy.get("sentence", ""), obj_name)
 
     # Chay Module 2: Short Name Suggestion
     clean_attrs = suggest_short_names(clean_attrs)
@@ -165,9 +193,6 @@ def fill_attributes(policy):
 
     policy["attributes"] = clean_attrs
 
-    # Cap nhat relation_pairs cho khop voi attributes da loc
-    policy["relation_pairs"] = [[a["value"], a["name"]] for a in clean_attrs]
-
 
 # =====================================================================
 #  MAIN
@@ -176,12 +201,12 @@ def fill_attributes(policy):
 def main():
     print("\n" + "=" * 60)
     print("  ABAC EXTRACTION — STEP 2")
-    print("  Environment Filling + Attribute Post-Processing")
+    print("  S/A/O Extraction + Environment + Attribute Post-Processing")
     print("=" * 60)
 
     if not os.path.exists(POLICY_PATH):
         print(f"\n[ERROR] {POLICY_PATH} khong ton tai.")
-        print("        Chay 'python data_processing.py' truoc (Step 1).")
+        print("        Chay 'python scripts/data_processing.py' truoc (Step 1).")
         return
 
     with open(POLICY_PATH, "r", encoding="utf-8") as f:
@@ -194,17 +219,31 @@ def main():
 
     print(f"\n[INFO] Dang xu ly {len(policies)} policy(ies)...\n")
 
-    for policy in policies:
-        print(f"  Policy #{policy['id']}: {policy['sentence'][:60]}...")
+    # Import extract_relations de lay S/A/O tu sentence
+    from nlacp.extraction.relation_candidate import extract_relations, parse_sentence
 
-        # 2A: Fill environment
+    for policy in policies:
+        sentence = policy["sentence"]
+        print(f"  Policy #{policy['id']}: {sentence[:60]}...")
+
+        # 2A: Trich xuat S/A/O tu sentence neu policy chua co san hoac fallback thi parse (de tuong thich code cu)
+        if not policy.get("subject") or not policy.get("object"):
+            tokens = parse_sentence(sentence)
+            rel = extract_relations(sentence, tokens)
+            if rel.get("subject"): policy["subject"] = rel["subject"]
+            if rel.get("actions"): policy["actions"] = rel["actions"]
+            if rel.get("object"):  policy["object"]  = rel["object"]
+            
+        print(f"    Subject: {policy.get('subject')}  |  Actions: {policy.get('actions')}  |  Object: {policy.get('object')}")
+
+        # 2B: Fill environment
         envs = fill_environment(policy)
         print(f"    Environment: {len(envs)} entry(ies)")
         for e in envs:
             print(f"      [{e['type']}] {e['preposition']} {e.get('modifier', '')} {e['head']}"
                   f" -> {e['namespace']}")
 
-        # 2B: Fill attributes (excluding env overlap)
+        # 2C: Fill attributes (tu validated pairs, loai env overlap)
         fill_attributes(policy)
         attrs = policy.get("attributes", [])
         print(f"    Attributes:  {len(attrs)} entry(ies)")
@@ -213,13 +252,13 @@ def main():
                   f"  ns={a.get('namespace','?')}")
         print()
 
-    # Ghi lai policy_dataset.json da enriched
+    # Ghi lai policy_dataset.json da enriched (tai cho)
     with open(POLICY_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
     print(f"[OK] Saved enriched policies to {POLICY_PATH}")
 
-    # 2C: Chay mining (optional)
+    # 2D: Chay mining (optional)
     print("\n[INFO] Chay attribute clustering...")
     try:
         from nlacp.mining.attribute_cluster import main as run_clustering

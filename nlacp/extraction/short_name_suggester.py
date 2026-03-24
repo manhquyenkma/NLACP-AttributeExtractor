@@ -1,19 +1,15 @@
 import sys
 import os
 import re
-import spacy
 
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    nlp = None # Assume loaded in pipeline if failed
+from nlacp.utils.nlp_utils import get_spacy_model
+nlp = get_spacy_model(fallback_to_none=True)
 
 # Module 2: Suggesting attributes' short names
 # Steps: 
 # (1) Construct the value space of an attribute 
 # (2) Assign a key reference to the attribute value space
 
-# FIX 2: Trigger words phải giữ nguyên — không được strip khỏi env attrs
 ENV_TRIGGER_WORDS = {
     "during", "between", "after", "before", "within",
     "throughout", "until", "from", "at", "inside",
@@ -39,7 +35,6 @@ def standardize_value(value_str, preserve_triggers=False):
     clean_tokens = []
     
     for token in doc:
-        # FIX 2: giữ trigger words cho env attrs
         if preserve_triggers and token.text in ENV_TRIGGER_WORDS:
             clean_tokens.append(token.text)
             continue
@@ -70,7 +65,6 @@ def suggest_short_names(attributes):
         value = new_attr.get("value", "")
         cat   = new_attr.get("category", "")
 
-        # FIX 2: detect env attrs — không có name hoặc category là temporal/spatial
         is_env = cat in ("temporal", "spatial") or not name
         if is_env:
             # Giữ trigger words để bảo toàn semantic context

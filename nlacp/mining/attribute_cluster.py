@@ -1,7 +1,7 @@
 import json
 import os
 import numpy as np
-from collections import Counter   # FIX 6: cần cho _compute_cluster_short_name
+from collections import Counter
 from sklearn.cluster import DBSCAN
 import spacy
 from sklearn.neighbors import NearestNeighbors
@@ -30,7 +30,6 @@ def extract_attribute_names(dataset):
     attributes = []
     for policy in dataset.get("policies", []):
         for attr in policy.get("attributes", []):
-            # FIX 6a: fallback về value nếu không có name (env attrs)
             name = attr.get("name") or attr.get("value") or ""
             if name:
                 attributes.append(name.lower())
@@ -45,7 +44,6 @@ def vectorize_attributes(attributes):
     return np.array(vectors)
 
 
-# ── FIX 2: Tính eps tự động bằng k-distance graph ──
 def compute_auto_eps(X, min_pts=2):
     """
     Theo Alohaly 2019: vẽ k-distance graph, lấy trung bình khoảng cách
@@ -70,7 +68,6 @@ def run_dbscan(X):
 
 
 def _compute_cluster_short_name(attr_list):
-    """FIX 6b: Tính short_name đại diện cho cluster — token phổ biến nhất."""
     stop = {"a", "an", "the", "of", "in", "at", "on", "by", "to", "for"}
     all_tokens = []
     for attr in attr_list:
@@ -90,7 +87,7 @@ def build_clusters(attributes, labels):
     for label, attrs in clusters.items():
         result["clusters"].append({
             "cluster_id": int(label),
-            "short_name": _compute_cluster_short_name(attrs),   # FIX 6b: field mới
+            "short_name": _compute_cluster_short_name(attrs),
             "attributes": attrs
         })
     return result
@@ -105,7 +102,7 @@ def save_clusters(data):
 def main():
     print("\n" + "="*50)
     print("  Module 2: Attribute Clustering")
-    print("  TF-IDF + Auto-tune eps + DBSCAN (min_samples=2)")
+    print("  Word Vectors (GloVe/spaCy) + Auto-tune eps + DBSCAN (min_samples=2)")
     print("="*50 + "\n")
 
     dataset    = load_dataset()

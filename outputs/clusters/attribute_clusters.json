@@ -1,0 +1,12 @@
+{
+    "clusters": [
+        {
+            "cluster_id": 0,
+            "short_name": "medical",
+            "attributes": [
+                "medical",
+                "senior"
+            ]
+        }
+    ]
+}

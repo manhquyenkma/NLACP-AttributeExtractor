@@ -77,10 +77,10 @@ for a in result_pipeline.get("attributes", []):
     print(f"    [{a.get('category')}] ns={a.get('namespace')} dt={a.get('data_type')}")
 
 obj_ok = result_pipeline.get("object") == "records"
-env_ok = any(a.get("namespace", "").startswith("environment:time:") 
+env_ok = any(a.get("namespace", "").startswith("env:time:") 
              for a in result_pipeline.get("environment", []))
 print(f"\n  [{'OK' if obj_ok else 'FAIL'}] object == 'records'")
-print(f"  [{'OK' if env_ok else 'FAIL'}] environment:time namespace exists")
+print(f"  [{'OK' if env_ok else 'FAIL'}] env:time namespace exists")
 
 # ─── STEP 6: data_type_infer ──────────────────────────────────
 print("\n--- STEP 6: data_type_infer ---")
