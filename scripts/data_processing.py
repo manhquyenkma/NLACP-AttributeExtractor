@@ -25,6 +25,41 @@ from nlacp.paths import POLICY_DATASET_PATH as POLICY_PATH
 
 
 # =====================================================================
+#  Deduplication Helpers
+# =====================================================================
+
+def _sentence_fingerprint(sentence: str) -> str:
+    """
+    Tạo fingerprint để detect duplicate:
+    lowercase + bỏ stop words + sort tokens
+    """
+    STOP = {"a", "an", "the", "can", "may", "will", "shall"}
+    tokens = [w.lower() for w in (sentence or "").split() 
+              if w.lower() not in STOP]
+    return " ".join(sorted(tokens))
+
+
+def deduplicate_policies(policies):
+    seen_fingerprints = {}
+    result = []
+    count = 0
+    for p in policies:
+        fp = _sentence_fingerprint(p.get("sentence", ""))
+        if not fp:
+            result.append(p)
+            continue
+        if fp not in seen_fingerprints:
+            seen_fingerprints[fp] = p["id"]
+            result.append(p)
+        else:
+            print(f"[DEDUP] Policy #{p['id']} trùng với #{seen_fingerprints[fp]}, bỏ qua.")
+            count += 1
+    if count > 0:
+        print(f"[INFO] Loại bỏ {count} policy trùng lặp.")
+    return result
+
+
+# =====================================================================
 #  STEP 1A: Extract relations & build relation_candidate.json
 # =====================================================================
 
@@ -153,11 +188,13 @@ def run_validation():
 
     # Read processed IDs from policy_dataset.json to skip them
     processed_ids = set()
+    all_policies_existing = []
     if os.path.exists(POLICY_PATH):
         try:
             with open(POLICY_PATH, "r", encoding="utf-8") as f:
                 old_data = json.load(f)
-                for p in old_data.get("policies", []):
+                all_policies_existing = old_data.get("policies", [])
+                for p in all_policies_existing:
                     processed_ids.add(p.get("id"))
         except Exception:
             pass
@@ -166,7 +203,7 @@ def run_validation():
     relations_to_validate = [r for r in relations if r["id"] not in processed_ids]
 
     if not relations_to_validate:
-        print("[INFO] Khong co relation nao moi can xac nhan (tat ca da duoc tu dong bo qua vi da xu ly roi).")
+        print("[INFO] Khong co relation nao moi can xac nhan (tat ca da duoc xu ly roi).")
         return True
 
     print(f"\nCo {len(relations_to_validate)} relation(s) MOI can xac nhan (da bo qua {len(relations) - len(relations_to_validate)} relation cu).")
@@ -174,9 +211,9 @@ def run_validation():
     print("  y = dung (giu lai)")
     print("  n = sai  (loai bo)")
     print("  a = chap nhan tat ca cap con lai cua relation nay")
-    print("  s = bo qua tat ca cap con lai cua relation nay\n")
+    print("  s = bo qua tat ca cap con lai cua relation nay (ghi lai voi pairs rong)\n")
 
-    policies = []
+    new_policies = []
 
     for rel in relations_to_validate:
         print("-" * 50)
@@ -216,41 +253,58 @@ def run_validation():
             if choice == "y":
                 valid_pairs.append(pair)
 
-        # Luu sentence + validated pairs + S/A/O
+        # Luôn ghi lại relation — kể cả khi không có pair nào được chọn
+        # (đảm bảo bản ghi tồn tại trong policy_dataset.json)
         policy = {
             "id":              rel["id"],
             "sentence":        rel["sentence"],
             "subject":         rel.get("subject"),
             "actions":         rel.get("actions", []),
             "object":          rel.get("object"),
-            "relation_pairs":  valid_pairs
+            "relation_pairs":  valid_pairs,
+            "validated":       True,
         }
-        policies.append(policy)
+        new_policies.append(policy)
         print(f"  -> Giu lai {len(valid_pairs)}/{len(pairs)} cap.\n")
 
-    # Ghi them policy_dataset.json (chi co pairs)
+    # Ghi them policy_dataset.json:
+    # - Giu nguyen tat ca ban ghi cu (ke ca fields do Step 2 da dien: environment, attributes)
+    # - Neu ID moi trung voi ban ghi cu, MERGE thay vi ghi de hoan toan
     os.makedirs(os.path.dirname(POLICY_PATH), exist_ok=True)
-    all_policies = []
-    if os.path.exists(POLICY_PATH):
-        try:
-            with open(POLICY_PATH, "r", encoding="utf-8") as f:
-                old_data = json.load(f)
-                all_policies = old_data.get("policies", [])
-        except Exception:
-            pass
-            
-    # Filter out entries with the same ID or same sentence
-    new_ids = {p["id"] for p in policies}
-    new_sentences = {p["sentence"].lower().strip() for p in policies}
+
+    # Build dict {id -> existing_policy} de merge
+    existing_by_id = {p["id"]: p for p in all_policies_existing}
+
+    merged_new = []
+    for new_p in new_policies:
+        pid = new_p["id"]
+        if pid in existing_by_id:
+            # Merge: giu lai tat ca fields cu, chi cap nhat relation_pairs + validated
+            merged = dict(existing_by_id[pid])
+            merged["relation_pairs"] = new_p["relation_pairs"]
+            merged["validated"]      = True
+            merged_new.append(merged)
+        else:
+            merged_new.append(new_p)
+
+    new_ids       = {p["id"] for p in merged_new}
+    new_sentences = {p["sentence"].lower().strip() for p in merged_new}
+
+    # Giu tat ca ban ghi cu khong bi trung ID/sentence
+    kept_old = [p for p in all_policies_existing
+                if p.get("id") not in new_ids
+                and p.get("sentence", "").lower().strip() not in new_sentences]
     
-    all_policies = [p for p in all_policies if p.get("id") not in new_ids and p.get("sentence", "").lower().strip() not in new_sentences]
-    all_policies.extend(policies)
-    
+    all_policies = deduplicate_policies(kept_old + merged_new)
+
     output = {"policies": all_policies}
     with open(POLICY_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=4, ensure_ascii=False)
-    print(f"[OK] Saved {len(policies)} policy(ies) to {POLICY_PATH}")
+    print(f"[OK] Saved {len(merged_new)} new/updated policy(ies) to {POLICY_PATH}")
+    print(f"[OK] Total policies in file: {len(all_policies)} (including {len(kept_old)} kept from before)")
     return True
+
+
 
 
 # =====================================================================

@@ -9,6 +9,7 @@ Scope (17 ngày):
 Chạy: python src/env_extractor.py
 """
 import spacy
+import re
 
 from nlacp.utils.nlp_utils import get_spacy_model
 nlp = get_spacy_model()
@@ -25,7 +26,7 @@ TEMPORAL_HINTS  = {"hours", "hour", "shift", "night", "morning",
 
 # ─── SPATIAL config ──────────────────────────────────────────────
 SPATIAL_PREPS   = {"from", "at", "within", "inside", "outside",
-                   "through", "via", "on"}
+                   "through", "via", "on", "in"}
 SPATIAL_HINTS   = {"network", "ward", "department", "hospital",
                    "building", "floor", "site", "premises",
                    "location", "intranet", "vpn", "system",
@@ -145,6 +146,34 @@ def extract_env_attributes(sentence):
                     "trigger":     "NER:" + ent.label_,
                     "method":      "ner"
                 })
+
+    # ── Layer 4: Situational / Conditional (New for ACRE/IBM) ──
+    # Tìm các mệnh đề "If ..." hoặc "When ..."
+    if sentence.lower().startswith(("if ", "when ")):
+        # Lấy mệnh đề đầu tiên (thường kết thúc bằng dấu phẩy)
+        match = re.search(r'^(if|when)\s+(.*?),', sentence, re.I)
+        if match:
+            results.append({
+                "category":    "situational",
+                "subcategory": "condition",
+                "value":       match.group(2).strip(),
+                "trigger":     match.group(1).lower(),
+                "method":      "rule"
+            })
+
+    # ── Layer 4: Situational / Conditional (New for ACRE/IBM) ──
+    # Tìm các mệnh đề "If ..." hoặc "When ..."
+    if sentence.lower().startswith(("if ", "when ")):
+        # Lấy mệnh đề đầu tiên (thường kết thúc bằng dấu phẩy)
+        match = re.search(r'^(if|when)\s+(.*?),', sentence, re.I)
+        if match:
+            results.append({
+                "category":    "situational",
+                "subcategory": "condition",
+                "value":       match.group(2).strip(),
+                "trigger":     match.group(1).lower(),
+                "method":      "rule"
+            })
 
     # ── Loại false positives ─────────────────────────────────────
     results = _filter_false_positives(doc, results)

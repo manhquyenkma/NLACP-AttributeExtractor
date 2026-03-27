@@ -1,0 +1,211 @@
+{
+    "clusters": [
+        {
+            "cluster_id": 7,
+            "short_name": "active",
+            "attributes": [
+                "active",
+                "verified",
+                "final",
+                "training",
+                "research",
+                "clinical",
+                "visit",
+                "permanent",
+                "thesis",
+                "independent"
+            ]
+        },
+        {
+            "cluster_id": 0,
+            "short_name": "support",
+            "attributes": [
+                "support",
+                "urgent",
+                "sealed",
+                "designated",
+                "acting",
+                "project",
+                "sprint",
+                "vact",
+                "sensitive",
+                "high",
+                "response",
+                "authorized",
+                "enrolled",
+                "pending",
+                "department",
+                "renewed",
+                "complete",
+                "compliance",
+                "lead",
+                "hr",
+                "approved",
+                "care"
+            ]
+        },
+        {
+            "cluster_id": 10,
+            "short_name": "elderly",
+            "attributes": [
+                "elderly",
+                "first",
+                "it",
+                "time",
+                "guest"
+            ]
+        },
+        {
+            "cluster_id": 2,
+            "short_name": "responders",
+            "attributes": [
+                "responders",
+                "cryptography",
+                "emergency",
+                "security",
+                "immunization",
+                "legal",
+                "biosurveillance"
+            ]
+        },
+        {
+            "cluster_id": 4,
+            "short_name": "operational",
+            "attributes": [
+                "operational",
+                "personnel",
+                "priority",
+                "assigned",
+                "allocated"
+            ]
+        },
+        {
+            "cluster_id": 9,
+            "short_name": "completed",
+            "attributes": [
+                "completed",
+                "auditor",
+                "reviewing",
+                "faculty",
+                "primary",
+                "reviewed",
+                "critical",
+                "admissions",
+                "laboratory"
+            ]
+        },
+        {
+            "cluster_id": 11,
+            "short_name": "accountants",
+            "attributes": [
+                "accountants",
+                "financial",
+                "current",
+                "public",
+                "personal"
+            ]
+        },
+        {
+            "cluster_id": 14,
+            "short_name": "certified",
+            "attributes": [
+                "certified",
+                "master",
+                "experienced",
+                "trained"
+            ]
+        },
+        {
+            "cluster_id": 6,
+            "short_name": "library",
+            "attributes": [
+                "library",
+                "database",
+                "network",
+                "confidential",
+                "registrar",
+                "licensed"
+            ]
+        },
+        {
+            "cluster_id": 13,
+            "short_name": "clerical",
+            "attributes": [
+                "clerical",
+                "office"
+            ]
+        },
+        {
+            "cluster_id": 8,
+            "short_name": "specialty",
+            "attributes": [
+                "specialty",
+                "patient",
+                "health",
+                "chronic",
+                "lab",
+                "field"
+            ]
+        },
+        {
+            "cluster_id": 5,
+            "short_name": "medical",
+            "attributes": [
+                "medical",
+                "revised",
+                "registered",
+                "transaction",
+                "expired",
+                "expense",
+                "enrollment",
+                "charge",
+                "student",
+                "scheduled"
+            ]
+        },
+        {
+            "cluster_id": 1,
+            "short_name": "transfer",
+            "attributes": [
+                "transfer",
+                "oncology",
+                "system",
+                "diagnostic",
+                "application",
+                "digital",
+                "external"
+            ]
+        },
+        {
+            "cluster_id": 15,
+            "short_name": "semester",
+            "attributes": [
+                "semester",
+                "graduate",
+                "exam",
+                "freshman"
+            ]
+        },
+        {
+            "cluster_id": 3,
+            "short_name": "chief",
+            "attributes": [
+                "chief",
+                "confirmed",
+                "official",
+                "updated",
+                "senior"
+            ]
+        },
+        {
+            "cluster_id": 12,
+            "short_name": "course",
+            "attributes": [
+                "course",
+                "undergraduate",
+                "academic",
+                "teaching"
+            ]
+        }
+    ]
+}

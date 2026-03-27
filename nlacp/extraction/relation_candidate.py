@@ -44,31 +44,60 @@ def parse_sentence(sentence):
     return tokens
 
 
+def _find_best_subject(doc):
+    """
+    Ưu tiên: nsubj của ROOT verb trước,
+    sau đó nsubjpass (passive), sau đó csubj.
+    Với passive: tìm agent trong "by" phrase.
+    """
+    root_token = None
+    for token in doc:
+        if token.dep_ == "ROOT":
+            root_token = token
+            break
+    
+    # Priority 1: nsubj trực tiếp của ROOT
+    if root_token:
+        for child in root_token.children:
+            if child.dep_ == "nsubj":
+                return child.text
+    
+    # Priority 2: nsubjpass → tìm agent "by X"
+    for token in doc:
+        if token.dep_ == "nsubjpass":
+            # Tìm "by" agent
+            for t in doc:
+                if t.dep_ == "agent":
+                    for c in t.children:
+                        if c.dep_ == "pobj":
+                            return c.text
+            # Không có agent → trả về nsubjpass (câu passive không rõ actor)
+            return token.text
+    
+    # Priority 3: nsubj bất kỳ (không phải ROOT)
+    for token in doc:
+        if token.dep_ == "nsubj":
+            return token.text
+    
+    return None
+
+
 def extract_relations(sentence, tokens, _doc=None):
     """
     Trích xuất subject, action, object và attributes từ
     dependency tree theo Top-5 patterns của bài báo.
-
-    Mỗi attribute có:
-        name     — modifier text
-        value    — element nó bổ nghĩa
-        category — "subject" hoặc "object"
-        dep      — dependency relation dùng để tìm ra nó
     """
     doc = _doc if _doc is not None else nlp(sentence)
 
-    subject  = None
+    subject  = _find_best_subject(doc)
     raw_actions = []
     obj_dobj = None   # direct object — ưu tiên cao nhất
     obj_pobj = None   # prepositional object — dùng nếu không có dobj
     obj      = None
     attributes = []
 
-    # ── Tìm subject, action(s), object ──
+    # ── Tìm action(s) và object ──
     for token in doc:
-        if token.dep_ in SUBJECT_DEPS:
-            subject = token.text
-
         # Bắt root text cho action, và các liên từ nối với nó (conj)
         if token.dep_ == "ROOT" and token.pos_ in ("VERB", "NOUN"):
             raw_actions.append(token.lemma_)
@@ -82,23 +111,36 @@ def extract_relations(sentence, tokens, _doc=None):
         if token.dep_ == "dobj":
             obj_dobj = token.text
         elif token.dep_ in ("pobj", "attr"):
-            # Chỉ nhận pobj nếu head KHÔNG phải prep của environment
             if token.head.dep_ == "prep" and token.head.text.lower() in ENV_PREPS:
                 continue
-            if obj_pobj is None:  # keep first valid pobj
+            if obj_pobj is None:
                 obj_pobj = token.text
+
+    # Fix: Compound verb coordination — "can [verb1] and [verb2] [object]"
+    if obj_dobj is None:
+        root_token = next((t for t in doc if t.dep_ == "ROOT"), None)
+        if root_token:
+            conj_verbs = [root_token] + [c for c in root_token.children 
+                                          if c.dep_ == "conj"]
+            for verb in conj_verbs:
+                for child in verb.children:
+                    if child.dep_ == "dobj":
+                        obj_dobj = child.text
+                        break
+                if obj_dobj:
+                    break
 
     LIGHT_NOUNS = {"list", "set", "group", "collection", "series", "range", "array", "type", "kind", "class"}
     if obj_dobj and obj_dobj.lower() in LIGHT_NOUNS:
         for token in doc:
-            if token.text == obj_dobj and token.dep_ == "dobj":
+            if token.text == obj_dobj and (token.dep_ == "dobj" or token.head.pos_ == "VERB"):
                 for child in token.children:
                     if child.dep_ == "prep" and child.text.lower() == "of":
                         for pobj in child.children:
                             if pobj.dep_ == "pobj":
                                 obj_dobj = pobj.text
 
-    obj = obj_dobj or obj_pobj   # dobj luôn thắng pobj
+    obj = obj_dobj or obj_pobj
 
     # Map raw actions to CRUD
     crud_map = {

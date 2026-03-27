@@ -1,0 +1,4458 @@
+{
+    "relations": [
+        {
+            "id": 1,
+            "sentence": "A senior nurse can approve medical records during business hours within the hospital.",
+            "subject": "nurse",
+            "actions": [
+                "Update"
+            ],
+            "object": "records",
+            "attributes": [
+                {
+                    "name": "senior",
+                    "value": "nurse",
+                    "category": "unclassified",
+                    "dep": "amod"
+                },
+                {
+                    "name": "during",
+                    "value": "approve",
+                    "category": "unclassified",
+                    "dep": "prep"
+                },
+                {
+                    "name": "medical",
+                    "value": "records",
+                    "category": "unclassified",
+                    "dep": "amod"
+                },
+                {
+                    "name": "business",
+                    "value": "hours",
+                    "category": "unclassified",
+                    "dep": "compound"
+                },
+                {
+                    "name": "within",
+                    "value": "hours",
+                    "category": "unclassified",
+                    "dep": "prep"
+                }
+            ],
+            "relation_pairs": [
+                [
+                    "nurse",
+                    "senior"
+                ],
+                [
+                    "approve",
+                    "during"
+                ],
+                [
+                    "records",
+                    "medical"
+                ],
+                [
+                    "hours",
+                    "business"
+                ],
+                [
+                    "hours",
+                    "within"
+                ]
+            ]
+        },
+        {
+            "id": 2,
+            "sentence": "Managers in the finance department can approve expense reports.",
+            "subject": "Managers",
+            "actions": [
+                "Update"
+            ],
+            "object": "reports",
+            "attributes": [
+                {
+                    "name": "finance",
+                    "value": "department",
+                    "category": "unclassified",
+                    "dep": "compound"
+                },
+                {
+                    "name": "expense",
+                    "value": "reports",
+                    "category": "unclassified",
+                    "dep": "compound"
+                }
+            ],
+            "relation_pairs": [
+                [
+                    "department",
+                    "finance"
+                ],
+                [
+                    "reports",
+                    "expense"
+                ]
+            ]
+        },
+        {
+            "id": 3,
+            "sentence": "Security officers can view and modify exam grades during the night shift via trusted platforms.",
+            "subject": "officers",
+            "actions": [
+                "Read",
+                "Update",
+                "trust"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "shift",
+                    "night"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 4,
+            "sentence": "Security officers can approve and view network configurations at the headquarters building.",
+            "subject": "officers",
+            "actions": [
+                "Update",
+                "Read"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "building",
+                    "headquarters"
+                ]
+            ]
+        },
+        {
+            "id": 5,
+            "sentence": "Training department staff can delete and approve network configurations using internal devices.",
+            "subject": "staff",
+            "actions": [
+                "Delete",
+                "Update",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ]
+            ]
+        },
+        {
+            "id": 6,
+            "sentence": "IT support staff can configure and access cryptography datasets via trusted platforms.",
+            "subject": "staff",
+            "actions": [
+                "configure",
+                "Read"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "support",
+                    "IT"
+                ],
+                [
+                    "staff",
+                    "support"
+                ],
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 7,
+            "sentence": "Managers can modify and submit personnel files within the VACT intranet.",
+            "subject": "Managers",
+            "actions": [
+                "Update",
+                "submit"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "intranet",
+                    "VACT"
+                ]
+            ]
+        },
+        {
+            "id": 8,
+            "sentence": "Lecturers can view cryptography datasets at the cryptography lab.",
+            "subject": "Lecturers",
+            "actions": [
+                "Read"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 9,
+            "sentence": "Managers can access personnel files on weekends.",
+            "subject": "Managers",
+            "actions": [
+                "Read"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "files",
+                    "personnel"
+                ]
+            ]
+        },
+        {
+            "id": 10,
+            "sentence": "Librarians can view network configurations at the cryptography lab.",
+            "subject": "Librarians",
+            "actions": [
+                "Read"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 11,
+            "sentence": "IT support staff can view exam grades from the campus network.",
+            "subject": "staff",
+            "actions": [
+                "Read"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "support",
+                    "IT"
+                ],
+                [
+                    "staff",
+                    "support"
+                ],
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "network",
+                    "campus"
+                ]
+            ]
+        },
+        {
+            "id": 12,
+            "sentence": "Training department staff can view and submit cryptography datasets at the cryptography lab.",
+            "subject": "staff",
+            "actions": [
+                "Read",
+                "submit"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 13,
+            "sentence": "Training department staff can review system logs after the exam period at nighttime.",
+            "subject": "system",
+            "actions": [
+                "review"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "period",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 14,
+            "sentence": "Training department staff can modify and submit financial reports using internal devices.",
+            "subject": "staff",
+            "actions": [
+                "Update",
+                "submit",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "reports",
+                    "financial"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ]
+            ]
+        },
+        {
+            "id": 15,
+            "sentence": "Managers can access and download student records outside the campus from external IP addresses.",
+            "subject": "Managers",
+            "actions": [
+                "Read",
+                "record"
+            ],
+            "object": "campus",
+            "relation_pairs": [
+                [
+                    "student",
+                    "download"
+                ],
+                [
+                    "records",
+                    "student"
+                ],
+                [
+                    "records",
+                    "outside"
+                ],
+                [
+                    "addresses",
+                    "external"
+                ],
+                [
+                    "addresses",
+                    "IP"
+                ]
+            ]
+        },
+        {
+            "id": 16,
+            "sentence": "Faculty members can approve library resources via a secure VPN.",
+            "subject": "members",
+            "actions": [
+                "Update"
+            ],
+            "object": "resources",
+            "relation_pairs": [
+                [
+                    "members",
+                    "Faculty"
+                ],
+                [
+                    "resources",
+                    "library"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 17,
+            "sentence": "Security officers can update research papers during the night shift.",
+            "subject": "officers",
+            "actions": [
+                "Update"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 18,
+            "sentence": "VACT students can download personnel files via trusted platforms.",
+            "subject": "students",
+            "actions": [
+                "download",
+                "trust"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 19,
+            "sentence": "Training department staff can modify network configurations between 8am and 5pm.",
+            "subject": "staff",
+            "actions": [
+                "Update"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "pm",
+                    "5"
+                ]
+            ]
+        },
+        {
+            "id": 20,
+            "sentence": "System administrators can review research papers at the headquarters building after the exam period.",
+            "subject": "administrators",
+            "actions": [
+                "review"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "administrators",
+                    "System"
+                ],
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "building",
+                    "headquarters"
+                ],
+                [
+                    "period",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 21,
+            "sentence": "Faculty members can update network configurations using internal devices.",
+            "subject": "members",
+            "actions": [
+                "Update",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "members",
+                    "Faculty"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ]
+            ]
+        },
+        {
+            "id": 22,
+            "sentence": "Students can review personnel files using internal devices.",
+            "subject": "Students",
+            "actions": [
+                "review",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ]
+            ]
+        },
+        {
+            "id": 23,
+            "sentence": "Managers can review and access library resources at the headquarters building.",
+            "subject": "Managers",
+            "actions": [
+                "review",
+                "resource"
+            ],
+            "object": "building",
+            "relation_pairs": [
+                [
+                    "resources",
+                    "access"
+                ],
+                [
+                    "resources",
+                    "library"
+                ],
+                [
+                    "building",
+                    "headquarters"
+                ]
+            ]
+        },
+        {
+            "id": 24,
+            "sentence": "IT support staff can approve system logs at nighttime through an encrypted channel.",
+            "subject": "staff",
+            "actions": [
+                "Update",
+                "encrypt"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "support",
+                    "IT"
+                ],
+                [
+                    "staff",
+                    "support"
+                ],
+                [
+                    "logs",
+                    "system"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ]
+            ]
+        },
+        {
+            "id": 25,
+            "sentence": "Security officers can download and modify exam schedules before the deadline.",
+            "subject": "officers",
+            "actions": [
+                "download",
+                "Update"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "schedules",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 26,
+            "sentence": "VACT students can configure and upload exam grades via a secure VPN.",
+            "subject": "students",
+            "actions": [
+                "configure",
+                "Create"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 27,
+            "sentence": "Managers can download student records via trusted platforms.",
+            "subject": "Managers",
+            "actions": [
+                "download",
+                "trust"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "student"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 28,
+            "sentence": "Lecturers can approve and update financial reports using internal devices during the registration period.",
+            "subject": "Lecturers",
+            "actions": [
+                "Update",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "reports",
+                    "financial"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ],
+                [
+                    "period",
+                    "registration"
+                ]
+            ]
+        },
+        {
+            "id": 29,
+            "sentence": "VACT students can modify system logs at the headquarters building.",
+            "subject": "students",
+            "actions": [
+                "Update"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "logs",
+                    "system"
+                ],
+                [
+                    "building",
+                    "headquarters"
+                ]
+            ]
+        },
+        {
+            "id": 30,
+            "sentence": "VACT students can approve personnel files from the campus network.",
+            "subject": "students",
+            "actions": [
+                "Update"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "network",
+                    "campus"
+                ]
+            ]
+        },
+        {
+            "id": 31,
+            "sentence": "Security officers can review library resources through an encrypted channel.",
+            "subject": "officers",
+            "actions": [
+                "review",
+                "encrypt"
+            ],
+            "object": "resources",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "resources",
+                    "library"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ]
+            ]
+        },
+        {
+            "id": 32,
+            "sentence": "Training department staff can delete course materials via trusted platforms.",
+            "subject": "staff",
+            "actions": [
+                "Delete",
+                "trust"
+            ],
+            "object": "materials",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "materials",
+                    "course"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 33,
+            "sentence": "Faculty members can delete and access exam grades between 8am and 5pm.",
+            "subject": "members",
+            "actions": [
+                "Delete",
+                "grade"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "members",
+                    "Faculty"
+                ],
+                [
+                    "exam",
+                    "access"
+                ],
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "pm",
+                    "5"
+                ]
+            ]
+        },
+        {
+            "id": 34,
+            "sentence": "Department heads can view and delete network configurations via a secure VPN.",
+            "subject": "heads",
+            "actions": [
+                "Read",
+                "configuration"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "heads",
+                    "Department"
+                ],
+                [
+                    "configurations",
+                    "delete"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 35,
+            "sentence": "IT support staff can audit thesis submissions via a secure VPN.",
+            "subject": "staff",
+            "actions": [
+                "Read"
+            ],
+            "object": "submissions",
+            "relation_pairs": [
+                [
+                    "support",
+                    "IT"
+                ],
+                [
+                    "staff",
+                    "support"
+                ],
+                [
+                    "submissions",
+                    "thesis"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 36,
+            "sentence": "Training department staff can view course materials at the cryptography lab.",
+            "subject": "staff",
+            "actions": [
+                "Read"
+            ],
+            "object": "materials",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "materials",
+                    "course"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 37,
+            "sentence": "Guest users can approve and upload exam grades on weekends.",
+            "subject": "users",
+            "actions": [
+                "Update",
+                "Create"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "users",
+                    "Guest"
+                ],
+                [
+                    "grades",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 38,
+            "sentence": "Managers can view student records using internal devices.",
+            "subject": "Managers",
+            "actions": [
+                "Read",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "records",
+                    "student"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ]
+            ]
+        },
+        {
+            "id": 39,
+            "sentence": "Librarians can modify system logs after the exam period.",
+            "subject": "Librarians",
+            "actions": [
+                "Update"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "logs",
+                    "system"
+                ],
+                [
+                    "period",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 40,
+            "sentence": "VACT students can view exam grades using internal devices.",
+            "subject": "students",
+            "actions": [
+                "Read",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ]
+            ]
+        },
+        {
+            "id": 41,
+            "sentence": "Lecturers can delete and update research papers via a secure VPN.",
+            "subject": "Lecturers",
+            "actions": [
+                "Delete",
+                "Update"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 42,
+            "sentence": "Students can modify and configure cryptography datasets from external IP addresses.",
+            "subject": "Students",
+            "actions": [
+                "Update",
+                "configure"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "addresses",
+                    "external"
+                ],
+                [
+                    "addresses",
+                    "IP"
+                ]
+            ]
+        },
+        {
+            "id": 43,
+            "sentence": "Researchers can submit and download personnel files using internal devices via a secure VPN.",
+            "subject": "Researchers",
+            "actions": [
+                "submit",
+                "download",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 44,
+            "sentence": "Training department staff can access and review thesis submissions between 8am and 5pm outside the campus.",
+            "subject": "staff",
+            "actions": [
+                "Read",
+                "review"
+            ],
+            "object": "submissions",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "submissions",
+                    "thesis"
+                ],
+                [
+                    "pm",
+                    "5"
+                ],
+                [
+                    "pm",
+                    "outside"
+                ]
+            ]
+        },
+        {
+            "id": 45,
+            "sentence": "Guest users can configure and modify network configurations through an encrypted channel.",
+            "subject": "users",
+            "actions": [
+                "configure",
+                "Update",
+                "encrypt"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "users",
+                    "Guest"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ]
+            ]
+        },
+        {
+            "id": 46,
+            "sentence": "Lecturers can audit course materials during the night shift.",
+            "subject": "Lecturers",
+            "actions": [
+                "Read"
+            ],
+            "object": "materials",
+            "relation_pairs": [
+                [
+                    "materials",
+                    "course"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 47,
+            "sentence": "Faculty members can delete thesis submissions after the exam period.",
+            "subject": "members",
+            "actions": [
+                "Delete"
+            ],
+            "object": "submissions",
+            "relation_pairs": [
+                [
+                    "members",
+                    "Faculty"
+                ],
+                [
+                    "submissions",
+                    "thesis"
+                ],
+                [
+                    "period",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 48,
+            "sentence": "Faculty members can audit and upload network configurations within the VACT intranet.",
+            "subject": "members",
+            "actions": [
+                "Read",
+                "Create"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "members",
+                    "Faculty"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "intranet",
+                    "VACT"
+                ]
+            ]
+        },
+        {
+            "id": 49,
+            "sentence": "Training department staff can download cryptography datasets from the campus network.",
+            "subject": "staff",
+            "actions": [
+                "download"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "network",
+                    "campus"
+                ]
+            ]
+        },
+        {
+            "id": 50,
+            "sentence": "Managers can view exam grades via trusted platforms.",
+            "subject": "Managers",
+            "actions": [
+                "Read",
+                "trust"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 51,
+            "sentence": "Lecturers can configure student records during the registration period.",
+            "subject": "Lecturers",
+            "actions": [
+                "configure"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "student"
+                ],
+                [
+                    "period",
+                    "registration"
+                ]
+            ]
+        },
+        {
+            "id": 52,
+            "sentence": "Lecturers can delete library resources using authorized workstations.",
+            "subject": "Lecturers",
+            "actions": [
+                "Delete",
+                "use"
+            ],
+            "object": "workstations",
+            "relation_pairs": [
+                [
+                    "resources",
+                    "library"
+                ],
+                [
+                    "workstations",
+                    "authorized"
+                ]
+            ]
+        },
+        {
+            "id": 53,
+            "sentence": "IT support staff can download thesis submissions through an encrypted channel during business hours.",
+            "subject": "staff",
+            "actions": [
+                "download",
+                "encrypt"
+            ],
+            "object": "submissions",
+            "relation_pairs": [
+                [
+                    "support",
+                    "IT"
+                ],
+                [
+                    "staff",
+                    "support"
+                ],
+                [
+                    "submissions",
+                    "thesis"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ],
+                [
+                    "hours",
+                    "business"
+                ]
+            ]
+        },
+        {
+            "id": 54,
+            "sentence": "VACT students can download and view exam schedules during the registration period.",
+            "subject": "students",
+            "actions": [
+                "download",
+                "Read"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "schedules",
+                    "exam"
+                ],
+                [
+                    "period",
+                    "registration"
+                ]
+            ]
+        },
+        {
+            "id": 55,
+            "sentence": "IT support staff can configure research papers before the deadline.",
+            "subject": "staff",
+            "actions": [
+                "configure"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "support",
+                    "IT"
+                ],
+                [
+                    "staff",
+                    "support"
+                ],
+                [
+                    "papers",
+                    "research"
+                ]
+            ]
+        },
+        {
+            "id": 56,
+            "sentence": "Training department staff can review and access exam schedules through an encrypted channel via a secure VPN.",
+            "subject": "staff",
+            "actions": [
+                "review",
+                "Read",
+                "encrypt"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "schedules",
+                    "exam"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 57,
+            "sentence": "Lecturers can review cryptography datasets between 8am and 5pm during business hours.",
+            "subject": "Lecturers",
+            "actions": [
+                "review"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "pm",
+                    "5"
+                ],
+                [
+                    "hours",
+                    "business"
+                ]
+            ]
+        },
+        {
+            "id": 58,
+            "sentence": "System administrators can review system logs using authorized workstations.",
+            "subject": "administrators",
+            "actions": [
+                "review",
+                "use",
+                "authorize"
+            ],
+            "object": "workstations",
+            "relation_pairs": [
+                [
+                    "administrators",
+                    "System"
+                ],
+                [
+                    "logs",
+                    "system"
+                ],
+                [
+                    "workstations",
+                    "authorized"
+                ]
+            ]
+        },
+        {
+            "id": 59,
+            "sentence": "Librarians can configure exam grades during the registration period.",
+            "subject": "Librarians",
+            "actions": [
+                "configure"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "period",
+                    "registration"
+                ]
+            ]
+        },
+        {
+            "id": 60,
+            "sentence": "Department heads can audit and upload network configurations during the registration period.",
+            "subject": "heads",
+            "actions": [
+                "Read",
+                "Create"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "heads",
+                    "Department"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "period",
+                    "registration"
+                ]
+            ]
+        },
+        {
+            "id": 61,
+            "sentence": "Managers can access library resources during the night shift.",
+            "subject": "Managers",
+            "actions": [
+                "Read"
+            ],
+            "object": "resources",
+            "relation_pairs": [
+                [
+                    "resources",
+                    "library"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 62,
+            "sentence": "Department heads can configure cryptography datasets during the registration period during the night shift.",
+            "subject": "heads",
+            "actions": [
+                "configure"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "heads",
+                    "Department"
+                ],
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "period",
+                    "registration"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 63,
+            "sentence": "Managers can modify cryptography datasets outside the campus.",
+            "subject": "Managers",
+            "actions": [
+                "Update"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "modify",
+                    "outside"
+                ],
+                [
+                    "datasets",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 64,
+            "sentence": "Librarians can review personnel files within the VACT intranet at nighttime.",
+            "subject": "Librarians",
+            "actions": [
+                "review"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "intranet",
+                    "VACT"
+                ]
+            ]
+        },
+        {
+            "id": 65,
+            "sentence": "Lecturers can submit exam grades during the night shift before the deadline.",
+            "subject": "Lecturers",
+            "actions": [
+                "submit"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 66,
+            "sentence": "Guest users can upload and delete system logs during the night shift via trusted platforms.",
+            "subject": "system",
+            "actions": [
+                "Create",
+                "log",
+                "trust"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "users",
+                    "Guest"
+                ],
+                [
+                    "system",
+                    "delete"
+                ],
+                [
+                    "shift",
+                    "night"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 67,
+            "sentence": "Librarians can upload system logs within the VACT intranet at the cryptography lab.",
+            "subject": "Librarians",
+            "actions": [
+                "Create"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "logs",
+                    "system"
+                ],
+                [
+                    "intranet",
+                    "VACT"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 68,
+            "sentence": "Librarians can review and download network configurations during business hours.",
+            "subject": "Librarians",
+            "actions": [
+                "review",
+                "download"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "hours",
+                    "business"
+                ]
+            ]
+        },
+        {
+            "id": 69,
+            "sentence": "System administrators can audit system logs at the headquarters building.",
+            "subject": "administrators",
+            "actions": [
+                "Read"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "administrators",
+                    "System"
+                ],
+                [
+                    "logs",
+                    "system"
+                ],
+                [
+                    "building",
+                    "headquarters"
+                ]
+            ]
+        },
+        {
+            "id": 70,
+            "sentence": "Managers can upload and review cryptography datasets through an encrypted channel.",
+            "subject": "Managers",
+            "actions": [
+                "Create",
+                "review",
+                "encrypt"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ]
+            ]
+        },
+        {
+            "id": 71,
+            "sentence": "Training department staff can download exam grades during business hours through an encrypted channel.",
+            "subject": "staff",
+            "actions": [
+                "download",
+                "encrypt"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "hours",
+                    "business"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ]
+            ]
+        },
+        {
+            "id": 72,
+            "sentence": "VACT students can review personnel files before the deadline at the cryptography lab.",
+            "subject": "students",
+            "actions": [
+                "review"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 73,
+            "sentence": "Security officers can upload thesis submissions on weekends.",
+            "subject": "officers",
+            "actions": [
+                "Create"
+            ],
+            "object": "submissions",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "submissions",
+                    "thesis"
+                ]
+            ]
+        },
+        {
+            "id": 74,
+            "sentence": "Researchers can configure system logs outside the campus.",
+            "subject": "system",
+            "actions": [
+                "configure",
+                "log"
+            ],
+            "object": "campus",
+            "relation_pairs": [
+                [
+                    "logs",
+                    "outside"
+                ]
+            ]
+        },
+        {
+            "id": 75,
+            "sentence": "Researchers can configure research papers from external IP addresses.",
+            "subject": "Researchers",
+            "actions": [
+                "configure"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "addresses",
+                    "external"
+                ],
+                [
+                    "addresses",
+                    "IP"
+                ]
+            ]
+        },
+        {
+            "id": 76,
+            "sentence": "System administrators can audit thesis submissions using internal devices.",
+            "subject": "administrators",
+            "actions": [
+                "Read",
+                "use"
+            ],
+            "object": "devices",
+            "relation_pairs": [
+                [
+                    "administrators",
+                    "System"
+                ],
+                [
+                    "submissions",
+                    "thesis"
+                ],
+                [
+                    "devices",
+                    "internal"
+                ]
+            ]
+        },
+        {
+            "id": 77,
+            "sentence": "Researchers can download student records via trusted platforms.",
+            "subject": "Researchers",
+            "actions": [
+                "download",
+                "trust"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "student"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 78,
+            "sentence": "Department heads can update financial reports before the deadline.",
+            "subject": "heads",
+            "actions": [
+                "Update"
+            ],
+            "object": "reports",
+            "relation_pairs": [
+                [
+                    "heads",
+                    "Department"
+                ],
+                [
+                    "reports",
+                    "financial"
+                ]
+            ]
+        },
+        {
+            "id": 79,
+            "sentence": "Managers can approve research papers from the campus network.",
+            "subject": "Managers",
+            "actions": [
+                "Update"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "network",
+                    "campus"
+                ]
+            ]
+        },
+        {
+            "id": 80,
+            "sentence": "Security officers can audit library resources during the night shift.",
+            "subject": "officers",
+            "actions": [
+                "Read"
+            ],
+            "object": "resources",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "resources",
+                    "library"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 81,
+            "sentence": "Training department staff can delete research papers during the night shift.",
+            "subject": "staff",
+            "actions": [
+                "Delete"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 82,
+            "sentence": "Faculty members can view and update financial reports via trusted platforms.",
+            "subject": "members",
+            "actions": [
+                "Read",
+                "Update"
+            ],
+            "object": "reports",
+            "relation_pairs": [
+                [
+                    "members",
+                    "Faculty"
+                ],
+                [
+                    "reports",
+                    "financial"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ]
+            ]
+        },
+        {
+            "id": 83,
+            "sentence": "Guest users can submit student records during business hours.",
+            "subject": "users",
+            "actions": [
+                "submit"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "users",
+                    "Guest"
+                ],
+                [
+                    "records",
+                    "student"
+                ],
+                [
+                    "hours",
+                    "business"
+                ]
+            ]
+        },
+        {
+            "id": 84,
+            "sentence": "Managers can view cryptography datasets through an encrypted channel.",
+            "subject": "Managers",
+            "actions": [
+                "Read",
+                "encrypt"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ]
+            ]
+        },
+        {
+            "id": 85,
+            "sentence": "VACT students can delete course materials using authorized workstations.",
+            "subject": "students",
+            "actions": [
+                "Delete",
+                "use",
+                "authorize"
+            ],
+            "object": "workstations",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "materials",
+                    "course"
+                ],
+                [
+                    "workstations",
+                    "authorized"
+                ]
+            ]
+        },
+        {
+            "id": 86,
+            "sentence": "VACT students can audit library resources using authorized workstations through an encrypted channel.",
+            "subject": "students",
+            "actions": [
+                "Read",
+                "use",
+                "authorize",
+                "encrypt"
+            ],
+            "object": "workstations",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "resources",
+                    "library"
+                ],
+                [
+                    "workstations",
+                    "authorized"
+                ],
+                [
+                    "channel",
+                    "encrypted"
+                ]
+            ]
+        },
+        {
+            "id": 87,
+            "sentence": "VACT students can update and delete research papers via a secure VPN using authorized workstations.",
+            "subject": "students",
+            "actions": [
+                "Update",
+                "use",
+                "authorize"
+            ],
+            "object": "workstations",
+            "relation_pairs": [
+                [
+                    "students",
+                    "VACT"
+                ],
+                [
+                    "papers",
+                    "delete"
+                ],
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ],
+                [
+                    "workstations",
+                    "authorized"
+                ]
+            ]
+        },
+        {
+            "id": 88,
+            "sentence": "Security officers can download and view network configurations during the night shift.",
+            "subject": "officers",
+            "actions": [
+                "download",
+                "Read"
+            ],
+            "object": "configurations",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "configurations",
+                    "network"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 89,
+            "sentence": "IT support staff can download student records outside the campus.",
+            "subject": "staff",
+            "actions": [
+                "download"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "support",
+                    "IT"
+                ],
+                [
+                    "staff",
+                    "support"
+                ],
+                [
+                    "records",
+                    "student"
+                ],
+                [
+                    "records",
+                    "outside"
+                ]
+            ]
+        },
+        {
+            "id": 90,
+            "sentence": "Lecturers can modify research papers during the registration period.",
+            "subject": "Lecturers",
+            "actions": [
+                "Update"
+            ],
+            "object": "papers",
+            "relation_pairs": [
+                [
+                    "papers",
+                    "research"
+                ],
+                [
+                    "period",
+                    "registration"
+                ]
+            ]
+        },
+        {
+            "id": 91,
+            "sentence": "Lecturers can submit cryptography datasets using authorized workstations.",
+            "subject": "Lecturers",
+            "actions": [
+                "submit",
+                "use",
+                "authorize"
+            ],
+            "object": "workstations",
+            "relation_pairs": [
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "workstations",
+                    "authorized"
+                ]
+            ]
+        },
+        {
+            "id": 92,
+            "sentence": "Training department staff can submit cryptography datasets via trusted platforms during business hours.",
+            "subject": "staff",
+            "actions": [
+                "submit",
+                "trust"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "department",
+                    "Training"
+                ],
+                [
+                    "staff",
+                    "department"
+                ],
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "platforms",
+                    "trusted"
+                ],
+                [
+                    "hours",
+                    "business"
+                ]
+            ]
+        },
+        {
+            "id": 93,
+            "sentence": "Managers can audit and submit cryptography datasets at the cryptography lab.",
+            "subject": "Managers",
+            "actions": [
+                "Read",
+                "submit"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 94,
+            "sentence": "Librarians can configure and submit personnel files during the night shift via a secure VPN.",
+            "subject": "Librarians",
+            "actions": [
+                "configure",
+                "submit"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "shift",
+                    "night"
+                ],
+                [
+                    "VPN",
+                    "secure"
+                ]
+            ]
+        },
+        {
+            "id": 95,
+            "sentence": "Guest users can access cryptography datasets from external IP addresses.",
+            "subject": "users",
+            "actions": [
+                "Read"
+            ],
+            "object": "datasets",
+            "relation_pairs": [
+                [
+                    "users",
+                    "Guest"
+                ],
+                [
+                    "datasets",
+                    "cryptography"
+                ],
+                [
+                    "addresses",
+                    "external"
+                ],
+                [
+                    "addresses",
+                    "IP"
+                ]
+            ]
+        },
+        {
+            "id": 96,
+            "sentence": "Guest users can modify thesis submissions from external IP addresses.",
+            "subject": "users",
+            "actions": [
+                "Update"
+            ],
+            "object": "submissions",
+            "relation_pairs": [
+                [
+                    "users",
+                    "Guest"
+                ],
+                [
+                    "submissions",
+                    "thesis"
+                ],
+                [
+                    "addresses",
+                    "external"
+                ],
+                [
+                    "addresses",
+                    "IP"
+                ]
+            ]
+        },
+        {
+            "id": 97,
+            "sentence": "Security officers can access course materials during the registration period.",
+            "subject": "officers",
+            "actions": [
+                "Read"
+            ],
+            "object": "materials",
+            "relation_pairs": [
+                [
+                    "officers",
+                    "Security"
+                ],
+                [
+                    "materials",
+                    "course"
+                ],
+                [
+                    "period",
+                    "registration"
+                ]
+            ]
+        },
+        {
+            "id": 98,
+            "sentence": "System administrators can access system logs before the deadline.",
+            "subject": "administrators",
+            "actions": [
+                "Read"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "administrators",
+                    "System"
+                ]
+            ]
+        },
+        {
+            "id": 99,
+            "sentence": "Department heads can submit system logs at the headquarters building within the VACT intranet.",
+            "subject": "heads",
+            "actions": [
+                "submit"
+            ],
+            "object": "logs",
+            "relation_pairs": [
+                [
+                    "heads",
+                    "Department"
+                ],
+                [
+                    "logs",
+                    "system"
+                ],
+                [
+                    "building",
+                    "headquarters"
+                ],
+                [
+                    "intranet",
+                    "VACT"
+                ]
+            ]
+        },
+        {
+            "id": 100,
+            "sentence": "Guest users can access and modify personnel files at the cryptography lab.",
+            "subject": "users",
+            "actions": [
+                "Read",
+                "Update"
+            ],
+            "object": "files",
+            "relation_pairs": [
+                [
+                    "users",
+                    "Guest"
+                ],
+                [
+                    "files",
+                    "personnel"
+                ],
+                [
+                    "lab",
+                    "cryptography"
+                ]
+            ]
+        },
+        {
+            "id": 101,
+            "sentence": "Managers can review exam grades during the night shift before the deadline.",
+            "subject": "Managers",
+            "actions": [
+                "review"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "grades",
+                    "exam"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 102,
+            "sentence": "Faculty members can modify student records on weekends.",
+            "subject": "members",
+            "actions": [
+                "Update"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "members",
+                    "Faculty"
+                ],
+                [
+                    "records",
+                    "student"
+                ]
+            ]
+        },
+        {
+            "id": 103,
+            "sentence": "A student reads his transcript during office hours",
+            "subject": "student",
+            "actions": [
+                "Read"
+            ],
+            "object": "transcript",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "office"
+                ]
+            ]
+        },
+        {
+            "id": 104,
+            "sentence": "A student checks application status on the campus portal",
+            "subject": "student",
+            "actions": [
+                "check"
+            ],
+            "object": "status",
+            "relation_pairs": [
+                [
+                    "status",
+                    "application"
+                ],
+                [
+                    "portal",
+                    "campus"
+                ]
+            ]
+        },
+        {
+            "id": 105,
+            "sentence": "An instructor updates a gradebook during the semester",
+            "subject": "instructor",
+            "actions": [
+                "Update"
+            ],
+            "object": "gradebook",
+            "relation_pairs": []
+        },
+        {
+            "id": 106,
+            "sentence": "A teaching assistant modifies course grades in the lab",
+            "subject": null,
+            "actions": [
+                "grade"
+            ],
+            "object": "lab",
+            "relation_pairs": [
+                [
+                    "modifies",
+                    "assistant"
+                ],
+                [
+                    "grades",
+                    "course"
+                ]
+            ]
+        },
+        {
+            "id": 107,
+            "sentence": "A registrar officer accesses transcripts during working hours",
+            "subject": "officer",
+            "actions": [
+                "Read",
+                "work"
+            ],
+            "object": "transcripts",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "registrar"
+                ],
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 108,
+            "sentence": "An admissions officer reviews applications in the admissions office",
+            "subject": "officer",
+            "actions": [
+                "application"
+            ],
+            "object": "office",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "admissions"
+                ],
+                [
+                    "applications",
+                    "reviews"
+                ],
+                [
+                    "office",
+                    "admissions"
+                ]
+            ]
+        },
+        {
+            "id": 109,
+            "sentence": "A department chair views course schedules during meetings",
+            "subject": "chair",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "chair",
+                    "department"
+                ],
+                [
+                    "schedules",
+                    "course"
+                ]
+            ]
+        },
+        {
+            "id": 110,
+            "sentence": "A student reads course schedules in the library",
+            "subject": "student",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "schedules",
+                    "course"
+                ]
+            ]
+        },
+        {
+            "id": 111,
+            "sentence": "An instructor assigns grades during exam period",
+            "subject": null,
+            "actions": [
+                "grade"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "assigns",
+                    "instructor"
+                ],
+                [
+                    "grades",
+                    "assigns"
+                ],
+                [
+                    "period",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 112,
+            "sentence": "A teaching assistant reviews submissions at night",
+            "subject": null,
+            "actions": [
+                "submission"
+            ],
+            "object": "night",
+            "relation_pairs": [
+                [
+                    "submissions",
+                    "assistant"
+                ],
+                [
+                    "submissions",
+                    "reviews"
+                ]
+            ]
+        },
+        {
+            "id": 113,
+            "sentence": "A registrar officer updates a transcript during office hours",
+            "subject": "officer",
+            "actions": [
+                "Update"
+            ],
+            "object": "transcript",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "registrar"
+                ],
+                [
+                    "hours",
+                    "office"
+                ]
+            ]
+        },
+        {
+            "id": 114,
+            "sentence": "An instructor reads a course schedule in the faculty lounge",
+            "subject": "instructor",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedule",
+            "relation_pairs": [
+                [
+                    "schedule",
+                    "course"
+                ],
+                [
+                    "lounge",
+                    "faculty"
+                ]
+            ]
+        },
+        {
+            "id": 115,
+            "sentence": "A department chair assigns grades during the grading period",
+            "subject": null,
+            "actions": [
+                "grade"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "chair",
+                    "department"
+                ],
+                [
+                    "assigns",
+                    "chair"
+                ],
+                [
+                    "grades",
+                    "assigns"
+                ],
+                [
+                    "period",
+                    "grading"
+                ]
+            ]
+        },
+        {
+            "id": 116,
+            "sentence": "An admissions officer checks application status in the office",
+            "subject": "officer",
+            "actions": [
+                "check"
+            ],
+            "object": "status",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "admissions"
+                ],
+                [
+                    "status",
+                    "application"
+                ]
+            ]
+        },
+        {
+            "id": 117,
+            "sentence": "A student updates an application during the enrollment window",
+            "subject": "student",
+            "actions": [
+                "Update"
+            ],
+            "object": "application",
+            "relation_pairs": [
+                [
+                    "window",
+                    "enrollment"
+                ]
+            ]
+        },
+        {
+            "id": 118,
+            "sentence": "A teaching assistant reads a gradebook in the classroom",
+            "subject": "assistant",
+            "actions": [
+                "Read"
+            ],
+            "object": "gradebook",
+            "relation_pairs": [
+                [
+                    "assistant",
+                    "teaching"
+                ]
+            ]
+        },
+        {
+            "id": 119,
+            "sentence": "A registrar officer checks status of applications during work",
+            "subject": "officer",
+            "actions": [
+                "check"
+            ],
+            "object": "status",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "registrar"
+                ]
+            ]
+        },
+        {
+            "id": 120,
+            "sentence": "An instructor views a transcript during advising sessions",
+            "subject": "instructor",
+            "actions": [
+                "Read",
+                "advise"
+            ],
+            "object": "sessions",
+            "relation_pairs": []
+        },
+        {
+            "id": 121,
+            "sentence": "A department chair updates course schedules in the department A student reads a course schedule during registration",
+            "subject": "student",
+            "actions": [
+                "Update",
+                "Read"
+            ],
+            "object": "schedule",
+            "relation_pairs": [
+                [
+                    "chair",
+                    "department"
+                ],
+                [
+                    "schedules",
+                    "course"
+                ],
+                [
+                    "schedule",
+                    "course"
+                ]
+            ]
+        },
+        {
+            "id": 122,
+            "sentence": "A student reads his transcript during office hours from the campus network",
+            "subject": "student",
+            "actions": [
+                "Read"
+            ],
+            "object": "transcript",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "office"
+                ],
+                [
+                    "network",
+                    "campus"
+                ]
+            ]
+        },
+        {
+            "id": 123,
+            "sentence": "An instructor updates a gradebook during the semester in the faculty office",
+            "subject": "instructor",
+            "actions": [
+                "Update"
+            ],
+            "object": "gradebook",
+            "relation_pairs": [
+                [
+                    "office",
+                    "faculty"
+                ]
+            ]
+        },
+        {
+            "id": 124,
+            "sentence": "An admissions officer processes applications during business hours from the admissions system",
+            "subject": "officer",
+            "actions": [
+                "process"
+            ],
+            "object": "applications",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "admissions"
+                ],
+                [
+                    "hours",
+                    "business"
+                ],
+                [
+                    "system",
+                    "admissions"
+                ]
+            ]
+        },
+        {
+            "id": 125,
+            "sentence": "A registrar officer accesses transcripts during working hours in the registrar office",
+            "subject": "officer",
+            "actions": [
+                "Read",
+                "work"
+            ],
+            "object": "transcripts",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "registrar"
+                ],
+                [
+                    "hours",
+                    "working"
+                ],
+                [
+                    "office",
+                    "registrar"
+                ]
+            ]
+        },
+        {
+            "id": 126,
+            "sentence": "A teaching assistant modifies grades at night from the lab network",
+            "subject": "assistant",
+            "actions": [
+                "Update"
+            ],
+            "object": "grades",
+            "relation_pairs": [
+                [
+                    "network",
+                    "lab"
+                ]
+            ]
+        },
+        {
+            "id": 127,
+            "sentence": "A department chair reviews schedules during meetings in the department building",
+            "subject": "chair",
+            "actions": [
+                "review"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "chair",
+                    "department"
+                ],
+                [
+                    "building",
+                    "department"
+                ]
+            ]
+        },
+        {
+            "id": 128,
+            "sentence": "A registrar officer updates a transcript during working hours from the registrar system",
+            "subject": "officer",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "transcript",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "registrar"
+                ],
+                [
+                    "hours",
+                    "working"
+                ],
+                [
+                    "system",
+                    "registrar"
+                ]
+            ]
+        },
+        {
+            "id": 129,
+            "sentence": "An instructor reads course schedules during the semester in the department office",
+            "subject": "instructor",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "schedules",
+                    "course"
+                ],
+                [
+                    "office",
+                    "department"
+                ]
+            ]
+        },
+        {
+            "id": 130,
+            "sentence": "A department chair assigns grades during the exam period from the faculty network",
+            "subject": null,
+            "actions": [
+                "grade"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "chair",
+                    "department"
+                ],
+                [
+                    "assigns",
+                    "chair"
+                ],
+                [
+                    "grades",
+                    "assigns"
+                ],
+                [
+                    "period",
+                    "exam"
+                ],
+                [
+                    "network",
+                    "faculty"
+                ]
+            ]
+        },
+        {
+            "id": 131,
+            "sentence": "An admissions officer checks application status during business hours in the admissions office",
+            "subject": "officer",
+            "actions": [
+                "check"
+            ],
+            "object": "status",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "admissions"
+                ],
+                [
+                    "status",
+                    "application"
+                ],
+                [
+                    "hours",
+                    "business"
+                ],
+                [
+                    "office",
+                    "admissions"
+                ]
+            ]
+        },
+        {
+            "id": 132,
+            "sentence": "A student updates an application during office hours from the campus portal",
+            "subject": "student",
+            "actions": [
+                "Update"
+            ],
+            "object": "application",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "office"
+                ],
+                [
+                    "portal",
+                    "campus"
+                ]
+            ]
+        },
+        {
+            "id": 133,
+            "sentence": "A transcript is read by a student during office hours",
+            "subject": "transcript",
+            "actions": [
+                "Read"
+            ],
+            "object": "student",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "office"
+                ]
+            ]
+        },
+        {
+            "id": 134,
+            "sentence": "An application is reviewed by an admissions officer in the admissions office",
+            "subject": "application",
+            "actions": [
+                "review"
+            ],
+            "object": "officer",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "admissions"
+                ],
+                [
+                    "office",
+                    "admissions"
+                ]
+            ]
+        },
+        {
+            "id": 135,
+            "sentence": "A gradebook is updated by an instructor during the semester from the faculty system",
+            "subject": "gradebook",
+            "actions": [
+                "Update"
+            ],
+            "object": "instructor",
+            "relation_pairs": [
+                [
+                    "system",
+                    "faculty"
+                ]
+            ]
+        },
+        {
+            "id": 136,
+            "sentence": "Course schedules are accessed by a student during daytime on campus",
+            "subject": "schedules",
+            "actions": [
+                "Read"
+            ],
+            "object": "student",
+            "relation_pairs": [
+                [
+                    "schedules",
+                    "Course"
+                ]
+            ]
+        },
+        {
+            "id": 137,
+            "sentence": "A transcript is updated by a registrar officer during working hours",
+            "subject": "transcript",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "officer",
+            "relation_pairs": [
+                [
+                    "officer",
+                    "registrar"
+                ],
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 138,
+            "sentence": "A course schedule is read by an instructor in the faculty office",
+            "subject": "schedule",
+            "actions": [
+                "Read"
+            ],
+            "object": "instructor",
+            "relation_pairs": [
+                [
+                    "schedule",
+                    "course"
+                ],
+                [
+                    "office",
+                    "faculty"
+                ]
+            ]
+        },
+        {
+            "id": 139,
+            "sentence": "Grades are assigned by a department chair during the exam period",
+            "subject": "Grades",
+            "actions": [
+                "assign"
+            ],
+            "object": "chair",
+            "relation_pairs": [
+                [
+                    "chair",
+                    "department"
+                ],
+                [
+                    "period",
+                    "exam"
+                ]
+            ]
+        },
+        {
+            "id": 140,
+            "sentence": "Application status is checked by an admissions officer in the admissions office",
+            "subject": "status",
+            "actions": [
+                "check"
+            ],
+            "object": "officer",
+            "relation_pairs": [
+                [
+                    "status",
+                    "Application"
+                ],
+                [
+                    "officer",
+                    "admissions"
+                ],
+                [
+                    "office",
+                    "admissions"
+                ]
+            ]
+        },
+        {
+            "id": 141,
+            "sentence": "An application is updated by a student during office hours",
+            "subject": "application",
+            "actions": [
+                "Update"
+            ],
+            "object": "student",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "office"
+                ]
+            ]
+        },
+        {
+            "id": 142,
+            "sentence": "A nurse updates a health record during her shift A doctor reads a patient record in the hospital",
+            "subject": "doctor",
+            "actions": [
+                "Update",
+                "Read"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ],
+                [
+                    "record",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 143,
+            "sentence": "A patient views his record at home An agent accesses a health record during visiting hours",
+            "subject": "agent",
+            "actions": [
+                "Read",
+                "visit"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ],
+                [
+                    "hours",
+                    "visiting"
+                ]
+            ]
+        },
+        {
+            "id": 144,
+            "sentence": "A nurse adds notes in the ward",
+            "subject": "nurse",
+            "actions": [
+                "Create"
+            ],
+            "object": "notes",
+            "relation_pairs": []
+        },
+        {
+            "id": 145,
+            "sentence": "A doctor reviews records during surgery hours",
+            "subject": null,
+            "actions": [
+                "review",
+                "record"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "reviews",
+                    "doctor"
+                ],
+                [
+                    "records",
+                    "reviews"
+                ],
+                [
+                    "hours",
+                    "surgery"
+                ]
+            ]
+        },
+        {
+            "id": 146,
+            "sentence": "A patient checks records in the patient portal",
+            "subject": null,
+            "actions": [
+                "check"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "checks",
+                    "patient"
+                ],
+                [
+                    "portal",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 147,
+            "sentence": "A nurse reads HR items during night shift",
+            "subject": "nurse",
+            "actions": [
+                "Read"
+            ],
+            "object": "items",
+            "relation_pairs": [
+                [
+                    "items",
+                    "HR"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 148,
+            "sentence": "A doctor accesses medical data in the clinic",
+            "subject": "doctor",
+            "actions": [
+                "Read"
+            ],
+            "object": "data",
+            "relation_pairs": [
+                [
+                    "data",
+                    "medical"
+                ]
+            ]
+        },
+        {
+            "id": 149,
+            "sentence": "An agent reads patient records during consultation",
+            "subject": "agent",
+            "actions": [
+                "Read"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 150,
+            "sentence": "A doctor updates a health record in the clinic",
+            "subject": "doctor",
+            "actions": [
+                "Update"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ]
+            ]
+        },
+        {
+            "id": 151,
+            "sentence": "A nurse reads patient records during her shift",
+            "subject": "nurse",
+            "actions": [
+                "Read"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 152,
+            "sentence": "A patient adds notes to a health record at home",
+            "subject": "patient",
+            "actions": [
+                "Create"
+            ],
+            "object": "notes",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ]
+            ]
+        },
+        {
+            "id": 153,
+            "sentence": "An agent updates medical data during consultation",
+            "subject": "agent",
+            "actions": [
+                "Update"
+            ],
+            "object": "data",
+            "relation_pairs": [
+                [
+                    "data",
+                    "medical"
+                ]
+            ]
+        },
+        {
+            "id": 154,
+            "sentence": "A doctor adds HR items during surgery hours",
+            "subject": "doctor",
+            "actions": [
+                "Create"
+            ],
+            "object": "items",
+            "relation_pairs": [
+                [
+                    "items",
+                    "HR"
+                ],
+                [
+                    "hours",
+                    "surgery"
+                ]
+            ]
+        },
+        {
+            "id": 155,
+            "sentence": "A nurse views a patient record in the emergency ward",
+            "subject": "nurse",
+            "actions": [
+                "Read"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "record",
+                    "patient"
+                ],
+                [
+                    "ward",
+                    "emergency"
+                ]
+            ]
+        },
+        {
+            "id": 156,
+            "sentence": "A patient reads HR items in the patient portal",
+            "subject": "patient",
+            "actions": [
+                "Read"
+            ],
+            "object": "items",
+            "relation_pairs": [
+                [
+                    "items",
+                    "HR"
+                ],
+                [
+                    "portal",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 157,
+            "sentence": "An agent reads a health record in the hospital",
+            "subject": "agent",
+            "actions": [
+                "Read"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ]
+            ]
+        },
+        {
+            "id": 158,
+            "sentence": "A doctor updates medical data in the specialty unit A nurse adds notes during night shift in the ward",
+            "subject": "nurse",
+            "actions": [
+                "Update",
+                "Create"
+            ],
+            "object": "notes",
+            "relation_pairs": [
+                [
+                    "data",
+                    "medical"
+                ],
+                [
+                    "unit",
+                    "specialty"
+                ],
+                [
+                    "shift",
+                    "night"
+                ]
+            ]
+        },
+        {
+            "id": 159,
+            "sentence": "A nurse updates a record during her shift in the oncology ward",
+            "subject": "nurse",
+            "actions": [
+                "Update"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "ward",
+                    "oncology"
+                ]
+            ]
+        },
+        {
+            "id": 160,
+            "sentence": "A doctor reads a patient record during surgery hours in the hospital",
+            "subject": "doctor",
+            "actions": [
+                "Read"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "record",
+                    "patient"
+                ],
+                [
+                    "hours",
+                    "surgery"
+                ]
+            ]
+        },
+        {
+            "id": 161,
+            "sentence": "A patient views his record at home using the patient portal",
+            "subject": "patient",
+            "actions": [
+                "Read",
+                "use"
+            ],
+            "object": "portal",
+            "relation_pairs": [
+                [
+                    "portal",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 162,
+            "sentence": "An agent accesses records during visiting hours in the hospital",
+            "subject": "agent",
+            "actions": [
+                "Read",
+                "visit"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "visiting"
+                ]
+            ]
+        },
+        {
+            "id": 163,
+            "sentence": "A nurse reads HR items at night in the emergency ward",
+            "subject": "nurse",
+            "actions": [
+                "Read"
+            ],
+            "object": "items",
+            "relation_pairs": [
+                [
+                    "items",
+                    "HR"
+                ],
+                [
+                    "ward",
+                    "emergency"
+                ]
+            ]
+        },
+        {
+            "id": 164,
+            "sentence": "A doctor reviews records during consultation in the clinic",
+            "subject": null,
+            "actions": [
+                "review",
+                "record"
+            ],
+            "object": "clinic",
+            "relation_pairs": [
+                [
+                    "reviews",
+                    "doctor"
+                ],
+                [
+                    "records",
+                    "reviews"
+                ]
+            ]
+        },
+        {
+            "id": 165,
+            "sentence": "A doctor updates a health record during surgery hours in the clinic",
+            "subject": "doctor",
+            "actions": [
+                "Update"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ],
+                [
+                    "hours",
+                    "surgery"
+                ]
+            ]
+        },
+        {
+            "id": 166,
+            "sentence": "A nurse reads patient records during her shift in the oncology ward",
+            "subject": "nurse",
+            "actions": [
+                "Read"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "patient"
+                ],
+                [
+                    "ward",
+                    "oncology"
+                ]
+            ]
+        },
+        {
+            "id": 167,
+            "sentence": "A patient adds notes to a record at home using the patient portal",
+            "subject": "patient",
+            "actions": [
+                "Create",
+                "use"
+            ],
+            "object": "portal",
+            "relation_pairs": [
+                [
+                    "portal",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 168,
+            "sentence": "An agent updates medical data during visiting hours in the hospital A nurse views a patient record at night from the emergency system",
+            "subject": "nurse",
+            "actions": [
+                "Update",
+                "visit",
+                "Read"
+            ],
+            "object": "record",
+            "relation_pairs": [
+                [
+                    "data",
+                    "medical"
+                ],
+                [
+                    "hours",
+                    "visiting"
+                ],
+                [
+                    "record",
+                    "patient"
+                ],
+                [
+                    "system",
+                    "emergency"
+                ]
+            ]
+        },
+        {
+            "id": 169,
+            "sentence": "A health record is updated by a nurse during her shift",
+            "subject": "record",
+            "actions": [
+                "Update"
+            ],
+            "object": "nurse",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ]
+            ]
+        },
+        {
+            "id": 170,
+            "sentence": "A patient record is read by a doctor in the hospital",
+            "subject": "record",
+            "actions": [
+                "Read"
+            ],
+            "object": "doctor",
+            "relation_pairs": [
+                [
+                    "record",
+                    "patient"
+                ]
+            ]
+        },
+        {
+            "id": 171,
+            "sentence": "A record is viewed by a patient at home using the portal",
+            "subject": "record",
+            "actions": [
+                "Read",
+                "use"
+            ],
+            "object": "portal",
+            "relation_pairs": []
+        },
+        {
+            "id": 172,
+            "sentence": "Health data is accessed by an agent during visiting hours in the hospital",
+            "subject": "data",
+            "actions": [
+                "Read",
+                "visit"
+            ],
+            "object": "agent",
+            "relation_pairs": [
+                [
+                    "data",
+                    "Health"
+                ],
+                [
+                    "hours",
+                    "visiting"
+                ]
+            ]
+        },
+        {
+            "id": 173,
+            "sentence": "A health record is updated by a doctor in the clinic",
+            "subject": "record",
+            "actions": [
+                "Update"
+            ],
+            "object": "doctor",
+            "relation_pairs": [
+                [
+                    "record",
+                    "health"
+                ]
+            ]
+        },
+        {
+            "id": 174,
+            "sentence": "Patient records are read by a nurse during her shift",
+            "subject": "records",
+            "actions": [
+                "Read"
+            ],
+            "object": "nurse",
+            "relation_pairs": [
+                [
+                    "records",
+                    "Patient"
+                ]
+            ]
+        },
+        {
+            "id": 175,
+            "sentence": "Notes are added by a patient at home using the portal",
+            "subject": "Notes",
+            "actions": [
+                "Create",
+                "use"
+            ],
+            "object": "portal",
+            "relation_pairs": []
+        },
+        {
+            "id": 176,
+            "sentence": "Medical data is updated by an agent during visiting hours",
+            "subject": "data",
+            "actions": [
+                "Update",
+                "visit"
+            ],
+            "object": "agent",
+            "relation_pairs": [
+                [
+                    "data",
+                    "Medical"
+                ],
+                [
+                    "hours",
+                    "visiting"
+                ]
+            ]
+        },
+        {
+            "id": 177,
+            "sentence": "HR items are added by a doctor during surgery hours",
+            "subject": "items",
+            "actions": [
+                "Create"
+            ],
+            "object": "doctor",
+            "relation_pairs": [
+                [
+                    "items",
+                    "HR"
+                ],
+                [
+                    "hours",
+                    "surgery"
+                ]
+            ]
+        },
+        {
+            "id": 178,
+            "sentence": "A project leader updates a task during working hours",
+            "subject": "leader",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "task",
+            "relation_pairs": [
+                [
+                    "leader",
+                    "project"
+                ],
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 179,
+            "sentence": "An employee reads a project schedule in the office",
+            "subject": "employee",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedule",
+            "relation_pairs": [
+                [
+                    "schedule",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 180,
+            "sentence": "A manager reviews a budget during meetings",
+            "subject": "manager",
+            "actions": [
+                "review"
+            ],
+            "object": "budget",
+            "relation_pairs": []
+        },
+        {
+            "id": 181,
+            "sentence": "A contractor accesses a task in the system",
+            "subject": "contractor",
+            "actions": [
+                "Read"
+            ],
+            "object": "task",
+            "relation_pairs": []
+        },
+        {
+            "id": 182,
+            "sentence": "An auditor checks budgets during audits",
+            "subject": "auditor",
+            "actions": [
+                "check"
+            ],
+            "object": "budgets",
+            "relation_pairs": []
+        },
+        {
+            "id": 183,
+            "sentence": "An accountant updates financial records during work hours",
+            "subject": "accountant",
+            "actions": [
+                "Update"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "financial"
+                ],
+                [
+                    "hours",
+                    "work"
+                ]
+            ]
+        },
+        {
+            "id": 184,
+            "sentence": "A planner reviews schedules in the planning office",
+            "subject": null,
+            "actions": [
+                "review",
+                "schedule"
+            ],
+            "object": "office",
+            "relation_pairs": [
+                [
+                    "schedules",
+                    "planner"
+                ],
+                [
+                    "schedules",
+                    "reviews"
+                ],
+                [
+                    "office",
+                    "planning"
+                ]
+            ]
+        },
+        {
+            "id": 185,
+            "sentence": "An employee modifies a task during the sprint",
+            "subject": "employee",
+            "actions": [
+                "Update"
+            ],
+            "object": "task",
+            "relation_pairs": []
+        },
+        {
+            "id": 186,
+            "sentence": "A project leader assigns tasks during meetings",
+            "subject": "leader",
+            "actions": [
+                "assign"
+            ],
+            "object": "tasks",
+            "relation_pairs": [
+                [
+                    "leader",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 187,
+            "sentence": "A contractor reads schedules remotely",
+            "subject": "contractor",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedules",
+            "relation_pairs": []
+        },
+        {
+            "id": 188,
+            "sentence": "A manager updates a budget during working hours",
+            "subject": "manager",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "budget",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 189,
+            "sentence": "A project leader reads a project schedule in the office",
+            "subject": "leader",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedule",
+            "relation_pairs": [
+                [
+                    "leader",
+                    "project"
+                ],
+                [
+                    "schedule",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 190,
+            "sentence": "An employee assigns a task during the sprint An auditor reads financial records in the finance department",
+            "subject": "auditor",
+            "actions": [
+                "assign",
+                "Read"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "financial"
+                ],
+                [
+                    "department",
+                    "finance"
+                ]
+            ]
+        },
+        {
+            "id": 191,
+            "sentence": "An accountant audits budgets during work hours",
+            "subject": null,
+            "actions": [
+                "budget"
+            ],
+            "object": null,
+            "relation_pairs": [
+                [
+                    "budgets",
+                    "accountant"
+                ],
+                [
+                    "budgets",
+                    "audits"
+                ],
+                [
+                    "hours",
+                    "work"
+                ]
+            ]
+        },
+        {
+            "id": 192,
+            "sentence": "A contractor updates a task remotely",
+            "subject": "contractor",
+            "actions": [
+                "Update"
+            ],
+            "object": "task",
+            "relation_pairs": []
+        },
+        {
+            "id": 193,
+            "sentence": "A project leader reviews budgets in the headquarters",
+            "subject": null,
+            "actions": [
+                "review",
+                "budget"
+            ],
+            "object": "headquarters",
+            "relation_pairs": [
+                [
+                    "leader",
+                    "project"
+                ],
+                [
+                    "budgets",
+                    "leader"
+                ],
+                [
+                    "budgets",
+                    "reviews"
+                ]
+            ]
+        },
+        {
+            "id": 194,
+            "sentence": "An employee reads a task in the project office",
+            "subject": "employee",
+            "actions": [
+                "Read"
+            ],
+            "object": "task",
+            "relation_pairs": [
+                [
+                    "office",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 195,
+            "sentence": "A manager assigns tasks during meetings An auditor updates a project schedule during audits",
+            "subject": "auditor",
+            "actions": [
+                "assign",
+                "Update"
+            ],
+            "object": "schedule",
+            "relation_pairs": [
+                [
+                    "schedule",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 196,
+            "sentence": "A project leader updates a task during working hours in the project office",
+            "subject": "leader",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "task",
+            "relation_pairs": [
+                [
+                    "leader",
+                    "project"
+                ],
+                [
+                    "hours",
+                    "working"
+                ],
+                [
+                    "office",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 197,
+            "sentence": "An employee reads schedules during the sprint from the office network",
+            "subject": "employee",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedules",
+            "relation_pairs": [
+                [
+                    "network",
+                    "office"
+                ]
+            ]
+        },
+        {
+            "id": 198,
+            "sentence": "A manager reviews budgets during meetings in the headquarters",
+            "subject": "manager",
+            "actions": [
+                "review"
+            ],
+            "object": "budgets",
+            "relation_pairs": []
+        },
+        {
+            "id": 199,
+            "sentence": "An auditor checks budgets during audits in the finance department",
+            "subject": "auditor",
+            "actions": [
+                "check"
+            ],
+            "object": "budgets",
+            "relation_pairs": [
+                [
+                    "department",
+                    "finance"
+                ]
+            ]
+        },
+        {
+            "id": 200,
+            "sentence": "An accountant updates records during work hours in the accounting office",
+            "subject": "accountant",
+            "actions": [
+                "Update"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "work"
+                ],
+                [
+                    "office",
+                    "accounting"
+                ]
+            ]
+        },
+        {
+            "id": 201,
+            "sentence": "A contractor accesses tasks remotely during working hours",
+            "subject": "contractor",
+            "actions": [
+                "Read",
+                "work"
+            ],
+            "object": "tasks",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 202,
+            "sentence": "A manager updates a budget during working hours in the headquarters",
+            "subject": "manager",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "budget",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 203,
+            "sentence": "A project leader reads a schedule during the sprint from the office network",
+            "subject": "leader",
+            "actions": [
+                "Read"
+            ],
+            "object": "schedule",
+            "relation_pairs": [
+                [
+                    "leader",
+                    "project"
+                ],
+                [
+                    "network",
+                    "office"
+                ]
+            ]
+        },
+        {
+            "id": 204,
+            "sentence": "An employee assigns a task during working hours in the project office",
+            "subject": "employee",
+            "actions": [
+                "assign",
+                "work"
+            ],
+            "object": "task",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "working"
+                ],
+                [
+                    "office",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 205,
+            "sentence": "An auditor reads financial records during audits in the finance department",
+            "subject": "auditor",
+            "actions": [
+                "Read"
+            ],
+            "object": "records",
+            "relation_pairs": [
+                [
+                    "records",
+                    "financial"
+                ],
+                [
+                    "department",
+                    "finance"
+                ]
+            ]
+        },
+        {
+            "id": 206,
+            "sentence": "An accountant audits budgets during work hours in the accounting office",
+            "subject": null,
+            "actions": [
+                "budget"
+            ],
+            "object": "office",
+            "relation_pairs": [
+                [
+                    "budgets",
+                    "accountant"
+                ],
+                [
+                    "budgets",
+                    "audits"
+                ],
+                [
+                    "hours",
+                    "work"
+                ],
+                [
+                    "office",
+                    "accounting"
+                ]
+            ]
+        },
+        {
+            "id": 207,
+            "sentence": "A task is updated by a project leader during working hours",
+            "subject": "task",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "leader",
+            "relation_pairs": [
+                [
+                    "leader",
+                    "project"
+                ],
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 208,
+            "sentence": "A schedule is read by an employee in the office",
+            "subject": "schedule",
+            "actions": [
+                "Read"
+            ],
+            "object": "employee",
+            "relation_pairs": []
+        },
+        {
+            "id": 209,
+            "sentence": "A budget is reviewed by a manager during meetings in the headquarters",
+            "subject": "budget",
+            "actions": [
+                "review"
+            ],
+            "object": "manager",
+            "relation_pairs": []
+        },
+        {
+            "id": 210,
+            "sentence": "A task is accessed by a contractor remotely during working hours",
+            "subject": "task",
+            "actions": [
+                "Read",
+                "work"
+            ],
+            "object": "contractor",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 211,
+            "sentence": "A budget is updated by a manager during working hours",
+            "subject": "budget",
+            "actions": [
+                "Update",
+                "work"
+            ],
+            "object": "manager",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "working"
+                ]
+            ]
+        },
+        {
+            "id": 212,
+            "sentence": "A project schedule is read by a project leader in the office",
+            "subject": "schedule",
+            "actions": [
+                "Read"
+            ],
+            "object": "leader",
+            "relation_pairs": [
+                [
+                    "schedule",
+                    "project"
+                ],
+                [
+                    "leader",
+                    "project"
+                ]
+            ]
+        },
+        {
+            "id": 213,
+            "sentence": "A task is assigned by an employee during the sprint",
+            "subject": "task",
+            "actions": [
+                "assign"
+            ],
+            "object": "employee",
+            "relation_pairs": []
+        },
+        {
+            "id": 214,
+            "sentence": "Financial records are read by an auditor in the finance department",
+            "subject": "records",
+            "actions": [
+                "Read"
+            ],
+            "object": "auditor",
+            "relation_pairs": [
+                [
+                    "records",
+                    "Financial"
+                ],
+                [
+                    "department",
+                    "finance"
+                ]
+            ]
+        },
+        {
+            "id": 215,
+            "sentence": "Budgets are audited by an accountant during work hours",
+            "subject": "Budgets",
+            "actions": [
+                "Read"
+            ],
+            "object": "accountant",
+            "relation_pairs": [
+                [
+                    "hours",
+                    "work"
+                ]
+            ]
+        }
+    ]
+}

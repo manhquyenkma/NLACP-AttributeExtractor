@@ -39,18 +39,39 @@ def identify_categories(attributes, sentence, object_name=""):
 
         # 4. Fallback: suy luận từ dep field (bao gồm 'unclassified' từ Module 1)
         elif not cat or cat == "unclassified":
-            dep = attr.get("dep", "")
-            val = attr.get("value", "").lower()
-            obj_lower = object_name.lower()
-            # Dùng "in" bidirectional thay vì startswith(val[:5])
-            # để tránh false positive với string ngắn
-            _MIN_LEN = 4
-            if (object_name and val
-                    and len(val) >= _MIN_LEN and len(obj_lower) >= _MIN_LEN
-                    and (val in obj_lower or obj_lower in val)):
+            dep   = attr.get("dep", "")
+            name  = attr.get("name", "").lower()
+            value = attr.get("value", "").lower()
+            
+            # Từ điển subject indicators
+            SUBJECT_INDICATORS = {
+                "nurse", "doctor", "staff", "manager", "officer",
+                "student", "administrator", "user", "provider",
+                "instructor", "auditor", "contractor", "agent",
+                "employee", "accountant", "representative"
+            }
+            
+            # Object indicators
+            OBJECT_INDICATORS = {
+                "record", "file", "report", "log", "data", "grade",
+                "schedule", "procedure", "transcript", "budget",
+                "application", "submission", "configuration", "dataset"
+            }
+            
+            obj_lower = (object_name or "").lower()
+            
+            # Check value first
+            if value and obj_lower and (value in obj_lower or obj_lower in value):
                 attr["category"] = "object"
+            elif any(ind in value for ind in OBJECT_INDICATORS):
+                attr["category"] = "object"
+            elif any(ind in value for ind in SUBJECT_INDICATORS):
+                attr["category"] = "subject"
+            elif dep in ("amod", "compound") and value:
+                # amod/compound của subject noun (implicit fallback)
+                attr["category"] = "subject"
             else:
-                attr["category"] = "subject" if dep else "context"
+                attr["category"] = "context"
 
         categorized.append(attr)
 

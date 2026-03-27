@@ -109,6 +109,62 @@ def is_ancestor(ns1_attrs, ns2_attrs):
 # 4. Compute hierarchy
 # ===================================================================
 
+def _transitive_reduction(hierarchy, element_attrs):
+    """
+    Loại bỏ quan hệ parent redundant:
+    Nếu A→B và A→C và B→C → xóa A→C (đã có A→B→C)
+    """
+    elements = list(hierarchy.keys())
+    
+    for elem in elements:
+        parents = list(hierarchy[elem]["parents"])
+        to_remove = set()
+        
+        for p1 in parents:
+            for p2 in parents:
+                if p1 == p2:
+                    continue
+                # Nếu p2 là ancestor của p1 → p2 là redundant parent
+                p1_attrs = set(element_attrs.get(p1, {}).get("attrs", []))
+                p2_attrs = set(element_attrs.get(p2, {}).get("attrs", []))
+                if p2_attrs < p1_attrs:  # p2 ⊂ p1 → p2 is more general
+                    to_remove.add(p2)
+        
+        # Remove redundant parents
+        for rp in to_remove:
+            if rp in hierarchy[elem]["parents"]:
+                hierarchy[elem]["parents"].remove(rp)
+            # Dọn dẹp cả children list của parent bị xóa
+            if elem in hierarchy[rp]["children"]:
+                hierarchy[rp]["children"].remove(elem)
+    
+    return hierarchy
+
+
+def _limit_parents(hierarchy, max_parents=3):
+    """
+    Hard limit: mỗi node tối đa max_parents parents.
+    Giữ lại các parents "gần nhất" (có nhiều attribute nhất).
+    """
+    for elem, info in hierarchy.items():
+        if len(info["parents"]) > max_parents:
+            # Sort parents by attrs size descending (most specific first)
+            parents_sorted = sorted(
+                info["parents"],
+                key=lambda p: len(set(hierarchy[p]["attrs"])),
+                reverse=True
+            )
+            removed = parents_sorted[max_parents:]
+            info["parents"] = parents_sorted[:max_parents]
+            
+            # Clean up children lists of removed parents
+            for rp in removed:
+                if elem in hierarchy[rp]["children"]:
+                    hierarchy[rp]["children"].remove(elem)
+    
+    return hierarchy
+
+
 def compute_hierarchy(element_attrs):
     """
     Xây dựng cấu trúc phân cấp:
@@ -128,7 +184,7 @@ def compute_hierarchy(element_attrs):
             "assigned_attributes": []
         }
 
-    # Tính parents/children
+    # 1. Tính parents/children dựa trên subset logic
     for ns1 in elements:
         for ns2 in elements:
             if ns1 == ns2:
@@ -137,30 +193,27 @@ def compute_hierarchy(element_attrs):
             attrs2 = element_attrs[ns2]["attrs"]
 
             if is_ancestor(attrs1, attrs2):
-                # ns1 là cha của ns2 — nhưng chỉ thêm parent trực tiếp
-                # (parent trực tiếp = không có intermediate ns)
-                is_direct = True
-                for ns3 in elements:
-                    if ns3 in (ns1, ns2):
-                        continue
-                    attrs3 = element_attrs[ns3]["attrs"]
-                    if is_ancestor(attrs1, attrs3) and is_ancestor(attrs3, attrs2):
-                        is_direct = False
-                        break
-                if is_direct:
-                    if ns1 not in hierarchy[ns2]["parents"]:
-                        hierarchy[ns2]["parents"].append(ns1)
-                    if ns2 not in hierarchy[ns1]["children"]:
-                        hierarchy[ns1]["children"].append(ns2)
+                if ns1 not in hierarchy[ns2]["parents"]:
+                    hierarchy[ns2]["parents"].append(ns1)
+                if ns2 not in hierarchy[ns1]["children"]:
+                    hierarchy[ns1]["children"].append(ns2)
 
-    # Thêm root namespace "subject"/"object" cho các node không có parent
-    roots = {"subject": [], "object": []}
+    # 2. Transitive Reduction: Loại bỏ cha của cha
+    hierarchy = _transitive_reduction(hierarchy, element_attrs)
+
+    # 3. Limit Parents: Tránh hierarchy bị phẳng (thành root hết)
+    hierarchy = _limit_parents(hierarchy, max_parents=3)
+
+    # 4. Xác định roots (chỉ những node thực sự không còn parent sau khi lọc)
+    roots = {}
     for elem, info in hierarchy.items():
         if not info["parents"]:
             cat = info["category"]
+            if cat not in roots:
+                roots[cat] = []
             roots[cat].append(elem)
 
-    # Tính assigned_attributes cho mỗi namespace
+    # 5. Tính assigned_attributes (chỉ attributes không kế thừa từ bất kỳ cha trực tiếp nào)
     for elem, info in hierarchy.items():
         inherited = set()
         for parent in info["parents"]:
@@ -187,11 +240,14 @@ def build_output(hierarchy, roots):
             "children":            info["children"]
         })
 
-    return {
-        "root_subjects": roots.get("subject", []),
-        "root_objects":  roots.get("object",  []),
-        "namespaces":    namespaces
+    output = {
+        "namespaces": namespaces
     }
+    # Thêm các field root_... động theo category
+    for cat, root_list in roots.items():
+        output[f"root_{cat}s"] = root_list
+
+    return output
 
 
 def save_output(data):

@@ -1,0 +1,72 @@
+[
+  {
+    "ID": "P0001",
+    "Source": "policy_dataset",
+    "Sentence": "A senior nurse can approve medical records during business hours within the hospital.",
+    "temporal_gold": "",
+    "spatial_gold": "",
+    "temporal_OK": "LLM",
+    "spatial_OK": "LLM",
+    "temporal_final": "",
+    "spatial_final": "",
+    "note": "",
+    "annotator": "claude-3-5-sonnet-20241022",
+    "status": "llm_annotated"
+  },
+  {
+    "ID": "P0002",
+    "Source": "policy_dataset",
+    "Sentence": "Managers in the finance department can approve expense reports.",
+    "temporal_gold": "",
+    "spatial_gold": "",
+    "temporal_OK": "LLM",
+    "spatial_OK": "LLM",
+    "temporal_final": "",
+    "spatial_final": "",
+    "note": "",
+    "annotator": "claude-3-5-sonnet-20241022",
+    "status": "llm_annotated"
+  },
+  {
+    "ID": "P0003",
+    "Source": "policy_dataset",
+    "Sentence": "Security officers can view and modify exam grades during the night shift via trusted platforms.",
+    "temporal_gold": "",
+    "spatial_gold": "",
+    "temporal_OK": "LLM",
+    "spatial_OK": "LLM",
+    "temporal_final": "",
+    "spatial_final": "",
+    "note": "",
+    "annotator": "claude-3-5-sonnet-20241022",
+    "status": "llm_annotated"
+  },
+  {
+    "ID": "P0004",
+    "Source": "policy_dataset",
+    "Sentence": "Security officers can approve and view network configurations at the headquarters building.",
+    "temporal_gold": "",
+    "spatial_gold": "",
+    "temporal_OK": "LLM",
+    "spatial_OK": "LLM",
+    "temporal_final": "",
+    "spatial_final": "",
+    "note": "",
+    "annotator": "claude-3-5-sonnet-20241022",
+    "status": "llm_annotated"
+  },
+  {
+    "ID": "P0005",
+    "Source": "policy_dataset",
+    "Sentence": "Training department staff can delete and approve network configurations using internal devices.",
+    "temporal_gold": "",
+    "spatial_gold": "",
+    "temporal_OK": "LLM",
+    "spatial_OK": "LLM",
+    "temporal_final": "",
+    "spatial_final": "",
+    "note": "",
+    "annotator": "claude-3-5-sonnet-20241022",
+    "status": "llm_annotated"
+  }
+]

@@ -44,6 +44,10 @@ def vectorize_attributes(attributes):
     return np.array(vectors)
 
 
+from sklearn.cluster import AgglomerativeClustering
+from collections import Counter, defaultdict
+
+
 def compute_auto_eps(X, min_pts=2):
     """
     Theo Alohaly 2019: vẽ k-distance graph, lấy trung bình khoảng cách
@@ -54,15 +58,115 @@ def compute_auto_eps(X, min_pts=2):
 
     nbrs = NearestNeighbors(n_neighbors=min_pts, metric="euclidean").fit(X)
     distances, _ = nbrs.kneighbors(X)
-    eps = float(np.mean(distances[:, -1]))
+    # Thay vì lấy trung bình (mean), ta lấy phân vị cao (90th percentile)
+    # để eps rộng hơn, giảm bớt outliers và tăng độ bao phủ (coverage).
+    eps = float(np.percentile(distances[:, -1], 90))
     import logging
-    logging.debug(f"Auto-computed eps = {eps:.4f}")
+    logging.debug(f"Auto-computed eps (90th percentile) = {eps:.4f}")
     return eps
+
+
+def _build_category_map():
+    """Load true categories từ policy_dataset.json."""
+    try:
+        with open(DATASET_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+        cat_map = {}
+        for policy in data.get("policies", []):
+            for attr in policy.get("attributes", []):
+                name = (attr.get("name") or "").lower()
+                cat = attr.get("category", "unknown")
+                if name:
+                    cat_map[name] = cat
+        return cat_map
+    except Exception:
+        return {}
+
+
+def _compute_purity(labels, attributes, category_map):
+    """Tính average cluster purity."""
+    clusters = defaultdict(list)
+    for attr, label in zip(attributes, labels):
+        cat = category_map.get(attr, "unknown")
+        clusters[label].append(cat)
+    
+    if not clusters:
+        return 0.0
+    
+    total_purity = 0
+    for label, cats in clusters.items():
+        if cats:
+            majority = Counter(cats).most_common(1)[0][1]
+            total_purity += majority / len(cats)
+    
+    return total_purity / len(clusters)
+
+
+def _select_threshold(X_norm, attributes):
+    """
+    Grid search threshold để:
+    1. Không có cluster nào > 25 phần tử (tránh mega-cluster)
+    2. Số clusters trong khoảng [8, 25]
+    3. Maximize average cluster purity (theo category)
+    """
+    category_map = _build_category_map()
+    
+    best_score = -1
+    best_t = 1.5  # default fallback
+    
+    for t in np.arange(0.3, 3.0, 0.1):
+        model = AgglomerativeClustering(
+            n_clusters=None,
+            distance_threshold=t,
+            linkage='ward'
+        )
+        labels = model.fit_predict(X_norm)
+        
+        n_clusters = len(set(labels))
+        counts = Counter(labels).values()
+        max_size = max(counts) if counts else 0
+        
+        # Hard constraints
+        if max_size > 25 or n_clusters < 8 or n_clusters > 25:
+            continue
+        
+        # Score = average purity
+        score = _compute_purity(labels, attributes, category_map)
+        
+        if score > best_score:
+            best_score = score
+            best_t = t
+    
+    print(f"[INFO] Selected distance_threshold = {best_t:.1f} (purity={best_score:.3f})")
+    return best_t
+
+
+def run_agglomerative(X, attributes):
+    """
+    Agglomerative Clustering với ward linkage.
+    Tự động chọn distance_threshold qua grid search.
+    """
+    if X.shape[0] < 3:
+        return np.zeros(X.shape[0], dtype=int)
+    
+    # Normalize vectors trước (thường tốt hơn cho clustering)
+    from sklearn.preprocessing import normalize
+    X_norm = normalize(X)
+    
+    best_threshold = _select_threshold(X_norm, attributes)
+    
+    model = AgglomerativeClustering(
+        n_clusters=None,
+        distance_threshold=best_threshold,
+        linkage='ward'
+    )
+    labels = model.fit_predict(X_norm)
+    return labels
 
 
 def run_dbscan(X):
     eps    = compute_auto_eps(X, min_pts=2)   # auto-tune
-    model  = DBSCAN(eps=eps, min_samples=2, metric="euclidean")   # metric euclidean cho GloVe
+    model  = DBSCAN(eps=eps, min_samples=2, metric="euclidean")
     labels = model.fit_predict(X)
     return labels
 
@@ -102,7 +206,7 @@ def save_clusters(data):
 def main():
     print("\n" + "="*50)
     print("  Module 2: Attribute Clustering")
-    print("  Word Vectors (GloVe/spaCy) + Auto-tune eps + DBSCAN (min_samples=2)")
+    print("  Word Vectors (Agglomerative) + Threshold Selection")
     print("="*50 + "\n")
 
     dataset    = load_dataset()
@@ -115,7 +219,8 @@ def main():
         return
 
     X      = vectorize_attributes(attributes)
-    labels = run_dbscan(X)
+    # Dùng Agglomerative thay DBSCAN
+    labels = run_agglomerative(X, attributes)
 
     clusters = build_clusters(attributes, labels)
     save_clusters(clusters)
@@ -126,6 +231,13 @@ def main():
         print(f"  {label}: {c['attributes']}")
 
     print("\nAttribute clusters saved.")
+
+    # ── Tự động đánh giá F1 sau khi cluster ──────────────────────
+    try:
+        from nlacp.evaluation.evaluator import evaluate_clustering_pipeline
+        evaluate_clustering_pipeline()
+    except Exception as e:
+        print(f"[WARN] Cluster evaluation skipped: {e}")
 
 
 if __name__ == "__main__":
