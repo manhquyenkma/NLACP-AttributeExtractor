@@ -39,8 +39,12 @@ NLACP-AttributeExtractor/
 │   └── pipeline/                   # Pipeline nguyên bản (Single-pass)
 ├── scripts/                        # Các Script thực thi chính
 │   ├── data_processing.py          # [BƯỚC 1] Trích xuất & Xác thực Tương tác
-│   ├── abac_extraction.py          # [BƯỚC 2] Điền Env & Chuẩn hóa Thuộc tính
-│   └── run_pipeline.py             # Script chạy toàn bộ pipeline
+│   ├── ABAC_extraction.py          # [BƯỚC 2] Điền Env & Chuẩn hóa Thuộc tính
+│   ├── run_pipeline.py             # Script chạy toàn bộ pipeline
+│   ├── run_evaluation.py           # Công cụ đo đạc F1-score (thế chỗ các script eval cũ)
+│   ├── eval_policy_f1.py           # Chuyên đánh giá mô đun Environment
+│   └── mock_llm.py                 # (Optional) Mô phỏng LLM tạo text annotations
+├── archive/                        # Các tệp kịch bản cũ và data tools chỉ chạy 1 lần
 ├── tests/                          # Unit và Integration Tests
 ├── README.md                       # Tài liệu mô tả dự án
 └── Run.txt                         # Hướng dẫn chạy dự án ngắn gọn
@@ -88,13 +92,33 @@ python scripts/data_processing.py
 **Bước 2: ABAC Extraction (Tiền xử lý & Điền Môi trường)**
 Điền các thuộc tính Environment, dọn dẹp các từ trùng lặp và gán namespaces/kiểu dữ liệu.
 ```bash
-python scripts/abac_extraction.py
+python scripts/ABAC_extraction.py
 ```
 
 ### 2. Chạy Test Nhanh 1 Câu (Không tương tác)
 ```bash
 python scripts/run_pipeline.py --sentence "Managers in the finance department can view expense reports over the VPN."
 ```
+
+### 3. Đánh giá thuật toán (Evaluation)
+Hệ thống đi kèm công cụ đánh giá F1-score để tự động đo đạc độ chính xác:
+
+**Đánh giá Module 1 (Trích xuất Subject/Object trên tập dữ liệu chuẩn Alohaly):**
+```bash
+python scripts/run_evaluation.py
+```
+
+**Đánh giá Module 1 (Trích xuất Context-Environment trên tập policy_dataset):**
+```bash
+python scripts/eval_policy_f1.py --csv --csv-path dataset/annotation_llm_gold.csv
+```
+
+**Đánh giá Module 2 (Phân cụm Không gian giá trị - DBSCAN):**
+Tính toán F1-score của các cụm phân tích (công thức $n_{ij}$, $n_i$, $n_j$ theo Alohaly 2019):
+```bash
+python scripts/run_evaluation.py --cluster
+```
+Kết quả được xuất ra log console hoặc file trong thư mục `outputs/logs/`.
 
 ---
 

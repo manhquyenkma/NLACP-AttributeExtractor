@@ -1,0 +1,11 @@
+Evaluating 4 clusters using True Classes from Policy Dataset:
+  Average Precision : 0.6763
+  Average Recall    : 0.3929
+  Average F1-score  : 0.4278
+
+------------------------------------------------------------
+Detailed Cluster Metrics:
+  Cluster  0 (library        ): Class='object', Size=2, P=0.50, R=0.12, F1=0.20
+  Cluster -1 (course         ): Class='object', Size=13, P=0.54, R=0.88, F1=0.67
+  Cluster  1 (vact           ): Class='context', Size=3, P=0.67, R=0.29, F1=0.40
+  Cluster  2 (network        ): Class='context', Size=2, P=1.00, R=0.29, F1=0.44

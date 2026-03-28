@@ -1,0 +1,1459 @@
+{
+  "Security officers can view and modify exam grades during the night shift via trusted platforms.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "during the night shift",
+      "via trusted platforms"
+    ],
+    "actions": [
+      "view",
+      "modify"
+    ]
+  },
+  "Security officers can approve and view network configurations at the headquarters building.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "at the headquarters building"
+    ],
+    "actions": [
+      "approve",
+      "view"
+    ]
+  },
+  "Training department staff can delete and approve network configurations using internal devices.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "using internal devices"
+    ],
+    "actions": [
+      "delete",
+      "approve"
+    ]
+  },
+  "IT support staff can configure and access cryptography datasets via trusted platforms.": {
+    "subject": [
+      "IT support staff"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "via trusted platforms"
+    ],
+    "actions": [
+      "configure",
+      "access"
+    ]
+  },
+  "Managers can modify and submit personnel files within the VACT intranet.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "within the VACT intranet"
+    ],
+    "actions": [
+      "modify",
+      "submit"
+    ]
+  },
+  "Lecturers can view cryptography datasets at the cryptography lab.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "at the cryptography lab"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "Managers can access personnel files on weekends.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "on weekends"
+    ],
+    "actions": [
+      "access"
+    ]
+  },
+  "Librarians can view network configurations at the cryptography lab.": {
+    "subject": [
+      "Librarians"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "at the cryptography lab"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "IT support staff can view exam grades from the campus network.": {
+    "subject": [
+      "IT support staff"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "from the campus network"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "Training department staff can view and submit cryptography datasets at the cryptography lab.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "at the cryptography lab"
+    ],
+    "actions": [
+      "view",
+      "submit"
+    ]
+  },
+  "Training department staff can review system logs after the exam period at nighttime.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "after the exam period",
+      "at nighttime"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Training department staff can modify and submit financial reports using internal devices.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "financial reports"
+    ],
+    "context": [
+      "using internal devices"
+    ],
+    "actions": [
+      "modify",
+      "submit"
+    ]
+  },
+  "Managers can access and download student records outside the campus from external IP addresses.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "outside the campus",
+      "from external IP addresses"
+    ],
+    "actions": [
+      "access",
+      "download"
+    ]
+  },
+  "Faculty members can approve library resources via a secure VPN.": {
+    "subject": [
+      "Faculty members"
+    ],
+    "object": [
+      "library resources"
+    ],
+    "context": [
+      "via a secure VPN"
+    ],
+    "actions": [
+      "approve"
+    ]
+  },
+  "Security officers can update research papers during the night shift.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "during the night shift"
+    ],
+    "actions": [
+      "update"
+    ]
+  },
+  "VACT students can download personnel files via trusted platforms.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "via trusted platforms"
+    ],
+    "actions": [
+      "download"
+    ]
+  },
+  "Training department staff can modify network configurations between 8am and 5pm.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "between 8am and 5pm"
+    ],
+    "actions": [
+      "modify"
+    ]
+  },
+  "System administrators can review research papers at the headquarters building after the exam period.": {
+    "subject": [
+      "System administrators"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "at the headquarters building",
+      "after the exam period"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Faculty members can update network configurations using internal devices.": {
+    "subject": [
+      "Faculty members"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "using internal devices"
+    ],
+    "actions": [
+      "update"
+    ]
+  },
+  "Students can review personnel files using internal devices.": {
+    "subject": [
+      "Students"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "using internal devices"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Managers can review and access library resources at the headquarters building.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "library resources"
+    ],
+    "context": [
+      "at the headquarters building"
+    ],
+    "actions": [
+      "review",
+      "access"
+    ]
+  },
+  "IT support staff can approve system logs at nighttime through an encrypted channel.": {
+    "subject": [
+      "IT support staff"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "at nighttime",
+      "through an encrypted channel"
+    ],
+    "actions": [
+      "approve"
+    ]
+  },
+  "Security officers can download and modify exam schedules before the deadline.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "exam schedules"
+    ],
+    "context": [
+      "before the deadline"
+    ],
+    "actions": [
+      "download",
+      "modify"
+    ]
+  },
+  "VACT students can configure and upload exam grades via a secure VPN.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "via a secure VPN"
+    ],
+    "actions": [
+      "configure",
+      "upload"
+    ]
+  },
+  "Managers can download student records via trusted platforms.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "via trusted platforms"
+    ],
+    "actions": [
+      "download"
+    ]
+  },
+  "Lecturers can approve and update financial reports using internal devices during the registration period.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "financial reports"
+    ],
+    "context": [
+      "using internal devices",
+      "during the registration period"
+    ],
+    "actions": [
+      "approve",
+      "update"
+    ]
+  },
+  "VACT students can modify system logs at the headquarters building.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "at the headquarters building"
+    ],
+    "actions": [
+      "modify"
+    ]
+  },
+  "VACT students can approve personnel files from the campus network.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "from the campus network"
+    ],
+    "actions": [
+      "approve"
+    ]
+  },
+  "Security officers can review library resources through an encrypted channel.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "library resources"
+    ],
+    "context": [
+      "through an encrypted channel"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Training department staff can delete course materials via trusted platforms.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "course materials"
+    ],
+    "context": [
+      "via trusted platforms"
+    ],
+    "actions": [
+      "delete"
+    ]
+  },
+  "Faculty members can delete and access exam grades between 8am and 5pm.": {
+    "subject": [
+      "Faculty members"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "between 8am and 5pm"
+    ],
+    "actions": [
+      "delete",
+      "access"
+    ]
+  },
+  "Department heads can view and delete network configurations via a secure VPN.": {
+    "subject": [
+      "Department heads"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "via a secure VPN"
+    ],
+    "actions": [
+      "view",
+      "delete"
+    ]
+  },
+  "IT support staff can audit thesis submissions via a secure VPN.": {
+    "subject": [
+      "IT support staff"
+    ],
+    "object": [
+      "thesis submissions"
+    ],
+    "context": [
+      "via a secure VPN"
+    ],
+    "actions": [
+      "audit"
+    ]
+  },
+  "Training department staff can view course materials at the cryptography lab.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "course materials"
+    ],
+    "context": [
+      "at the cryptography lab"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "Guest users can approve and upload exam grades on weekends.": {
+    "subject": [
+      "Guest users"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "on weekends"
+    ],
+    "actions": [
+      "approve",
+      "upload"
+    ]
+  },
+  "Managers can view student records using internal devices.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "using internal devices"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "Librarians can modify system logs after the exam period.": {
+    "subject": [
+      "Librarians"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "after the exam period"
+    ],
+    "actions": [
+      "modify"
+    ]
+  },
+  "VACT students can view exam grades using internal devices.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "using internal devices"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "Lecturers can delete and update research papers via a secure VPN.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "via a secure VPN"
+    ],
+    "actions": [
+      "delete",
+      "update"
+    ]
+  },
+  "Students can modify and configure cryptography datasets from external IP addresses.": {
+    "subject": [
+      "Students"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "from external IP addresses"
+    ],
+    "actions": [
+      "modify",
+      "configure"
+    ]
+  },
+  "Researchers can submit and download personnel files using internal devices via a secure VPN.": {
+    "subject": [
+      "Researchers"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "using internal devices",
+      "via a secure VPN"
+    ],
+    "actions": [
+      "submit",
+      "download"
+    ]
+  },
+  "Training department staff can access and review thesis submissions between 8am and 5pm outside the campus.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "thesis submissions"
+    ],
+    "context": [
+      "between 8am and 5pm",
+      "outside the campus"
+    ],
+    "actions": [
+      "access",
+      "review"
+    ]
+  },
+  "Guest users can configure and modify network configurations through an encrypted channel.": {
+    "subject": [
+      "Guest users"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "through an encrypted channel"
+    ],
+    "actions": [
+      "configure",
+      "modify"
+    ]
+  },
+  "Lecturers can audit course materials during the night shift.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "course materials"
+    ],
+    "context": [
+      "during the night shift"
+    ],
+    "actions": [
+      "audit"
+    ]
+  },
+  "Faculty members can delete thesis submissions after the exam period.": {
+    "subject": [
+      "Faculty members"
+    ],
+    "object": [
+      "thesis submissions"
+    ],
+    "context": [
+      "after the exam period"
+    ],
+    "actions": [
+      "delete"
+    ]
+  },
+  "Faculty members can audit and upload network configurations within the VACT intranet.": {
+    "subject": [
+      "Faculty members"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "within the VACT intranet"
+    ],
+    "actions": [
+      "audit",
+      "upload"
+    ]
+  },
+  "Training department staff can download cryptography datasets from the campus network.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "from the campus network"
+    ],
+    "actions": [
+      "download"
+    ]
+  },
+  "Managers can view exam grades via trusted platforms.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "via trusted platforms"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "Lecturers can configure student records during the registration period.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "during the registration period"
+    ],
+    "actions": [
+      "configure"
+    ]
+  },
+  "Lecturers can delete library resources using authorized workstations.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "library resources"
+    ],
+    "context": [
+      "using authorized workstations"
+    ],
+    "actions": [
+      "delete"
+    ]
+  },
+  "IT support staff can download thesis submissions through an encrypted channel during business hours.": {
+    "subject": [
+      "IT support staff"
+    ],
+    "object": [
+      "thesis submissions"
+    ],
+    "context": [
+      "through an encrypted channel",
+      "during business hours"
+    ],
+    "actions": [
+      "download"
+    ]
+  },
+  "VACT students can download and view exam schedules during the registration period.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "exam schedules"
+    ],
+    "context": [
+      "during the registration period"
+    ],
+    "actions": [
+      "download",
+      "view"
+    ]
+  },
+  "IT support staff can configure research papers before the deadline.": {
+    "subject": [
+      "IT support staff"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "before the deadline"
+    ],
+    "actions": [
+      "configure"
+    ]
+  },
+  "Training department staff can review and access exam schedules through an encrypted channel via a secure VPN.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "exam schedules"
+    ],
+    "context": [
+      "via a secure VPN",
+      "through an encrypted channel"
+    ],
+    "actions": [
+      "review",
+      "access"
+    ]
+  },
+  "Lecturers can review cryptography datasets between 8am and 5pm during business hours.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "between 8am and 5pm",
+      "during business hours"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "System administrators can review system logs using authorized workstations.": {
+    "subject": [
+      "System administrators"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "using authorized workstations"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Librarians can configure exam grades during the registration period.": {
+    "subject": [
+      "Librarians"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "during the registration period"
+    ],
+    "actions": [
+      "configure"
+    ]
+  },
+  "Department heads can audit and upload network configurations during the registration period.": {
+    "subject": [
+      "Department heads"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "during the registration period"
+    ],
+    "actions": [
+      "audit",
+      "upload"
+    ]
+  },
+  "Managers can access library resources during the night shift.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "library resources"
+    ],
+    "context": [
+      "during the night shift"
+    ],
+    "actions": [
+      "access"
+    ]
+  },
+  "Department heads can configure cryptography datasets during the registration period during the night shift.": {
+    "subject": [
+      "Department heads"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "during the night shift",
+      "during the registration period"
+    ],
+    "actions": [
+      "configure"
+    ]
+  },
+  "Managers can modify cryptography datasets outside the campus.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "outside the campus"
+    ],
+    "actions": [
+      "modify"
+    ]
+  },
+  "Librarians can review personnel files within the VACT intranet at nighttime.": {
+    "subject": [
+      "Librarians"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "within the VACT intranet",
+      "at nighttime"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Lecturers can submit exam grades during the night shift before the deadline.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "during the night shift",
+      "before the deadline"
+    ],
+    "actions": [
+      "submit"
+    ]
+  },
+  "Guest users can upload and delete system logs during the night shift via trusted platforms.": {
+    "subject": [
+      "Guest users"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "during the night shift",
+      "via trusted platforms"
+    ],
+    "actions": [
+      "upload",
+      "delete"
+    ]
+  },
+  "Librarians can upload system logs within the VACT intranet at the cryptography lab.": {
+    "subject": [
+      "Librarians"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "within the VACT intranet",
+      "at the cryptography lab"
+    ],
+    "actions": [
+      "upload"
+    ]
+  },
+  "Librarians can review and download network configurations during business hours.": {
+    "subject": [
+      "Librarians"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "during business hours"
+    ],
+    "actions": [
+      "review",
+      "download"
+    ]
+  },
+  "System administrators can audit system logs at the headquarters building.": {
+    "subject": [
+      "System administrators"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "at the headquarters building"
+    ],
+    "actions": [
+      "audit"
+    ]
+  },
+  "Managers can upload and review cryptography datasets through an encrypted channel.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "through an encrypted channel"
+    ],
+    "actions": [
+      "upload",
+      "review"
+    ]
+  },
+  "Training department staff can download exam grades during business hours through an encrypted channel.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "through an encrypted channel",
+      "during business hours"
+    ],
+    "actions": [
+      "download"
+    ]
+  },
+  "VACT students can review personnel files before the deadline at the cryptography lab.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "at the cryptography lab",
+      "before the deadline"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Security officers can upload thesis submissions on weekends.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "thesis submissions"
+    ],
+    "context": [
+      "on weekends"
+    ],
+    "actions": [
+      "upload"
+    ]
+  },
+  "Researchers can configure system logs outside the campus.": {
+    "subject": [
+      "Researchers"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "outside the campus"
+    ],
+    "actions": [
+      "configure"
+    ]
+  },
+  "Researchers can configure research papers from external IP addresses.": {
+    "subject": [
+      "Researchers"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "from external IP addresses"
+    ],
+    "actions": [
+      "configure"
+    ]
+  },
+  "System administrators can audit thesis submissions using internal devices.": {
+    "subject": [
+      "System administrators"
+    ],
+    "object": [
+      "thesis submissions"
+    ],
+    "context": [
+      "using internal devices"
+    ],
+    "actions": [
+      "audit"
+    ]
+  },
+  "Researchers can download student records via trusted platforms.": {
+    "subject": [
+      "Researchers"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "via trusted platforms"
+    ],
+    "actions": [
+      "download"
+    ]
+  },
+  "Department heads can update financial reports before the deadline.": {
+    "subject": [
+      "Department heads"
+    ],
+    "object": [
+      "financial reports"
+    ],
+    "context": [
+      "before the deadline"
+    ],
+    "actions": [
+      "update"
+    ]
+  },
+  "Managers can approve research papers from the campus network.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "from the campus network"
+    ],
+    "actions": [
+      "approve"
+    ]
+  },
+  "Security officers can audit library resources during the night shift.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "library resources"
+    ],
+    "context": [
+      "during the night shift"
+    ],
+    "actions": [
+      "audit"
+    ]
+  },
+  "Training department staff can delete research papers during the night shift.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "during the night shift"
+    ],
+    "actions": [
+      "delete"
+    ]
+  },
+  "Faculty members can view and update financial reports via trusted platforms.": {
+    "subject": [
+      "Faculty members"
+    ],
+    "object": [
+      "financial reports"
+    ],
+    "context": [
+      "via trusted platforms"
+    ],
+    "actions": [
+      "view",
+      "update"
+    ]
+  },
+  "Guest users can submit student records during business hours.": {
+    "subject": [
+      "Guest users"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "during business hours"
+    ],
+    "actions": [
+      "submit"
+    ]
+  },
+  "Managers can view cryptography datasets through an encrypted channel.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "through an encrypted channel"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "VACT students can delete course materials using authorized workstations.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "course materials"
+    ],
+    "context": [
+      "using authorized workstations"
+    ],
+    "actions": [
+      "delete"
+    ]
+  },
+  "VACT students can audit library resources using authorized workstations through an encrypted channel.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "library resources"
+    ],
+    "context": [
+      "through an encrypted channel",
+      "using authorized workstations"
+    ],
+    "actions": [
+      "audit"
+    ]
+  },
+  "VACT students can update and delete research papers via a secure VPN using authorized workstations.": {
+    "subject": [
+      "VACT students"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "via a secure VPN",
+      "using authorized workstations"
+    ],
+    "actions": [
+      "update",
+      "delete"
+    ]
+  },
+  "Security officers can download and view network configurations during the night shift.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "network configurations"
+    ],
+    "context": [
+      "during the night shift"
+    ],
+    "actions": [
+      "download",
+      "view"
+    ]
+  },
+  "IT support staff can download student records outside the campus.": {
+    "subject": [
+      "IT support staff"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "outside the campus"
+    ],
+    "actions": [
+      "download"
+    ]
+  },
+  "Lecturers can modify research papers during the registration period.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "research papers"
+    ],
+    "context": [
+      "during the registration period"
+    ],
+    "actions": [
+      "modify"
+    ]
+  },
+  "Lecturers can submit cryptography datasets using authorized workstations.": {
+    "subject": [
+      "Lecturers"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "using authorized workstations"
+    ],
+    "actions": [
+      "submit"
+    ]
+  },
+  "Training department staff can submit cryptography datasets via trusted platforms during business hours.": {
+    "subject": [
+      "Training department staff"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "via trusted platforms",
+      "during business hours"
+    ],
+    "actions": [
+      "submit"
+    ]
+  },
+  "Managers can audit and submit cryptography datasets at the cryptography lab.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "at the cryptography lab"
+    ],
+    "actions": [
+      "audit",
+      "submit"
+    ]
+  },
+  "Librarians can configure and submit personnel files during the night shift via a secure VPN.": {
+    "subject": [
+      "Librarians"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "during the night shift",
+      "via a secure VPN"
+    ],
+    "actions": [
+      "configure",
+      "submit"
+    ]
+  },
+  "Guest users can access cryptography datasets from external IP addresses.": {
+    "subject": [
+      "Guest users"
+    ],
+    "object": [
+      "cryptography datasets"
+    ],
+    "context": [
+      "from external IP addresses"
+    ],
+    "actions": [
+      "access"
+    ]
+  },
+  "Guest users can modify thesis submissions from external IP addresses.": {
+    "subject": [
+      "Guest users"
+    ],
+    "object": [
+      "thesis submissions"
+    ],
+    "context": [
+      "from external IP addresses"
+    ],
+    "actions": [
+      "modify"
+    ]
+  },
+  "Security officers can access course materials during the registration period.": {
+    "subject": [
+      "Security officers"
+    ],
+    "object": [
+      "course materials"
+    ],
+    "context": [
+      "during the registration period"
+    ],
+    "actions": [
+      "access"
+    ]
+  },
+  "System administrators can access system logs before the deadline.": {
+    "subject": [
+      "System administrators"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "before the deadline"
+    ],
+    "actions": [
+      "access"
+    ]
+  },
+  "Department heads can submit system logs at the headquarters building within the VACT intranet.": {
+    "subject": [
+      "Department heads"
+    ],
+    "object": [
+      "system logs"
+    ],
+    "context": [
+      "at the headquarters building",
+      "within the VACT intranet"
+    ],
+    "actions": [
+      "submit"
+    ]
+  },
+  "Guest users can access and modify personnel files at the cryptography lab.": {
+    "subject": [
+      "Guest users"
+    ],
+    "object": [
+      "personnel files"
+    ],
+    "context": [
+      "at the cryptography lab"
+    ],
+    "actions": [
+      "access",
+      "modify"
+    ]
+  },
+  "Managers can review exam grades during the night shift before the deadline.": {
+    "subject": [
+      "Managers"
+    ],
+    "object": [
+      "exam grades"
+    ],
+    "context": [
+      "during the night shift",
+      "before the deadline"
+    ],
+    "actions": [
+      "review"
+    ]
+  },
+  "Faculty members can modify student records on weekends.": {
+    "subject": [
+      "Faculty members"
+    ],
+    "object": [
+      "student records"
+    ],
+    "context": [
+      "on weekends"
+    ],
+    "actions": [
+      "modify"
+    ]
+  }
+}

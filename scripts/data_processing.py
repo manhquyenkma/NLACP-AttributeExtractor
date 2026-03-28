@@ -89,15 +89,30 @@ def run_extraction():
             
     idx = start_idx
 
-    while True:
-        try:
-            sentence = input("Enter policy sentence: ").strip()
-        except (EOFError, KeyboardInterrupt):
-            break
+    mode = input("  Chon che do nhap (1: Go tung cau, 2: Doc tu file .txt): ").strip()
+    sentences_to_process = []
+    
+    if mode == "2":
+        file_path = input("  Nhap duong dan file txt (vd: VACT_ACP.txt hoac iTrust_ACP_sen.txt): ").strip()
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+                sentences_to_process = [l.strip() for l in f if l.strip()]
+            print(f"  [OK] Đã load {len(sentences_to_process)} câu từ file.")
+        else:
+            print(f"  [ERROR] Khong tim thay file '{file_path}'. Chuyen ve go tung cau.")
+            mode = "1"
+            
+    if mode != "2":
+        while True:
+            try:
+                sent = input("Enter policy sentence: ").strip()
+            except (EOFError, KeyboardInterrupt):
+                break
+            if not sent or sent.lower() in ("done", "exit"):
+                break
+            sentences_to_process.append(sent)
 
-        if not sentence or sentence.lower() in ("done", "exit"):
-            break
-
+    for sentence in sentences_to_process:
         # Validate input: minimum 3 words, at least one alphabetic word
         words = sentence.split()
         if len(words) < 3:

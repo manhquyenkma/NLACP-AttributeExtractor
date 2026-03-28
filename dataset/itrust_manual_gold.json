@@ -1,0 +1,1089 @@
+{
+  "The health care personnel may enter and edit personal health information including historical values, immunizations, and office visit information but not notes, laboratory procedures, or family history": {
+    "subject": [
+      "health care personnel"
+    ],
+    "object": [
+      "personal health information",
+      "historical values",
+      "immunizations",
+      "office visit"
+    ],
+    "context": [],
+    "actions": [
+      "enter",
+      "edit"
+    ]
+  },
+  "The HCP can indicate that the patient has passed away by providing an appropriate diagnosis code": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "diagnosis"
+    ],
+    "context": [],
+    "actions": [
+      "indicate"
+    ]
+  },
+  "The HCP can graph the height or weight of the patient over the last calendar years": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "height",
+      "weight"
+    ],
+    "context": [
+      "over the last calendar years"
+    ],
+    "actions": [
+      "graph"
+    ]
+  },
+  "For the patient, the HCP can choose either height or weight to graph": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "height",
+      "weight"
+    ],
+    "context": [],
+    "actions": [
+      "graph",
+      "choose"
+    ]
+  },
+  "The HCP can document medications, lab procedures, diagnoses, medical procedures, and immunizations": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "immunizations",
+      "lab procedure",
+      "medical procedure"
+    ],
+    "context": [],
+    "actions": [
+      "document"
+    ]
+  },
+  "The HCP may also add a patient referral": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "patient referral",
+      "referral"
+    ],
+    "context": [],
+    "actions": [
+      "add"
+    ]
+  },
+  "HCPs can return to an office visit and modify or delete the fields of the office visit": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "office visit"
+    ],
+    "context": [],
+    "actions": [
+      "modify",
+      "delete",
+      "return"
+    ]
+  },
+  "A patient’s DLHCP can add or delete a patient’s personal representative": {
+    "subject": [
+      "DLHCP",
+      "patient"
+    ],
+    "object": [
+      "personal representative"
+    ],
+    "context": [],
+    "actions": [
+      "add",
+      "delete"
+    ]
+  },
+  "The administrator will maintain and update a listing of allowable immunizations that an HCP can use": {
+    "subject": [
+      "HCP",
+      "administrator"
+    ],
+    "object": [
+      "allowable immunizations"
+    ],
+    "context": [],
+    "actions": [
+      "maintain",
+      "update"
+    ]
+  },
+  "The administrator will maintain a listing of allowable diagnoses that an LHCP can use": {
+    "subject": [
+      "LHCP",
+      "administrator"
+    ],
+    "object": [
+      "allowable diagnoses"
+    ],
+    "context": [],
+    "actions": [
+      "maintain"
+    ]
+  },
+  "The administrator will maintain and update a listing of allowable drugs that an HCP can use": {
+    "subject": [
+      "HCP",
+      "administrator"
+    ],
+    "object": [
+      "allowable drugs"
+    ],
+    "context": [],
+    "actions": [
+      "maintain",
+      "update"
+    ]
+  },
+  "The administrator will maintain and update a listing of allowable laboratory procedures that an HCP can use": {
+    "subject": [
+      "HCP",
+      "administrator"
+    ],
+    "object": [
+      "allowable laboratory procedures"
+    ],
+    "context": [],
+    "actions": [
+      "maintain",
+      "update"
+    ]
+  },
+  "An LHCP chooses a chronic disease and a patient": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "chronic disease"
+    ],
+    "context": [],
+    "actions": []
+  },
+  "The system shall enable the administrator to add a new entry for a hospital or modify an existing hospital entry": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [
+      "hospital entry",
+      "hospital"
+    ],
+    "context": [],
+    "actions": [
+      "add",
+      "modify"
+    ]
+  },
+  "The administrator is not allowed through the system interface to delete an existing entry or modify the hospital ID number": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [
+      "hospital ID",
+      "hospital"
+    ],
+    "context": [],
+    "actions": [
+      "modify",
+      "delete"
+    ]
+  },
+  "A patient or personal health representative can choose to view a list of their own prescriptions": {
+    "subject": [
+      "patient representative"
+    ],
+    "object": [
+      "prescriptions"
+    ],
+    "context": [],
+    "actions": [
+      "choose",
+      "view"
+    ]
+  },
+  "The LHCP can view a prescription list for a selected patient": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "prescriptions"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "The HCP can edit patient information according to data format": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "patient information"
+    ],
+    "context": [
+      "according to data format"
+    ],
+    "actions": [
+      "edit"
+    ]
+  },
+  "The HCP does not have the ability to enter or view the patient’s security question or password": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "security question",
+      "password"
+    ],
+    "context": [],
+    "actions": [
+      "enter",
+      "view"
+    ]
+  },
+  "The LHCP can schedule an appointment with a patient": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "appointment"
+    ],
+    "context": [],
+    "actions": [
+      "schedule"
+    ]
+  },
+  "The LHCP can view a list of upcoming appointments": {
+    "subject": [
+      "LHCP"
+    ],
+    "object": [
+      "appointment"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "The user can view appointment details": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "appointment"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "The LHCP can view a comprehensive patient report": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "patient report"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "The LHCP can view a list of requested reports": {
+    "subject": [
+      "LHCP"
+    ],
+    "object": [
+      "requested reports"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "A user can view physician satisfaction survey results": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "satisfaction survey"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "An HCP can create a lab procedure for a given office visit": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "office visit",
+      "lab procedure"
+    ],
+    "context": [],
+    "actions": [
+      "create"
+    ]
+  },
+  "An HCP can view a previously created lab procedure": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "lab procedure"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "An HCP can reassign a lab procedure to another lab technician if it is not in the testing state": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "lab procedure",
+      "lab technician"
+    ],
+    "context": [
+      "if not in testing state"
+    ],
+    "actions": [
+      "reassign"
+    ]
+  },
+  "An HCP can remove a lab procedure if its status is in transit or received": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "lab procedure"
+    ],
+    "context": [
+      "if status in transit or received"
+    ],
+    "actions": [
+      "remove"
+    ]
+  },
+  "The LHCP can view all patients with whom they have had an office visit": {
+    "subject": [
+      "LHCP"
+    ],
+    "object": [
+      "office visit"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "The patient can select a diagnosis and view LHCPs who have handled that diagnosis": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "diagnosis"
+    ],
+    "context": [],
+    "actions": [
+      "view",
+      "select"
+    ]
+  },
+  "The administrator can assign a healthcare provider to hospitals": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [
+      "healthcare provider",
+      "hospital"
+    ],
+    "context": [],
+    "actions": [
+      "assign"
+    ]
+  },
+  "An LHCP can enter a user as part of the system": {
+    "subject": [
+      "LHCP",
+      "user"
+    ],
+    "object": [],
+    "context": [],
+    "actions": [
+      "enter"
+    ]
+  },
+  "A patient or representative can send a message to an LHCP": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [],
+    "actions": [
+      "send"
+    ]
+  },
+  "An LHCP can send a message to a patient or representative": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [],
+    "actions": [
+      "send"
+    ]
+  },
+  "A patient or representative can reply to a message": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [],
+    "actions": [
+      "reply"
+    ]
+  },
+  "An LHCP can reply to a message": {
+    "subject": [
+      "LHCP"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [],
+    "actions": [
+      "reply"
+    ]
+  },
+  "A user can read messages from the inbox or outbox": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [],
+    "actions": [
+      "read"
+    ]
+  },
+  "A user can sort messages by sender, recipient, or timestamp": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [
+      "by sender recipient or timestamp"
+    ],
+    "actions": [
+      "sort"
+    ]
+  },
+  "A user can apply filters to message viewing": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [],
+    "actions": [
+      "apply"
+    ]
+  },
+  "An LHCP can refer a patient to another HCP": {
+    "subject": [
+      "HCP",
+      "LHCP",
+      "patient"
+    ],
+    "object": [],
+    "context": [],
+    "actions": [
+      "refer"
+    ]
+  },
+  "An HCP can view received referrals": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "referral"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "An HCP can view previously sent referrals": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "referral"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "An LHCP or UAP can add or delete patients from a monitoring list": {
+    "subject": [
+      "LHCP",
+      "UAP"
+    ],
+    "object": [
+      "monitoring list"
+    ],
+    "context": [],
+    "actions": [
+      "add",
+      "delete"
+    ]
+  },
+  "An LHCP can delete a patient from the monitoring list": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "monitoring list"
+    ],
+    "context": [],
+    "actions": [
+      "delete"
+    ]
+  },
+  "The LHCP can configure which monitoring data types a patient should report": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [
+      "monitoring data types"
+    ],
+    "context": [],
+    "actions": [
+      "configure"
+    ]
+  },
+  "A patient can report physiological measurements": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "physiological measurements"
+    ],
+    "context": [],
+    "actions": [
+      "report"
+    ]
+  },
+  "An LHCP can view physiological monitoring data": {
+    "subject": [
+      "LHCP"
+    ],
+    "object": [
+      "monitoring data types"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "The LHCP can select a patient to obtain additional information": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [],
+    "context": [],
+    "actions": [
+      "select"
+    ]
+  },
+  "A UAP can report physiological measurements for patients": {
+    "subject": [
+      "UAP"
+    ],
+    "object": [
+      "physiological measurements"
+    ],
+    "context": [],
+    "actions": [
+      "report"
+    ]
+  },
+  "A patient representative can report physiological measurements": {
+    "subject": [
+      "patient representative"
+    ],
+    "object": [
+      "physiological measurements"
+    ],
+    "context": [],
+    "actions": [
+      "report"
+    ]
+  },
+  "A patient can report adverse events for medications": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "adverse event"
+    ],
+    "context": [],
+    "actions": [
+      "report"
+    ]
+  },
+  "A patient can report adverse events for immunizations": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "immunizations",
+      "adverse event"
+    ],
+    "context": [],
+    "actions": [
+      "report"
+    ]
+  },
+  "A public health agent can view adverse event reports": {
+    "subject": [
+      "public health agent"
+    ],
+    "object": [
+      "adverse event"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "A public health agent can view details of a specific report": {
+    "subject": [
+      "public health agent"
+    ],
+    "object": [],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "A public health agent can remove an adverse event report": {
+    "subject": [
+      "public health agent"
+    ],
+    "object": [
+      "adverse event"
+    ],
+    "context": [],
+    "actions": [
+      "remove"
+    ]
+  },
+  "The administrator can record interactions between drugs": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [],
+    "context": [],
+    "actions": [
+      "record"
+    ]
+  },
+  "The administrator can view drug interaction information": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [
+      "drug interaction"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "The administrator can delete drug interaction information": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [
+      "drug interaction"
+    ],
+    "context": [],
+    "actions": [
+      "delete"
+    ]
+  },
+  "The administrator can set session timeout policies": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [
+      "session timeout"
+    ],
+    "context": [],
+    "actions": [
+      "set"
+    ]
+  },
+  "A user can change their password after answering a security question correctly": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "security question",
+      "password"
+    ],
+    "context": [
+      "after answering security question"
+    ],
+    "actions": [
+      "change"
+    ]
+  },
+  "A patient or personal health representative may enter or edit their own demographic information": {
+    "subject": [
+      "patient representative"
+    ],
+    "object": [
+      "demographic information"
+    ],
+    "context": [],
+    "actions": [
+      "enter",
+      "edit"
+    ]
+  },
+  "An HCP must enter a patient MID to edit demographic information": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "demographic information",
+      "patient MID"
+    ],
+    "context": [],
+    "actions": [
+      "enter",
+      "edit"
+    ]
+  },
+  "An HCP may enter or edit their own demographic information": {
+    "subject": [
+      "HCP"
+    ],
+    "object": [
+      "demographic information"
+    ],
+    "context": [],
+    "actions": [
+      "enter",
+      "edit"
+    ]
+  },
+  "An HCP may upload a photo of a patient": {
+    "subject": [
+      "HCP",
+      "patient"
+    ],
+    "object": [
+      "photo"
+    ],
+    "context": [],
+    "actions": [
+      "upload"
+    ]
+  },
+  "A patient can designate or undesignate an LHCP as a designated provider": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [],
+    "context": [],
+    "actions": [
+      "designate",
+      "undesignate"
+    ]
+  },
+  "A patient can search for an LHCP by name, specialty, or location": {
+    "subject": [
+      "LHCP",
+      "patient"
+    ],
+    "object": [],
+    "context": [
+      "by name specialty or location"
+    ],
+    "actions": [
+      "search"
+    ]
+  },
+  "A patient or representative can view personal health records": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "personal health records"
+    ],
+    "context": [],
+    "actions": [
+      "view"
+    ]
+  },
+  "A patient can view access logs sorted by role and date": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "access log"
+    ],
+    "context": [
+      "sorted by role and date"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "A patient or personal health representative can view a list of prescriptions sorted by start date": {
+    "subject": [
+      "patient representative"
+    ],
+    "object": [
+      "prescriptions"
+    ],
+    "context": [
+      "sorted by start date"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "The LHCP can view a prescription list sorted by start date": {
+    "subject": [
+      "LHCP"
+    ],
+    "object": [
+      "prescriptions"
+    ],
+    "context": [
+      "sorted by start date"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "A user can view a list of appointments whose date and time are equal to or later than the current datetime": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "appointment"
+    ],
+    "context": [
+      "equal to or later than current datetime"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "The appointments in the list shall be ordered by appointment date and start time with the soonest upcoming first": {
+    "subject": [],
+    "object": [
+      "appointment"
+    ],
+    "context": [
+      "soonest upcoming first"
+    ],
+    "actions": []
+  },
+  "A user can view messages sorted by timestamp with the most recent first": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [
+      "by timestamp",
+      "most recent first"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "A user can sort messages by timestamp in ascending or descending order": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [
+      "by timestamp",
+      "ascending or descending order"
+    ],
+    "actions": [
+      "sort"
+    ]
+  },
+  "A user can filter messages based on a timestamp range between a starting date and an ending date": {
+    "subject": [
+      "user"
+    ],
+    "object": [
+      "message"
+    ],
+    "context": [
+      "based on timestamp range"
+    ],
+    "actions": [
+      "filter"
+    ]
+  },
+  "A patient can report adverse events for drugs taken in the last months": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "adverse event"
+    ],
+    "context": [
+      "in the last months"
+    ],
+    "actions": [
+      "report"
+    ]
+  },
+  "A patient can report adverse events for immunizations received in the last months": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "immunizations",
+      "adverse event"
+    ],
+    "context": [
+      "in the last months"
+    ],
+    "actions": [
+      "report"
+    ]
+  },
+  "A public health agent can view adverse event reports within a given time period": {
+    "subject": [
+      "public health agent"
+    ],
+    "object": [
+      "adverse event"
+    ],
+    "context": [
+      "within a given time period"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "Electronic sessions must terminate after a pre-determined period of inactivity": {
+    "subject": [],
+    "object": [],
+    "context": [
+      "period of inactivity"
+    ],
+    "actions": []
+  },
+  "The administrator can set the session timeout period": {
+    "subject": [
+      "administrator"
+    ],
+    "object": [
+      "session timeout"
+    ],
+    "context": [],
+    "actions": [
+      "set"
+    ]
+  },
+  "Authorization must be disabled after a period of inactivity": {
+    "subject": [],
+    "object": [],
+    "context": [
+      "period of inactivity"
+    ],
+    "actions": []
+  },
+  "A patient can view access logs sorted by date with the most recent access first": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "access log"
+    ],
+    "context": [
+      "sorted by date",
+      "most recent first"
+    ],
+    "actions": [
+      "view"
+    ]
+  },
+  "A patient can view access logs sorted by role and by date for each role with the most recent first": {
+    "subject": [
+      "patient"
+    ],
+    "object": [
+      "access log"
+    ],
+    "context": [
+      "most recent first"
+    ],
+    "actions": [
+      "view"
+    ]
+  }
+}

@@ -1,0 +1,823 @@
+========================================================================
+ITRUST - LIỆT KÊ TOÀN BỘ INSTANCES
+========================================================================
+
+[SUBJECT-ATTRIBUTE] - Tổng: 109
+------------------------------------------------------------------------
+Line  1: health care personnel
+Line  2: HCP
+Line  2: patient
+Line  3: HCP
+Line  3: patient
+Line  4: HCP
+Line  4: patient
+Line  5: HCP
+Line  6: HCP
+Line  6: patient
+Line  7: HCP
+Line  8: DLHCP
+Line  8: patient
+Line  9: HCP
+Line  9: administrator
+Line 10: LHCP
+Line 10: administrator
+Line 11: HCP
+Line 11: administrator
+Line 12: HCP
+Line 12: administrator
+Line 13: LHCP
+Line 13: patient
+Line 14: administrator
+Line 15: administrator
+Line 16: patient representative
+Line 17: LHCP
+Line 17: patient
+Line 18: HCP
+Line 18: patient
+Line 19: HCP
+Line 19: patient
+Line 20: LHCP
+Line 20: patient
+Line 21: LHCP
+Line 22: user
+Line 23: LHCP
+Line 23: patient
+Line 24: LHCP
+Line 25: user
+Line 26: HCP
+Line 27: HCP
+Line 28: HCP
+Line 29: HCP
+Line 30: LHCP
+Line 31: patient
+Line 32: administrator
+Line 33: LHCP
+Line 33: user
+Line 34: LHCP
+Line 34: patient
+Line 35: LHCP
+Line 35: patient
+Line 36: patient
+Line 37: LHCP
+Line 38: user
+Line 39: user
+Line 40: user
+Line 41: HCP
+Line 41: LHCP
+Line 41: patient
+Line 42: HCP
+Line 43: HCP
+Line 44: LHCP
+Line 44: UAP
+Line 45: LHCP
+Line 45: patient
+Line 46: LHCP
+Line 46: patient
+Line 47: patient
+Line 48: LHCP
+Line 49: LHCP
+Line 49: patient
+Line 50: UAP
+Line 51: patient representative
+Line 52: patient
+Line 53: patient
+Line 54: public health agent
+Line 55: public health agent
+Line 56: public health agent
+Line 57: administrator
+Line 58: administrator
+Line 59: administrator
+Line 60: administrator
+Line 61: user
+Line 62: patient representative
+Line 63: HCP
+Line 63: patient
+Line 64: HCP
+Line 65: HCP
+Line 65: patient
+Line 66: LHCP
+Line 66: patient
+Line 67: LHCP
+Line 67: patient
+Line 68: patient
+Line 69: patient
+Line 70: patient representative
+Line 71: LHCP
+Line 72: user
+Line 74: user
+Line 75: user
+Line 76: user
+Line 77: patient
+Line 78: patient
+Line 79: public health agent
+Line 81: administrator
+Line 83: patient
+Line 84: patient
+
+[OBJECT-ATTRIBUTE] - Tổng: 94
+------------------------------------------------------------------------
+Line  1: personal health information
+Line  1: historical values
+Line  1: immunizations
+Line  1: office visit
+Line  2: diagnosis
+Line  3: height
+Line  3: weight
+Line  4: height
+Line  4: weight
+Line  5: immunizations
+Line  5: lab procedure
+Line  5: medical procedure
+Line  6: patient referral
+Line  6: referral
+Line  7: office visit
+Line  8: personal representative
+Line  9: allowable immunizations
+Line 10: allowable diagnoses
+Line 11: allowable drugs
+Line 12: allowable laboratory procedures
+Line 13: chronic disease
+Line 14: hospital entry
+Line 14: hospital
+Line 15: hospital ID
+Line 15: hospital
+Line 16: prescriptions
+Line 17: prescriptions
+Line 18: patient information
+Line 19: security question
+Line 19: password
+Line 20: appointment
+Line 21: appointment
+Line 22: appointment
+Line 23: patient report
+Line 24: requested reports
+Line 25: satisfaction survey
+Line 26: office visit
+Line 26: lab procedure
+Line 27: lab procedure
+Line 28: lab procedure
+Line 28: lab technician
+Line 29: lab procedure
+Line 30: office visit
+Line 31: diagnosis
+Line 32: healthcare provider
+Line 32: hospital
+Line 34: message
+Line 35: message
+Line 36: message
+Line 37: message
+Line 38: message
+Line 39: message
+Line 40: message
+Line 42: referral
+Line 43: referral
+Line 44: monitoring list
+Line 45: monitoring list
+Line 46: monitoring data types
+Line 47: physiological measurements
+Line 48: monitoring data types
+Line 50: physiological measurements
+Line 51: physiological measurements
+Line 52: adverse event
+Line 53: immunizations
+Line 53: adverse event
+Line 54: adverse event
+Line 56: adverse event
+Line 58: drug interaction
+Line 59: drug interaction
+Line 60: session timeout
+Line 61: security question
+Line 61: password
+Line 62: demographic information
+Line 63: demographic information
+Line 63: patient MID
+Line 64: demographic information
+Line 65: photo
+Line 68: personal health records
+Line 69: access log
+Line 70: prescriptions
+Line 71: prescriptions
+Line 72: appointment
+Line 73: appointment
+Line 74: message
+Line 75: message
+Line 76: message
+Line 77: adverse event
+Line 78: immunizations
+Line 78: adverse event
+Line 79: adverse event
+Line 81: session timeout
+Line 83: access log
+Line 84: access log
+
+[CONTEXT-ATTRIBUTE] - Tổng: 25
+------------------------------------------------------------------------
+Line  3: over the last calendar years
+Line 18: according to data format
+Line 28: if not in testing state
+Line 29: if status in transit/received
+Line 39: by sender/recipient/timestamp
+Line 61: after answering security question
+Line 67: by name/specialty/location
+Line 69: sorted by role and date
+Line 70: sorted by start date
+Line 71: sorted by start date
+Line 72: equal to or later than current datetime
+Line 73: soonest upcoming first
+Line 74: by timestamp
+Line 74: most recent first
+Line 75: by timestamp
+Line 75: ascending or descending order
+Line 76: based on timestamp range
+Line 77: in the last months
+Line 78: in the last months
+Line 79: within a given time period
+Line 80: period of inactivity
+Line 82: period of inactivity
+Line 83: sorted by date
+Line 83: most recent first
+Line 84: most recent first
+
+[ACTIONS' NAMES] - Tổng: 102
+------------------------------------------------------------------------
+Line  1: enter
+Line  1: edit
+Line  2: indicate
+Line  3: graph
+Line  4: graph
+Line  4: choose
+Line  5: document
+Line  6: add
+Line  7: modify
+Line  7: delete
+Line  7: return
+Line  8: add
+Line  8: delete
+Line  9: maintain
+Line  9: update
+Line 10: maintain
+Line 11: maintain
+Line 11: update
+Line 12: maintain
+Line 12: update
+Line 14: add
+Line 14: modify
+Line 15: modify
+Line 15: delete
+Line 16: choose
+Line 16: view
+Line 17: view
+Line 18: edit
+Line 19: enter
+Line 19: view
+Line 20: schedule
+Line 21: view
+Line 22: view
+Line 23: view
+Line 24: view
+Line 25: view
+Line 26: create
+Line 27: view
+Line 28: reassign
+Line 29: remove
+Line 30: view
+Line 31: view
+Line 31: select
+Line 32: assign
+Line 33: enter
+Line 34: send
+Line 35: send
+Line 36: reply
+Line 37: reply
+Line 38: read
+Line 39: sort
+Line 40: apply
+Line 41: refer
+Line 42: view
+Line 43: view
+Line 44: add
+Line 44: delete
+Line 45: delete
+Line 46: configure
+Line 47: report
+Line 48: view
+Line 49: select
+Line 50: report
+Line 51: report
+Line 52: report
+Line 53: report
+Line 54: view
+Line 55: view
+Line 56: remove
+Line 57: record
+Line 58: view
+Line 59: delete
+Line 60: set
+Line 61: change
+Line 62: enter
+Line 62: edit
+Line 63: enter
+Line 63: edit
+Line 64: enter
+Line 64: edit
+Line 65: upload
+Line 66: designate
+Line 66: undesignate
+Line 67: search
+Line 68: view
+Line 69: view
+Line 70: view
+Line 71: view
+Line 72: view
+Line 74: view
+Line 75: sort
+Line 76: filter
+Line 77: report
+Line 78: report
+Line 79: view
+Line 81: set
+Line 83: view
+Line 84: view
+
+
+========================================================================
+VACT KMA_ACP - LIỆT KÊ TOÀN BỘ INSTANCES
+========================================================================
+
+[SUBJECT-ATTRIBUTE] - Tổng: 100
+------------------------------------------------------------------------
+Line   1: Security officers
+Line   2: Security officers
+Line   3: Training department staff
+Line   4: IT support staff
+Line   5: Managers
+Line   6: Lecturers
+Line   7: Managers
+Line   8: Librarians
+Line   9: IT support staff
+Line  10: Training department staff
+Line  11: Training department staff
+Line  12: Training department staff
+Line  13: Managers
+Line  14: Faculty members
+Line  15: Security officers
+Line  16: VACT students
+Line  17: Training department staff
+Line  18: System administrators
+Line  19: Faculty members
+Line  20: Students
+Line  21: Managers
+Line  22: IT support staff
+Line  23: Security officers
+Line  24: VACT students
+Line  25: Managers
+Line  26: Lecturers
+Line  27: VACT students
+Line  28: VACT students
+Line  29: Security officers
+Line  30: Training department staff
+Line  31: Faculty members
+Line  32: Department heads
+Line  33: IT support staff
+Line  34: Training department staff
+Line  35: Guest users
+Line  36: Managers
+Line  37: Librarians
+Line  38: VACT students
+Line  39: Lecturers
+Line  40: Students
+Line  41: Researchers
+Line  42: Training department staff
+Line  43: Guest users
+Line  44: Lecturers
+Line  45: Faculty members
+Line  46: Faculty members
+Line  47: Training department staff
+Line  48: Managers
+Line  49: Lecturers
+Line  50: Lecturers
+Line  51: IT support staff
+Line  52: VACT students
+Line  53: IT support staff
+Line  54: Training department staff
+Line  55: Lecturers
+Line  56: System administrators
+Line  57: Librarians
+Line  58: Department heads
+Line  59: Managers
+Line  60: Department heads
+Line  61: Managers
+Line  62: Librarians
+Line  63: Lecturers
+Line  64: Guest users
+Line  65: Librarians
+Line  66: Librarians
+Line  67: System administrators
+Line  68: Managers
+Line  69: Training department staff
+Line  70: VACT students
+Line  71: Security officers
+Line  72: Researchers
+Line  73: Researchers
+Line  74: System administrators
+Line  75: Researchers
+Line  76: Department heads
+Line  77: Managers
+Line  78: Security officers
+Line  79: Training department staff
+Line  80: Faculty members
+Line  81: Guest users
+Line  82: Managers
+Line  83: VACT students
+Line  84: VACT students
+Line  85: VACT students
+Line  86: Security officers
+Line  87: IT support staff
+Line  88: Lecturers
+Line  89: Lecturers
+Line  90: Training department staff
+Line  91: Managers
+Line  92: Librarians
+Line  93: Guest users
+Line  94: Guest users
+Line  95: Security officers
+Line  96: System administrators
+Line  97: Department heads
+Line  98: Guest users
+Line  99: Managers
+Line 100: Faculty members
+
+[OBJECT-ATTRIBUTE] - Tổng: 100
+------------------------------------------------------------------------
+Line   1: exam grades
+Line   2: network configurations
+Line   3: network configurations
+Line   4: cryptography datasets
+Line   5: personnel files
+Line   6: cryptography datasets
+Line   7: personnel files
+Line   8: network configurations
+Line   9: exam grades
+Line  10: cryptography datasets
+Line  11: system logs
+Line  12: financial reports
+Line  13: student records
+Line  14: library resources
+Line  15: research papers
+Line  16: personnel files
+Line  17: network configurations
+Line  18: research papers
+Line  19: network configurations
+Line  20: personnel files
+Line  21: library resources
+Line  22: system logs
+Line  23: exam schedules
+Line  24: exam grades
+Line  25: student records
+Line  26: financial reports
+Line  27: system logs
+Line  28: personnel files
+Line  29: library resources
+Line  30: course materials
+Line  31: exam grades
+Line  32: network configurations
+Line  33: thesis submissions
+Line  34: course materials
+Line  35: exam grades
+Line  36: student records
+Line  37: system logs
+Line  38: exam grades
+Line  39: research papers
+Line  40: cryptography datasets
+Line  41: personnel files
+Line  42: thesis submissions
+Line  43: network configurations
+Line  44: course materials
+Line  45: thesis submissions
+Line  46: network configurations
+Line  47: cryptography datasets
+Line  48: exam grades
+Line  49: student records
+Line  50: library resources
+Line  51: thesis submissions
+Line  52: exam schedules
+Line  53: research papers
+Line  54: exam schedules
+Line  55: cryptography datasets
+Line  56: system logs
+Line  57: exam grades
+Line  58: network configurations
+Line  59: library resources
+Line  60: cryptography datasets
+Line  61: cryptography datasets
+Line  62: personnel files
+Line  63: exam grades
+Line  64: system logs
+Line  65: system logs
+Line  66: network configurations
+Line  67: system logs
+Line  68: cryptography datasets
+Line  69: exam grades
+Line  70: personnel files
+Line  71: thesis submissions
+Line  72: system logs
+Line  73: research papers
+Line  74: thesis submissions
+Line  75: student records
+Line  76: financial reports
+Line  77: research papers
+Line  78: library resources
+Line  79: research papers
+Line  80: financial reports
+Line  81: student records
+Line  82: cryptography datasets
+Line  83: course materials
+Line  84: library resources
+Line  85: research papers
+Line  86: network configurations
+Line  87: student records
+Line  88: research papers
+Line  89: cryptography datasets
+Line  90: cryptography datasets
+Line  91: cryptography datasets
+Line  92: personnel files
+Line  93: cryptography datasets
+Line  94: thesis submissions
+Line  95: course materials
+Line  96: system logs
+Line  97: system logs
+Line  98: personnel files
+Line  99: exam grades
+Line 100: student records
+
+[CONTEXT-ATTRIBUTE] - Tổng: 124
+------------------------------------------------------------------------
+Line   1: during the night shift
+Line   1: via trusted platforms
+Line   2: at the headquarters building
+Line   3: using internal devices
+Line   4: via trusted platforms
+Line   5: within the VACT intranet
+Line   6: at the cryptography lab
+Line   7: on weekends
+Line   8: at the cryptography lab
+Line   9: from the campus network
+Line  10: at the cryptography lab
+Line  11: after the exam period
+Line  11: at nighttime
+Line  12: using internal devices
+Line  13: outside the campus
+Line  13: from external IP addresses
+Line  14: via a secure VPN
+Line  15: during the night shift
+Line  16: via trusted platforms
+Line  17: between 8am and 5pm
+Line  18: at the headquarters building
+Line  18: after the exam period
+Line  19: using internal devices
+Line  20: using internal devices
+Line  21: at the headquarters building
+Line  22: at nighttime
+Line  22: through an encrypted channel
+Line  23: before the deadline
+Line  24: via a secure VPN
+Line  25: via trusted platforms
+Line  26: using internal devices
+Line  26: during the registration period
+Line  27: at the headquarters building
+Line  28: from the campus network
+Line  29: through an encrypted channel
+Line  30: via trusted platforms
+Line  31: between 8am and 5pm
+Line  32: via a secure VPN
+Line  33: via a secure VPN
+Line  34: at the cryptography lab
+Line  35: on weekends
+Line  36: using internal devices
+Line  37: after the exam period
+Line  38: using internal devices
+Line  39: via a secure VPN
+Line  40: from external IP addresses
+Line  41: using internal devices
+Line  41: via a secure VPN
+Line  42: between 8am and 5pm
+Line  42: outside the campus
+Line  43: through an encrypted channel
+Line  44: during the night shift
+Line  45: after the exam period
+Line  46: within the VACT intranet
+Line  47: from the campus network
+Line  48: via trusted platforms
+Line  49: during the registration period
+Line  50: using authorized workstations
+Line  51: through an encrypted channel
+Line  51: during business hours
+Line  52: during the registration period
+Line  53: before the deadline
+Line  54: via a secure VPN
+Line  54: through an encrypted channel
+Line  55: between 8am and 5pm
+Line  55: during business hours
+Line  56: using authorized workstations
+Line  57: during the registration period
+Line  58: during the registration period
+Line  59: during the night shift
+Line  60: during the night shift
+Line  60: during the registration period
+Line  61: outside the campus
+Line  62: within the VACT intranet
+Line  62: at nighttime
+Line  63: during the night shift
+Line  63: before the deadline
+Line  64: during the night shift
+Line  64: via trusted platforms
+Line  65: within the VACT intranet
+Line  65: at the cryptography lab
+Line  66: during business hours
+Line  67: at the headquarters building
+Line  68: through an encrypted channel
+Line  69: through an encrypted channel
+Line  69: during business hours
+Line  70: at the cryptography lab
+Line  70: before the deadline
+Line  71: on weekends
+Line  72: outside the campus
+Line  73: from external IP addresses
+Line  74: using internal devices
+Line  75: via trusted platforms
+Line  76: before the deadline
+Line  77: from the campus network
+Line  78: during the night shift
+Line  79: during the night shift
+Line  80: via trusted platforms
+Line  81: during business hours
+Line  82: through an encrypted channel
+Line  83: using authorized workstations
+Line  84: through an encrypted channel
+Line  84: using authorized workstations
+Line  85: via a secure VPN
+Line  85: using authorized workstations
+Line  86: during the night shift
+Line  87: outside the campus
+Line  88: during the registration period
+Line  89: using authorized workstations
+Line  90: via trusted platforms
+Line  90: during business hours
+Line  91: at the cryptography lab
+Line  92: during the night shift
+Line  92: via a secure VPN
+Line  93: from external IP addresses
+Line  94: from external IP addresses
+Line  95: during the registration period
+Line  96: before the deadline
+Line  97: at the headquarters building
+Line  97: within the VACT intranet
+Line  98: at the cryptography lab
+Line  99: during the night shift
+Line  99: before the deadline
+Line 100: on weekends
+
+[ACTIONS' NAMES] - Tổng: 133
+------------------------------------------------------------------------
+Line   1: view
+Line   1: modify
+Line   2: approve
+Line   2: view
+Line   3: delete
+Line   3: approve
+Line   4: configure
+Line   4: access
+Line   5: modify
+Line   5: submit
+Line   6: view
+Line   7: access
+Line   8: view
+Line   9: view
+Line  10: view
+Line  10: submit
+Line  11: review
+Line  12: modify
+Line  12: submit
+Line  13: access
+Line  13: download
+Line  14: approve
+Line  15: update
+Line  16: download
+Line  17: modify
+Line  18: review
+Line  19: update
+Line  20: review
+Line  21: review
+Line  21: access
+Line  22: approve
+Line  23: download
+Line  23: modify
+Line  24: configure
+Line  24: upload
+Line  25: download
+Line  26: approve
+Line  26: update
+Line  27: modify
+Line  28: approve
+Line  29: review
+Line  30: delete
+Line  31: delete
+Line  31: access
+Line  32: view
+Line  32: delete
+Line  33: audit
+Line  34: view
+Line  35: approve
+Line  35: upload
+Line  36: view
+Line  37: modify
+Line  38: view
+Line  39: delete
+Line  39: update
+Line  40: modify
+Line  40: configure
+Line  41: submit
+Line  41: download
+Line  42: access
+Line  42: review
+Line  43: configure
+Line  43: modify
+Line  44: audit
+Line  45: delete
+Line  46: audit
+Line  46: upload
+Line  47: download
+Line  48: view
+Line  49: configure
+Line  50: delete
+Line  51: download
+Line  52: download
+Line  52: view
+Line  53: configure
+Line  54: review
+Line  54: access
+Line  55: review
+Line  56: review
+Line  57: configure
+Line  58: audit
+Line  58: upload
+Line  59: access
+Line  60: configure
+Line  61: modify
+Line  62: review
+Line  63: submit
+Line  64: upload
+Line  64: delete
+Line  65: upload
+Line  66: review
+Line  66: download
+Line  67: audit
+Line  68: upload
+Line  68: review
+Line  69: download
+Line  70: review
+Line  71: upload
+Line  72: configure
+Line  73: configure
+Line  74: audit
+Line  75: download
+Line  76: update
+Line  77: approve
+Line  78: audit
+Line  79: delete
+Line  80: view
+Line  80: update
+Line  81: submit
+Line  82: view
+Line  83: delete
+Line  84: audit
+Line  85: update
+Line  85: delete
+Line  86: download
+Line  86: view
+Line  87: download
+Line  88: modify
+Line  89: submit
+Line  90: submit
+Line  91: audit
+Line  91: submit
+Line  92: configure
+Line  92: submit
+Line  93: access
+Line  94: modify
+Line  95: access
+Line  96: access
+Line  97: submit
+Line  98: access
+Line  98: modify
+Line  99: review
+Line 100: modify
+
+
+========================================================================
+TỔNG KẾT
+========================================================================
+Dataset              | Sentences | Subject | Object | Context | Actions
+---------------------|-----------|---------|--------|---------|--------
+iTrust               |    84     |   109   |   94   |   25    |  102
+Collected KMA_ACP    |   100     |   100   |  100   |  124    |  133

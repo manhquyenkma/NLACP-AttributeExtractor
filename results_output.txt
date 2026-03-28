@@ -1,0 +1,37 @@
+﻿
++======================================================================+
+|         NLACP ΓÇö Evaluation from iTrust_gold.txt + VACT_ACP.txt       |
++======================================================================+
+
+[INFO] Loaded 84 iTrust sentences from iTrust_gold.txt
+[INFO] Loaded 100 KMA_ACP sentences from VACT_ACP.txt
+[INFO] iTrust manual gold annotations: 84 entries
+[INFO] VACT manual gold annotations: 100 entries
+
+--- Evaluating iTrust ---
+[INFO] iTrust sentences: 84, gold matched: 84/84
+--- Evaluating Collected KMA_ACP ---
+[INFO] Collected_KMA_ACP sentences: 100, gold matched: 100/100
+
+=========================================================================================================================================================================
+  NLACP ATTRIBUTE EXTRACTION ΓÇö EVALUATION TABLE  (mode=partial)
+=========================================================================================================================================================================
+  Dataset                          Subject-attribute                    Object-attribute                     Context-attribute                     Actions' Names           
+                               #        P        R       F1       #        P        R       F1       #        P        R       F1       #        P        R       F1
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  iTrust                     109   0.8452   0.6514   0.7358      93   0.3373   0.3011   0.3182      25   0.0196   0.0400   0.0263      98   0.5253   0.5306   0.5279
+  Collected KMA_ACP          100   0.8700   0.8700   0.8700     100   0.8105   0.7700   0.7897     124   0.9600   0.9677   0.9639     133   0.4773   0.4737   0.4755
+  =======================================================================================================================================================================
+
+  DETAIL breakdown:
+  Dataset                 Type                   Gold#     TP     FP     FN         P         R        F1
+  -----------------------------------------------------------------------------------------------
+  iTrust                  Subject-attribute        109     71     13     38    0.8452    0.6514    0.7358
+  iTrust                  Object-attribute          93     28     55     65    0.3373    0.3011    0.3182
+  iTrust                  Context-attribute         25      1     50     24    0.0196    0.0400    0.0263
+  iTrust                  Actions' Names            98     52     47     46    0.5253    0.5306    0.5279
+  Collected KMA_ACP       Subject-attribute        100     87     13     13    0.8700    0.8700    0.8700
+  Collected KMA_ACP       Object-attribute         100     77     18     23    0.8105    0.7700    0.7897
+  Collected KMA_ACP       Context-attribute        124    120      5      4    0.9600    0.9677    0.9639
+  Collected KMA_ACP       Actions' Names           133     63     69     70    0.4773    0.4737    0.4755
+

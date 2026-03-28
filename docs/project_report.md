@@ -41,7 +41,7 @@ Logic cốt lõi của hệ thống được đặt trong gói `nlacp/` và chia
 2. **Gắn thẻ NLP (NLP Tagging):** `spaCy` phân tích Từ loại (POS) và cấu trúc quan hệ ngữ pháp của câu.
 3. **Xác thực Ứng viên (Candidate Validation):** Scripts đề xuất các cặp thuộc tính như `[nurse, senior]` và `[hours, business]`. Người dùng thao tác tương tác y/n để phê duyệt/từ chối.
 4. **Lưu trữ Trung gian:** Các cặp được chọn sẽ lưu ở dạng log tạm thời trong `dataset/relation_candidate.json`.
-5. **Tiền xử lý nâng cao (Enrichment):** Chạy lệnh `scripts/abac_extraction.py` để tách biệt phần môi trường (`during business hours`) và hoàn thành tài liệu ABAC JSON cấu trúc chuẩn mực tại `dataset/policy_dataset.json`.
+5. **Tiền xử lý nâng cao (Enrichment):** Chạy lệnh `scripts/ABAC_extraction.py` để tách biệt phần môi trường (`during business hours`) và hoàn thành tài liệu ABAC JSON cấu trúc chuẩn mực tại `dataset/policy_dataset.json`.
 
 [Chèn Ảnh chụp Màn hình Test Terminal / Workflow vào đây]
 
@@ -49,5 +49,22 @@ Logic cốt lõi của hệ thống được đặt trong gói `nlacp/` và chia
 - **Khớp Cú pháp Phụ thuộc (Syntactic Dependency Matching):** Engine chạy bằng luật sẽ rà quét cây cú pháp để bắt các điểm kích hoạt như `amod` (bổ ngữ tính từ) hoặc `compound` (danh từ ghép) đã liên kết với Subject hoặc Object.
 - **Logic Phân loại Môi trường:** Áp dụng bộ từ khóa gợi ý để phân loại bối cảnh không gian kỹ thuật (VD: "vpn", "internet" -> `spatial_network`; "workstation", "laptop" -> `spatial_device`; dự phòng -> `spatial_physical`).
 
-## 7. Kết luận
+## 7. Đánh giá Thuật toán (Evaluation)
+Hệ thống được đánh giá độ chính xác thông qua 2 Module chính, bám sát các phương trình của Alohaly et al. (2019):
+
+**1. Module 1 - Trích xuất Môi trường (Environment)**
+Đánh giá trên bộ dữ liệu `vact_env_annotated.json` (100 câu), kết quả trích xuất:
+- **Thời gian (Temporal):** Precision = 0.8958 | Recall = 0.9149 | F1-score = 0.9053
+- **Không gian (Spatial):** Precision = 1.0000 | Recall = 1.0000 | F1-score = 1.0000
+- **Tổng thể (Overall):** Precision = 0.9597 | Recall = 0.9675 | F1-score = 0.9636
+*Kết luận:* Mức F1-score > 0.96 cho thấy module trích xuất hoạt động vô cùng ổn định và vượt mục tiêu thực nghiệm đề ra.
+
+**2. Module 2 - Phân cụm Không gian giá trị (DBSCAN Clustering)**
+Dựa trên thuật toán gán nhãn cụm (nhãn chiếm đa số) và công thức $n_{ij}$ trên tập `attribute_clusters.json`:
+- **Average Precision:** 0.5000
+- **Average Recall:** 0.7500
+- **Average F1-score:** 0.5833
+*Lưu ý:* Tập `policy_dataset.json` hiện tại khá nhỏ nên số cụm hình thành chưa nhiều. Để đạt F1-score cao, mô hình DBSCAN cần chạy trên bộ dữ liệu quy mô lớn (VD: LitroACP).
+
+## 8. Kết luận
 Dự án "NLACP-AttributeExtractor" đã thành công trong việc chuyển đổi các chính sách bằng ngôn ngữ tự nhiên tối nghĩa, phức tạp thành các hệ thuộc tính ABAC kiểm soát truy cập rõ ràng. Với việc cấu trúc lại theo kiến trúc Pipeline 2 bước, giải pháp này là sự tổng hòa giữa việc trích xuất xử lý bằng NLP tốc độ cao cùng với độ tin cậy tuyệt đối nhờ sự kiểm duyệt thực tế của con người (human-in-the-loop), mở ra khả năng mở rộng mạnh mẽ cho các hệ thống an ninh hiện đại.

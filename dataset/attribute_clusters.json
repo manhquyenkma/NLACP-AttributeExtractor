@@ -1,210 +1,215 @@
 {
     "clusters": [
         {
-            "cluster_id": 7,
-            "short_name": "active",
+            "cluster_id": 6,
+            "short_name": "taken",
             "attributes": [
-                "active",
-                "verified",
-                "final",
-                "training",
-                "research",
-                "clinical",
-                "visit",
-                "permanent",
-                "thesis",
-                "independent"
-            ]
-        },
-        {
-            "cluster_id": 0,
-            "short_name": "support",
-            "attributes": [
-                "support",
-                "urgent",
-                "sealed",
-                "designated",
-                "acting",
-                "project",
-                "sprint",
-                "vact",
-                "sensitive",
-                "high",
-                "response",
-                "authorized",
-                "enrolled",
-                "pending",
-                "department",
-                "renewed",
-                "complete",
-                "compliance",
-                "lead",
-                "hr",
-                "approved",
-                "care"
+                "taken",
+                "start",
+                "id"
             ]
         },
         {
             "cluster_id": 10,
-            "short_name": "elderly",
+            "short_name": "health",
             "attributes": [
-                "elderly",
-                "first",
-                "it",
-                "time",
-                "guest"
-            ]
-        },
-        {
-            "cluster_id": 2,
-            "short_name": "responders",
-            "attributes": [
-                "responders",
-                "cryptography",
-                "emergency",
-                "security",
-                "immunization",
-                "legal",
-                "biosurveillance"
-            ]
-        },
-        {
-            "cluster_id": 4,
-            "short_name": "operational",
-            "attributes": [
-                "operational",
-                "personnel",
-                "priority",
-                "assigned",
-                "allocated"
-            ]
-        },
-        {
-            "cluster_id": 9,
-            "short_name": "completed",
-            "attributes": [
-                "completed",
-                "auditor",
-                "reviewing",
-                "faculty",
-                "primary",
-                "reviewed",
-                "critical",
-                "admissions",
-                "laboratory"
-            ]
-        },
-        {
-            "cluster_id": 11,
-            "short_name": "accountants",
-            "attributes": [
-                "accountants",
-                "financial",
-                "current",
-                "public",
-                "personal"
-            ]
-        },
-        {
-            "cluster_id": 14,
-            "short_name": "certified",
-            "attributes": [
-                "certified",
-                "master",
-                "experienced",
-                "trained"
-            ]
-        },
-        {
-            "cluster_id": 6,
-            "short_name": "library",
-            "attributes": [
-                "library",
-                "database",
-                "network",
-                "confidential",
-                "registrar",
-                "licensed"
-            ]
-        },
-        {
-            "cluster_id": 13,
-            "short_name": "clerical",
-            "attributes": [
-                "clerical",
-                "office"
-            ]
-        },
-        {
-            "cluster_id": 8,
-            "short_name": "specialty",
-            "attributes": [
-                "specialty",
-                "patient",
                 "health",
                 "chronic",
-                "lab",
-                "field"
+                "diagnosis",
+                "hospital",
+                "patient"
             ]
         },
         {
-            "cluster_id": 5,
-            "short_name": "medical",
+            "cluster_id": 17,
+            "short_name": "current",
             "attributes": [
-                "medical",
-                "revised",
-                "registered",
-                "transaction",
-                "expired",
-                "expense",
-                "enrollment",
-                "charge",
-                "student",
-                "scheduled"
+                "current",
+                "personal",
+                "public"
             ]
         },
         {
             "cluster_id": 1,
-            "short_name": "transfer",
+            "short_name": "upcoming",
             "attributes": [
-                "transfer",
-                "oncology",
-                "system",
-                "diagnostic",
-                "application",
-                "digital",
-                "external"
+                "upcoming",
+                "visit"
             ]
         },
         {
-            "cluster_id": 15,
-            "short_name": "semester",
+            "cluster_id": 2,
+            "short_name": "session",
             "attributes": [
-                "semester",
-                "graduate",
-                "exam",
-                "freshman"
+                "session",
+                "created"
+            ]
+        },
+        {
+            "cluster_id": 18,
+            "short_name": "timeout",
+            "attributes": [
+                "timeout"
+            ]
+        },
+        {
+            "cluster_id": 14,
+            "short_name": "designated",
+            "attributes": [
+                "designated",
+                "appropriate"
             ]
         },
         {
             "cluster_id": 3,
-            "short_name": "chief",
+            "short_name": "appointment",
             "attributes": [
-                "chief",
-                "confirmed",
-                "official",
-                "updated",
-                "senior"
+                "appointment",
+                "requested",
+                "own",
+                "new"
+            ]
+        },
+        {
+            "cluster_id": 11,
+            "short_name": "message",
+            "attributes": [
+                "message",
+                "enter"
+            ]
+        },
+        {
+            "cluster_id": 5,
+            "short_name": "office",
+            "attributes": [
+                "office",
+                "family"
+            ]
+        },
+        {
+            "cluster_id": 8,
+            "short_name": "electronic",
+            "attributes": [
+                "electronic",
+                "existing",
+                "monitoring"
+            ]
+        },
+        {
+            "cluster_id": 7,
+            "short_name": "determined",
+            "attributes": [
+                "determined",
+                "given",
+                "allowable",
+                "additional"
+            ]
+        },
+        {
+            "cluster_id": 16,
+            "short_name": "testing",
+            "attributes": [
+                "testing",
+                "laboratory",
+                "comprehensive",
+                "based"
+            ]
+        },
+        {
+            "cluster_id": 4,
+            "short_name": "event",
+            "attributes": [
+                "event",
+                "received",
+                "care"
+            ]
+        },
+        {
+            "cluster_id": 9,
+            "short_name": "satisfaction",
+            "attributes": [
+                "satisfaction",
+                "interaction"
             ]
         },
         {
             "cluster_id": 12,
-            "short_name": "course",
+            "short_name": "historical",
             "attributes": [
-                "course",
-                "undergraduate",
-                "academic",
-                "teaching"
+                "historical",
+                "data",
+                "demographic"
+            ]
+        },
+        {
+            "cluster_id": 24,
+            "short_name": "physician",
+            "attributes": [
+                "physician",
+                "healthcare",
+                "medical"
+            ]
+        },
+        {
+            "cluster_id": 23,
+            "short_name": "soonest",
+            "attributes": [
+                "soonest"
+            ]
+        },
+        {
+            "cluster_id": 0,
+            "short_name": "adverse",
+            "attributes": [
+                "adverse",
+                "physiological",
+                "lab"
+            ]
+        },
+        {
+            "cluster_id": 13,
+            "short_name": "security",
+            "attributes": [
+                "security",
+                "specific"
+            ]
+        },
+        {
+            "cluster_id": 22,
+            "short_name": "pre",
+            "attributes": [
+                "pre"
+            ]
+        },
+        {
+            "cluster_id": 19,
+            "short_name": "sorted",
+            "attributes": [
+                "sorted",
+                "selected"
+            ]
+        },
+        {
+            "cluster_id": 20,
+            "short_name": "access",
+            "attributes": [
+                "access"
+            ]
+        },
+        {
+            "cluster_id": 15,
+            "short_name": "according",
+            "attributes": [
+                "according",
+                "recent"
+            ]
+        },
+        {
+            "cluster_id": 21,
+            "short_name": "prescription",
+            "attributes": [
+                "prescription",
+                "drug"
             ]
         }
     ]

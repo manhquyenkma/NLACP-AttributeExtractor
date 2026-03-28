@@ -31,7 +31,7 @@ BƯỚC 1: Data Processing (Trích xuất & Xác thực ứng viên quan hệ)
   - Kết quả: Lưu vào dataset/relation_candidate.json và dataset/policy_dataset.json.
 
 BƯỚC 2: ABAC Extraction (Trích xuất Môi trường & Hậu xử lý)
-  > python scripts/abac_extraction.py
+  > python scripts/ABAC_extraction.py
   - Đọc các policy đã được xác thực từ Bước 1.
   - Tạo cấu trúc chi tiết cho Môi trường (Thời gian/Không gian).
   - Tự động suy luận short names, namespaces và kiểu dữ liệu.
@@ -39,6 +39,14 @@ BƯỚC 2: ABAC Extraction (Trích xuất Môi trường & Hậu xử lý)
 
 CHẠY RÚT GỌN TẤT CẢ TRONG MỘT:
   > python scripts/run_pipeline.py --sentence "A doctor can read patient records during the night shift."
+
+BƯỚC 3 (Tùy chọn): Đánh giá Metrics (F1, P, R)
+  - Đánh giá Subject/Object (Alohaly datasets):
+    > python scripts/run_evaluation.py
+  - Đánh giá Thuộc tính Môi trường (Context):
+    > python scripts/eval_policy_f1.py --csv --csv-path dataset/annotation_llm_gold.csv
+  - Đánh giá Phân cụm (Clustering):
+    > python scripts/run_evaluation.py --cluster
 
 4. CÁC LỖI THƯỜNG GẶP & CÁCH SỬA
 -------------------------------------------------------
@@ -53,4 +61,4 @@ Cách sửa: Bạn bắt buộc phải chạy lệnh từ THƯ MỤC GỐC của
        Sai:  > cd scripts && python data_processing.py
 
 Lỗi: FileNotFoundError cho dataset/policy_dataset.json khi chạy Bước 2
-Cách sửa: Bạn phải chạy Bước 1 (data_processing.py) trước để tạo file JSON thì mới có thể chạy Bước 2 (abac_extraction.py).
+Cách sửa: Bạn phải chạy Bước 1 (data_processing.py) trước để tạo file JSON thì mới có thể chạy Bước 2 (ABAC_extraction.py).

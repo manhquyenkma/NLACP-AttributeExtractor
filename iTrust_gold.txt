@@ -1,0 +1,84 @@
+The health care personnel may enter and edit personal health information including historical values, immunizations, and office visit information but not notes, laboratory procedures, or family history
+The HCP can indicate that the patient has passed away by providing an appropriate diagnosis code
+The HCP can graph the height or weight of the patient over the last calendar years
+For the patient, the HCP can choose either height or weight to graph
+The HCP can document medications, lab procedures, diagnoses, medical procedures, and immunizations
+The HCP may also add a patient referral
+HCPs can return to an office visit and modify or delete the fields of the office visit
+A patient’s DLHCP can add or delete a patient’s personal representative
+The administrator will maintain and update a listing of allowable immunizations that an HCP can use
+The administrator will maintain a listing of allowable diagnoses that an LHCP can use
+The administrator will maintain and update a listing of allowable drugs that an HCP can use
+The administrator will maintain and update a listing of allowable laboratory procedures that an HCP can use
+An LHCP chooses a chronic disease and a patient
+The system shall enable the administrator to add a new entry for a hospital or modify an existing hospital entry
+The administrator is not allowed through the system interface to delete an existing entry or modify the hospital ID number
+A patient or personal health representative can choose to view a list of their own prescriptions
+The LHCP can view a prescription list for a selected patient
+The HCP can edit patient information according to data format
+The HCP does not have the ability to enter or view the patient’s security question or password
+The LHCP can schedule an appointment with a patient
+The LHCP can view a list of upcoming appointments
+The user can view appointment details
+The LHCP can view a comprehensive patient report
+The LHCP can view a list of requested reports
+A user can view physician satisfaction survey results
+An HCP can create a lab procedure for a given office visit
+An HCP can view a previously created lab procedure
+An HCP can reassign a lab procedure to another lab technician if it is not in the testing state
+An HCP can remove a lab procedure if its status is in transit or received
+The LHCP can view all patients with whom they have had an office visit
+The patient can select a diagnosis and view LHCPs who have handled that diagnosis
+The administrator can assign a healthcare provider to hospitals
+An LHCP can enter a user as part of the system
+A patient or representative can send a message to an LHCP
+An LHCP can send a message to a patient or representative
+A patient or representative can reply to a message
+An LHCP can reply to a message
+A user can read messages from the inbox or outbox
+A user can sort messages by sender, recipient, or timestamp
+A user can apply filters to message viewing
+An LHCP can refer a patient to another HCP
+An HCP can view received referrals
+An HCP can view previously sent referrals
+An LHCP or UAP can add or delete patients from a monitoring list
+An LHCP can delete a patient from the monitoring list
+The LHCP can configure which monitoring data types a patient should report
+A patient can report physiological measurements
+An LHCP can view physiological monitoring data
+The LHCP can select a patient to obtain additional information
+A UAP can report physiological measurements for patients
+A patient representative can report physiological measurements
+A patient can report adverse events for medications
+A patient can report adverse events for immunizations
+A public health agent can view adverse event reports
+A public health agent can view details of a specific report
+A public health agent can remove an adverse event report
+The administrator can record interactions between drugs
+The administrator can view drug interaction information
+The administrator can delete drug interaction information
+The administrator can set session timeout policies
+A user can change their password after answering a security question correctly
+A patient or personal health representative may enter or edit their own demographic information
+An HCP must enter a patient MID to edit demographic information
+An HCP may enter or edit their own demographic information
+An HCP may upload a photo of a patient
+A patient can designate or undesignate an LHCP as a designated provider
+A patient can search for an LHCP by name, specialty, or location
+A patient or representative can view personal health records
+A patient can view access logs sorted by role and date
+A patient or personal health representative can view a list of prescriptions sorted by start date
+The LHCP can view a prescription list sorted by start date
+A user can view a list of appointments whose date and time are equal to or later than the current datetime
+The appointments in the list shall be ordered by appointment date and start time with the soonest upcoming first
+A user can view messages sorted by timestamp with the most recent first
+A user can sort messages by timestamp in ascending or descending order
+A user can filter messages based on a timestamp range between a starting date and an ending date
+A patient can report adverse events for drugs taken in the last months
+A patient can report adverse events for immunizations received in the last months
+A public health agent can view adverse event reports within a given time period
+Electronic sessions must terminate after a pre-determined period of inactivity
+The administrator can set the session timeout period
+Authorization must be disabled after a period of inactivity
+A patient can view access logs sorted by date with the most recent access first
+A patient can view access logs sorted by role and by date for each role with the most recent first

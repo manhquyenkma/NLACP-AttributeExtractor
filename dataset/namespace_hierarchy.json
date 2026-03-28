@@ -1,758 +1,332 @@
 {
     "namespaces": [
         {
-            "namespace": "nurse",
-            "category": "subject",
+            "namespace": "information",
+            "category": "context",
             "all_attributes": [
-                "certified",
-                "chief"
+                "according",
+                "appointment",
+                "current",
+                "determined",
+                "health",
+                "historical",
+                "office",
+                "prescription",
+                "satisfaction",
+                "testing",
+                "upcoming"
             ],
             "assigned_attributes": [
-                "chief"
+                "according",
+                "appointment",
+                "historical",
+                "office",
+                "prescription",
+                "satisfaction"
             ],
             "parents": [
-                "employees",
-                "uaps",
-                "instructors"
+                "representative",
+                "that",
+                "appointments"
             ],
+            "children": []
+        },
+        {
+            "namespace": "personnel",
+            "category": "subject",
+            "all_attributes": [
+                "event"
+            ],
+            "assigned_attributes": [
+                "event"
+            ],
+            "parents": [],
             "children": [
-                "administrators",
-                "accountants",
-                "diagnosis",
-                "doctors",
-                "managers"
+                "reports",
+                "events"
             ]
         },
         {
-            "namespace": "records",
+            "namespace": "code",
             "category": "object",
             "all_attributes": [
-                "accountants",
-                "active",
-                "certified",
-                "chief",
-                "clerical",
-                "elderly",
-                "medical",
-                "responders",
-                "specialty"
+                "designated",
+                "health"
             ],
             "assigned_attributes": [
-                "clerical"
+                "designated"
             ],
             "parents": [
-                "diagnosis",
-                "datasets",
-                "representative"
+                "referral",
+                "disease",
+                "agent"
+            ],
+            "children": []
+        },
+        {
+            "namespace": "medications",
+            "category": "object",
+            "all_attributes": [
+                "adverse",
+                "physician"
+            ],
+            "assigned_attributes": [],
+            "parents": [
+                "provider",
+                "measurements"
+            ],
+            "children": []
+        },
+        {
+            "namespace": "referral",
+            "category": "object",
+            "all_attributes": [
+                "health"
+            ],
+            "assigned_attributes": [
+                "health"
+            ],
+            "parents": [],
+            "children": [
+                "code",
+                "representative",
+                "entry",
+                "records"
+            ]
+        },
+        {
+            "namespace": "fields",
+            "category": "context",
+            "all_attributes": [
+                "office"
+            ],
+            "assigned_attributes": [
+                "office"
+            ],
+            "parents": [],
+            "children": [
+                "procedure"
+            ]
+        },
+        {
+            "namespace": "representative",
+            "category": "object",
+            "all_attributes": [
+                "current",
+                "health"
+            ],
+            "assigned_attributes": [
+                "current"
+            ],
+            "parents": [
+                "referral",
+                "disease",
+                "agent"
             ],
             "children": [
-                "record"
+                "information",
+                "report"
             ]
+        },
+        {
+            "namespace": "that",
+            "category": "context",
+            "all_attributes": [
+                "determined",
+                "testing"
+            ],
+            "assigned_attributes": [
+                "determined",
+                "testing"
+            ],
+            "parents": [],
+            "children": [
+                "information",
+                "procedure"
+            ]
+        },
+        {
+            "namespace": "disease",
+            "category": "object",
+            "all_attributes": [
+                "health"
+            ],
+            "assigned_attributes": [
+                "health"
+            ],
+            "parents": [],
+            "children": [
+                "code",
+                "representative",
+                "entry",
+                "records"
+            ]
+        },
+        {
+            "namespace": "entry",
+            "category": "object",
+            "all_attributes": [
+                "appointment",
+                "electronic",
+                "health"
+            ],
+            "assigned_attributes": [
+                "appointment"
+            ],
+            "parents": [
+                "referral",
+                "disease",
+                "patients"
+            ],
+            "children": []
+        },
+        {
+            "namespace": "number",
+            "category": "context",
+            "all_attributes": [
+                "electronic",
+                "taken"
+            ],
+            "assigned_attributes": [
+                "taken"
+            ],
+            "parents": [
+                "patients",
+                "sessions"
+            ],
+            "children": []
+        },
+        {
+            "namespace": "prescriptions",
+            "category": "object",
+            "all_attributes": [
+                "appointment",
+                "sorted",
+                "taken"
+            ],
+            "assigned_attributes": [
+                "sorted",
+                "taken"
+            ],
+            "parents": [
+                "date"
+            ],
+            "children": []
+        },
+        {
+            "namespace": "list",
+            "category": "object",
+            "all_attributes": [
+                "prescription",
+                "sorted",
+                "taken"
+            ],
+            "assigned_attributes": [
+                "prescription",
+                "sorted",
+                "taken"
+            ],
+            "parents": [],
+            "children": []
+        },
+        {
+            "namespace": "question",
+            "category": "context",
+            "all_attributes": [
+                "message",
+                "security"
+            ],
+            "assigned_attributes": [
+                "security"
+            ],
+            "parents": [
+                "filters"
+            ],
+            "children": []
+        },
+        {
+            "namespace": "appointments",
+            "category": "object",
+            "all_attributes": [
+                "current",
+                "upcoming"
+            ],
+            "assigned_attributes": [
+                "current",
+                "upcoming"
+            ],
+            "parents": [],
+            "children": [
+                "information"
+            ]
+        },
+        {
+            "namespace": "details",
+            "category": "object",
+            "all_attributes": [
+                "appointment",
+                "current",
+                "security"
+            ],
+            "assigned_attributes": [
+                "current",
+                "security"
+            ],
+            "parents": [
+                "date"
+            ],
+            "children": []
+        },
+        {
+            "namespace": "report",
+            "category": "object",
+            "all_attributes": [
+                "adverse",
+                "current",
+                "event",
+                "health",
+                "testing"
+            ],
+            "assigned_attributes": [
+                "event",
+                "testing"
+            ],
+            "parents": [
+                "representative",
+                "event",
+                "records"
+            ],
+            "children": []
         },
         {
             "namespace": "reports",
             "category": "object",
             "all_attributes": [
-                "accountants",
-                "medical"
+                "adverse",
+                "appointment",
+                "current",
+                "event"
             ],
             "assigned_attributes": [],
             "parents": [
-                "campus",
-                "office",
-                "accountant"
-            ],
-            "children": [
-                "logs",
-                "data",
-                "log",
-                "representative"
-            ]
-        },
-        {
-            "namespace": "officers",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "chief",
-                "completed",
-                "library",
-                "responders",
-                "support"
-            ],
-            "assigned_attributes": [
-                "completed"
-            ],
-            "parents": [
-                "audit",
-                "managers",
-                "doctor"
+                "personnel",
+                "event",
+                "date"
             ],
             "children": []
         },
         {
-            "namespace": "grades",
-            "category": "object",
-            "all_attributes": [
-                "active",
-                "elderly",
-                "semester"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "papers",
-                "submissions",
-                "student"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "configurations",
-            "category": "object",
-            "all_attributes": [
-                "active",
-                "library"
-            ],
-            "assigned_attributes": [
-                "active"
-            ],
-            "parents": [
-                "resources",
-                "building",
-                "contractor"
-            ],
-            "children": [
-                "workstations"
-            ]
-        },
-        {
-            "namespace": "devices",
+            "namespace": "results",
             "category": "context",
             "all_attributes": [
-                "accountants",
-                "active",
-                "certified",
-                "completed",
-                "course",
-                "library",
-                "medical",
-                "operational",
-                "semester",
-                "specialty",
-                "support"
+                "physician",
+                "satisfaction"
             ],
             "assigned_attributes": [
-                "library",
-                "semester"
+                "satisfaction"
             ],
             "parents": [
-                "budget",
-                "prescriptions",
-                "application"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "staff",
-            "category": "subject",
-            "all_attributes": [
-                "support"
-            ],
-            "assigned_attributes": [
-                "support"
-            ],
-            "parents": [],
-            "children": [
-                "assistant",
-                "items",
-                "leader",
-                "providers",
-                "managers",
-                "administrator",
-                "report"
-            ]
-        },
-        {
-            "namespace": "datasets",
-            "category": "context",
-            "all_attributes": [
-                "active",
-                "elderly",
-                "responders"
-            ],
-            "assigned_attributes": [
-                "responders"
-            ],
-            "parents": [
-                "papers",
-                "submissions",
-                "employee"
-            ],
-            "children": [
-                "records"
-            ]
-        },
-        {
-            "namespace": "files",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "operational"
-            ],
-            "assigned_attributes": [
-                "active",
-                "operational"
-            ],
-            "parents": [
-                "office",
-                "accountant"
-            ],
-            "children": [
-                "file",
-                "budget"
-            ]
-        },
-        {
-            "namespace": "logs",
-            "category": "context",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "elderly",
-                "medical",
-                "transfer"
-            ],
-            "assigned_attributes": [
-                "transfer"
-            ],
-            "parents": [
-                "reports",
-                "papers",
-                "submissions"
-            ],
-            "children": [
-                "notes"
-            ]
-        },
-        {
-            "namespace": "system",
-            "category": "subject",
-            "all_attributes": [
-                "support"
-            ],
-            "assigned_attributes": [
-                "support"
-            ],
-            "parents": [],
-            "children": [
-                "assistant",
-                "items",
-                "leader",
-                "providers",
-                "managers",
-                "administrator",
-                "report"
-            ]
-        },
-        {
-            "namespace": "campus",
-            "category": "object",
-            "all_attributes": [
-                "medical"
-            ],
-            "assigned_attributes": [
-                "medical"
-            ],
-            "parents": [],
-            "children": [
-                "reports",
-                "application",
-                "procedure",
-                "nurses",
                 "provider"
-            ]
-        },
-        {
-            "namespace": "members",
-            "category": "subject",
-            "all_attributes": [
-                "completed"
-            ],
-            "assigned_attributes": [
-                "completed"
-            ],
-            "parents": [],
-            "children": [
-                "officer",
-                "procedure",
-                "providers",
-                "task"
-            ]
-        },
-        {
-            "namespace": "resources",
-            "category": "object",
-            "all_attributes": [
-                "library"
-            ],
-            "assigned_attributes": [
-                "library"
-            ],
-            "parents": [],
-            "children": [
-                "configurations",
-                "officer",
-                "accountants",
-                "contractors",
-                "audit",
-                "administrator"
-            ]
-        },
-        {
-            "namespace": "papers",
-            "category": "object",
-            "all_attributes": [
-                "active",
-                "elderly"
-            ],
-            "assigned_attributes": [
-                "active"
-            ],
-            "parents": [
-                "users"
-            ],
-            "children": [
-                "grades",
-                "datasets",
-                "logs",
-                "gradebook"
-            ]
-        },
-        {
-            "namespace": "administrators",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "chief",
-                "transfer"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "nurse",
-                "status"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "building",
-            "category": "context",
-            "all_attributes": [
-                "library"
-            ],
-            "assigned_attributes": [
-                "library"
-            ],
-            "parents": [],
-            "children": [
-                "configurations",
-                "officer",
-                "accountants",
-                "contractors",
-                "audit"
-            ]
-        },
-        {
-            "namespace": "schedules",
-            "category": "object",
-            "all_attributes": [
-                "active",
-                "certified",
-                "chief",
-                "course",
-                "semester",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [
-                "semester"
-            ],
-            "parents": [
-                "auditors",
-                "prescriptions"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "students",
-            "category": "subject",
-            "all_attributes": [
-                "support"
-            ],
-            "assigned_attributes": [
-                "support"
-            ],
-            "parents": [],
-            "children": [
-                "assistant",
-                "items",
-                "leader",
-                "report"
-            ]
-        },
-        {
-            "namespace": "materials",
-            "category": "context",
-            "all_attributes": [
-                "active",
-                "course"
-            ],
-            "assigned_attributes": [
-                "active"
-            ],
-            "parents": [
-                "lab",
-                "transcripts"
-            ],
-            "children": [
-                "budget",
-                "prescriptions",
-                "gradebook"
-            ]
-        },
-        {
-            "namespace": "heads",
-            "category": "subject",
-            "all_attributes": [
-                "support"
-            ],
-            "assigned_attributes": [
-                "support"
-            ],
-            "parents": [],
-            "children": []
-        },
-        {
-            "namespace": "submissions",
-            "category": "context",
-            "all_attributes": [
-                "active",
-                "elderly"
-            ],
-            "assigned_attributes": [
-                "active"
-            ],
-            "parents": [
-                "users"
-            ],
-            "children": [
-                "grades",
-                "datasets",
-                "logs"
-            ]
-        },
-        {
-            "namespace": "users",
-            "category": "subject",
-            "all_attributes": [
-                "elderly"
-            ],
-            "assigned_attributes": [
-                "elderly"
-            ],
-            "parents": [],
-            "children": [
-                "papers",
-                "submissions",
-                "patients",
-                "student",
-                "employee"
-            ]
-        },
-        {
-            "namespace": "workstations",
-            "category": "context",
-            "all_attributes": [
-                "active",
-                "course",
-                "library",
-                "responders",
-                "support",
-                "transfer"
-            ],
-            "assigned_attributes": [
-                "course"
-            ],
-            "parents": [
-                "auditor",
-                "report",
-                "configurations"
-            ],
-            "children": [
-                "record"
-            ]
-        },
-        {
-            "namespace": "status",
-            "category": "object",
-            "all_attributes": [
-                "transfer"
-            ],
-            "assigned_attributes": [
-                "transfer"
-            ],
-            "parents": [],
-            "children": [
-                "administrators",
-                "data",
-                "log",
-                "gradebooks",
-                "nurses",
-                "applications",
-                "auditor"
-            ]
-        },
-        {
-            "namespace": "lab",
-            "category": "object",
-            "all_attributes": [
-                "course"
-            ],
-            "assigned_attributes": [
-                "course"
-            ],
-            "parents": [],
-            "children": [
-                "materials",
-                "assistants",
-                "graduate"
-            ]
-        },
-        {
-            "namespace": "officer",
-            "category": "subject",
-            "all_attributes": [
-                "completed",
-                "elderly",
-                "library"
-            ],
-            "assigned_attributes": [
-                "elderly"
-            ],
-            "parents": [
-                "members",
-                "resources",
-                "building"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "chair",
-            "category": "subject",
-            "all_attributes": [
-                "support"
-            ],
-            "assigned_attributes": [
-                "support"
-            ],
-            "parents": [],
-            "children": []
-        },
-        {
-            "namespace": "schedule",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "certified",
-                "chief",
-                "completed",
-                "course",
-                "elderly",
-                "medical",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "gradebook",
-                "prescriptions",
-                "application"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "application",
-            "category": "context",
-            "all_attributes": [
-                "active",
-                "completed",
-                "medical",
-                "specialty"
-            ],
-            "assigned_attributes": [
-                "completed"
-            ],
-            "parents": [
-                "diagnoses",
-                "agents",
-                "campus"
-            ],
-            "children": [
-                "devices",
-                "schedule"
-            ]
-        },
-        {
-            "namespace": "assistant",
-            "category": "subject",
-            "all_attributes": [
-                "course",
-                "support"
-            ],
-            "assigned_attributes": [
-                "course"
-            ],
-            "parents": [
-                "staff",
-                "system",
-                "students"
-            ],
-            "children": [
-                "budget",
-                "prescriptions"
-            ]
-        },
-        {
-            "namespace": "record",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "certified",
-                "chief",
-                "clerical",
-                "course",
-                "elderly",
-                "library",
-                "medical",
-                "responders",
-                "specialty",
-                "support",
-                "transfer"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "records",
-                "gradebook",
-                "workstations"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "items",
-            "category": "object",
-            "all_attributes": [
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [
-                "specialty"
-            ],
-            "parents": [
-                "staff",
-                "system",
-                "students"
-            ],
-            "children": [
-                "procedure",
-                "prescription",
-                "tasks",
-                "budgets",
-                "responder",
-                "agent"
-            ]
-        },
-        {
-            "namespace": "data",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "medical",
-                "specialty",
-                "support",
-                "transfer"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "reports",
-                "status",
-                "prescription"
-            ],
-            "children": [
-                "notes"
-            ]
-        },
-        {
-            "namespace": "notes",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "chief",
-                "course",
-                "elderly",
-                "medical",
-                "semester",
-                "specialty",
-                "support",
-                "transfer"
-            ],
-            "assigned_attributes": [
-                "course",
-                "semester"
-            ],
-            "parents": [
-                "data",
-                "log",
-                "logs"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "leader",
-            "category": "subject",
-            "all_attributes": [
-                "elderly",
-                "support"
-            ],
-            "assigned_attributes": [
-                "elderly"
-            ],
-            "parents": [
-                "staff",
-                "system",
-                "students"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "accountants",
-            "category": "subject",
-            "all_attributes": [
-                "accountants",
-                "certified",
-                "chief",
-                "library"
-            ],
-            "assigned_attributes": [
-                "accountants"
-            ],
-            "parents": [
-                "nurse",
-                "resources",
-                "building"
             ],
             "children": []
         },
@@ -760,929 +334,347 @@
             "namespace": "procedure",
             "category": "object",
             "all_attributes": [
-                "completed",
-                "medical",
-                "specialty",
-                "support"
+                "adverse",
+                "determined",
+                "office",
+                "session",
+                "testing"
             ],
-            "assigned_attributes": [],
+            "assigned_attributes": [
+                "adverse",
+                "session"
+            ],
             "parents": [
-                "items",
-                "campus",
-                "members"
+                "that",
+                "fields",
+                "visit"
             ],
             "children": []
         },
         {
-            "namespace": "file",
+            "namespace": "visit",
             "category": "object",
             "all_attributes": [
-                "accountants",
-                "active",
-                "chief",
-                "operational",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "tasks",
-                "files",
-                "diagnoses"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "diagnosis",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "certified",
-                "chief",
-                "specialty"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "procedures",
-                "nurse",
-                "diagnoses"
-            ],
-            "children": [
-                "records",
-                "gradebook"
-            ]
-        },
-        {
-            "namespace": "transcript",
-            "category": "context",
-            "all_attributes": [
-                "accountants",
-                "certified",
-                "chief",
-                "course",
-                "semester",
-                "specialty",
-                "support"
+                "office"
             ],
             "assigned_attributes": [
-                "course",
-                "semester"
-            ],
-            "parents": [
-                "tasks",
-                "managers",
-                "procedures"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "providers",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "completed",
-                "operational",
-                "support"
-            ],
-            "assigned_attributes": [
-                "certified",
-                "operational"
-            ],
-            "parents": [
-                "staff",
-                "system",
-                "members"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "auditors",
-            "category": "subject",
-            "all_attributes": [
-                "active",
-                "certified",
-                "chief",
-                "support"
-            ],
-            "assigned_attributes": [
-                "active"
-            ],
-            "parents": [
-                "managers"
-            ],
-            "children": [
-                "schedules"
-            ]
-        },
-        {
-            "namespace": "responders",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "responders"
-            ],
-            "assigned_attributes": [
-                "responders"
-            ],
-            "parents": [
-                "employees",
-                "uaps",
-                "instructors"
-            ],
-            "children": [
-                "audit"
-            ]
-        },
-        {
-            "namespace": "budget",
-            "category": "context",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "course",
-                "operational",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [
-                "specialty"
-            ],
-            "parents": [
-                "files",
-                "materials",
-                "assistant"
-            ],
-            "children": [
-                "devices"
-            ]
-        },
-        {
-            "namespace": "chairs",
-            "category": "subject",
-            "all_attributes": [
-                "support"
-            ],
-            "assigned_attributes": [
-                "support"
+                "office"
             ],
             "parents": [],
-            "children": []
+            "children": [
+                "procedure"
+            ]
+        },
+        {
+            "namespace": "provider",
+            "category": "object",
+            "all_attributes": [
+                "physician"
+            ],
+            "assigned_attributes": [
+                "physician"
+            ],
+            "parents": [],
+            "children": [
+                "medications",
+                "results"
+            ]
+        },
+        {
+            "namespace": "filters",
+            "category": "context",
+            "all_attributes": [
+                "message"
+            ],
+            "assigned_attributes": [
+                "message"
+            ],
+            "parents": [],
+            "children": [
+                "question"
+            ]
         },
         {
             "namespace": "patients",
-            "category": "subject",
+            "category": "context",
             "all_attributes": [
-                "elderly",
-                "specialty"
+                "electronic"
             ],
             "assigned_attributes": [
-                "specialty"
-            ],
-            "parents": [
-                "users"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "employees",
-            "category": "subject",
-            "all_attributes": [
-                "certified"
-            ],
-            "assigned_attributes": [
-                "certified"
+                "electronic"
             ],
             "parents": [],
             "children": [
-                "nurse",
-                "responders",
-                "contractors",
-                "assistants",
-                "nurses",
-                "download"
-            ]
-        },
-        {
-            "namespace": "log",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "chief",
-                "medical",
-                "specialty",
-                "support",
-                "transfer"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "reports",
-                "status",
-                "tasks"
-            ],
-            "children": [
-                "notes"
-            ]
-        },
-        {
-            "namespace": "doctors",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "chief",
-                "operational"
-            ],
-            "assigned_attributes": [
-                "operational"
-            ],
-            "parents": [
-                "nurse"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "uaps",
-            "category": "subject",
-            "all_attributes": [
-                "certified"
-            ],
-            "assigned_attributes": [
-                "certified"
-            ],
-            "parents": [],
-            "children": [
-                "nurse",
-                "responders",
-                "assistants",
-                "download"
-            ]
-        },
-        {
-            "namespace": "prescription",
-            "category": "object",
-            "all_attributes": [
-                "active",
-                "medical",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [
-                "medical"
-            ],
-            "parents": [
-                "items",
-                "diagnoses",
-                "agents"
-            ],
-            "children": [
+                "entry",
+                "number",
+                "patient",
                 "data"
             ]
         },
         {
-            "namespace": "contractors",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "library",
-                "operational"
-            ],
-            "assigned_attributes": [
-                "operational"
-            ],
-            "parents": [
-                "resources",
-                "building",
-                "employees"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "assistants",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "course",
-                "operational"
-            ],
-            "assigned_attributes": [
-                "operational"
-            ],
-            "parents": [
-                "lab",
-                "employees",
-                "uaps"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "tasks",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "chief",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [
-                "chief"
-            ],
-            "parents": [
-                "items",
-                "office",
-                "accountant"
-            ],
-            "children": [
-                "file",
-                "transcript",
-                "log",
-                "task"
-            ]
-        },
-        {
-            "namespace": "gradebooks",
-            "category": "object",
-            "all_attributes": [
-                "active",
-                "chief",
-                "clerical",
-                "semester",
-                "transfer"
-            ],
-            "assigned_attributes": [
-                "active",
-                "chief",
-                "clerical",
-                "semester"
-            ],
-            "parents": [
-                "status"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "diagnoses",
+            "namespace": "patient",
             "category": "context",
             "all_attributes": [
-                "active",
-                "specialty"
+                "designated",
+                "electronic",
+                "historical"
             ],
             "assigned_attributes": [
-                "active",
-                "specialty"
+                "designated",
+                "historical"
             ],
-            "parents": [],
-            "children": [
-                "application",
-                "file",
-                "diagnosis",
-                "prescription",
-                "budgets"
-            ]
+            "parents": [
+                "patients",
+                "sessions"
+            ],
+            "children": []
         },
         {
-            "namespace": "instructors",
-            "category": "subject",
-            "all_attributes": [
-                "certified"
-            ],
-            "assigned_attributes": [
-                "certified"
-            ],
-            "parents": [],
-            "children": [
-                "nurse",
-                "responders",
-                "download"
-            ]
-        },
-        {
-            "namespace": "prescriptions",
+            "namespace": "measurements",
             "category": "object",
             "all_attributes": [
-                "active",
-                "certified",
-                "course",
-                "specialty",
-                "support"
+                "adverse"
             ],
-            "assigned_attributes": [],
-            "parents": [
-                "budgets",
-                "materials",
-                "assistant"
+            "assigned_attributes": [
+                "adverse"
             ],
+            "parents": [],
             "children": [
-                "devices",
-                "schedules",
-                "schedule"
+                "medications",
+                "data",
+                "events",
+                "event"
             ]
         },
         {
-            "namespace": "budgets",
+            "namespace": "data",
             "category": "context",
             "all_attributes": [
-                "active",
-                "certified",
-                "specialty",
-                "support"
+                "adverse",
+                "electronic"
             ],
             "assigned_attributes": [],
             "parents": [
-                "items",
-                "diagnoses",
-                "download"
-            ],
-            "children": [
-                "prescriptions"
-            ]
-        },
-        {
-            "namespace": "audit",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "library",
-                "responders"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "responders",
-                "resources",
-                "building"
-            ],
-            "children": [
-                "officers",
-                "responder"
-            ]
-        },
-        {
-            "namespace": "managers",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "chief",
-                "support"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "nurse",
-                "staff",
-                "system"
-            ],
-            "children": [
-                "officers",
-                "transcript",
-                "auditors"
-            ]
-        },
-        {
-            "namespace": "nurses",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "medical",
-                "transfer"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "campus",
-                "status",
-                "employees"
+                "patients",
+                "measurements",
+                "sessions"
             ],
             "children": []
         },
         {
-            "namespace": "download",
-            "category": "subject",
+            "namespace": "events",
+            "category": "object",
             "all_attributes": [
-                "certified",
-                "specialty"
+                "adverse",
+                "event",
+                "taken"
             ],
             "assigned_attributes": [
-                "specialty"
+                "taken"
             ],
             "parents": [
-                "employees",
-                "uaps",
-                "instructors"
+                "personnel",
+                "measurements"
             ],
-            "children": [
-                "budgets",
-                "procedures",
-                "responder"
-            ]
+            "children": []
         },
         {
-            "namespace": "procedures",
+            "namespace": "event",
             "category": "context",
             "all_attributes": [
-                "accountants",
-                "certified",
-                "specialty"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "download",
-                "office",
-                "accountant"
-            ],
-            "children": [
-                "diagnosis",
-                "transcript"
-            ]
-        },
-        {
-            "namespace": "agents",
-            "category": "subject",
-            "all_attributes": [
-                "active",
-                "specialty"
+                "adverse",
+                "current"
             ],
             "assigned_attributes": [
-                "active",
-                "specialty"
-            ],
-            "parents": [],
-            "children": [
-                "application",
-                "prescription"
-            ]
-        },
-        {
-            "namespace": "office",
-            "category": "context",
-            "all_attributes": [
-                "accountants"
-            ],
-            "assigned_attributes": [
-                "accountants"
-            ],
-            "parents": [],
-            "children": [
-                "reports",
-                "files",
-                "tasks",
-                "procedures"
-            ]
-        },
-        {
-            "namespace": "applications",
-            "category": "object",
-            "all_attributes": [
-                "course",
-                "specialty",
-                "transfer"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "status",
-                "graduate"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "ward",
-            "category": "context",
-            "all_attributes": [
-                "completed"
-            ],
-            "assigned_attributes": [
-                "completed"
-            ],
-            "parents": [],
-            "children": [
-                "task"
-            ]
-        },
-        {
-            "namespace": "transcripts",
-            "category": "object",
-            "all_attributes": [
-                "course"
-            ],
-            "assigned_attributes": [
-                "course"
-            ],
-            "parents": [],
-            "children": [
-                "materials",
-                "graduate"
-            ]
-        },
-        {
-            "namespace": "administrator",
-            "category": "subject",
-            "all_attributes": [
-                "library",
-                "support"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "staff",
-                "system",
-                "resources"
-            ],
-            "children": [
-                "provider",
-                "doctor",
-                "auditor"
-            ]
-        },
-        {
-            "namespace": "task",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "chief",
-                "completed",
-                "operational",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [
-                "operational"
+                "current"
             ],
             "parents": [
-                "members",
-                "tasks",
-                "ward"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "provider",
-            "category": "subject",
-            "all_attributes": [
-                "library",
-                "medical",
-                "operational",
-                "support"
-            ],
-            "assigned_attributes": [
-                "operational"
-            ],
-            "parents": [
-                "campus",
-                "administrator"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "gradebook",
-            "category": "object",
-            "all_attributes": [
-                "accountants",
-                "active",
-                "certified",
-                "chief",
-                "course",
-                "elderly",
-                "specialty"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "diagnosis",
-                "papers",
-                "materials"
+                "measurements"
             ],
             "children": [
-                "schedule",
-                "record"
-            ]
-        },
-        {
-            "namespace": "responder",
-            "category": "subject",
-            "all_attributes": [
-                "certified",
-                "library",
-                "responders",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "audit",
-                "items",
-                "download"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "accountant",
-            "category": "subject",
-            "all_attributes": [
-                "accountants"
-            ],
-            "assigned_attributes": [
-                "accountants"
-            ],
-            "parents": [],
-            "children": [
-                "reports",
-                "files",
-                "tasks",
-                "procedures"
-            ]
-        },
-        {
-            "namespace": "student",
-            "category": "subject",
-            "all_attributes": [
-                "elderly",
-                "semester"
-            ],
-            "assigned_attributes": [
-                "semester"
-            ],
-            "parents": [
-                "users"
-            ],
-            "children": [
-                "grades"
-            ]
-        },
-        {
-            "namespace": "employee",
-            "category": "subject",
-            "all_attributes": [
-                "active",
-                "elderly"
-            ],
-            "assigned_attributes": [
-                "active"
-            ],
-            "parents": [
-                "users"
-            ],
-            "children": [
-                "datasets"
-            ]
-        },
-        {
-            "namespace": "graduate",
-            "category": "subject",
-            "all_attributes": [
-                "course",
-                "specialty"
-            ],
-            "assigned_attributes": [
-                "specialty"
-            ],
-            "parents": [
-                "lab",
-                "transcripts"
-            ],
-            "children": [
-                "applications"
-            ]
-        },
-        {
-            "namespace": "doctor",
-            "category": "subject",
-            "all_attributes": [
-                "chief",
-                "library",
-                "support"
-            ],
-            "assigned_attributes": [
-                "chief"
-            ],
-            "parents": [
-                "administrator"
-            ],
-            "children": [
-                "officers",
-                "agent"
-            ]
-        },
-        {
-            "namespace": "auditor",
-            "category": "subject",
-            "all_attributes": [
-                "library",
-                "support",
-                "transfer"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "status",
-                "administrator"
-            ],
-            "children": [
-                "workstations"
-            ]
-        },
-        {
-            "namespace": "instructor",
-            "category": "subject",
-            "all_attributes": [
-                "support"
-            ],
-            "assigned_attributes": [
-                "support"
-            ],
-            "parents": [],
-            "children": []
-        },
-        {
-            "namespace": "representative",
-            "category": "subject",
-            "all_attributes": [
-                "accountants",
-                "medical",
-                "responders"
-            ],
-            "assigned_attributes": [
-                "responders"
-            ],
-            "parents": [
+                "report",
                 "reports"
-            ],
-            "children": [
-                "records"
             ]
         },
         {
             "namespace": "agent",
             "category": "subject",
             "all_attributes": [
-                "chief",
-                "library",
-                "specialty",
-                "support"
-            ],
-            "assigned_attributes": [],
-            "parents": [
-                "items",
-                "doctor"
-            ],
-            "children": []
-        },
-        {
-            "namespace": "contractor",
-            "category": "subject",
-            "all_attributes": [
-                "library"
+                "health"
             ],
             "assigned_attributes": [
-                "library"
+                "health"
             ],
             "parents": [],
             "children": [
-                "configurations"
+                "code",
+                "representative",
+                "records"
             ]
         },
         {
-            "namespace": "report",
+            "namespace": "policies",
             "category": "context",
             "all_attributes": [
-                "active",
-                "responders",
-                "support"
+                "session",
+                "timeout"
             ],
             "assigned_attributes": [
-                "active",
-                "responders"
+                "session",
+                "timeout"
+            ],
+            "parents": [],
+            "children": []
+        },
+        {
+            "namespace": "records",
+            "category": "object",
+            "all_attributes": [
+                "current",
+                "health"
+            ],
+            "assigned_attributes": [
+                "current"
             ],
             "parents": [
-                "staff",
-                "system",
-                "students"
+                "referral",
+                "disease",
+                "agent"
             ],
             "children": [
-                "workstations"
+                "report"
             ]
+        },
+        {
+            "namespace": "logs",
+            "category": "object",
+            "all_attributes": [
+                "access",
+                "according",
+                "sorted"
+            ],
+            "assigned_attributes": [
+                "access",
+                "according",
+                "sorted"
+            ],
+            "parents": [],
+            "children": []
+        },
+        {
+            "namespace": "date",
+            "category": "subject",
+            "all_attributes": [
+                "appointment"
+            ],
+            "assigned_attributes": [
+                "appointment"
+            ],
+            "parents": [],
+            "children": [
+                "prescriptions",
+                "details",
+                "reports"
+            ]
+        },
+        {
+            "namespace": "time",
+            "category": "context",
+            "all_attributes": [
+                "soonest"
+            ],
+            "assigned_attributes": [
+                "soonest"
+            ],
+            "parents": [],
+            "children": []
+        },
+        {
+            "namespace": "messages",
+            "category": "object",
+            "all_attributes": [
+                "according",
+                "sorted",
+                "testing"
+            ],
+            "assigned_attributes": [
+                "according",
+                "sorted",
+                "testing"
+            ],
+            "parents": [],
+            "children": []
+        },
+        {
+            "namespace": "sessions",
+            "category": "subject",
+            "all_attributes": [
+                "electronic"
+            ],
+            "assigned_attributes": [
+                "electronic"
+            ],
+            "parents": [],
+            "children": [
+                "number",
+                "patient",
+                "data"
+            ]
+        },
+        {
+            "namespace": "inactivity",
+            "category": "context",
+            "all_attributes": [
+                "determined",
+                "pre"
+            ],
+            "assigned_attributes": [
+                "determined",
+                "pre"
+            ],
+            "parents": [],
+            "children": []
+        },
+        {
+            "namespace": "period",
+            "category": "context",
+            "all_attributes": [
+                "session",
+                "timeout"
+            ],
+            "assigned_attributes": [
+                "session",
+                "timeout"
+            ],
+            "parents": [],
+            "children": []
         }
     ],
     "root_subjects": [
-        "staff",
-        "system",
-        "members",
-        "students",
-        "heads",
-        "users",
-        "chair",
-        "chairs",
-        "employees",
-        "uaps",
-        "instructors",
-        "agents",
-        "accountant",
-        "instructor",
-        "contractor"
+        "personnel",
+        "agent",
+        "date",
+        "sessions"
     ],
     "root_objects": [
-        "campus",
-        "resources",
-        "status",
-        "lab",
-        "transcripts"
+        "referral",
+        "disease",
+        "list",
+        "appointments",
+        "visit",
+        "provider",
+        "measurements",
+        "logs",
+        "messages"
     ],
     "root_contexts": [
-        "building",
-        "diagnoses",
-        "office",
-        "ward"
+        "fields",
+        "that",
+        "filters",
+        "patients",
+        "policies",
+        "time",
+        "inactivity",
+        "period"
     ]
 }

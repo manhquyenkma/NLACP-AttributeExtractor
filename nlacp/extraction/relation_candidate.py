@@ -104,9 +104,10 @@ def extract_relations(sentence, tokens, _doc=None):
             for child in token.children:
                 if child.dep_ == "conj" and child.pos_ in ("VERB", "NOUN"):
                     raw_actions.append(child.lemma_)
-        elif token.pos_ == "VERB" and token.dep_ != "aux":
-            if token.lemma_ not in raw_actions:
-               raw_actions.append(token.lemma_)
+                # Thêm: xcomp (open clausal complement) — "allowed to edit"
+                elif child.dep_ == "xcomp" and child.pos_ == "VERB":
+                    raw_actions.append(child.lemma_)
+
 
         if token.dep_ == "dobj":
             obj_dobj = token.text

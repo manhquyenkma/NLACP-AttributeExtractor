@@ -1,0 +1,85 @@
+ID,Source,Sentence,subject,object,actions,temporal_gold,spatial_gold,temporal_final,spatial_final,note,annotator,status
+IT0001,itrust,"The health care personnel may enter and edit personal health information including historical values, immunizations, and office visit information but not notes, laboratory procedures, or family history",health care personnel,personal health information,Edit|Enter,,,,,auto-annotated,spacy+rule,auto
+IT0002,itrust,The HCP can indicate that the patient has passed away by providing an appropriate diagnosis code,HCP,appropriate diagnosis code,Indicate|Provide,,,,,auto-annotated,spacy+rule,auto
+IT0003,itrust,The HCP can graph the height or weight of the patient over the last calendar years,HCP,height,Graph,,,,,auto-annotated,spacy+rule,auto
+IT0004,itrust,"For the patient, the HCP can choose either height or weight to graph",HCP,patient,Choose|Graph,,,,,auto-annotated,spacy+rule,auto
+IT0005,itrust,"The HCP can document medications, lab procedures, diagnoses, medical procedures, and immunizations",HCP,medications,Document,,,,,auto-annotated,spacy+rule,auto
+IT0006,itrust,The HCP may also add a patient referral,HCP,patient referral,Add,,,,,auto-annotated,spacy+rule,auto
+IT0007,itrust,HCPs can return to an office visit and modify or delete the fields of the office visit,HCPs,office visit,Delete|Modify,,,,,auto-annotated,spacy+rule,auto
+IT0008,itrust,A patient’s DLHCP can add or delete a patient’s personal representative,patient’s DLHCP,patient’s personal representative,Add|Delete,,,,,auto-annotated,spacy+rule,auto
+IT0009,itrust,The administrator will maintain and update a listing of allowable immunizations that an HCP can use,administrator,listing,Maintain|Update|Use,,,,,auto-annotated,spacy+rule,auto
+IT0010,itrust,The administrator will maintain a listing of allowable diagnoses that an LHCP can use,administrator,listing,Maintain|Use,,,,,auto-annotated,spacy+rule,auto
+IT0011,itrust,The administrator will maintain and update a listing of allowable drugs that an HCP can use,administrator,listing,Maintain|Update|Use,,,,,auto-annotated,spacy+rule,auto
+IT0012,itrust,The administrator will maintain and update a listing of allowable laboratory procedures that an HCP can use,administrator,listing,Maintain|Update|Use,,,,,auto-annotated,spacy+rule,auto
+IT0013,itrust,An LHCP chooses a chronic disease and a patient,LHCP,chronic disease,Choose,,,,,auto-annotated,spacy+rule,auto
+IT0014,itrust,The system shall enable the administrator to add a new entry for a hospital or modify an existing hospital entry,system,administrator,Add|Enable|Modify,,,,,auto-annotated,spacy+rule,auto
+IT0015,itrust,The administrator is not allowed through the system interface to delete an existing entry or modify the hospital ID number,administrator,system interface,Delete|Modify,,,,,auto-annotated,spacy+rule,auto
+IT0016,itrust,A patient or personal health representative can choose to view a list of their own prescriptions,patient,list,Choose|View,,,,,auto-annotated,spacy+rule,auto
+IT0017,itrust,The LHCP can view a prescription list for a selected patient,LHCP,prescription list,Select|View,,,,,auto-annotated,spacy+rule,auto
+IT0018,itrust,The HCP can edit patient information according to data format,HCP,patient information,Edit,,,,,auto-annotated,spacy+rule,auto
+IT0019,itrust,The HCP does not have the ability to enter or view the patient’s security question or password,HCP,patient’s security question,Enter|View,,,,,auto-annotated,spacy+rule,auto
+IT0020,itrust,The LHCP can schedule an appointment with a patient,LHCP,appointment,Schedule,,,,,auto-annotated,spacy+rule,auto
+IT0021,itrust,The LHCP can view a list of upcoming appointments,LHCP,list,View,,,,,auto-annotated,spacy+rule,auto
+IT0022,itrust,The user can view appointment details,user,appointment details,View,,,,,auto-annotated,spacy+rule,auto
+IT0023,itrust,The LHCP can view a comprehensive patient report,LHCP,comprehensive patient report,View,,,,,auto-annotated,spacy+rule,auto
+IT0024,itrust,The LHCP can view a list of requested reports,LHCP,list,View,,,,,auto-annotated,spacy+rule,auto
+IT0025,itrust,A user can view physician satisfaction survey results,user,physician satisfaction survey,View,,,,,auto-annotated,spacy+rule,auto
+IT0026,itrust,An HCP can create a lab procedure for a given office visit,HCP,lab procedure,Create,,,,,auto-annotated,spacy+rule,auto
+IT0027,itrust,An HCP can view a previously created lab procedure,HCP,previously created lab procedure,Create|View,,,,,auto-annotated,spacy+rule,auto
+IT0028,itrust,An HCP can reassign a lab procedure to another lab technician if it is not in the testing state,HCP,lab procedure,Reassign,,,,,auto-annotated,spacy+rule,auto
+IT0029,itrust,An HCP can remove a lab procedure if its status is in transit or received,HCP,lab procedure,Receive|Remove,,,,,auto-annotated,spacy+rule,auto
+IT0030,itrust,The LHCP can view all patients with whom they have had an office visit,LHCP,all patients,View,,,,,auto-annotated,spacy+rule,auto
+IT0031,itrust,The patient can select a diagnosis and view LHCPs who have handled that diagnosis,patient,diagnosis,Select,,,,,auto-annotated,spacy+rule,auto
+IT0032,itrust,The administrator can assign a healthcare provider to hospitals,administrator,healthcare provider,Assign,,,,,auto-annotated,spacy+rule,auto
+IT0033,itrust,An LHCP can enter a user as part of the system,LHCP,user,Enter,,,,,auto-annotated,spacy+rule,auto
+IT0034,itrust,A patient or representative can send a message to an LHCP,patient,message,Send,,,,,auto-annotated,spacy+rule,auto
+IT0035,itrust,An LHCP can send a message to a patient or representative,LHCP,message,Send,,,,,auto-annotated,spacy+rule,auto
+IT0036,itrust,A patient or representative can reply to a message,patient,message,Reply,,,,,auto-annotated,spacy+rule,auto
+IT0037,itrust,An LHCP can reply to a message,LHCP,message,Reply,,,,,auto-annotated,spacy+rule,auto
+IT0038,itrust,A user can read messages from the inbox or outbox,user,messages,Read,,,,,auto-annotated,spacy+rule,auto
+IT0039,itrust,"A user can sort messages by sender, recipient, or timestamp",user,messages,Sort,,,,,auto-annotated,spacy+rule,auto
+IT0040,itrust,A user can apply filters to message viewing,user,filters,Apply|View,,,,,auto-annotated,spacy+rule,auto
+IT0041,itrust,An LHCP can refer a patient to another HCP,LHCP,patient,Refer,,,,,auto-annotated,spacy+rule,auto
+IT0042,itrust,An HCP can view received referrals,HCP,referrals,Receive,,,,,auto-annotated,spacy+rule,auto
+IT0043,itrust,An HCP can view previously sent referrals,HCP,referrals,Send,,,,,auto-annotated,spacy+rule,auto
+IT0044,itrust,An LHCP or UAP can add or delete patients from a monitoring list,LHCP,monitoring list,Add,,,,,auto-annotated,spacy+rule,auto
+IT0045,itrust,An LHCP can delete a patient from the monitoring list,LHCP,patient,Delete,,,,,auto-annotated,spacy+rule,auto
+IT0046,itrust,The LHCP can configure which monitoring data types a patient should report,LHCP,data types,Configure|Monitor|Report,,,,,auto-annotated,spacy+rule,auto
+IT0047,itrust,A patient can report physiological measurements,patient,physiological measurements,Report,,,,,auto-annotated,spacy+rule,auto
+IT0048,itrust,An LHCP can view physiological monitoring data,LHCP,physiological monitoring data,View,,,,,auto-annotated,spacy+rule,auto
+IT0049,itrust,The LHCP can select a patient to obtain additional information,LHCP,patient,Obtain|Select,,,,,auto-annotated,spacy+rule,auto
+IT0050,itrust,A UAP can report physiological measurements for patients,UAP,physiological measurements,Report,,,,,auto-annotated,spacy+rule,auto
+IT0051,itrust,A patient representative can report physiological measurements,patient representative,physiological measurements,Report,,,,,auto-annotated,spacy+rule,auto
+IT0052,itrust,A patient can report adverse events for medications,patient,adverse events,Report,,,,,auto-annotated,spacy+rule,auto
+IT0053,itrust,A patient can report adverse events for immunizations,patient,adverse events,Report,,,,,auto-annotated,spacy+rule,auto
+IT0054,itrust,A public health agent can view adverse event reports,public health agent,adverse event,View,,,,,auto-annotated,spacy+rule,auto
+IT0055,itrust,A public health agent can view details of a specific report,public health agent,details,View,,,,,auto-annotated,spacy+rule,auto
+IT0056,itrust,A public health agent can remove an adverse event report,public health agent,adverse event report,Remove,,,,,auto-annotated,spacy+rule,auto
+IT0057,itrust,The administrator can record interactions between drugs,administrator,interactions,Record,,,,,auto-annotated,spacy+rule,auto
+IT0058,itrust,The administrator can view drug interaction information,administrator,drug interaction information,View,,,,,auto-annotated,spacy+rule,auto
+IT0059,itrust,The administrator can delete drug interaction information,administrator,drug interaction information,Delete,,,,,auto-annotated,spacy+rule,auto
+IT0060,itrust,The administrator can set session timeout policies,administrator,session timeout policies,Set,,,,,auto-annotated,spacy+rule,auto
+IT0061,itrust,A user can change their password after answering a security question correctly,user,password,Change,,,,,auto-annotated,spacy+rule,auto
+IT0062,itrust,A patient or personal health representative may enter or edit their own demographic information,patient,own demographic information,Edit|Enter,,,,,auto-annotated,spacy+rule,auto
+IT0063,itrust,An HCP must enter a patient MID to edit demographic information,HCP,patient MID,Edit|Enter,,,,,auto-annotated,spacy+rule,auto
+IT0064,itrust,An HCP may enter or edit their own demographic information,HCP,own demographic information,Edit|Enter,,,,,auto-annotated,spacy+rule,auto
+IT0065,itrust,An HCP may upload a photo of a patient,HCP,photo,Upload,,,,,auto-annotated,spacy+rule,auto
+IT0066,itrust,A patient can designate or undesignate an LHCP as a designated provider,patient,LHCP,Designate|Undesignate,,,,,auto-annotated,spacy+rule,auto
+IT0067,itrust,"A patient can search for an LHCP by name, specialty, or location",patient,LHCP,Search,,,,,auto-annotated,spacy+rule,auto
+IT0068,itrust,A patient or representative can view personal health records,patient,personal health records,View,,,,,auto-annotated,spacy+rule,auto
+IT0069,itrust,A patient can view access logs sorted by role and date,patient,access logs,Sort|View,,,,,auto-annotated,spacy+rule,auto
+IT0070,itrust,A patient or personal health representative can view a list of prescriptions sorted by start date,patient,list,Sort|View,,,,,auto-annotated,spacy+rule,auto
+IT0071,itrust,The LHCP can view a prescription list sorted by start date,LHCP,prescription list,Sort|View,,,,,auto-annotated,spacy+rule,auto
+IT0072,itrust,A user can view a list of appointments whose date and time are equal to or later than the current datetime,user,list,View,,,,,auto-annotated,spacy+rule,auto
+IT0073,itrust,The appointments in the list shall be ordered by appointment date and start time with the soonest upcoming first,appointments,list,Order,,,,,auto-annotated,spacy+rule,auto
+IT0074,itrust,A user can view messages sorted by timestamp with the most recent first,user,messages,Sort|View,,,,,auto-annotated,spacy+rule,auto
+IT0075,itrust,A user can sort messages by timestamp in ascending or descending order,user,messages,Sort,,,,,auto-annotated,spacy+rule,auto
+IT0076,itrust,A user can filter messages based on a timestamp range between a starting date and an ending date,user,messages,Filter,,,,,auto-annotated,spacy+rule,auto
+IT0077,itrust,A patient can report adverse events for drugs taken in the last months,patient,adverse events,Report,,,,,auto-annotated,spacy+rule,auto
+IT0078,itrust,A patient can report adverse events for immunizations received in the last months,patient,adverse events,Receive|Report,,,,,auto-annotated,spacy+rule,auto
+IT0079,itrust,A public health agent can view adverse event reports within a given time period,public health agent,adverse event reports,View,,,,,auto-annotated,spacy+rule,auto
+IT0080,itrust,Electronic sessions must terminate after a pre-determined period of inactivity,Electronic sessions,pre-determined period,Terminate,,,,,auto-annotated,spacy+rule,auto
+IT0081,itrust,The administrator can set the session timeout period,administrator,session timeout period,Set,,,,,auto-annotated,spacy+rule,auto
+IT0082,itrust,Authorization must be disabled after a period of inactivity,Authorization,period,Disable,,,,,auto-annotated,spacy+rule,auto
+IT0083,itrust,A patient can view access logs sorted by date with the most recent access first,patient,access logs,Sort|View,,,,,auto-annotated,spacy+rule,auto
+IT0084,itrust,A patient can view access logs sorted by role and by date for each role with the most recent first,patient,access logs,Sort|View,,,,,auto-annotated,spacy+rule,auto
