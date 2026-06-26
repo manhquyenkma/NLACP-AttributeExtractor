@@ -101,11 +101,12 @@ def _display_policy(policy: dict, idx_display: int, total: int):
     print(f"  Policy [{idx_display}/{total}]  id={policy['id']}")
     print(f"  Câu : {policy['sentence']}")
     _divider("·")
-    sub = policy.get("subject")
+    sub = policy.get("subjects", policy.get("subject"))
     print(f"  Subject    : {sub if sub else '(none)'}")
     acts = policy.get("actions", [])
-    print(f"  Actions    : {', '.join(acts) if acts else '(none)'}")
-    obj = policy.get("object")
+    acts_str = [a.get("verb", str(a)) if isinstance(a, dict) else str(a) for a in acts]
+    print(f"  Actions    : {', '.join(acts_str) if acts_str else '(none)'}")
+    obj = policy.get("resource", policy.get("object"))
     print(f"  Object     : {obj if obj else '(none)'}")
     env_list = policy.get("environment", [])
     if env_list:
@@ -122,7 +123,10 @@ def _display_policy(policy: dict, idx_display: int, total: int):
     if pairs:
         print(f"  SA/OA pairs ({len(pairs)}):")
         for p in pairs:
-            print(f"    '{p[1]}' → '{p[0]}'")
+            if isinstance(p, dict):
+                print(f"    '{p.get('attribute', '?')}={p.get('value', '?')}' → '{p.get('entity', '?')}'")
+            else:
+                print(f"    '{p[1]}' → '{p[0]}'")
     _divider("·")
 
 

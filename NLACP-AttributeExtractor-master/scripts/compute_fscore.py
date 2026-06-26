@@ -108,25 +108,57 @@ def evaluate_pair(gold: dict, pred: dict) -> dict:
     Trả về dict với TP/FP/FN cho mỗi trường.
     """
     result = {}
-
     # ── Subject ────────────────────────────────────────────────────
-    g_sub = _to_set(gold.get("subject"))
-    p_sub = _to_set(pred.get("subject"))
+    # Handle both old 'subject' (list of str) and new 'subjects' (list of dict)
+    def _extract_subject_strings(policy):
+        if "subjects" in policy:
+            return {s.get("role", str(s)).lower().strip() for s in policy["subjects"]}
+        return _to_set(policy.get("subject"))
+
+    g_sub = _extract_subject_strings(gold)
+    p_sub = _extract_subject_strings(pred)
     result["subject"] = _compute_tp_fp_fn_sets(g_sub, p_sub)
 
     # ── Actions ────────────────────────────────────────────────────
-    g_act = {_norm_str(a) for a in gold.get("actions", []) if a}
-    p_act = {_norm_str(a) for a in pred.get("actions", []) if a}
+    def _extract_action_strings(policy):
+        acts = set()
+        for a in policy.get("actions", []):
+            if isinstance(a, dict):
+                acts.add(str(a.get("verb", "")).lower().strip())
+            else:
+                acts.add(_norm_str(a))
+        return acts
+
+    g_act = _extract_action_strings(gold)
+    p_act = _extract_action_strings(pred)
     result["actions"] = _compute_tp_fp_fn_sets(g_act, p_act)
 
-    # ── Object ─────────────────────────────────────────────────────
-    g_obj = _to_set(gold.get("object"))
-    p_obj = _to_set(pred.get("object"))
+    # ── Object/Resource ────────────────────────────────────────────
+    def _extract_object_strings(policy):
+        if "resource" in policy:
+            res = policy["resource"]
+            return {str(res.get("label", str(res))).lower().strip()}
+        return _to_set(policy.get("object"))
+
+    g_obj = _extract_object_strings(gold)
+    p_obj = _extract_object_strings(pred)
     result["object"] = _compute_tp_fp_fn_sets(g_obj, p_obj)
 
     # ── Environment ────────────────────────────────────────────────
-    g_env = {_env_key(e) for e in gold.get("environment", [])}
-    p_env = {_env_key(e) for e in pred.get("environment", [])}
+    # environments uses different format now
+    def _extract_env_strings(policy):
+        envs = set()
+        if "environments" in policy:
+            for e in policy["environments"]:
+                if isinstance(e, dict):
+                    envs.add(str(e.get("trigger_phrase", e.get("env_name", ""))).lower().strip())
+        elif "environment" in policy:
+            for e in policy["environment"]:
+                envs.add(_env_key(e))
+        return {e for e in envs if e}
+
+    g_env = _extract_env_strings(gold)
+    p_env = _extract_env_strings(pred)
     result["environment"] = _compute_tp_fp_fn_sets(g_env, p_env)
 
     return result

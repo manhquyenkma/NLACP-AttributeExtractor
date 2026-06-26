@@ -1,0 +1,107 @@
+{
+    "clusters": [
+        {
+            "cluster_id": -1,
+            "type": "temporal",
+            "label": "not",
+            "members": [
+                "resource.course_id IN subject.enrolled_courses",
+                "resource.contract_number IS NOT NULL",
+                "they have not passed the prerequisites for that course",
+                "subject.completed_courses CONTAINS resource.prerequisite_course_ids",
+                "the year",
+                "hours"
+            ]
+        },
+        {
+            "cluster_id": 0,
+            "type": "temporal",
+            "label": "system",
+            "members": [
+                "the academic information system",
+                "the learning management system",
+                "the course registration system",
+                "they owe tuition fees exceeding the prescribed limit",
+                "the total number of registered credits exceeds the prescribed limit",
+                "the courses have overlapping class schedules",
+                "the course registration system which are currently open",
+                "the number of registered civilian students reaches the prescribed capacity",
+                "the learning management system which have been uploaded by instructors",
+                "the learning management system who have successfully registered",
+                "the learning management system who belong",
+                "the visiting lecturer management system",
+                "the academic affairs office",
+                "the academic affairs or finance office",
+                "only the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit"
+            ]
+        },
+        {
+            "cluster_id": 1,
+            "type": "other",
+            "label": "only",
+            "members": [
+                "only the applications are currently pending",
+                "the system has not been activated",
+                "only the system is activated",
+                "it has been numbered , validated , and exported"
+            ]
+        },
+        {
+            "cluster_id": 2,
+            "type": "temporal",
+            "label": "system',",
+            "members": [
+                "{'category': 'environment', 'env_type': 'spatial_device', 'subcategory': 'device_type', 'trigger': 'in', 'phrase': 'the academic information system', 'env_name': 'the academic information system', 'env_value': None, 'full_value': 'in the academic information system', 'ner_type': '', 'normalized': 'academic_information_system', 'namespace': 'environment.device.device_type:academic_information_system', 'data_type': 'location', 'method': 'rule+dep'}",
+                "{'category': 'environment', 'env_type': 'temporal', 'subcategory': 'absolute', 'trigger': 'between', 'phrase': '7:00 am and 5:25 pm', 'env_name': None, 'env_value': {'operator': 'between', 'from': {'value': 0, 'unit': 'am'}, 'to': {'value': 25, 'unit': 'pm'}}, 'full_value': 'between 7:00 am and 5:25 pm', 'ner_type': 'TIME', 'normalized': '7:00_am_and_5:25_pm', 'namespace': 'environment.time.absolute:7:00_am_and_5:25_pm', 'data_type': 'time', 'method': 'rule+dep'}",
+                "{'category': 'environment', 'env_type': 'spatial_device', 'subcategory': 'device_type', 'trigger': 'in', 'phrase': 'the course registration system', 'env_name': 'the course registration system', 'env_value': None, 'full_value': 'in the course registration system', 'ner_type': '', 'normalized': 'course_registration_system', 'namespace': 'environment.device.device_type:course_registration_system', 'data_type': 'location', 'method': 'rule+dep'}",
+                "{'category': 'environment', 'env_type': 'conditional', 'subcategory': 'conditional_clause', 'trigger': 'if', 'phrase': 'even the number of registered civilian students has reached the prescribed capacity', 'env_name': None, 'env_value': None, 'full_value': 'if even the number of registered civilian students has reached the prescribed capacity', 'ner_type': '', 'normalized': 'even_number_registered_civilian_students_has_reached_prescribed_capacity', 'namespace': 'environment.condition.conditional_clause:even_number_registered_civilian_students_has_reached_prescribed_capacity', 'data_type': 'boolean', 'method': 'rule+dep', 'condition': {'subject': 'number', 'predicate': 'reach', 'object': 'the prescribed capacity', 'negated': False}}",
+                "{'category': 'environment', 'env_type': 'spatial_device', 'subcategory': 'device_type', 'trigger': 'in', 'phrase': 'the visiting lecturer management system', 'env_name': 'the visiting lecturer management system', 'env_value': None, 'full_value': 'in the visiting lecturer management system', 'ner_type': '', 'normalized': 'visiting_lecturer_management_system', 'namespace': 'environment.device.device_type:visiting_lecturer_management_system', 'data_type': 'location', 'method': 'rule+dep'}"
+            ]
+        },
+        {
+            "cluster_id": 3,
+            "type": "other",
+            "label": "resource.approver",
+            "members": [
+                "resource.approver IN (unknown)",
+                "NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)",
+                "resource.approver IN (director, board_of_directors)"
+            ]
+        }
+    ],
+    "mapping": {
+        "the academic information system": 0,
+        "resource.course_id IN subject.enrolled_courses": -1,
+        "the learning management system": 0,
+        "resource.approver IN (unknown)": 3,
+        "resource.contract_number IS NOT NULL": -1,
+        "only the applications are currently pending": 1,
+        "the course registration system": 0,
+        "they owe tuition fees exceeding the prescribed limit": 0,
+        "the total number of registered credits exceeds the prescribed limit": 0,
+        "they have not passed the prerequisites for that course": -1,
+        "subject.completed_courses CONTAINS resource.prerequisite_course_ids": -1,
+        "the courses have overlapping class schedules": 0,
+        "NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)": 3,
+        "the course registration system which are currently open": 0,
+        "the number of registered civilian students reaches the prescribed capacity": 0,
+        "the system has not been activated": 1,
+        "{'category': 'environment', 'env_type': 'spatial_device', 'subcategory': 'device_type', 'trigger': 'in', 'phrase': 'the academic information system', 'env_name': 'the academic information system', 'env_value': None, 'full_value': 'in the academic information system', 'ner_type': '', 'normalized': 'academic_information_system', 'namespace': 'environment.device.device_type:academic_information_system', 'data_type': 'location', 'method': 'rule+dep'}": 2,
+        "{'category': 'environment', 'env_type': 'temporal', 'subcategory': 'absolute', 'trigger': 'between', 'phrase': '7:00 am and 5:25 pm', 'env_name': None, 'env_value': {'operator': 'between', 'from': {'value': 0, 'unit': 'am'}, 'to': {'value': 25, 'unit': 'pm'}}, 'full_value': 'between 7:00 am and 5:25 pm', 'ner_type': 'TIME', 'normalized': '7:00_am_and_5:25_pm', 'namespace': 'environment.time.absolute:7:00_am_and_5:25_pm', 'data_type': 'time', 'method': 'rule+dep'}": 2,
+        "{'category': 'environment', 'env_type': 'spatial_device', 'subcategory': 'device_type', 'trigger': 'in', 'phrase': 'the course registration system', 'env_name': 'the course registration system', 'env_value': None, 'full_value': 'in the course registration system', 'ner_type': '', 'normalized': 'course_registration_system', 'namespace': 'environment.device.device_type:course_registration_system', 'data_type': 'location', 'method': 'rule+dep'}": 2,
+        "{'category': 'environment', 'env_type': 'conditional', 'subcategory': 'conditional_clause', 'trigger': 'if', 'phrase': 'even the number of registered civilian students has reached the prescribed capacity', 'env_name': None, 'env_value': None, 'full_value': 'if even the number of registered civilian students has reached the prescribed capacity', 'ner_type': '', 'normalized': 'even_number_registered_civilian_students_has_reached_prescribed_capacity', 'namespace': 'environment.condition.conditional_clause:even_number_registered_civilian_students_has_reached_prescribed_capacity', 'data_type': 'boolean', 'method': 'rule+dep', 'condition': {'subject': 'number', 'predicate': 'reach', 'object': 'the prescribed capacity', 'negated': False}}": 2,
+        "only the system is activated": 1,
+        "the learning management system which have been uploaded by instructors": 0,
+        "the learning management system who have successfully registered": 0,
+        "the learning management system who belong": 0,
+        "the visiting lecturer management system": 0,
+        "the academic affairs office": 0,
+        "the academic affairs or finance office": 0,
+        "it has been numbered , validated , and exported": 1,
+        "the year": -1,
+        "only the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit": 0,
+        "hours": -1,
+        "resource.approver IN (director, board_of_directors)": 3,
+        "{'category': 'environment', 'env_type': 'spatial_device', 'subcategory': 'device_type', 'trigger': 'in', 'phrase': 'the visiting lecturer management system', 'env_name': 'the visiting lecturer management system', 'env_value': None, 'full_value': 'in the visiting lecturer management system', 'ner_type': '', 'normalized': 'visiting_lecturer_management_system', 'namespace': 'environment.device.device_type:visiting_lecturer_management_system', 'data_type': 'location', 'method': 'rule+dep'}": 2
+    }
+}

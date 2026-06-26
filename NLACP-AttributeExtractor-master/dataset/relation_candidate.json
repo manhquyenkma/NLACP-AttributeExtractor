@@ -31443,6 +31443,3801 @@
                     "method": "rule+dep"
                 }
             ]
+        },
+        {
+            "sentence": "Civilian students can view their own final grades in the academic information system for courses which they have taken.",
+            "subject": [
+                "students",
+                "they"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "grades",
+                "which"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ],
+                [
+                    "grades",
+                    "own"
+                ],
+                [
+                    "grades",
+                    "final"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can view their own scores in the learning management system for multiple-choice exams which they have taken.",
+            "subject": [
+                "students",
+                "they"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "scores",
+                "which"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ],
+                [
+                    "scores",
+                    "own"
+                ],
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Lecturers can view the scores of all civilian students in the learning management system for courses which they teach.",
+            "subject": [
+                "Lecturers",
+                "they"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "scores",
+                "which"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the educational testing and quality assurance office can view the scores of all civilian students in the learning management system for all courses.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "scores"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "testing",
+                    "educational"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the academic affairs office can view the scores of all civilian students in the learning management system for all courses.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "scores"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can add and view scores in the learning management system for that course.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Create",
+                "Read"
+            ],
+            "object": [
+                "scores"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Course lecturers can update scores and assign final grades in the learning management system for their courses with the approval of the department chair and the head of educational testing and quality assurance.",
+            "subject": [
+                "Course lecturers"
+            ],
+            "actions": [
+                "Update",
+                "assign"
+            ],
+            "object": [
+                "scores",
+                "grades"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "grades",
+                    "final"
+                ],
+                [
+                    "testing",
+                    "educational"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator can view the scores of all civilian students in the learning management system for that department’s courses.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "scores"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can view the scores of all civilian students in the learning management system for that department’s courses.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "scores"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the educational testing and quality assurance office can modify civilian students’ final grades in the academic information system with the approval of the head of educational testing and quality assurance.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Update"
+            ],
+            "object": [
+                "grades"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "testing",
+                    "educational"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ],
+                [
+                    "grades",
+                    "final"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can view rosters in the learning management system for courses which they are taking.",
+            "subject": [
+                "students",
+                "they"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "rosters",
+                "which"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can view and download the course roster in the learning management system for that course.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Read",
+                "download"
+            ],
+            "object": [
+                "course roster"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator can view and download rosters in the academic information and learning management systems for that department’s courses.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "Read",
+                "learn"
+            ],
+            "object": [
+                "download",
+                "rosters",
+                "management systems"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ],
+                [
+                    "information",
+                    "academic"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "A department chair can view and download rosters in the academic information and learning management systems for that department’s courses.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Read",
+                "download",
+                "learn"
+            ],
+            "object": [
+                "rosters",
+                "management systems"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "information",
+                    "academic"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "Users in the academic affairs office can view and modify all rosters in the academic information and learning management systems.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read",
+                "Update",
+                "learn"
+            ],
+            "object": [
+                "rosters",
+                "management systems"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ],
+                [
+                    "information",
+                    "academic"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "Users in the academic affairs office can upload and download course rosters in the academic information and learning management systems.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Create",
+                "download",
+                "learn"
+            ],
+            "object": [
+                "course rosters",
+                "management systems"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ],
+                [
+                    "information",
+                    "academic"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "Users in the academic affairs office can delete course rosters in the academic information and learning management systems.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Delete",
+                "learn"
+            ],
+            "object": [
+                "course rosters",
+                "management systems"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ],
+                [
+                    "information",
+                    "academic"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "Civilian students can view and download their own transcripts in the academic information system.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "Read",
+                "download"
+            ],
+            "object": [
+                "transcripts"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ],
+                [
+                    "transcripts",
+                    "own"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can view and download the transcripts of all civilian students in the academic information system for that department.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Read",
+                "download"
+            ],
+            "object": [
+                "transcripts"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the academic affairs office can view and download the transcripts of all civilian students in the academic information system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read",
+                "download"
+            ],
+            "object": [
+                "transcripts"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the educational testing and quality assurance office can view and download the transcripts of all civilian students in the academic information system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read",
+                "download"
+            ],
+            "object": [
+                "transcripts"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "testing",
+                    "educational"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of academic affairs can modify a civilian student’s transcript in the academic information system with the director’s approval.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "Update"
+            ],
+            "object": [
+                "transcript"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "student",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The reason for a transcript revision must be recorded in the academic information system after the head of academic affairs modifies a civilian student’s transcript.",
+            "subject": [
+                "reason",
+                "head"
+            ],
+            "actions": [
+                "record",
+                "Update"
+            ],
+            "object": [
+                "transcript"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "student",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Applicants can check the status of their own applications in the academic information system.",
+            "subject": [
+                "Applicants"
+            ],
+            "actions": [
+                "check"
+            ],
+            "object": [
+                "status"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "applications",
+                    "own"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the academic affairs office can view and update the status of all applications in the academic information system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read",
+                "Update"
+            ],
+            "object": [
+                "status"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Applicants can modify applications in the academic information system.",
+            "subject": [
+                "Applicants"
+            ],
+            "actions": [
+                "Update"
+            ],
+            "object": [
+                "applications"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Applicants can upload and download applications in the academic information system.",
+            "subject": [
+                "Applicants"
+            ],
+            "actions": [
+                "Create"
+            ],
+            "object": [
+                "download applications"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Applicants can delete applications in the academic information system only if the applications are currently pending.",
+            "subject": [
+                "Applicants"
+            ],
+            "actions": [
+                "Delete"
+            ],
+            "object": [
+                "applications"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "only the applications are currently pending",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if only the applications are currently pending",
+                    "ner_type": "",
+                    "normalized": "only_applications_are_currently_pending",
+                    "namespace": "environment.condition.conditional_clause:only_applications_are_currently_pending",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "applications",
+                        "predicate": "pende",
+                        "object": "",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can create multiple-choice exams and view their details in the learning management system.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Create",
+                "Read"
+            ],
+            "object": [
+                "choice exams",
+                "details"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can modify and delete multiple-choice exams in the learning management system.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Update",
+                "Delete"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can upload and download multiple-choice exams in the learning management system.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Create",
+                "download"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator can view and download multiple-choice exams in the learning management system for that department’s courses.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "Read",
+                "download"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ],
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can view and assess multiple-choice exams in the learning management system for that department’s courses.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Read",
+                "assess"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can upload and download multiple-choice exams in the learning management system for that department’s courses.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Create",
+                "download"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of academic affairs can view and assess multiple-choice exams in the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "Read",
+                "assess"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ],
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of academic affairs can download multiple-choice exams from the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "download"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ],
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "from",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "from the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of educational testing and quality assurance can view and assess multiple-choice exams in the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "Read",
+                "assess"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "testing",
+                    "educational"
+                ],
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of educational testing and quality assurance can download multiple-choice exams from the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "download"
+            ],
+            "object": [
+                "choice exams"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "testing",
+                    "educational"
+                ],
+                [
+                    "-choice",
+                    "multiple"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "from",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "from the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can create and view learning materials in the learning management system for that course.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Create",
+                "Read",
+                "learn"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can upload and download learning materials in the learning management system.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Create",
+                "learn"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can modify and delete learning materials in the learning management system.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Update",
+                "Delete"
+            ],
+            "object": [
+                "learning materials"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can view and download learning materials in the learning management system for courses which they are taking.",
+            "subject": [
+                "students",
+                "they"
+            ],
+            "actions": [
+                "Read",
+                "learn"
+            ],
+            "object": [
+                "materials",
+                "which"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can comment on learning materials in the learning management system for courses which they are taking.",
+            "subject": [
+                "students",
+                "they"
+            ],
+            "actions": [
+                "comment",
+                "learn"
+            ],
+            "object": [
+                "materials",
+                "which"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator can view and download learning materials in the learning management system for that department’s courses.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "Read",
+                "learn"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can view and assess learning materials in the learning management system for that department’s courses.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Read",
+                "assess"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can upload and download learning materials in the learning management system for that department’s courses.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Create",
+                "learn"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of academic affairs can view and assess learning materials in the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "Read",
+                "assess"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of academic affairs can download learning materials from the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "download",
+                "learn"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "from",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "from the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of educational testing and quality assurance can view and assess learning materials in the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "Read",
+                "assess"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "testing",
+                    "educational"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The head of educational testing and quality assurance can download learning materials from the learning management system for all courses.",
+            "subject": [
+                "head"
+            ],
+            "actions": [
+                "download",
+                "learn"
+            ],
+            "object": [
+                "materials"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "testing",
+                    "educational"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "from",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "from the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the academic affairs office can create and view a course offering in the academic information system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Create",
+                "Read",
+                "offer"
+            ],
+            "object": [
+                "course offering"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the academic affairs office can modify and delete a course offering in the academic information system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Update",
+                "Delete"
+            ],
+            "object": [
+                "course offering"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can view and comment on a course offering in the academic information system.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "Read",
+                "comment"
+            ],
+            "object": [
+                "course offering",
+                "information system"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "The course lecturer can accept or deny a course offering in the academic information system.",
+            "subject": [
+                "course lecturer"
+            ],
+            "actions": [
+                "accept",
+                "deny"
+            ],
+            "object": [
+                "course offering"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator and chair can view and comment on a course offering in the academic information system.",
+            "subject": [
+                "coordinator",
+                "chair"
+            ],
+            "actions": [
+                "Read",
+                "comment"
+            ],
+            "object": [
+                "course offering",
+                "information system"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for courses in the course registration system if they owe tuition fees exceeding the prescribed limit.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "courses",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "they owe tuition fees exceeding the prescribed limit",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if they owe tuition fees exceeding the prescribed limit",
+                    "ner_type": "",
+                    "normalized": "they_owe_tuition_fees_exceeding_prescribed_limit",
+                    "namespace": "environment.condition.conditional_clause:they_owe_tuition_fees_exceeding_prescribed_limit",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "they",
+                        "predicate": "owe",
+                        "object": "tuition fees exceeding the prescribed limit",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for a course in the course registration system if the total number of registered credits exceeds the prescribed limit.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "course",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "the total number of registered credits exceeds the prescribed limit",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if the total number of registered credits exceeds the prescribed limit",
+                    "ner_type": "",
+                    "normalized": "total_number_registered_credits_exceeds_prescribed_limit",
+                    "namespace": "environment.condition.conditional_clause:total_number_registered_credits_exceeds_prescribed_limit",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "number",
+                        "predicate": "exceed",
+                        "object": "the prescribed limit",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for a course in the course registration system if they have not passed the prerequisites for that course.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "course",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "they have not passed the prerequisites for that course",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if they have not passed the prerequisites for that course",
+                    "ner_type": "",
+                    "normalized": "they_have_not_passed_prerequisites_for_course",
+                    "namespace": "environment.condition.conditional_clause:they_have_not_passed_prerequisites_for_course",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "they",
+                        "predicate": "pass",
+                        "object": "that course",
+                        "negated": true
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for two courses in the course registration system if the courses have overlapping class schedules.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "courses",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "the courses have overlapping class schedules",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if the courses have overlapping class schedules",
+                    "ner_type": "",
+                    "normalized": "courses_have_overlapping_class_schedules",
+                    "namespace": "environment.condition.conditional_clause:courses_have_overlapping_class_schedules",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "courses",
+                        "predicate": "overlap",
+                        "object": "class schedules",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can only register for courses in the course registration system which are currently open.",
+            "subject": [
+                "students",
+                "which"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "courses",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system which are currently open",
+                    "env_name": "the course registration system which are currently open",
+                    "env_value": null,
+                    "full_value": "in the course registration system which are currently open",
+                    "ner_type": "",
+                    "normalized": "course_registration_system_which_are_currently_open",
+                    "namespace": "environment.device.device_type:course_registration_system_which_are_currently_open",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for courses in the course registration system which are currently closed.",
+            "subject": [
+                "students",
+                "which"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "courses",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for a course in the course registration system if the number of registered civilian students reaches the prescribed capacity.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "course",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "the number of registered civilian students reaches the prescribed capacity",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if the number of registered civilian students reaches the prescribed capacity",
+                    "ner_type": "",
+                    "normalized": "number_registered_civilian_students_reaches_prescribed_capacity",
+                    "namespace": "environment.condition.conditional_clause:number_registered_civilian_students_reaches_prescribed_capacity",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "number",
+                        "predicate": "reach",
+                        "object": "the prescribed capacity",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can cancel their registration in the course registration system for a course which they have previously registered for successfully.",
+            "subject": [
+                "students",
+                "they"
+            ],
+            "actions": [
+                "cancel"
+            ],
+            "object": [
+                "registration"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot cancel their registration in the course registration system for a course which is currently closed.",
+            "subject": [
+                "students",
+                "which"
+            ],
+            "actions": [
+                "cancel",
+                "close"
+            ],
+            "object": [
+                "registration"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can view the status of registered courses in the course registration system.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "status"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ],
+                [
+                    "courses",
+                    "registered"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for courses in the course registration system if the system has not been activated.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "courses",
+                "course registration system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "the system has not been activated",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if the system has not been activated",
+                    "ner_type": "",
+                    "normalized": "system_has_not_been_activated",
+                    "namespace": "environment.condition.conditional_clause:system_has_not_been_activated",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "system",
+                        "predicate": "activate",
+                        "object": "",
+                        "negated": true
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the academic affairs office can view the course registration results of all civilian students in the course registration system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "course registration results"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students’ class schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
+            "subject": [
+                "class schedules"
+            ],
+            "actions": [
+                "allow"
+            ],
+            "object": [
+                "information system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "temporal",
+                    "subcategory": "absolute",
+                    "trigger": "between",
+                    "phrase": "7:00 am and 5:25 pm",
+                    "env_name": null,
+                    "env_value": {
+                        "operator": "between",
+                        "from": {
+                            "value": 0,
+                            "unit": "am"
+                        },
+                        "to": {
+                            "value": 25,
+                            "unit": "pm"
+                        }
+                    },
+                    "full_value": "between 7:00 am and 5:25 pm",
+                    "ner_type": "TIME",
+                    "normalized": "7:00_am_and_5:25_pm",
+                    "namespace": "environment.time.absolute:7:00_am_and_5:25_pm",
+                    "data_type": "time",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Lecturers’ teaching schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
+            "subject": [
+                "teaching schedules"
+            ],
+            "actions": [
+                "allow"
+            ],
+            "object": [
+                "information system"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "temporal",
+                    "subcategory": "absolute",
+                    "trigger": "between",
+                    "phrase": "7:00 am and 5:25 pm",
+                    "env_name": null,
+                    "env_value": {
+                        "operator": "between",
+                        "from": {
+                            "value": 0,
+                            "unit": "am"
+                        },
+                        "to": {
+                            "value": 25,
+                            "unit": "pm"
+                        }
+                    },
+                    "full_value": "between 7:00 am and 5:25 pm",
+                    "ner_type": "TIME",
+                    "normalized": "7:00_am_and_5:25_pm",
+                    "namespace": "environment.time.absolute:7:00_am_and_5:25_pm",
+                    "data_type": "time",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can view the course registration results of all civilian students in the academic information system for that department.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "course registration results"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator can view the course registration results of all civilian students in the academic information system for that department.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "course registration results"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the academic information system",
+                    "env_name": "the academic information system",
+                    "env_value": null,
+                    "full_value": "in the academic information system",
+                    "ner_type": "",
+                    "normalized": "academic_information_system",
+                    "namespace": "environment.device.device_type:academic_information_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can retake a course in the course registration system even if the number of registered civilian students has reached the prescribed capacity.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "retake"
+            ],
+            "object": [
+                "course"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the course registration system",
+                    "env_name": "the course registration system",
+                    "env_value": null,
+                    "full_value": "in the course registration system",
+                    "ner_type": "",
+                    "normalized": "course_registration_system",
+                    "namespace": "environment.device.device_type:course_registration_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "even the number of registered civilian students has reached the prescribed capacity",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if even the number of registered civilian students has reached the prescribed capacity",
+                    "ner_type": "",
+                    "normalized": "even_number_registered_civilian_students_has_reached_prescribed_capacity",
+                    "namespace": "environment.condition.conditional_clause:even_number_registered_civilian_students_has_reached_prescribed_capacity",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "number",
+                        "predicate": "reach",
+                        "object": "the prescribed capacity",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator and instructors can upload and view the details of suggested graduation project topics in the learning management system.",
+            "subject": [
+                "coordinator",
+                "instructors"
+            ],
+            "actions": [
+                "Create",
+                "Read"
+            ],
+            "object": [
+                "details"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ],
+                [
+                    "project topics",
+                    "suggested"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can register for graduation project topics only when the system is activated.",
+            "subject": [
+                "students"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "graduation project topics"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "when",
+                    "phrase": "only the system is activated",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "when only the system is activated",
+                    "ner_type": "",
+                    "normalized": "only_system_is_activated",
+                    "namespace": "environment.condition.conditional_clause:only_system_is_activated",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "system",
+                        "predicate": "activate",
+                        "object": "",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "A graduation project can have at most two instructors.",
+            "subject": [
+                "graduation project"
+            ],
+            "actions": [
+                "have"
+            ],
+            "object": [
+                "instructors"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "instructors",
+                    "two"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "A civilian student can register for at most one graduation project topic in the learning management system from the list of suggested topics uploaded by an instructor.",
+            "subject": [
+                "student"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "project topic",
+                "management system",
+                "topics",
+                "instructor"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "student",
+                    "civilian"
+                ],
+                [
+                    "project topic",
+                    "one"
+                ],
+                [
+                    "topics",
+                    "suggested"
+                ],
+                [
+                    "topics",
+                    "uploaded"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A civilian student can register for up to three preferred instructors in the learning management system.",
+            "subject": [
+                "student"
+            ],
+            "actions": [
+                "register"
+            ],
+            "object": [
+                "instructors",
+                "management system"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "student",
+                    "civilian"
+                ],
+                [
+                    "instructors",
+                    "three"
+                ],
+                [
+                    "instructors",
+                    "preferred"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Instructors can accept or deny civilian students’ applications for graduation project topics in the learning management system.",
+            "subject": [
+                "Instructors"
+            ],
+            "actions": [
+                "accept",
+                "deny"
+            ],
+            "object": [
+                "applications"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students can view the details of graduation project topics in the learning management system which have been uploaded by instructors.",
+            "subject": [
+                "students",
+                "which"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "details"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system which have been uploaded by instructors",
+                    "env_name": "the learning management system which have been uploaded by instructors",
+                    "env_value": null,
+                    "full_value": "in the learning management system which have been uploaded by instructors",
+                    "ner_type": "",
+                    "normalized": "learning_management_system_which_have_been_uploaded_by_instructors",
+                    "namespace": "environment.device.device_type:learning_management_system_which_have_been_uploaded_by_instructors",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department chair can view the details of all graduation project topics in the learning management system for that department.",
+            "subject": [
+                "department chair"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "details"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users in the academic affairs office can view the details of all graduation project topics in the learning management system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "details"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator and chair can view the list of civilian students in the learning management system who have successfully registered for graduation project topics in that department.",
+            "subject": [
+                "coordinator",
+                "chair",
+                "who"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "students"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system who have successfully registered",
+                    "env_name": "the learning management system who have successfully registered",
+                    "env_value": null,
+                    "full_value": "in the learning management system who have successfully registered",
+                    "ner_type": "",
+                    "normalized": "learning_management_system_who_have_successfully_registered",
+                    "namespace": "environment.device.device_type:learning_management_system_who_have_successfully_registered",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator and chair can view the list of civilian students in the learning management system who belong to that department and have not yet registered for a graduation project topic.",
+            "subject": [
+                "coordinator",
+                "chair",
+                "who"
+            ],
+            "actions": [
+                "Read",
+                "register"
+            ],
+            "object": [
+                "students"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ],
+                [
+                    "students",
+                    "civilian"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system who belong",
+                    "env_name": "the learning management system who belong",
+                    "env_value": null,
+                    "full_value": "in the learning management system who belong",
+                    "ner_type": "",
+                    "normalized": "learning_management_system_who_belong",
+                    "namespace": "environment.device.device_type:learning_management_system_who_belong",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Instructors can modify the details of their suggested graduation project topics in the learning management system.",
+            "subject": [
+                "Instructors"
+            ],
+            "actions": [
+                "Update"
+            ],
+            "object": [
+                "details"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "project topics",
+                    "suggested"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Instructors can delete their suggested graduation project topics in the learning management system.",
+            "subject": [
+                "Instructors"
+            ],
+            "actions": [
+                "Delete"
+            ],
+            "object": [
+                "project topics"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "project topics",
+                    "suggested"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the learning management system",
+                    "env_name": "the learning management system",
+                    "env_value": null,
+                    "full_value": "in the learning management system",
+                    "ner_type": "",
+                    "normalized": "learning_management_system",
+                    "namespace": "environment.device.device_type:learning_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Civilian students cannot register for graduation project topics until the system is activated.",
+            "subject": [
+                "students",
+                "system"
+            ],
+            "actions": [
+                "register",
+                "activate"
+            ],
+            "object": [
+                "graduation project topics"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "students",
+                    "Civilian"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "Users in the academic affairs or finance office can view the details of visiting lecturer agreements in the visiting lecturer management system.",
+            "subject": [
+                "Users"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "details"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "affairs",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users who are not in the academic affairs office cannot number visiting lecturer agreements in the visiting lecturer management system.",
+            "subject": [
+                "Users",
+                "who"
+            ],
+            "actions": [
+                "number",
+                "visit"
+            ],
+            "object": [
+                "lecturer agreements"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_physical",
+                    "subcategory": "facility",
+                    "trigger": "in",
+                    "phrase": "the academic affairs office",
+                    "env_name": "the academic affairs office",
+                    "env_value": null,
+                    "full_value": "in the academic affairs office",
+                    "ner_type": "",
+                    "normalized": "academic_affairs_office",
+                    "namespace": "environment.location.facility:academic_affairs_office",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Users who are not in the academic affairs or finance office cannot export entire visiting lecturer agreements in the visiting lecturer management system.",
+            "subject": [
+                "Users",
+                "who"
+            ],
+            "actions": [
+                "export"
+            ],
+            "object": [
+                "lecturer agreements"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "lecturer agreements",
+                    "entire"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_physical",
+                    "subcategory": "facility",
+                    "trigger": "in",
+                    "phrase": "the academic affairs or finance office",
+                    "env_name": "the academic affairs or finance office",
+                    "env_value": null,
+                    "full_value": "in the academic affairs or finance office",
+                    "ner_type": "",
+                    "normalized": "academic_affairs_or_finance_office",
+                    "namespace": "environment.location.facility:academic_affairs_or_finance_office",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator and chair can view the details of visiting lecturer agreements in the visiting lecturer management system.",
+            "subject": [
+                "coordinator",
+                "chair"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "details"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator can export visiting lecturer agreements in the visiting lecturer management system only for that department.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "export"
+            ],
+            "object": [
+                "lecturer agreements"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Visiting lecturer agreements for classes are considered valid only after approval by the finance office.",
+            "subject": [],
+            "actions": [
+                "visit",
+                "consider"
+            ],
+            "object": [
+                "lecturer agreements"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": []
+        },
+        {
+            "sentence": "A visiting lecturer agreement can only be issued in the visiting lecturer management system if it has been numbered, validated, and exported.",
+            "subject": [
+                "lecturer agreement"
+            ],
+            "actions": [
+                "issue"
+            ],
+            "object": [
+                "management system"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "it has been numbered , validated , and exported",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if it has been numbered , validated , and exported",
+                    "ner_type": "",
+                    "normalized": "it_has_been_numbered_,_validated_,_and_exported",
+                    "namespace": "environment.condition.conditional_clause:it_has_been_numbered_,_validated_,_and_exported",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "it",
+                        "predicate": "number",
+                        "object": "",
+                        "negated": false
+                    }
+                }
+            ]
+        },
+        {
+            "sentence": "The finance office can approve visiting lecturer classes in the visiting lecturer management system only if the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit.",
+            "subject": [
+                "finance office"
+            ],
+            "actions": [
+                "Update"
+            ],
+            "object": [
+                "lecturer classes"
+            ],
+            "sa_oa_pairs": [],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "temporal",
+                    "subcategory": "relative",
+                    "trigger": "within",
+                    "phrase": "the year",
+                    "env_name": "the year",
+                    "env_value": null,
+                    "full_value": "within the year",
+                    "ner_type": "DATE",
+                    "normalized": "year",
+                    "namespace": "environment.time.relative:year",
+                    "data_type": "time",
+                    "method": "rule+dep"
+                },
+                {
+                    "category": "environment",
+                    "env_type": "conditional",
+                    "subcategory": "conditional_clause",
+                    "trigger": "if",
+                    "phrase": "only the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit",
+                    "env_name": null,
+                    "env_value": null,
+                    "full_value": "if only the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit",
+                    "ner_type": "",
+                    "normalized": "only_total_teaching_hours_visiting_lecturer_within_year_do_not_exceed_prescribed_limit",
+                    "namespace": "environment.condition.conditional_clause:only_total_teaching_hours_visiting_lecturer_within_year_do_not_exceed_prescribed_limit",
+                    "data_type": "boolean",
+                    "method": "rule+dep",
+                    "condition": {
+                        "subject": "teaching hours",
+                        "predicate": "exceed",
+                        "object": "the prescribed limit",
+                        "negated": true
+                    }
+                },
+                {
+                    "category": "environment",
+                    "env_type": "temporal",
+                    "subcategory": "relative",
+                    "trigger": "NER:TIME",
+                    "phrase": "hours",
+                    "env_name": "hours",
+                    "env_value": null,
+                    "full_value": "hours",
+                    "ner_type": "TIME",
+                    "normalized": "hours",
+                    "namespace": "environment.time.relative:hours",
+                    "data_type": "time",
+                    "method": "ner"
+                }
+            ]
+        },
+        {
+            "sentence": "A visiting lecturer who has not yet retired cannot teach more than 280 hours per year.",
+            "subject": [
+                "lecturer",
+                "who"
+            ],
+            "actions": [
+                "teach"
+            ],
+            "object": [
+                "hours"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "lecturer",
+                    "visiting"
+                ],
+                [
+                    "hours",
+                    "280"
+                ],
+                [
+                    "hours",
+                    "per"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "A retired visiting lecturer cannot teach more than 560 hours per year.",
+            "subject": [
+                "lecturer"
+            ],
+            "actions": [
+                "teach"
+            ],
+            "object": [
+                "hours"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "lecturer",
+                    "retired"
+                ],
+                [
+                    "lecturer",
+                    "visiting"
+                ],
+                [
+                    "hours",
+                    "560"
+                ],
+                [
+                    "hours",
+                    "per"
+                ]
+            ],
+            "env_attrs": []
+        },
+        {
+            "sentence": "A department’s academic coordinator cannot modify visiting lecturer agreement information in the visiting lecturer management system after approval by the academic affairs office or finance office.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "Update",
+                "visit"
+            ],
+            "object": [
+                "agreement information"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ],
+                [
+                    "affairs",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A department’s academic coordinator can modify a visiting lecturer agreement in the visiting lecturer management system only if the board of directors has rejected its approval.",
+            "subject": [
+                "coordinator"
+            ],
+            "actions": [
+                "Update"
+            ],
+            "object": [
+                "lecturer agreement"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "coordinator",
+                    "academic"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "A valid visiting lecturer agreement must have a contract number in the visiting lecturer management system.",
+            "subject": [
+                "lecturer agreement"
+            ],
+            "actions": [
+                "have"
+            ],
+            "object": [
+                "contract number"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "lecturer agreement",
+                    "valid"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
+        },
+        {
+            "sentence": "Visiting lecturers can view their issued visiting lecturer agreements in the visiting lecturer management system.",
+            "subject": [
+                "lecturers"
+            ],
+            "actions": [
+                "Read"
+            ],
+            "object": [
+                "lecturer agreements"
+            ],
+            "sa_oa_pairs": [
+                [
+                    "lecturer agreements",
+                    "issued"
+                ]
+            ],
+            "env_attrs": [
+                {
+                    "category": "environment",
+                    "env_type": "spatial_device",
+                    "subcategory": "device_type",
+                    "trigger": "in",
+                    "phrase": "the visiting lecturer management system",
+                    "env_name": "the visiting lecturer management system",
+                    "env_value": null,
+                    "full_value": "in the visiting lecturer management system",
+                    "ner_type": "",
+                    "normalized": "visiting_lecturer_management_system",
+                    "namespace": "environment.device.device_type:visiting_lecturer_management_system",
+                    "data_type": "location",
+                    "method": "rule+dep"
+                }
+            ]
         }
     ]
 }

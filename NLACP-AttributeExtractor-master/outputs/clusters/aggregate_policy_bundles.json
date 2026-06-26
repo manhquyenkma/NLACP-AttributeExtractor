@@ -25,6 +25,24 @@
                         {
                             "entity_type": "user",
                             "ref_tokens": [
+                                "Lecturers"
+                            ],
+                            "role": "lecturer",
+                            "qualifiers": null,
+                            "namespace": "subject.user.lecturer"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "Users"
+                            ],
+                            "role": "user",
+                            "qualifiers": null,
+                            "namespace": "subject.user.user"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
                                 "lecturer"
                             ],
                             "role": "lecturer",
@@ -34,11 +52,11 @@
                         {
                             "entity_type": "user",
                             "ref_tokens": [
-                                "user"
+                                "lecturers"
                             ],
-                            "role": "user",
+                            "role": "lecturer",
                             "qualifiers": null,
-                            "namespace": "subject.user.user"
+                            "namespace": "subject.user.lecturer"
                         },
                         {
                             "entity_type": "user",
@@ -91,6 +109,15 @@
                         {
                             "entity_type": "user",
                             "ref_tokens": [
+                                "reason"
+                            ],
+                            "role": "user",
+                            "qualifiers": null,
+                            "namespace": "subject.user.user"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
                                 "Applicants"
                             ],
                             "role": "applicant",
@@ -117,11 +144,53 @@
                         {
                             "entity_type": "user",
                             "ref_tokens": [
-                                "Users"
+                                "coordinator",
+                                "instructors"
                             ],
-                            "role": "user",
+                            "role": "academic_coordinator",
+                            "qualifiers": {
+                                "type": null,
+                                "rank": "coordinator",
+                                "status": null,
+                                "office": null,
+                                "department": null,
+                                "negated": false
+                            },
+                            "namespace": "subject.user.academic_coordinator"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "instructors"
+                            ],
+                            "role": "instructor",
                             "qualifiers": null,
-                            "namespace": "subject.user.user"
+                            "namespace": "subject.user.instructor"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "student"
+                            ],
+                            "role": "student",
+                            "qualifiers": {
+                                "type": "civilian",
+                                "rank": null,
+                                "status": null,
+                                "office": null,
+                                "department": null,
+                                "negated": false
+                            },
+                            "namespace": "subject.user.student.civilian"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "Instructors"
+                            ],
+                            "role": "instructor",
+                            "qualifiers": null,
+                            "namespace": "subject.user.instructor"
                         },
                         {
                             "entity_type": "user",
@@ -180,6 +249,7 @@
                         "department_chair",
                         "head",
                         "applicant",
+                        "instructor",
                         "visiting_lecturer"
                     ],
                     "qualifiers": [
@@ -198,9 +268,10 @@
                         "subject.user.department_chair",
                         "subject.user.head",
                         "subject.user.applicant",
+                        "subject.user.instructor",
                         "subject.user.visiting_lecturer.visiting"
                     ],
-                    "count": 75,
+                    "count": 85,
                     "examples": [
                         [
                             {
@@ -242,7 +313,7 @@
                             {
                                 "entity_type": "user",
                                 "ref_tokens": [
-                                    "lecturer"
+                                    "Lecturers"
                                 ],
                                 "role": "lecturer",
                                 "qualifiers": null,
@@ -257,22 +328,21 @@
                         "add",
                         "update",
                         "assign",
-                        "download",
                         "modify",
+                        "download",
                         "check",
-                        "create",
                         "upload",
                         "delete",
+                        "create",
                         "assess",
-                        "take",
                         "comment",
                         "deny",
+                        "register",
+                        "cancel",
                         "number",
                         "export",
                         "issue",
-                        "make",
-                        "approve",
-                        "register"
+                        "approve"
                     ],
                     "ops": [
                         "read-ops",
@@ -280,7 +350,7 @@
                         "write-ops",
                         "admin-ops"
                     ],
-                    "negation_count": 10,
+                    "negation_count": 12,
                     "logical_ops": {},
                     "examples": [
                         [
@@ -308,26 +378,26 @@
                 },
                 "resource": {
                     "labels": [
+                        "grade",
                         "score",
-                        "course",
-                        "exam",
+                        "assurance_office",
                         "affairs_office",
-                        "department",
                         "roster",
                         "transcript",
                         "academic_affairs",
                         "status",
                         "application",
                         "academic_information_system",
+                        "exam",
+                        "learning_management_system",
                         "educational_testing",
                         "learning_material",
                         "course_offering",
-                        "finance_offices",
-                        "agreement",
-                        "visiting_management_system",
-                        "visiting_lecturer_class",
-                        "visiting_lecturer_agreement",
-                        "courses"
+                        "courses",
+                        "course",
+                        "registration",
+                        "course_registration",
+                        "details"
                     ],
                     "scopes": [
                         "civilian_student",
@@ -336,10 +406,10 @@
                     ],
                     "attributes": [],
                     "namespaces": [],
-                    "count": 75,
+                    "count": 85,
                     "examples": [
                         {
-                            "resource": "score",
+                            "resource": "grade",
                             "scope": "civilian_student",
                             "attributes": []
                         },
@@ -349,7 +419,7 @@
                             "attributes": []
                         },
                         {
-                            "resource": "course",
+                            "resource": "score",
                             "scope": "civilian_student",
                             "attributes": []
                         }
@@ -358,13 +428,11 @@
                 "context": {
                     "conditions": [
                         "resource.course_id IN subject.enrolled_courses",
-                        "environment.current_time IN [07:00, 17:25]",
-                        "resource.contract_number IS NOT NULL",
                         "resource.approver IN (unknown)",
-                        "resource.approver IN (academic_affairs_office, finance_office, finance_office)",
-                        "resource.approver IN (director, board_of_directors)",
+                        "resource.contract_number IS NOT NULL",
                         "subject.completed_courses CONTAINS resource.prerequisite_course_ids",
-                        "NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)"
+                        "NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)",
+                        "resource.approver IN (director, board_of_directors)"
                     ],
                     "relation_pairs": [
                         {
@@ -383,13 +451,13 @@
                             "entity": "resource",
                             "rel_type": "scope",
                             "attribute": "level",
-                            "value": "course"
+                            "value": "all"
                         },
                         {
                             "entity": "resource",
                             "rel_type": "scope",
                             "attribute": "level",
-                            "value": "all"
+                            "value": "course"
                         },
                         {
                             "entity": "subject",
@@ -422,6 +490,24 @@
                             "value": "head"
                         },
                         {
+                            "entity": "resource",
+                            "rel_type": "status",
+                            "attribute": "status",
+                            "value": "open"
+                        },
+                        {
+                            "entity": "action",
+                            "rel_type": "attribute",
+                            "attribute": "negated",
+                            "value": "true"
+                        },
+                        {
+                            "entity": "resource",
+                            "rel_type": "status",
+                            "attribute": "status",
+                            "value": "closed"
+                        },
+                        {
                             "entity": "subject",
                             "rel_type": "attribute",
                             "attribute": "type",
@@ -434,22 +520,10 @@
                             "value": "issued"
                         },
                         {
-                            "entity": "action",
-                            "rel_type": "attribute",
-                            "attribute": "negated",
-                            "value": "true"
-                        },
-                        {
                             "entity": "subject",
                             "rel_type": "membership",
                             "attribute": "office",
                             "value": "finance"
-                        },
-                        {
-                            "entity": "resource",
-                            "rel_type": "status",
-                            "attribute": "status",
-                            "value": "closed"
                         }
                     ],
                     "examples": [
@@ -478,26 +552,26 @@
                         10,
                         11,
                         12,
-                        13,
-                        15,
-                        16,
+                        18,
                         19,
                         20,
                         21,
                         22,
-                        23
+                        23,
+                        24,
+                        25
                     ],
                     "confidence_scores": {
-                        "context": 0.822,
-                        "action": 0.711,
-                        "principal": 0.889,
-                        "resource": 0.622
+                        "resource": 0.624,
+                        "action": 0.714,
+                        "principal": 0.879,
+                        "context": 0.8
                     },
                     "warnings": [
                         "Negation without context constraint may be too broad"
                     ],
-                    "valid_count": 75,
-                    "total_count": 75
+                    "valid_count": 85,
+                    "total_count": 85
                 }
             }
         },
@@ -510,7 +584,39 @@
                         {
                             "entity_type": "user",
                             "ref_tokens": [
-                                "user"
+                                "coordinator"
+                            ],
+                            "role": "academic_coordinator",
+                            "qualifiers": {
+                                "type": null,
+                                "rank": "coordinator",
+                                "status": null,
+                                "office": null,
+                                "department": null,
+                                "negated": false
+                            },
+                            "namespace": "subject.user.academic_coordinator"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "chair"
+                            ],
+                            "role": "department_chair",
+                            "qualifiers": {
+                                "type": null,
+                                "rank": "chair",
+                                "status": null,
+                                "office": null,
+                                "department": null,
+                                "negated": false
+                            },
+                            "namespace": "subject.user.department_chair"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "Users"
                             ],
                             "role": "user",
                             "qualifiers": null,
@@ -519,26 +625,44 @@
                         {
                             "entity_type": "user",
                             "ref_tokens": [
-                                "agreements"
+                                "students"
                             ],
-                            "role": "visiting_lecturer",
+                            "role": "student",
                             "qualifiers": {
-                                "type": "official",
+                                "type": "civilian",
                                 "rank": null,
                                 "status": null,
                                 "office": null,
                                 "department": null,
-                                "negated": false
+                                "negated": true
                             },
-                            "namespace": "subject.user.visiting_lecturer.official"
+                            "namespace": "subject.user.student.civilian"
                         },
                         {
-                            "id": "lecturer"
+                            "id": "graduation project"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "office"
+                            ],
+                            "role": "user",
+                            "qualifiers": {
+                                "type": null,
+                                "rank": null,
+                                "status": null,
+                                "office": "finance",
+                                "department": null,
+                                "negated": false
+                            },
+                            "namespace": "subject.user.user"
                         }
                     ],
                     "roles": [
+                        "academic_coordinator",
+                        "department_chair",
                         "user",
-                        "visiting_lecturer"
+                        "student"
                     ],
                     "qualifiers": [
                         "type",
@@ -549,38 +673,54 @@
                         "negated"
                     ],
                     "namespaces": [
+                        "subject.user.academic_coordinator",
+                        "subject.user.department_chair",
                         "subject.user.user",
-                        "subject.user.visiting_lecturer.official"
+                        "subject.user.student.civilian"
                     ],
-                    "count": 6,
+                    "count": 12,
                     "examples": [
                         [
                             {
                                 "entity_type": "user",
                                 "ref_tokens": [
-                                    "user"
+                                    "coordinator"
                                 ],
-                                "role": "user",
-                                "qualifiers": null,
-                                "namespace": "subject.user.user"
+                                "role": "academic_coordinator",
+                                "qualifiers": {
+                                    "type": null,
+                                    "rank": "coordinator",
+                                    "status": null,
+                                    "office": null,
+                                    "department": null,
+                                    "negated": false
+                                },
+                                "namespace": "subject.user.academic_coordinator"
                             }
                         ],
                         [
                             {
                                 "entity_type": "user",
                                 "ref_tokens": [
-                                    "user"
+                                    "chair"
                                 ],
-                                "role": "user",
-                                "qualifiers": null,
-                                "namespace": "subject.user.user"
+                                "role": "department_chair",
+                                "qualifiers": {
+                                    "type": null,
+                                    "rank": "chair",
+                                    "status": null,
+                                    "office": null,
+                                    "department": null,
+                                    "negated": false
+                                },
+                                "namespace": "subject.user.department_chair"
                             }
                         ],
                         [
                             {
                                 "entity_type": "user",
                                 "ref_tokens": [
-                                    "user"
+                                    "Users"
                                 ],
                                 "role": "user",
                                 "qualifiers": null,
@@ -592,19 +732,23 @@
                 "action": {
                     "verbs": [
                         "view",
+                        "download",
                         "modify",
                         "upload",
-                        "download",
                         "delete",
-                        "issue",
+                        "register",
+                        "have",
+                        "visit",
+                        "consider",
+                        "approve",
                         "teach"
                     ],
                     "ops": [
-                        "read-ops",
                         "other-ops",
+                        "read-ops",
                         "admin-ops"
                     ],
-                    "negation_count": 0,
+                    "negation_count": 2,
                     "logical_ops": {},
                     "examples": [
                         [
@@ -616,15 +760,15 @@
                         ],
                         [
                             {
-                                "verb": "upload",
-                                "operation": "UPLOAD",
+                                "verb": "view",
+                                "operation": "READ",
                                 "negated": false
                             }
                         ],
                         [
                             {
-                                "verb": "delete",
-                                "operation": "DELETE",
+                                "verb": "view",
+                                "operation": "READ",
                                 "negated": false
                             }
                         ]
@@ -632,24 +776,29 @@
                 },
                 "resource": {
                     "labels": [
+                        "roster",
                         "affairs_office",
-                        "classes"
+                        "course",
+                        "graduation_project_topics",
+                        "visiting_lecturer_class"
                     ],
                     "scopes": [
-                        "the"
+                        "own",
+                        "the",
+                        "civilian_student"
                     ],
                     "attributes": [],
                     "namespaces": [],
-                    "count": 6,
+                    "count": 12,
                     "examples": [
                         {
-                            "resource": "affairs_office",
-                            "scope": "the",
+                            "resource": "roster",
+                            "scope": "own",
                             "attributes": []
                         },
                         {
-                            "resource": "affairs_office",
-                            "scope": "the",
+                            "resource": "roster",
+                            "scope": "own",
                             "attributes": []
                         },
                         {
@@ -661,9 +810,35 @@
                 },
                 "context": {
                     "conditions": [
-                        "resource.approver IN (finance_office, finance_office)"
+                        "resource.course_id IN subject.enrolled_courses",
+                        "subject.completed_courses CONTAINS resource.prerequisite_course_ids",
+                        "resource.approver IN (unknown)"
                     ],
                     "relation_pairs": [
+                        {
+                            "entity": "subject",
+                            "rel_type": "attribute",
+                            "attribute": "rank",
+                            "value": "coordinator"
+                        },
+                        {
+                            "entity": "resource",
+                            "rel_type": "possession",
+                            "attribute": "qualifier",
+                            "value": "own"
+                        },
+                        {
+                            "entity": "resource",
+                            "rel_type": "scope",
+                            "attribute": "level",
+                            "value": "department"
+                        },
+                        {
+                            "entity": "subject",
+                            "rel_type": "attribute",
+                            "attribute": "rank",
+                            "value": "chair"
+                        },
                         {
                             "entity": "resource",
                             "rel_type": "possession",
@@ -674,19 +849,24 @@
                             "entity": "subject",
                             "rel_type": "attribute",
                             "attribute": "type",
-                            "value": "official"
+                            "value": "civilian"
                         },
                         {
                             "entity": "resource",
-                            "rel_type": "status",
-                            "attribute": "status",
-                            "value": "issued"
+                            "rel_type": "scope",
+                            "attribute": "level",
+                            "value": "course"
                         },
                         {
-                            "entity": "action",
-                            "rel_type": "attribute",
-                            "attribute": "negated",
-                            "value": "true"
+                            "attribute": "instructors",
+                            "value": "two",
+                            "rel_type": "unknown"
+                        },
+                        {
+                            "entity": "subject",
+                            "rel_type": "membership",
+                            "attribute": "office",
+                            "value": "finance"
                         },
                         {
                             "attribute": "lecturer",
@@ -716,40 +896,63 @@
                     ],
                     "examples": [
                         [
-                            "resource.approver IN (finance_office, finance_office)"
+                            "resource.course_id IN subject.enrolled_courses"
+                        ],
+                        [
+                            "resource.course_id IN subject.enrolled_courses"
+                        ],
+                        [
+                            "resource.course_id IN subject.enrolled_courses"
                         ]
                     ]
                 },
                 "metadata": {
                     "policy_ids": [
+                        13,
                         14,
+                        15,
+                        16,
                         17,
-                        18,
-                        62,
-                        65,
-                        66
+                        58,
+                        75,
+                        86,
+                        92,
+                        94,
+                        95,
+                        96
                     ],
                     "confidence_scores": {
-                        "context": 0.389,
-                        "action": 0.667,
-                        "principal": 0.611,
-                        "resource": 0.389
+                        "resource": 0.445,
+                        "action": 0.723,
+                        "principal": 0.667,
+                        "context": 0.472
                     },
                     "warnings": [
                         "Context cluster is empty; policy may be too broad",
-                        "Missing resource"
+                        "Missing resource",
+                        "Negation without context constraint may be too broad",
+                        "Missing subject(s)"
                     ],
-                    "valid_count": 4,
-                    "total_count": 6
+                    "valid_count": 8,
+                    "total_count": 12
                 }
             }
         },
         {
-            "env_cluster_id": 2,
+            "env_cluster_id": 1,
             "aggregate_bundle": {
-                "env_cluster_id": 2,
+                "env_cluster_id": 1,
                 "principal": {
                     "subjects": [
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "Applicants"
+                            ],
+                            "role": "applicant",
+                            "qualifiers": null,
+                            "namespace": "subject.user.applicant"
+                        },
                         {
                             "entity_type": "user",
                             "ref_tokens": [
@@ -762,13 +965,31 @@
                                 "status": null,
                                 "office": null,
                                 "department": null,
-                                "negated": false
+                                "negated": true
                             },
                             "namespace": "subject.user.student.civilian"
+                        },
+                        {
+                            "entity_type": "user",
+                            "ref_tokens": [
+                                "agreement"
+                            ],
+                            "role": "visiting_lecturer",
+                            "qualifiers": {
+                                "type": "visiting",
+                                "rank": null,
+                                "status": null,
+                                "office": null,
+                                "department": null,
+                                "negated": false
+                            },
+                            "namespace": "subject.user.visiting_lecturer.visiting"
                         }
                     ],
                     "roles": [
-                        "student"
+                        "applicant",
+                        "student",
+                        "visiting_lecturer"
                     ],
                     "qualifiers": [
                         "type",
@@ -779,10 +1000,41 @@
                         "negated"
                     ],
                     "namespaces": [
-                        "subject.user.student.civilian"
+                        "subject.user.applicant",
+                        "subject.user.student.civilian",
+                        "subject.user.visiting_lecturer.visiting"
                     ],
-                    "count": 1,
+                    "count": 4,
                     "examples": [
+                        [
+                            {
+                                "entity_type": "user",
+                                "ref_tokens": [
+                                    "Applicants"
+                                ],
+                                "role": "applicant",
+                                "qualifiers": null,
+                                "namespace": "subject.user.applicant"
+                            }
+                        ],
+                        [
+                            {
+                                "entity_type": "user",
+                                "ref_tokens": [
+                                    "students"
+                                ],
+                                "role": "student",
+                                "qualifiers": {
+                                    "type": "civilian",
+                                    "rank": null,
+                                    "status": null,
+                                    "office": null,
+                                    "department": null,
+                                    "negated": true
+                                },
+                                "namespace": "subject.user.student.civilian"
+                            }
+                        ],
                         [
                             {
                                 "entity_type": "user",
@@ -805,139 +1057,14 @@
                 },
                 "action": {
                     "verbs": [
-                        "take"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 0,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "take",
-                                "operation": "TAKE",
-                                "negated": false
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "exam"
-                    ],
-                    "scopes": [
-                        "civilian_student"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 1,
-                    "examples": [
-                        {
-                            "resource": "exam",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [
-                        "environment.current_time IN [07:00, 17:25]"
-                    ],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "attribute",
-                            "attribute": "type",
-                            "value": "civilian"
-                        }
-                    ],
-                    "examples": [
-                        [
-                            "environment.current_time IN [07:00, 17:25]"
-                        ]
-                    ]
-                },
-                "metadata": {
-                    "policy_ids": [
-                        39
-                    ],
-                    "confidence_scores": {
-                        "context": 1.0,
-                        "action": 0.667,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [],
-                    "valid_count": 1,
-                    "total_count": 1
-                }
-            }
-        },
-        {
-            "env_cluster_id": 4,
-            "aggregate_bundle": {
-                "env_cluster_id": 4,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "Users"
-                            ],
-                            "role": "user",
-                            "qualifiers": {
-                                "type": null,
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": true
-                            },
-                            "namespace": "subject.user.user"
-                        }
-                    ],
-                    "roles": [
-                        "user"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.user"
-                    ],
-                    "count": 1,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "Users"
-                                ],
-                                "role": "user",
-                                "qualifiers": {
-                                    "type": null,
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.user"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
+                        "delete",
+                        "register",
+                        "issue",
+                        "number",
                         "export"
                     ],
                     "ops": [
+                        "admin-ops",
                         "other-ops"
                     ],
                     "negation_count": 1,
@@ -945,137 +1072,22 @@
                     "examples": [
                         [
                             {
-                                "verb": "export",
-                                "operation": "EXPORT",
+                                "verb": "delete",
+                                "operation": "DELETE",
+                                "negated": false
+                            }
+                        ],
+                        [
+                            {
+                                "verb": "register",
+                                "operation": "REGISTER",
                                 "negated": true
                             }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "finance_offices"
-                    ],
-                    "scopes": [
-                        "the"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 1,
-                    "examples": [
-                        {
-                            "resource": "finance_offices",
-                            "scope": "the",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [],
-                    "relation_pairs": [
-                        {
-                            "entity": "resource",
-                            "rel_type": "possession",
-                            "attribute": "qualifier",
-                            "value": "the"
-                        }
-                    ],
-                    "examples": []
-                },
-                "metadata": {
-                    "policy_ids": [
-                        59
-                    ],
-                    "confidence_scores": {
-                        "context": 0.667,
-                        "action": 1.0,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [
-                        "Negation without context constraint may be too broad"
-                    ],
-                    "valid_count": 1,
-                    "total_count": 1
-                }
-            }
-        },
-        {
-            "env_cluster_id": 6,
-            "aggregate_bundle": {
-                "env_cluster_id": 6,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "agreement"
-                            ],
-                            "role": "visiting_lecturer",
-                            "qualifiers": {
-                                "type": "visiting",
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": false
-                            },
-                            "namespace": "subject.user.visiting_lecturer.visiting"
-                        }
-                    ],
-                    "roles": [
-                        "visiting_lecturer"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.visiting_lecturer.visiting"
-                    ],
-                    "count": 1,
-                    "examples": [
+                        ],
                         [
                             {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "agreement"
-                                ],
-                                "role": "visiting_lecturer",
-                                "qualifiers": {
-                                    "type": "visiting",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": false
-                                },
-                                "namespace": "subject.user.visiting_lecturer.visiting"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "issue",
-                        "number",
-                        "make",
-                        "export"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 0,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "issue",
-                                "operation": "ISSUE",
+                                "verb": "register",
+                                "operation": "REGISTER",
                                 "negated": false
                             }
                         ]
@@ -1083,25 +1095,47 @@
                 },
                 "resource": {
                     "labels": [
+                        "application",
+                        "courses",
+                        "graduation_project_topics",
                         "visiting_management_system"
                     ],
-                    "scopes": [],
+                    "scopes": [
+                        "civilian_student"
+                    ],
                     "attributes": [],
                     "namespaces": [],
-                    "count": 1,
+                    "count": 4,
                     "examples": [
                         {
-                            "resource": "visiting_management_system",
+                            "resource": "application",
                             "scope": "",
+                            "attributes": []
+                        },
+                        {
+                            "resource": "courses",
+                            "scope": "civilian_student",
+                            "attributes": []
+                        },
+                        {
+                            "resource": "graduation_project_topics",
+                            "scope": "civilian_student",
                             "attributes": []
                         }
                     ]
                 },
                 "context": {
                     "conditions": [
+                        "resource.approver IN (unknown)",
                         "resource.contract_number IS NOT NULL"
                     ],
                     "relation_pairs": [
+                        {
+                            "entity": "subject",
+                            "rel_type": "attribute",
+                            "attribute": "type",
+                            "value": "civilian"
+                        },
                         {
                             "entity": "subject",
                             "rel_type": "attribute",
@@ -1123,409 +1157,49 @@
                     ],
                     "examples": [
                         [
+                            "resource.approver IN (unknown)"
+                        ],
+                        [
                             "resource.contract_number IS NOT NULL"
                         ]
                     ]
                 },
                 "metadata": {
                     "policy_ids": [
-                        63
+                        28,
+                        66,
+                        74,
+                        93
                     ],
                     "confidence_scores": {
-                        "context": 1.0,
-                        "action": 0.667,
-                        "principal": 1.0,
-                        "resource": 0.333
-                    },
-                    "warnings": [],
-                    "valid_count": 1,
-                    "total_count": 1
-                }
-            }
-        },
-        {
-            "env_cluster_id": 8,
-            "aggregate_bundle": {
-                "env_cluster_id": 8,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "office"
-                            ],
-                            "role": "user",
-                            "qualifiers": {
-                                "type": null,
-                                "rank": null,
-                                "status": null,
-                                "office": "finance",
-                                "department": null,
-                                "negated": false
-                            },
-                            "namespace": "subject.user.user"
-                        }
-                    ],
-                    "roles": [
-                        "user"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.user"
-                    ],
-                    "count": 1,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "office"
-                                ],
-                                "role": "user",
-                                "qualifiers": {
-                                    "type": null,
-                                    "rank": null,
-                                    "status": null,
-                                    "office": "finance",
-                                    "department": null,
-                                    "negated": false
-                                },
-                                "namespace": "subject.user.user"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "approve"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 0,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "approve",
-                                "operation": "APPROVE",
-                                "negated": false
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "visiting_lecturer_class"
-                    ],
-                    "scopes": [
-                        "the"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 1,
-                    "examples": [
-                        {
-                            "resource": "visiting_lecturer_class",
-                            "scope": "the",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [
-                        "resource.approver IN (unknown)"
-                    ],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "membership",
-                            "attribute": "office",
-                            "value": "finance"
-                        },
-                        {
-                            "entity": "resource",
-                            "rel_type": "possession",
-                            "attribute": "qualifier",
-                            "value": "the"
-                        }
-                    ],
-                    "examples": [
-                        [
-                            "resource.approver IN (unknown)"
-                        ]
-                    ]
-                },
-                "metadata": {
-                    "policy_ids": [
-                        64
-                    ],
-                    "confidence_scores": {
-                        "context": 1.0,
-                        "action": 0.667,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [],
-                    "valid_count": 1,
-                    "total_count": 1
-                }
-            }
-        },
-        {
-            "env_cluster_id": 9,
-            "aggregate_bundle": {
-                "env_cluster_id": 9,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "office"
-                            ],
-                            "role": "user",
-                            "qualifiers": {
-                                "type": null,
-                                "rank": null,
-                                "status": null,
-                                "office": "finance",
-                                "department": null,
-                                "negated": false
-                            },
-                            "namespace": "subject.user.user"
-                        },
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "students"
-                            ],
-                            "role": "student",
-                            "qualifiers": {
-                                "type": "civilian",
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": true
-                            },
-                            "namespace": "subject.user.student.civilian"
-                        }
-                    ],
-                    "roles": [
-                        "user",
-                        "student"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.user",
-                        "subject.user.student.civilian"
-                    ],
-                    "count": 3,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "office"
-                                ],
-                                "role": "user",
-                                "qualifiers": {
-                                    "type": null,
-                                    "rank": null,
-                                    "status": null,
-                                    "office": "finance",
-                                    "department": null,
-                                    "negated": false
-                                },
-                                "namespace": "subject.user.user"
-                            }
-                        ],
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ],
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "approve",
-                        "register"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 2,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "approve",
-                                "operation": "APPROVE",
-                                "negated": false
-                            }
-                        ],
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": true
-                            }
-                        ],
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": true
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "visiting_lecturer_class",
-                        "course"
-                    ],
-                    "scopes": [
-                        "the",
-                        "civilian_student"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 3,
-                    "examples": [
-                        {
-                            "resource": "visiting_lecturer_class",
-                            "scope": "the",
-                            "attributes": []
-                        },
-                        {
-                            "resource": "course",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        },
-                        {
-                            "resource": "course",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [
-                        "resource.approver IN (unknown)"
-                    ],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "membership",
-                            "attribute": "office",
-                            "value": "finance"
-                        },
-                        {
-                            "entity": "resource",
-                            "rel_type": "possession",
-                            "attribute": "qualifier",
-                            "value": "the"
-                        },
-                        {
-                            "entity": "subject",
-                            "rel_type": "attribute",
-                            "attribute": "type",
-                            "value": "civilian"
-                        }
-                    ],
-                    "examples": [
-                        [
-                            "resource.approver IN (unknown)"
-                        ]
-                    ]
-                },
-                "metadata": {
-                    "policy_ids": [
-                        64,
-                        72,
-                        77
-                    ],
-                    "confidence_scores": {
-                        "context": 0.778,
-                        "action": 0.889,
-                        "principal": 1.0,
-                        "resource": 0.667
+                        "resource": 0.5,
+                        "action": 0.75,
+                        "principal": 0.917,
+                        "context": 0.75
                     },
                     "warnings": [
                         "Negation without context constraint may be too broad"
                     ],
-                    "valid_count": 3,
-                    "total_count": 3
+                    "valid_count": 4,
+                    "total_count": 4
                 }
             }
         },
         {
-            "env_cluster_id": 10,
+            "env_cluster_id": 2,
             "aggregate_bundle": {
-                "env_cluster_id": 10,
+                "env_cluster_id": 2,
                 "principal": {
                     "subjects": [
                         {
-                            "id": "lecturer agreement"
+                            "id": "class schedules"
                         }
                     ],
                     "roles": [],
                     "qualifiers": [],
                     "namespaces": [],
-                    "count": 3,
+                    "count": 4,
                     "examples": [
-                        [
-                            {
-                                "id": "lecturer agreement"
-                            }
-                        ],
                         [
                             {
                                 "id": "class schedules"
@@ -1535,13 +1209,19 @@
                             {
                                 "id": "teaching schedules"
                             }
+                        ],
+                        [
+                            {
+                                "id": "students"
+                            }
                         ]
                     ]
                 },
                 "action": {
                     "verbs": [
-                        "have",
-                        "allow"
+                        "allow",
+                        "retake",
+                        "have"
                     ],
                     "ops": [
                         "other-ops"
@@ -1551,17 +1231,17 @@
                     "examples": [
                         [
                             {
-                                "verb": "have"
-                            }
-                        ],
-                        [
-                            {
                                 "verb": "allow"
                             }
                         ],
                         [
                             {
                                 "verb": "allow"
+                            }
+                        ],
+                        [
+                            {
+                                "verb": "retake"
                             }
                         ]
                     ]
@@ -1571,7 +1251,7 @@
                     "scopes": [],
                     "attributes": [],
                     "namespaces": [],
-                    "count": 3,
+                    "count": 4,
                     "examples": [
                         {
                             "resource": "",
@@ -1594,13 +1274,13 @@
                     "conditions": [],
                     "relation_pairs": [
                         {
-                            "attribute": "lecturer agreement",
-                            "value": "official",
+                            "attribute": "students",
+                            "value": "Civilian",
                             "rel_type": "unknown"
                         },
                         {
-                            "attribute": "students",
-                            "value": "Civilian",
+                            "attribute": "lecturer agreement",
+                            "value": "valid",
                             "rel_type": "unknown"
                         }
                     ],
@@ -1608,715 +1288,22 @@
                 },
                 "metadata": {
                     "policy_ids": [
+                        68,
                         69,
-                        83,
-                        84
+                        72,
+                        99
                     ],
                     "confidence_scores": {
-                        "context": 0.556,
+                        "resource": 0.0,
                         "action": 0.667,
                         "principal": 0.333,
-                        "resource": 0.0
+                        "context": 0.5
                     },
                     "warnings": [
                         "Missing resource"
                     ],
                     "valid_count": 0,
-                    "total_count": 3
-                }
-            }
-        },
-        {
-            "env_cluster_id": 11,
-            "aggregate_bundle": {
-                "env_cluster_id": 11,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "students"
-                            ],
-                            "role": "student",
-                            "qualifiers": {
-                                "type": "civilian",
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": true
-                            },
-                            "namespace": "subject.user.student.civilian"
-                        }
-                    ],
-                    "roles": [
-                        "student"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.student.civilian"
-                    ],
-                    "count": 1,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "register"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 1,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": true
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "courses"
-                    ],
-                    "scopes": [
-                        "civilian_student"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 1,
-                    "examples": [
-                        {
-                            "resource": "courses",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "attribute",
-                            "attribute": "type",
-                            "value": "civilian"
-                        }
-                    ],
-                    "examples": []
-                },
-                "metadata": {
-                    "policy_ids": [
-                        71
-                    ],
-                    "confidence_scores": {
-                        "context": 0.667,
-                        "action": 1.0,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [
-                        "Negation without context constraint may be too broad"
-                    ],
-                    "valid_count": 1,
-                    "total_count": 1
-                }
-            }
-        },
-        {
-            "env_cluster_id": 12,
-            "aggregate_bundle": {
-                "env_cluster_id": 12,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "students"
-                            ],
-                            "role": "student",
-                            "qualifiers": {
-                                "type": "civilian",
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": true
-                            },
-                            "namespace": "subject.user.student.civilian"
-                        }
-                    ],
-                    "roles": [
-                        "student"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.student.civilian"
-                    ],
-                    "count": 1,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "register"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 1,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": true
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "course"
-                    ],
-                    "scopes": [
-                        "civilian_student"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 1,
-                    "examples": [
-                        {
-                            "resource": "course",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [
-                        "resource.course_id IN subject.enrolled_courses",
-                        "subject.completed_courses CONTAINS resource.prerequisite_course_ids"
-                    ],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "attribute",
-                            "attribute": "type",
-                            "value": "civilian"
-                        },
-                        {
-                            "entity": "resource",
-                            "rel_type": "scope",
-                            "attribute": "level",
-                            "value": "course"
-                        }
-                    ],
-                    "examples": [
-                        [
-                            "resource.course_id IN subject.enrolled_courses"
-                        ]
-                    ]
-                },
-                "metadata": {
-                    "policy_ids": [
-                        73
-                    ],
-                    "confidence_scores": {
-                        "context": 1.0,
-                        "action": 1.0,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [],
-                    "valid_count": 1,
-                    "total_count": 1
-                }
-            }
-        },
-        {
-            "env_cluster_id": 14,
-            "aggregate_bundle": {
-                "env_cluster_id": 14,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "students"
-                            ],
-                            "role": "student",
-                            "qualifiers": {
-                                "type": "civilian",
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": true
-                            },
-                            "namespace": "subject.user.student.civilian"
-                        }
-                    ],
-                    "roles": [
-                        "student"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.student.civilian"
-                    ],
-                    "count": 1,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "register"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 1,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": true
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "courses"
-                    ],
-                    "scopes": [
-                        "civilian_student"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 1,
-                    "examples": [
-                        {
-                            "resource": "courses",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [
-                        "NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)"
-                    ],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "attribute",
-                            "attribute": "type",
-                            "value": "civilian"
-                        }
-                    ],
-                    "examples": [
-                        [
-                            "NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)"
-                        ]
-                    ]
-                },
-                "metadata": {
-                    "policy_ids": [
-                        74
-                    ],
-                    "confidence_scores": {
-                        "context": 1.0,
-                        "action": 1.0,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [],
-                    "valid_count": 1,
-                    "total_count": 1
-                }
-            }
-        },
-        {
-            "env_cluster_id": 16,
-            "aggregate_bundle": {
-                "env_cluster_id": 16,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "students"
-                            ],
-                            "role": "student",
-                            "qualifiers": {
-                                "type": "civilian",
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": false
-                            },
-                            "namespace": "subject.user.student.civilian"
-                        }
-                    ],
-                    "roles": [
-                        "student"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.student.civilian"
-                    ],
-                    "count": 2,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": false
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ],
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "register"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 1,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": false
-                            }
-                        ],
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": true
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "courses"
-                    ],
-                    "scopes": [
-                        "civilian_student"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 2,
-                    "examples": [
-                        {
-                            "resource": "courses",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        },
-                        {
-                            "resource": "courses",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "attribute",
-                            "attribute": "type",
-                            "value": "civilian"
-                        },
-                        {
-                            "entity": "resource",
-                            "rel_type": "status",
-                            "attribute": "status",
-                            "value": "open"
-                        },
-                        {
-                            "entity": "action",
-                            "rel_type": "attribute",
-                            "attribute": "negated",
-                            "value": "true"
-                        },
-                        {
-                            "entity": "resource",
-                            "rel_type": "status",
-                            "attribute": "status",
-                            "value": "closed"
-                        }
-                    ],
-                    "examples": []
-                },
-                "metadata": {
-                    "policy_ids": [
-                        75,
-                        76
-                    ],
-                    "confidence_scores": {
-                        "context": 0.667,
-                        "action": 0.834,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [
-                        "Negation without context constraint may be too broad"
-                    ],
-                    "valid_count": 2,
-                    "total_count": 2
-                }
-            }
-        },
-        {
-            "env_cluster_id": 17,
-            "aggregate_bundle": {
-                "env_cluster_id": 17,
-                "principal": {
-                    "subjects": [
-                        {
-                            "entity_type": "user",
-                            "ref_tokens": [
-                                "students"
-                            ],
-                            "role": "student",
-                            "qualifiers": {
-                                "type": "civilian",
-                                "rank": null,
-                                "status": null,
-                                "office": null,
-                                "department": null,
-                                "negated": true
-                            },
-                            "namespace": "subject.user.student.civilian"
-                        }
-                    ],
-                    "roles": [
-                        "student"
-                    ],
-                    "qualifiers": [
-                        "type",
-                        "rank",
-                        "status",
-                        "office",
-                        "department",
-                        "negated"
-                    ],
-                    "namespaces": [
-                        "subject.user.student.civilian"
-                    ],
-                    "count": 1,
-                    "examples": [
-                        [
-                            {
-                                "entity_type": "user",
-                                "ref_tokens": [
-                                    "students"
-                                ],
-                                "role": "student",
-                                "qualifiers": {
-                                    "type": "civilian",
-                                    "rank": null,
-                                    "status": null,
-                                    "office": null,
-                                    "department": null,
-                                    "negated": true
-                                },
-                                "namespace": "subject.user.student.civilian"
-                            }
-                        ]
-                    ]
-                },
-                "action": {
-                    "verbs": [
-                        "register"
-                    ],
-                    "ops": [
-                        "other-ops"
-                    ],
-                    "negation_count": 1,
-                    "logical_ops": {},
-                    "examples": [
-                        [
-                            {
-                                "verb": "register",
-                                "operation": "REGISTER",
-                                "negated": true
-                            }
-                        ]
-                    ]
-                },
-                "resource": {
-                    "labels": [
-                        "courses"
-                    ],
-                    "scopes": [
-                        "civilian_student"
-                    ],
-                    "attributes": [],
-                    "namespaces": [],
-                    "count": 1,
-                    "examples": [
-                        {
-                            "resource": "courses",
-                            "scope": "civilian_student",
-                            "attributes": []
-                        }
-                    ]
-                },
-                "context": {
-                    "conditions": [],
-                    "relation_pairs": [
-                        {
-                            "entity": "subject",
-                            "rel_type": "attribute",
-                            "attribute": "type",
-                            "value": "civilian"
-                        }
-                    ],
-                    "examples": []
-                },
-                "metadata": {
-                    "policy_ids": [
-                        81
-                    ],
-                    "confidence_scores": {
-                        "context": 0.667,
-                        "action": 1.0,
-                        "principal": 1.0,
-                        "resource": 0.667
-                    },
-                    "warnings": [
-                        "Negation without context constraint may be too broad"
-                    ],
-                    "valid_count": 1,
-                    "total_count": 1
+                    "total_count": 4
                 }
             }
         }
