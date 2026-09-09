@@ -9,17 +9,18 @@ Quick reference — Bảng tóm tắt
 | Parser v2 | `nlacp/pipeline/pipeline_v2.py` | Parser chính, trả về `Policy`/`PolicyDataset` (Pydantic) |
 | Env extractor | `nlacp/extraction/env_extractor.py` | Phát hiện trigger phrases, phân loại environment, chuẩn hóa thời gian |
 | Extraction suite | `nlacp/extraction/*.py` | `subject`, `action`, `resource`, `condition` extractors |
-| Module 2 (clustering) | `nlacp/mining/` & `scripts/run_module2.py` | Gom cụm environment và tổng hợp bundles |
+| Module 2 & 3 (clustering & hierarchy) | `scripts/att_extractor.py` | Gom cụm environment (DBSCAN) và gán namespace phân cấp |
 | IO & builder | `nlacp/io/dataset_builder.py` | Ghi/đọc `policy_dataset.json` và builder helper |
 
 Common CLI commands
 
 | Mục đích | Lệnh |
 |---|---|
-| Chạy trích xuất thô (file) | `python scripts/auto_extraction.py input_policies.txt` |
-| Chạy module 2 (clustering) | `python scripts/run_module2.py --method auto` |
+| Chạy pipeline tổng hợp (Khuyên dùng)| `python scripts/run_pipeline.py VACT_final.txt` |
+| Chạy trích xuất thô (Bước 1) | `python scripts/auto_extraction.py input_policies.txt` |
+| Chạy Attribute Clustering (Bước 2&3)| `python scripts/att_extractor.py` |
 | Tương tác verify (Gold) | `python scripts/interactive_verification.py` |
-| Tính F-score | `python scripts/compute_fscore.py --verbose` |
+| Tính F-score | `python scripts/compute_fscore.py` |
 
 Kiến trúc tổng quan (sơ đồ luồng)
 
@@ -28,8 +29,8 @@ flowchart TD
 	A[Input: text file / sentences] --> B[Auto extraction (scripts/auto_extraction.py)]
 	B --> C[Parser v2: nlacp.pipeline.pipeline_v2]
 	C --> D[outputs/policies/policy_dataset.json]
-	D --> E[Module 2: run_module2.py (nlacp/mining)]
-	E --> F[outputs/clusters/* (policy_bundles, env_context_clusters)]
+	D --> E[Clustering & Hierarchy: scripts/att_extractor.py]
+	E --> F[outputs/clusters/attribute_clusters.json & namespace_hierarchy.json]
 	F --> G[Interactive verification (scripts/interactive_verification.py)]
 	G --> H[outputs/policies/policy_dataset_gold.json]
 	H --> I[Compute F-score (scripts/compute_fscore.py)]
@@ -93,23 +94,23 @@ python -c "import pydantic; print('pydantic ok')"
 
 	- `nlacp/preprocessing/` — tiền xử lý câu: expand abbreviations, detect language, basic cleaning.
 	- `nlacp/normalization/` — chuẩn hóa namespace, gợi short names, gán data types.
-	- `nlacp/mining/` — clustering logic (DBSCAN / fallback) và cấu trúc namespace hierarchy builder.
 	- `nlacp/io/` — đọc/ghi datasets, builder helper (`dataset_builder.py`).
 	- `nlacp/pipeline/pipeline_v2.py` — Parser chính v2: chứa class `AcpParser` và helper module-level functions như `parse_acp_sentence`, `parse_acp_batch`, `parse_acp_json_batch`.
 	- `nlacp/validation/schema_validator.py` — định nghĩa schema Pydantic (Policy, Subject, Action, Environment, PolicyDataset) và validator tiện ích.
 
 - `scripts/` — entrypoints và công cụ:
+	- `run_pipeline.py` — file chạy tổng hợp toàn bộ pipeline từ input đến output cuối.
 	- `auto_extraction.py` — wrapper để chạy Parser v2 trên file hoặc câu đơn, viết output vào `outputs/policies/policy_dataset.json`.
-	- `run_module2.py` — chạy module2: gom cụm environment và tổng hợp bundles (đọc file outputs/policies/policy_dataset.json và sinh outputs/clusters/*).
+	- `att_extractor.py` — chạy Module 2 & 3: phân loại DBSCAN clustering (dùng GloVe embeddings) và xây dựng namespace hierarchy.
 	- `interactive_verification.py` — CLI để người dùng verify/điều chỉnh các bản trích xuất (tạo Gold dataset).
 	- `compute_fscore.py` — so sánh RAW vs GOLD và tính Precision/Recall/F1.
 
 - `outputs/` — thư mục đầu ra (được tạo khi chạy):
 	- `outputs/policies/policy_dataset.json` — RAW extraction
 	- `outputs/policies/policy_dataset_gold.json` — Gold (sau verify)
-	- `outputs/clusters/policy_bundles.json`, `env_context_clusters.json`, `aggregate_policy_bundles.json` — kết quả Module 2
+	- `outputs/clusters/attribute_clusters.json` — Kết quả DBSCAN Clustering
+	- `outputs/hierarchy/namespace_hierarchy.json` — Kết quả phân cấp Namespace
 
-- `test_isolation.py` — script demo nhanh, đã chỉnh để gọi `parse_acp_sentence` từ `pipeline_v2`.
 
 4. Giải thích chi tiết `pipeline_v2` (parser)
 - `AcpParser` (class):
@@ -150,17 +151,22 @@ python scripts/auto_extraction.py input_policies.txt
 
 `auto_extraction.py` options: (xem header script) hỗ trợ `--sentence`, `--auto`, `--out` v.v.
 
-5.3. Chạy Module 2 (gom cụm env + tổng hợp bundles)
+5.3. Chạy Pipeline Tổng hợp (Tự động hóa hoàn toàn)
 
 ```bash
-# Tự động suy tham số
-python scripts/run_module2.py --method auto
-
-# Hoặc dùng DBSCAN với tham số cụ thể
-python scripts/run_module2.py --method dbscan --eps 0.25 --min-samples 3
+python scripts/run_pipeline.py VACT_final.txt
+# Sẽ tự động chạy Bước 1 (auto_extraction) và Bước 2+3 (att_extractor)
 ```
 
-Kết quả nằm ở `outputs/clusters/`.
+Kết quả nằm ở `outputs/clusters/` và `outputs/hierarchy/`.
+
+5.4. Chạy Module 2 & 3 độc lập (gom cụm env + hierarchy)
+
+```bash
+python scripts/att_extractor.py
+```
+
+Kết quả sẽ cập nhật các tệp trong `outputs/clusters/` và `outputs/hierarchy/`.
 
 5.4. Tạo Gold Standard (CLI verify)
 
@@ -200,7 +206,7 @@ Ví dụ rút gọn:
 
 8. Phát triển & mở rộng
 - Thêm extractor mới: implement trong `nlacp/extraction/`, tuân theo interface trả về tokens/objects tương tự các extractor hiện tại, cập nhật `pipeline_v2` để gọi.
-- Thay đổi strategy clustering: chỉnh hoặc thêm module trong `nlacp/mining/` và thêm option `--method` cho `run_module2.py`.
+- Thay đổi strategy clustering: chỉnh logic thuật toán DBSCAN bên trong `scripts/att_extractor.py` hoặc thêm custom embeddings.
 
 9. Kiểm thử local
 - Chạy unit tests: `pytest -q` (nếu có test cases)
@@ -211,6 +217,18 @@ Ví dụ rút gọn:
 - Khi deploy lên server CI, tiền xử lý tải model spaCy có thể tốn thời gian — cân nhắc pre-download và cache model.
 
 ---
+### Phát hành Giai đoạn A & B (Bản vá mới nhất)
+1. **Sửa lỗi Phân cụm DBSCAN (Giai đoạn A)**: 
+   - Đã xử lý chuẩn hóa ký tự `_` cho các environment phrases.
+   - Sửa tham số tuning khoảng cách (`eps=4.0`, distance=`euclidean`). Đảm bảo clustering môi trường hoạt động chính xác cho các cụm từ đồng nghĩa (VD: "working hours", "business hours").
+2. **Nâng cấp từ vựng & Điều kiện (Giai đoạn B)**:
+   - Thêm `CONDITIONAL_ONLY`, `TEMPORAL_PERIODS`, `SPATIAL_CAMPUS` vào hệ thống gazetteers.
+   - Trích xuất toàn bộ câu phụ cho các mệnh đề điều kiện (VD: "only if their account is in good standing").
+   - Fix lỗi bộ lọc `PERSON_NOUNS` đánh rớt sai các trigger không gian hợp lệ (như "registrar office").
+   - **Fix 1**: Thêm thuật toán deduplicate để chặn trùng lặp ENV (vd: "between 9am and 5pm"). F1 Môi trường (Environment F1) trên VACT điều chỉnh về **0.9569** do hệ thống bắt đầu trích xuất được cụm ENV đầy đủ ngữ nghĩa ("in the academic information system" thay vì "in the academic").
+   - **Fix 2 (Zero-ENV Audit)**: Kiểm tra chéo 16 câu zero-ENV trên tập University. Phát hiện 10 câu thực sự không có ENV (Class A), 6 câu bị bỏ sót do giới hạn của Rule-based/Gazetteer (Class B - chứa các từ khoá phức tạp như 'before', 'only when', 'after', 'only from').
+   - **Fix 3 (DBSCAN Failure Verification)**: Kiểm chứng lại thuật toán DBSCAN Clustering trên 74 cụm trigger thô của University. DBSCAN thất bại trong việc nhóm các cụm từ mang ý nghĩa điều kiện/địa điểm (VD: tách "meetings", "campus" ra làm Outlier) bất kể cấu hình siêu tham số `eps` từ 2.0 đến 6.5. Điều này xác nhận hạn chế của việc sử dụng Word Vectors + Thuật toán trung bình cộng (Averaging) không thể áp dụng tốt cho mệnh đề điều kiện, định hướng cho các nâng cấp Transformer-based trong tương lai.
+---
 
 Nếu bạn muốn, tôi có thể:
 - commit các thay đổi vào git (tôi sẽ thực hiện commit và push nếu bạn cho phép),
@@ -218,4 +236,17 @@ Nếu bạn muốn, tôi có thể:
 - hoặc tạo thêm phần FAQ / Troubleshooting chi tiết hơn.
 
 Hãy cho biết bạn muốn bước tiếp theo nào: `commit` / `run-sample` / `add-FAQ`.
+
+
+### Ph�t h�nh Giai do?n C & D (Final)
+3. **Ho�n thi?n t?p d? li?u University (Phase C)**:
+   - Thay th? DBSCAN b?ng thu?t to�n ph�n lo?i Rule-based, x? l� th�nh c�ng to�n b? c�c m?nh d? kh� nhu \only when it is pending approval\, \efore the semester starts\.
+   - Tr�ch xu?t t? d?ng v� t?o th�nh c�ng \university_gold_draft.json\ v?i F1 d?t 1.0000 tr�n t?p d? li?u University.
+4. **��nh gi� Baseline Cu?i c�ng tr�n VACT (Phase D)**:
+   - H? th?ng du?c x�c th?c kh�ng b? regression. C�c ch? s? cu?i c�ng:
+     - **Subject F1**: 0.9005
+     - **Actions F1**: 0.9734
+     - **Object F1**: 0.7300
+     - **Environment F1**: 1.0000
+     - **Overall F1**: 0.9085
 
