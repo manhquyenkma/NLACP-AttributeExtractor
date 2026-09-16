@@ -8,7 +8,7 @@ Pipeline:
     → att_extractor.py              (Bước 2: DBSCAN clustering → attribute keys)
 
   [Tạo Gold Standard riêng]
-    → interactive_verification.py   (Đọc policy_dataset.json → người dùng verify → policy_dataset_gold.json)
+    → interactive_verification.py   (Đọc policy_dataset.json → người dùng verify → vact_gold.json)
 
 Usage:
     python scripts/run_pipeline.py                        # Full pipeline (stdin)
@@ -137,7 +137,14 @@ Ví dụ:
                         help="Bỏ qua DBSCAN clustering trong Bước 2")
     parser.add_argument("--sentence", default=None,
                         help="Quick test: xử lý 1 câu nhanh")
+    parser.add_argument("--core-only", action="store_true",
+                        help="Chỉ dùng core gazetteer (tắt domain-specific)")
     args = parser.parse_args()
+    
+    if args.core_only:
+        from nlacp.extraction.env_extractor import set_core_only
+        set_core_only(True)
+        print("[INFO] Đã bật chế độ --core-only (Tắt Domain-specific Gazetteers)")
 
     if args.sentence:
         run_single_sentence(args.sentence)

@@ -1,0 +1,4615 @@
+{
+    "policies": [
+        {
+            "id": 1,
+            "sentence": "An Unregistered Sender can only view documents sent to him/herself.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Sender"
+                    ],
+                    "role": "unregistered_sender",
+                    "qualifiers": null,
+                    "namespace": "subject.user.unregistered_sender"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[unregistered_sender] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 2,
+            "sentence": "A Member of a Tenant can only send a document if the credit of that tenant is sufficient.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Member"
+                    ],
+                    "role": "member_of_tenant",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_tenant"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "document"
+                ],
+                "label": "document",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.document"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "if the credit of that tenant is sufficient",
+                    "trigger_word": "if",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[member_of_tenant] ACTION[SEND] RESOURCE[document]"
+        },
+        {
+            "id": 3,
+            "sentence": "Every action done by a Member of a Tenant is billed to that Tenant.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "action"
+                    ],
+                    "role": "action",
+                    "qualifiers": null,
+                    "namespace": "subject.user.action"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "bill",
+                    "operation": "BILL",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "action"
+                ],
+                "label": "action",
+                "qualifier": "every",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.action"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "every"
+                }
+            ],
+            "abac_policy": "PERMIT subject[action] ACTION[BILL] RESOURCE[action]"
+        },
+        {
+            "id": 4,
+            "sentence": "Every action done by a User is logged.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "action"
+                    ],
+                    "role": "action",
+                    "qualifiers": null,
+                    "namespace": "subject.user.action"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "log",
+                    "operation": "LOG",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "action"
+                ],
+                "label": "action",
+                "qualifier": "every",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.action"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "every"
+                }
+            ],
+            "abac_policy": "PERMIT subject[action] ACTION[LOG] RESOURCE[action]"
+        },
+        {
+            "id": 5,
+            "sentence": "Members of the helpdesk can search every document in the application.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_helpdesk",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_helpdesk"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "search",
+                    "operation": "SEARCH",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "document"
+                ],
+                "label": "document",
+                "qualifier": "every",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.document"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "every"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[SEARCH] RESOURCE[document]"
+        },
+        {
+            "id": 6,
+            "sentence": "Members of the helpdesk can see meta-information of every document in the application.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_helpdesk",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_helpdesk"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "see",
+                    "operation": "SEE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "information"
+                ],
+                "label": "meta_information_of_document",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.meta_information_of_document"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[SEE] RESOURCE[meta_information_of_document]"
+        },
+        {
+            "id": 7,
+            "sentence": "Members of the helpdesk can only read the content of documents belonging to tenants for which they are assigned responsible.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_helpdesk",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_helpdesk"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "content"
+                ],
+                "label": "content_of_documents",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.content_of_documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[READ] RESOURCE[content_of_documents]"
+        },
+        {
+            "id": 8,
+            "sentence": "Members of the helpdesk can only manage tenant configurations for tenants for which they are assigned responsible.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_helpdesk",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_helpdesk"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "manage",
+                    "operation": "MANAGE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "configurations"
+                ],
+                "label": "tenant_configurations",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.tenant_configurations"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[MANAGE] RESOURCE[tenant_configurations]"
+        },
+        {
+            "id": 9,
+            "sentence": "Any member of the helpdesk assigned to a certain tenant can delegate the right to read documents of that tenant and manage the tenant's configuration to another member of the helpdesk for a maximum time of 4 weeks.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_helpdesk",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_helpdesk"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "delegate",
+                    "operation": "DELEGATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "right"
+                ],
+                "label": "right",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.right"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "configuration"
+                    ],
+                    "label": "configuration",
+                    "qualifier": "the",
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.configuration"
+                }
+            ],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "for a maximum time",
+                    "trigger_word": "for",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[DELEGATE] RESOURCE[right]"
+        },
+        {
+            "id": 10,
+            "sentence": "A member of the helpdesk assigned to a certain tenant can only delegate the right to read documents of that tenant and manage the tenant's configuration to another member of the helpdesk for a maximum time of 12 weeks in a year.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_helpdesk",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_helpdesk"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "delegate",
+                    "operation": "DELEGATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "right"
+                ],
+                "label": "right",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.right"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "configuration"
+                    ],
+                    "label": "configuration",
+                    "qualifier": "the",
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.configuration"
+                }
+            ],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "for a maximum time",
+                    "trigger_word": "for",
+                    "systems": null,
+                    "time_range": null
+                },
+                {
+                    "id": "env_2",
+                    "env_type": "temporal",
+                    "trigger_phrase": "a year",
+                    "trigger_word": "NER:DATE",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[DELEGATE] RESOURCE[right]"
+        },
+        {
+            "id": 11,
+            "sentence": "A member of the helpdesk can only read the meta-data of a document if he or she has read the contents of a conflicting document.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_helpdesk",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_helpdesk"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "data"
+                ],
+                "label": "meta_data_of_document",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.meta_data_of_document"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "if he or she has read the contents of a conflicting document",
+                    "trigger_word": "if",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[] RESOURCE[meta_data_of_document]"
+        },
+        {
+            "id": 12,
+            "sentence": "Each action done by a member of the helpdesk is logged.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "action"
+                    ],
+                    "role": "action",
+                    "qualifiers": null,
+                    "namespace": "subject.user.action"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "log",
+                    "operation": "LOG",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "member"
+                ],
+                "label": "member_of_helpdesk",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.member_of_helpdesk"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[action] ACTION[LOG] RESOURCE[member_of_helpdesk]"
+        },
+        {
+            "id": 13,
+            "sentence": "Application admins can create new tenants and manage tenant configurations.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "admins"
+                    ],
+                    "role": "application_admins",
+                    "qualifiers": null,
+                    "namespace": "subject.user.application_admins"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                },
+                {
+                    "verb": "manage",
+                    "operation": "MANAGE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": "AND",
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "tenants"
+                ],
+                "label": "tenants",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.tenants"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "configurations"
+                    ],
+                    "label": "tenant_configurations",
+                    "qualifier": null,
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.tenant_configurations"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[application_admins] ACTION[CREATE,MANAGE] RESOURCE[tenants]"
+        },
+        {
+            "id": 14,
+            "sentence": "An application admin can only read the meta-data of a document if he or she has read the contents of a conflicting document.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "admin"
+                    ],
+                    "role": "application_admin",
+                    "qualifiers": null,
+                    "namespace": "subject.user.application_admin"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "data"
+                ],
+                "label": "meta_data_of_document",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.meta_data_of_document"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "if he or she has read the contents of a conflicting document",
+                    "trigger_word": "if",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[application_admin] ACTION[] RESOURCE[meta_data_of_document]"
+        },
+        {
+            "id": 15,
+            "sentence": "No one can read the content of documents labeled confidential by a member of the owning tenant.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "one"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": true
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "content"
+                ],
+                "label": "content_of_documents",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "confidential",
+                    "status": null
+                },
+                "namespace": "resource.document.content_of_documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "confidential"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[content_of_documents]"
+        },
+        {
+            "id": 16,
+            "sentence": "Every authenticated user can send documents and receive.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "user"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                },
+                {
+                    "verb": "receive",
+                    "operation": "RECEIVE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": "AND",
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": "every",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "every"
+                }
+            ],
+            "abac_policy": "PERMIT subject[user] ACTION[SEND,RECEIVE] RESOURCE[documents]"
+        },
+        {
+            "id": 17,
+            "sentence": "A supervisor can read documents sent by its supervisees.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "supervisor"
+                    ],
+                    "role": "supervisor",
+                    "qualifiers": null,
+                    "namespace": "subject.user.supervisor"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[supervisor] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 18,
+            "sentence": "A supervisee cannot read documents sent by its supervisors.",
+            "authorization_decision": "deny",
+            "policy_modality": "cannot",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "supervisee"
+                    ],
+                    "role": "supervisee",
+                    "qualifiers": {
+                        "type": null,
+                        "rank": null,
+                        "status": null,
+                        "office": null,
+                        "department": null,
+                        "negated": true
+                    },
+                    "namespace": "subject.user.supervisee"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": true
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "DENY subject[supervisee] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 19,
+            "sentence": "A project member can read all sent documents regarding the project.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "project_member",
+                    "qualifiers": null,
+                    "namespace": "subject.user.project_member"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": "all",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "all"
+                }
+            ],
+            "abac_policy": "PERMIT subject[project_member] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 20,
+            "sentence": "Members of a subtenant can only send documents to customers of that subtenant.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_subtenant",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_subtenant"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_subtenant] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 21,
+            "sentence": "Only members of the sales department can send invoices.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[SEND] RESOURCE[invoices]"
+        },
+        {
+            "id": 22,
+            "sentence": "Only members of the sales department can view or search invoices.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices",
+                    "view"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[READ] RESOURCE[invoices]"
+        },
+        {
+            "id": 23,
+            "sentence": "Every member of the sales department can view or search invoices sent by a member of the sales department.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices",
+                    "view"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[READ] RESOURCE[invoices]"
+        },
+        {
+            "id": 24,
+            "sentence": "Only automated services of the ICT department can send banking notes.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "services"
+                    ],
+                    "role": "automated_services_of_ict_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.automated_services_of_ict_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "notes"
+                ],
+                "label": "banking_notes",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.banking_notes"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[automated_services_of_ict_department] ACTION[SEND] RESOURCE[banking_notes]"
+        },
+        {
+            "id": 25,
+            "sentence": "Only members of the ICT department responsible for banking notes can view the status of a sent banking note.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_ict_department_responsible_for_banking_notes",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_ict_department_responsible_for_banking_notes"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "status"
+                ],
+                "label": "status_of_note",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.status_of_note"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_ict_department_responsible_for_banking_notes] ACTION[READ] RESOURCE[status_of_note]"
+        },
+        {
+            "id": 26,
+            "sentence": "Every member of the ICT department responsible for banking notes can view the status of a sent banking note.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_ict_department_responsible_for_banking_notes",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_ict_department_responsible_for_banking_notes"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "status"
+                ],
+                "label": "status_of_note",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.status_of_note"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[member_of_ict_department_responsible_for_banking_notes] ACTION[READ] RESOURCE[status_of_note]"
+        },
+        {
+            "id": 27,
+            "sentence": "Only employees which are responsible for payrolling can send paychecks and only to members of their department.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "employees"
+                    ],
+                    "role": "employees",
+                    "qualifiers": null,
+                    "namespace": "subject.user.employees"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "paychecks"
+                ],
+                "label": "paychecks",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.paychecks"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[employees] ACTION[SEND] RESOURCE[paychecks]"
+        },
+        {
+            "id": 28,
+            "sentence": "Employees which are responsible for payrolling can only send paychecks between the 20th and 25th of each month.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Employees"
+                    ],
+                    "role": "employees",
+                    "qualifiers": null,
+                    "namespace": "subject.user.employees"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "paychecks"
+                ],
+                "label": "paychecks",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.paychecks"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "between the 20th and 25th of each month",
+                    "trigger_word": "NER:DATE",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[employees] ACTION[SEND] RESOURCE[paychecks]"
+        },
+        {
+            "id": 29,
+            "sentence": "Only employees which are responsible for payrolling and receivers of the paychecks can read paycheck documents.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "employees"
+                    ],
+                    "role": "employees",
+                    "qualifiers": null,
+                    "namespace": "subject.user.employees"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "receivers"
+                    ],
+                    "role": "receivers_of_paychecks",
+                    "qualifiers": null,
+                    "namespace": "subject.user.receivers_of_paychecks"
+                }
+            ],
+            "subjects_logical_op": "AND",
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "paycheck_documents",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.paycheck_documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[employees,receivers_of_paychecks] ACTION[READ] RESOURCE[paycheck_documents]"
+        },
+        {
+            "id": 30,
+            "sentence": "Every access to a paycheck should be logged.",
+            "authorization_decision": "permit",
+            "policy_modality": "must",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "access"
+                    ],
+                    "role": "access",
+                    "qualifiers": null,
+                    "namespace": "subject.user.access"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "log",
+                    "operation": "LOG",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "access"
+                ],
+                "label": "access_to_a_paycheck",
+                "qualifier": "every",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.access_to_a_paycheck"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "every"
+                }
+            ],
+            "abac_policy": "PERMIT subject[access] ACTION[LOG] RESOURCE[access_to_a_paycheck]"
+        },
+        {
+            "id": 31,
+            "sentence": "Only members of the sales department can send sales offers.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "offers"
+                ],
+                "label": "sales_offers",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.sales_offers"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[SEND] RESOURCE[sales_offers]"
+        },
+        {
+            "id": 32,
+            "sentence": "Only senior members of the sales department can send sales offers to all customers at once.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "senior_members_of_sales_department",
+                    "qualifiers": {
+                        "type": null,
+                        "rank": "senior",
+                        "status": null,
+                        "office": null,
+                        "department": null,
+                        "negated": false
+                    },
+                    "namespace": "subject.user.senior_members_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "offers"
+                ],
+                "label": "sales_offers",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.sales_offers"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "subject",
+                    "rel_type": "attribute",
+                    "attribute": "rank",
+                    "value": "senior"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[senior_members_of_sales_department] ACTION[SEND] RESOURCE[sales_offers]"
+        },
+        {
+            "id": 33,
+            "sentence": "Sales offers regarding insurances can only be sent to insurance customers.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "offers"
+                    ],
+                    "role": "offers",
+                    "qualifiers": null,
+                    "namespace": "subject.user.offers"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "offers"
+                ],
+                "label": "offers",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.offers"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[offers] ACTION[SEND] RESOURCE[offers]"
+        },
+        {
+            "id": 34,
+            "sentence": "Sales offers regarding savings accounts can only be sent to customers who own a savings account.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "offers"
+                    ],
+                    "role": "offers_regarding",
+                    "qualifiers": null,
+                    "namespace": "subject.user.offers_regarding"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "offers"
+                ],
+                "label": "offers",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.offers"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[offers_regarding] ACTION[SEND] RESOURCE[offers]"
+        },
+        {
+            "id": 35,
+            "sentence": "Sales offers can only be sent on weekdays between 07h00 and 19h00.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "offers"
+                    ],
+                    "role": "sales_offers",
+                    "qualifiers": null,
+                    "namespace": "subject.user.sales_offers"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "offers"
+                ],
+                "label": "sales_offers",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.sales_offers"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "on weekdays",
+                    "trigger_word": "on",
+                    "systems": null,
+                    "time_range": null
+                },
+                {
+                    "id": "env_2",
+                    "env_type": "temporal",
+                    "trigger_phrase": "between 07h00 and 19h00",
+                    "trigger_word": "between",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[sales_offers] ACTION[SEND] RESOURCE[sales_offers]"
+        },
+        {
+            "id": 36,
+            "sentence": "Only the bank office manager responsible for a certain bank office can send documents to that office.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "manager"
+                    ],
+                    "role": "bank_office_manager_responsible_for_certain_bank_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.bank_office_manager_responsible_for_certain_bank_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[bank_office_manager_responsible_for_certain_bank_office] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 37,
+            "sentence": "Only senior bank office managers can send documents to all bank offices at once.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "managers"
+                    ],
+                    "role": "senior_bank_office_managers",
+                    "qualifiers": {
+                        "type": null,
+                        "rank": "senior",
+                        "status": null,
+                        "office": null,
+                        "department": null,
+                        "negated": false
+                    },
+                    "namespace": "subject.user.senior_bank_office_managers"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "subject",
+                    "rel_type": "attribute",
+                    "attribute": "rank",
+                    "value": "senior"
+                }
+            ],
+            "abac_policy": "PERMIT subject[senior_bank_office_managers] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 38,
+            "sentence": "Only members of the HR department can create users.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_hr_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_hr_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "users"
+                ],
+                "label": "users",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.users"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_hr_department] ACTION[CREATE] RESOURCE[users]"
+        },
+        {
+            "id": 39,
+            "sentence": "Only members of the IT departments which are part of the Senior Management can create subtenants in the application.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_it_departments",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_it_departments"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "subtenants"
+                ],
+                "label": "subtenants",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.subtenants"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_it_departments] ACTION[CREATE] RESOURCE[subtenants]"
+        },
+        {
+            "id": 40,
+            "sentence": "Users can only be created on weekdays between 08h00 and 02h00.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Users"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "Users"
+                ],
+                "label": "users",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.users"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "on weekdays",
+                    "trigger_word": "on",
+                    "systems": null,
+                    "time_range": null
+                },
+                {
+                    "id": "env_2",
+                    "env_type": "temporal",
+                    "trigger_phrase": "between 08h00 and 02h00",
+                    "trigger_word": "between",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[user] ACTION[CREATE] RESOURCE[users]"
+        },
+        {
+            "id": 41,
+            "sentence": "The Large Bank Audit department can read any document sent by any member of Large Bank except for the paychecks and banking notes.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "department"
+                    ],
+                    "role": "large_bank_audit_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.large_bank_audit_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "document"
+                ],
+                "label": "document",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.document"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "except for the paychecks and banking notes",
+                    "trigger_word": "except for",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[large_bank_audit_department] ACTION[READ] RESOURCE[document]"
+        },
+        {
+            "id": 42,
+            "sentence": "Members of Large Bank Leasing can only send documents to customers of Large Bank Leasing.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_large_bank_leasing",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_large_bank_leasing"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_large_bank_leasing] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 43,
+            "sentence": "Only members of the customer care office can view traffic fines.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_customer_care_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_customer_care_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "fines"
+                ],
+                "label": "traffic_fines",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.traffic_fines"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_customer_care_office] ACTION[READ] RESOURCE[traffic_fines]"
+        },
+        {
+            "id": 44,
+            "sentence": "Only users of the sales office can send invoices.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "users"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[user] ACTION[SEND] RESOURCE[invoices]"
+        },
+        {
+            "id": 45,
+            "sentence": "Only members of the Customer Care Office can manually bill a customer.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_customer_care_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_customer_care_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "bill",
+                    "operation": "BILL",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "customer"
+                ],
+                "label": "customer",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.customer"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_customer_care_office] ACTION[BILL] RESOURCE[customer]"
+        },
+        {
+            "id": 46,
+            "sentence": "Only the secretary and the office director of a bank office can read documents sent to the bank office.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "secretary",
+                        "director"
+                    ],
+                    "role": "secretary",
+                    "qualifiers": null,
+                    "namespace": "subject.user.secretary"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "director"
+                    ],
+                    "role": "office_director_of_bank_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.office_director_of_bank_office"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "director"
+                    ],
+                    "role": "office_director_of_bank_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.office_director_of_bank_office"
+                }
+            ],
+            "subjects_logical_op": "AND",
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "secret",
+                    "status": null
+                },
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "secret"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[secretary,office_director_of_bank_office,office_director_of_bank_office] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 47,
+            "sentence": "Members of a bank office can only send documents to external customers whose main office is that bank office.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_bank_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_bank_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_bank_office] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 48,
+            "sentence": "Insurance agents of a bank office can only send documents to insurance customers of that bank office.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "agents"
+                    ],
+                    "role": "insurance_agents_of_bank_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.insurance_agents_of_bank_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[insurance_agents_of_bank_office] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 49,
+            "sentence": "Any member of the Accounting department can receive and read invoices.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_accounting_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_accounting_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "receive",
+                    "operation": "RECEIVE",
+                    "negated": false
+                },
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": "AND",
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_accounting_department] ACTION[RECEIVE,READ] RESOURCE[invoices]"
+        },
+        {
+            "id": 50,
+            "sentence": "Only members of the Accounting department can receive and read invoices unless every member of the Accounting department is set to be unavailable.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_accounting_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_accounting_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "receive",
+                    "operation": "RECEIVE",
+                    "negated": false
+                },
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": "AND",
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "unless every member of the Accounting department is set to be unavailable",
+                    "trigger_word": "unless",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_accounting_department] ACTION[RECEIVE,READ] RESOURCE[invoices]"
+        },
+        {
+            "id": 51,
+            "sentence": "Only members of a certain office can read documents sent to that office.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_certain_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_certain_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_certain_office] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 52,
+            "sentence": "Any member of a certain office can read documents sent to that office.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_certain_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_certain_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[member_of_certain_office] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 53,
+            "sentence": "Any member of a certain office can read all documents sent by any member of that office.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_certain_office",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_certain_office"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": "all",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "all"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_certain_office] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 54,
+            "sentence": "Only members of the secretary can read invoices.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_secretary",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_secretary"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "secret",
+                    "status": null
+                },
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "secret"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_secretary] ACTION[READ] RESOURCE[invoices]"
+        },
+        {
+            "id": 55,
+            "sentence": "Only members of the ICT group can create, delete or manage users or groups in the application.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_ict_group",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_ict_group"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "users",
+                    "groups"
+                ],
+                "label": "users",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.users"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "groups",
+                        "users"
+                    ],
+                    "label": "groups",
+                    "qualifier": null,
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.groups"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_ict_group] ACTION[CREATE] RESOURCE[users]"
+        },
+        {
+            "id": 56,
+            "sentence": "Members of the Audit department can read all invoices, offers and contracts.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_audit_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_audit_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "all",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "offers",
+                        "read",
+                        "contracts"
+                    ],
+                    "label": "offers",
+                    "qualifier": "all",
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.offers"
+                },
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "contracts",
+                        "read",
+                        "offers"
+                    ],
+                    "label": "contracts",
+                    "qualifier": "all",
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.contracts"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "all"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_audit_department] ACTION[READ] RESOURCE[invoices]"
+        },
+        {
+            "id": 57,
+            "sentence": "All document read attempts by a member of the Audit department should be logged.",
+            "authorization_decision": "permit",
+            "policy_modality": "must",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "document"
+                    ],
+                    "role": "document",
+                    "qualifiers": null,
+                    "namespace": "subject.user.document"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "attempts"
+                ],
+                "label": "attempts_by_member",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.attempts_by_member"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[document] ACTION[READ] RESOURCE[attempts_by_member]"
+        },
+        {
+            "id": 58,
+            "sentence": "Members of the Audit department can read all paychecks of all employees which are responsible for payrolling and their supervisors.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_audit_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_audit_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "paychecks"
+                ],
+                "label": "paychecks",
+                "qualifier": "all",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.paychecks"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "all"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_audit_department] ACTION[READ] RESOURCE[paychecks]"
+        },
+        {
+            "id": 59,
+            "sentence": "Only members of the IT department which are part of the Senior Management group and responsible for the software partner management can create subtenants.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_it_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_it_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "subtenants"
+                ],
+                "label": "subtenants",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.subtenants"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_it_department] ACTION[CREATE] RESOURCE[subtenants]"
+        },
+        {
+            "id": 60,
+            "sentence": "Members of the IT department which are responsible for user management can change the access rights to documents.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_it_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_it_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "change",
+                    "operation": "CHANGE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "rights"
+                ],
+                "label": "access_rights",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.access_rights"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_it_department] ACTION[CHANGE] RESOURCE[access_rights]"
+        },
+        {
+            "id": 61,
+            "sentence": "Any Member of the IT department which is part of the Senior Management group and responsible for the software partner management can create subtenants.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Member"
+                    ],
+                    "role": "member_of_it_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_it_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "subtenants"
+                ],
+                "label": "subtenants",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.subtenants"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_it_department] ACTION[CREATE] RESOURCE[subtenants]"
+        },
+        {
+            "id": 62,
+            "sentence": "Only Members of the IT department which are part of the Senior Management group and responsible for the software partner management can delegate the right to create new subtenants to its subtenants.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_it_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_it_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "delegate",
+                    "operation": "DELEGATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "right"
+                ],
+                "label": "right",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.right"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_it_department] ACTION[DELEGATE] RESOURCE[right]"
+        },
+        {
+            "id": 63,
+            "sentence": "Any member of the Human Resource department can send contracts to potential future employees.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_human_resource_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_human_resource_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "contracts"
+                ],
+                "label": "contracts",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.contracts"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_human_resource_department] ACTION[SEND] RESOURCE[contracts]"
+        },
+        {
+            "id": 64,
+            "sentence": "Only members of the Human Resource department can send contracts to potential future employees.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_human_resource_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_human_resource_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "contracts"
+                ],
+                "label": "contracts",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.contracts"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_human_resource_department] ACTION[SEND] RESOURCE[contracts]"
+        },
+        {
+            "id": 65,
+            "sentence": "Members of the Human Resources department can send contracts to freelance members which collaborate with a project only after two weeks before the start of the project and not after one month after the end of the project.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Members"
+                    ],
+                    "role": "members_of_human_resources_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_human_resources_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "contracts"
+                ],
+                "label": "contracts",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.contracts"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "two weeks before the start",
+                    "trigger_word": "two weeks before",
+                    "systems": null,
+                    "time_range": null
+                },
+                {
+                    "id": "env_2",
+                    "env_type": "temporal",
+                    "trigger_phrase": "after one month",
+                    "trigger_word": "after",
+                    "systems": null,
+                    "time_range": null
+                },
+                {
+                    "id": "env_3",
+                    "env_type": "temporal",
+                    "trigger_phrase": "after the end",
+                    "trigger_word": "after",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_human_resources_department] ACTION[SEND] RESOURCE[contracts]"
+        },
+        {
+            "id": 66,
+            "sentence": "Only members of the Audit department and members of the Human Resources department can read the contracts sent out for a project.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_audit_department_of_human_resources_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_audit_department_of_human_resources_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "contracts"
+                ],
+                "label": "contracts",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.contracts"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_audit_department_of_human_resources_department] ACTION[READ] RESOURCE[contracts]"
+        },
+        {
+            "id": 67,
+            "sentence": "Any member of the sales department can send invoices.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[SEND] RESOURCE[invoices]"
+        },
+        {
+            "id": 68,
+            "sentence": "Only members of the sales department can send invoices.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[SEND] RESOURCE[invoices]"
+        },
+        {
+            "id": 69,
+            "sentence": "Any member of the sales department can read all invoices sent by the department.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "all",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "all"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[READ] RESOURCE[invoices]"
+        },
+        {
+            "id": 70,
+            "sentence": "Any member of the sales department can delegate the right to send invoices to a member of the Secretary for a duration of maximum 6 weeks.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "delegate",
+                    "operation": "DELEGATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "right"
+                ],
+                "label": "right",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "secret",
+                    "status": null
+                },
+                "namespace": "resource.document.right"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "for a duration",
+                    "trigger_word": "for",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "secret"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[DELEGATE] RESOURCE[right]"
+        },
+        {
+            "id": 71,
+            "sentence": "Any member of the Sales department can create a new subtenant.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "subtenant"
+                ],
+                "label": "subtenant",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.subtenant"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[CREATE] RESOURCE[subtenant]"
+        },
+        {
+            "id": 72,
+            "sentence": "Only members of the Sales department can create new subtenants.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_sales_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_sales_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "subtenants"
+                ],
+                "label": "subtenants",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.subtenants"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[CREATE] RESOURCE[subtenants]"
+        },
+        {
+            "id": 73,
+            "sentence": "Any member of the Customer department can modify access rights of the documents sent by a subtenant which he or she has been assigned to.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_customer_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_customer_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "modify",
+                    "operation": "MODIFY",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "rights"
+                ],
+                "label": "access_rights_of_documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.access_rights_of_documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[MODIFY] RESOURCE[access_rights_of_documents]"
+        },
+        {
+            "id": 74,
+            "sentence": "Any member of the Customer department can add properties to sent documents to help classify them for the subtenant.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_customer_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_customer_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "add",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "properties"
+                ],
+                "label": "properties",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.properties"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "documents"
+                    ],
+                    "label": "documents",
+                    "qualifier": null,
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.documents"
+                },
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "them"
+                    ],
+                    "label": "them",
+                    "qualifier": null,
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.them"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[CREATE] RESOURCE[properties]"
+        },
+        {
+            "id": 75,
+            "sentence": "Only members of the Customer department can modify access rights of the documents sent by a subtenant.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_customer_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_customer_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "modify",
+                    "operation": "MODIFY",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "rights"
+                ],
+                "label": "access_rights_of_documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.access_rights_of_documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_customer_department] ACTION[MODIFY] RESOURCE[access_rights_of_documents]"
+        },
+        {
+            "id": 76,
+            "sentence": "Any member of the Customer department can send documents on behalf of the subtenant he or she has been assigned to.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_customer_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_customer_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 77,
+            "sentence": "Only members of the Customer department can send documents on behalf of the subtenants.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_customer_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_customer_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[members_of_customer_department] ACTION[SEND] RESOURCE[documents]"
+        },
+        {
+            "id": 78,
+            "sentence": "Only members of the Customer department that is assigned to a subtenant can read the documents of that tenant.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "members"
+                    ],
+                    "role": "members_of_customer_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.members_of_customer_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents_of_tenant",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents_of_tenant"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[members_of_customer_department] ACTION[READ] RESOURCE[documents_of_tenant]"
+        },
+        {
+            "id": 79,
+            "sentence": "Any member of the Customer department that is assigned to a subtenant can read the documents of that tenant provided that he or she is not involved in a conflict of interest situation.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_customer_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_customer_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "he",
+                    "she"
+                ],
+                "label": "he",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.he"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "she",
+                        "he"
+                    ],
+                    "label": "she",
+                    "qualifier": "the",
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.she"
+                }
+            ],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "provided that he or she is not involved in a conflict of interest situation",
+                    "trigger_word": "provided that",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[READ] RESOURCE[he]"
+        },
+        {
+            "id": 80,
+            "sentence": "Any member of the Accounting department can send invoices to customers.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_accounting_department",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_accounting_department"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "invoices"
+                ],
+                "label": "invoices",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.invoices"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_accounting_department] ACTION[SEND] RESOURCE[invoices]"
+        },
+        {
+            "id": 81,
+            "sentence": "A member of the reseller can read the meta-data of a document if he or she has read the contents of a conflicting document.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "member"
+                    ],
+                    "role": "member_of_reseller",
+                    "qualifiers": null,
+                    "namespace": "subject.user.member_of_reseller"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "data"
+                ],
+                "label": "meta_data_of_document",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.meta_data_of_document"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "if he or she has read the contents of a conflicting document",
+                    "trigger_word": "if",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[member_of_reseller] ACTION[] RESOURCE[meta_data_of_document]"
+        },
+        {
+            "id": 82,
+            "sentence": "Registered Private Receivers can only read documents.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Receivers"
+                    ],
+                    "role": "registered_private_receivers",
+                    "qualifiers": null,
+                    "namespace": "subject.user.registered_private_receivers"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 83,
+            "sentence": "Registered Private Receivers can only read documents they received.",
+            "authorization_decision": "permit",
+            "policy_modality": "only_if",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Receivers"
+                    ],
+                    "role": "registered_private_receivers",
+                    "qualifiers": null,
+                    "namespace": "subject.user.registered_private_receivers"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "documents",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[READ] RESOURCE[documents]"
+        },
+        {
+            "id": 84,
+            "sentence": "Registered Private Receivers can allow another Registered Private Receiver to read a certain document.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Receivers"
+                    ],
+                    "role": "registered_private_receivers",
+                    "qualifiers": {
+                        "type": null,
+                        "rank": null,
+                        "status": null,
+                        "office": null,
+                        "department": null,
+                        "negated": true
+                    },
+                    "namespace": "subject.user.registered_private_receivers"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "allow",
+                    "operation": "ALLOW",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "document"
+                ],
+                "label": "document",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.document"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[ALLOW] RESOURCE[document]"
+        },
+        {
+            "id": 85,
+            "sentence": "Registered Private Receivers can allow another Registered Private Receiver to read all received documents.",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "Receivers"
+                    ],
+                    "role": "registered_private_receivers",
+                    "qualifiers": {
+                        "type": null,
+                        "rank": null,
+                        "status": null,
+                        "office": null,
+                        "department": null,
+                        "negated": true
+                    },
+                    "namespace": "subject.user.registered_private_receivers"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "allow",
+                    "operation": "ALLOW",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "documents"
+                ],
+                "label": "received_documents",
+                "qualifier": "all",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.received_documents"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "all"
+                }
+            ],
+            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[ALLOW] RESOURCE[received_documents]"
+        }
+    ]
+}

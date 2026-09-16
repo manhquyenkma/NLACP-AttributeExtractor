@@ -6,9 +6,9 @@ Luồng xử lý:
   outputs/policies/policy_dataset.json   (raw machine output từ auto_extraction.py)
     → Duyệt từng câu, hỏi Y/N
     → Nếu Y: cho chỉnh sửa Subject / Actions / Object / Environment
-    → Lưu ra outputs/policies/policy_dataset_gold.json   (Gold Standard)
+    → Lưu ra outputs/policies/vact_gold.json   (Gold Standard)
 
-F-score = so sánh policy_dataset.json  vs  policy_dataset_gold.json
+F-score = so sánh policy_dataset.json  vs  vact_gold.json
 
 Usage:
     python scripts/interactive_verification.py
@@ -72,7 +72,7 @@ def load_machine_output() -> list:
 
 
 def load_gold_dataset() -> dict:
-    """Đọc policy_dataset_gold.json nếu tồn tại (để resume)."""
+    """Đọc vact_gold.json nếu tồn tại (để resume)."""
     if not os.path.exists(POLICY_DATASET_GOLD_PATH):
         return {}
     try:
@@ -85,7 +85,7 @@ def load_gold_dataset() -> dict:
 
 
 def save_gold_dataset(gold_policies: list):
-    """Ghi policy_dataset_gold.json."""
+    """Ghi vact_gold.json."""
     os.makedirs(os.path.dirname(POLICY_DATASET_GOLD_PATH), exist_ok=True)
     with open(POLICY_DATASET_GOLD_PATH, "w", encoding="utf-8") as f:
         json.dump({"policies": gold_policies}, f, indent=4, ensure_ascii=False)
@@ -262,7 +262,7 @@ def verify_and_edit_policy(policy: dict) -> dict:
 def main(resume: bool = False):
     print("\n" + "=" * 62)
     print("  INTERACTIVE VERIFICATION — Tạo Gold Standard")
-    print("  Đọc: policy_dataset.json  →  Lưu: policy_dataset_gold.json")
+    print("  Đọc: policy_dataset.json  →  Lưu: vact_gold.json")
     print("=" * 62)
 
     # Load raw machine output
@@ -325,7 +325,7 @@ def main(resume: bool = False):
         print(f"  (Tổng dataset: {total}  |  Đã xét: {len(gold_list)})")
         print(f"{'='*62}")
         print("\nTính F-score:")
-        print("  python -m nlacp.evaluation.evaluator --gold outputs/policies/policy_dataset_gold.json")
+        print("  python -m nlacp.evaluation.evaluator --gold outputs/policies/vact_gold.json")
     else:
         print("\n[INFO] Không có gì được lưu.")
 

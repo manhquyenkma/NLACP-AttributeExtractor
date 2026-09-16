@@ -1,0 +1,2804 @@
+{
+    "policies": [
+        {
+            "id": 1,
+            "sentence": "The HCP can graph the height or weight of the patient over the last calendar years",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "graph",
+                    "operation": "GRAPH",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "height",
+                    "weight"
+                ],
+                "label": "height",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.height"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "weight",
+                        "height"
+                    ],
+                    "label": "weight",
+                    "qualifier": "the",
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.weight"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[hcp] ACTION[GRAPH] RESOURCE[height]"
+        },
+        {
+            "id": 2,
+            "sentence": "The HCP may also add a patient referral",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "add",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "referral"
+                ],
+                "label": "patient_referral",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.patient_referral"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[hcp] ACTION[CREATE] RESOURCE[patient_referral]"
+        },
+        {
+            "id": 3,
+            "sentence": "A patient or personal health representative can choose to view a list of their own prescriptions",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient",
+                        "representative"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "personal_health_representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.personal_health_representative"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "personal_health_representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.personal_health_representative"
+                }
+            ],
+            "subjects_logical_op": "OR",
+            "actions": [
+                {
+                    "verb": "choose",
+                    "operation": "CHOOSE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "list"
+                ],
+                "label": "list_of_prescriptions",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.list_of_prescriptions"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient,personal_health_representative,personal_health_representative] ACTION[CHOOSE] RESOURCE[list_of_prescriptions]"
+        },
+        {
+            "id": 4,
+            "sentence": "The LHCP can view a prescription list for a selected patient",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "list"
+                ],
+                "label": "prescription_list",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.prescription_list"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[prescription_list]"
+        },
+        {
+            "id": 5,
+            "sentence": "The HCP can edit patient information according to data format",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "edit",
+                    "operation": "UPDATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "information"
+                ],
+                "label": "patient_information",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.patient_information"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[hcp] ACTION[UPDATE] RESOURCE[patient_information]"
+        },
+        {
+            "id": 6,
+            "sentence": "The LHCP can schedule an appointment with a patient",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "schedule",
+                    "operation": "SCHEDULE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "appointment"
+                ],
+                "label": "appointment",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.appointment"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[lhcp] ACTION[SCHEDULE] RESOURCE[appointment]"
+        },
+        {
+            "id": 7,
+            "sentence": "The LHCP can view a list of upcoming appointments",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "list"
+                ],
+                "label": "list_of_appointments",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.list_of_appointments"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[list_of_appointments]"
+        },
+        {
+            "id": 8,
+            "sentence": "The user can view appointment details",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "user"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "details"
+                ],
+                "label": "appointment_details",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.appointment_details"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[appointment_details]"
+        },
+        {
+            "id": 9,
+            "sentence": "The LHCP can view a comprehensive patient report",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "report"
+                ],
+                "label": "comprehensive_patient_report",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.comprehensive_patient_report"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[comprehensive_patient_report]"
+        },
+        {
+            "id": 10,
+            "sentence": "The LHCP can view a list of requested reports",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "list"
+                ],
+                "label": "list_of_reports",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.list_of_reports"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[list_of_reports]"
+        },
+        {
+            "id": 11,
+            "sentence": "An HCP can create a lab procedure for a given office visit",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "create",
+                    "operation": "CREATE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "procedure"
+                ],
+                "label": "lab_procedure",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.lab_procedure"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "for a given office visit",
+                    "trigger_word": "for",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[CREATE] RESOURCE[lab_procedure]"
+        },
+        {
+            "id": 12,
+            "sentence": "An HCP can view a previously created lab procedure",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "procedure"
+                ],
+                "label": "lab_procedure",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.lab_procedure"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[READ] RESOURCE[lab_procedure]"
+        },
+        {
+            "id": 13,
+            "sentence": "An HCP can reassign a lab procedure to another lab technician if it is not in the testing state",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": {
+                        "type": null,
+                        "rank": null,
+                        "status": null,
+                        "office": null,
+                        "department": null,
+                        "negated": true
+                    },
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "reassign",
+                    "operation": "REASSIGN",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "procedure"
+                ],
+                "label": "lab_procedure",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.lab_procedure"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "if it is not in the testing state",
+                    "trigger_word": "if",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[REASSIGN] RESOURCE[lab_procedure]"
+        },
+        {
+            "id": 14,
+            "sentence": "An HCP can remove a lab procedure if its status is in transit or received",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "remove",
+                    "operation": "DELETE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "procedure"
+                ],
+                "label": "lab_procedure",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.lab_procedure"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "if its status is in transit or received",
+                    "trigger_word": "if",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[DELETE] RESOURCE[lab_procedure]"
+        },
+        {
+            "id": 15,
+            "sentence": "The administrator can assign a healthcare provider to hospitals",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "administrator"
+                    ],
+                    "role": "administrator",
+                    "qualifiers": null,
+                    "namespace": "subject.user.administrator"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "assign",
+                    "operation": "ASSIGN",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "provider"
+                ],
+                "label": "healthcare_provider",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.healthcare_provider"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[administrator] ACTION[ASSIGN] RESOURCE[healthcare_provider]"
+        },
+        {
+            "id": 16,
+            "sentence": "An LHCP can enter a user as part of the system",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "enter",
+                    "operation": "ENTER",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "user"
+                ],
+                "label": "user",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.user"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[ENTER] RESOURCE[user]"
+        },
+        {
+            "id": 17,
+            "sentence": "A patient or representative can send a message to an LHCP",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient",
+                        "representative"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.representative"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.representative"
+                }
+            ],
+            "subjects_logical_op": "OR",
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "message"
+                ],
+                "label": "message",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.message"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient,representative,representative] ACTION[SEND] RESOURCE[message]"
+        },
+        {
+            "id": 18,
+            "sentence": "An LHCP can send a message to a patient or representative",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "message"
+                ],
+                "label": "message",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.message"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[SEND] RESOURCE[message]"
+        },
+        {
+            "id": 19,
+            "sentence": "A patient or representative can reply to a message",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient",
+                        "representative"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.representative"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.representative"
+                }
+            ],
+            "subjects_logical_op": "OR",
+            "actions": [
+                {
+                    "verb": "reply",
+                    "operation": "REPLY",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "message"
+                ],
+                "label": "message",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.message"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient,representative,representative] ACTION[REPLY] RESOURCE[message]"
+        },
+        {
+            "id": 20,
+            "sentence": "An LHCP can reply to a message",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "reply",
+                    "operation": "REPLY",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "message"
+                ],
+                "label": "message",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.message"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[REPLY] RESOURCE[message]"
+        },
+        {
+            "id": 21,
+            "sentence": "A user can read messages from the inbox or outbox",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "user"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "messages"
+                ],
+                "label": "messages",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.messages"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "location",
+                    "trigger_phrase": "from the inbox or outbox",
+                    "trigger_word": "from",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[messages]"
+        },
+        {
+            "id": 22,
+            "sentence": "An LHCP can refer a patient to another HCP",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": {
+                        "type": null,
+                        "rank": null,
+                        "status": null,
+                        "office": null,
+                        "department": null,
+                        "negated": true
+                    },
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "refer",
+                    "operation": "REFER",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "patient"
+                ],
+                "label": "patient_to_another_hcp",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.patient_to_another_hcp"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[REFER] RESOURCE[patient_to_another_hcp]"
+        },
+        {
+            "id": 23,
+            "sentence": "An HCP can view received referrals",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "receive",
+                    "operation": "RECEIVE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "referrals"
+                ],
+                "label": "referrals",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.referrals"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[RECEIVE] RESOURCE[referrals]"
+        },
+        {
+            "id": 24,
+            "sentence": "An HCP can view previously sent referrals",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "send",
+                    "operation": "SEND",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "referrals"
+                ],
+                "label": "referrals",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.referrals"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[SEND] RESOURCE[referrals]"
+        },
+        {
+            "id": 25,
+            "sentence": "An LHCP can delete a patient from the monitoring list",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "delete",
+                    "operation": "DELETE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "patient"
+                ],
+                "label": "patient_from_list",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.patient_from_list"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[DELETE] RESOURCE[patient_from_list]"
+        },
+        {
+            "id": 26,
+            "sentence": "A patient can report physiological measurements",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "report",
+                    "operation": "REPORT",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "measurements"
+                ],
+                "label": "physiological_measurements",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.physiological_measurements"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[physiological_measurements]"
+        },
+        {
+            "id": 27,
+            "sentence": "An LHCP can view physiological monitoring data",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "data"
+                ],
+                "label": "physiological_monitoring_data",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.physiological_monitoring_data"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[physiological_monitoring_data]"
+        },
+        {
+            "id": 28,
+            "sentence": "A UAP can report physiological measurements for patients",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "UAP"
+                    ],
+                    "role": "uap",
+                    "qualifiers": null,
+                    "namespace": "subject.user.uap"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "report",
+                    "operation": "REPORT",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "measurements"
+                ],
+                "label": "physiological_measurements",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.physiological_measurements"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[uap] ACTION[REPORT] RESOURCE[physiological_measurements]"
+        },
+        {
+            "id": 29,
+            "sentence": "A patient representative can report physiological measurements",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "patient_representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient_representative"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "report",
+                    "operation": "REPORT",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "measurements"
+                ],
+                "label": "physiological_measurements",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.physiological_measurements"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient_representative] ACTION[REPORT] RESOURCE[physiological_measurements]"
+        },
+        {
+            "id": 30,
+            "sentence": "A patient can report adverse events for medications",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "report",
+                    "operation": "REPORT",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "events"
+                ],
+                "label": "adverse_events_for_medications",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.adverse_events_for_medications"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events_for_medications]"
+        },
+        {
+            "id": 31,
+            "sentence": "A patient can report adverse events for immunizations",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "report",
+                    "operation": "REPORT",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "events"
+                ],
+                "label": "adverse_events_for_immunizations",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.adverse_events_for_immunizations"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events_for_immunizations]"
+        },
+        {
+            "id": 32,
+            "sentence": "A public health agent can view adverse event reports",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "agent"
+                    ],
+                    "role": "public_health_agent",
+                    "qualifiers": null,
+                    "namespace": "subject.user.public_health_agent"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "event"
+                ],
+                "label": "adverse_event",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "public",
+                    "status": null
+                },
+                "namespace": "resource.document.adverse_event"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "reports"
+                    ],
+                    "label": "reports",
+                    "qualifier": null,
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": {
+                        "sensitivity": "public",
+                        "status": null
+                    },
+                    "namespace": "resource.document.reports"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "public"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[public_health_agent] ACTION[READ] RESOURCE[adverse_event]"
+        },
+        {
+            "id": 33,
+            "sentence": "A public health agent can view details of a specific report",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "agent"
+                    ],
+                    "role": "public_health_agent",
+                    "qualifiers": null,
+                    "namespace": "subject.user.public_health_agent"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "details"
+                ],
+                "label": "details_of_report",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "public",
+                    "status": null
+                },
+                "namespace": "resource.document.details_of_report"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "public"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[public_health_agent] ACTION[READ] RESOURCE[details_of_report]"
+        },
+        {
+            "id": 34,
+            "sentence": "A public health agent can remove an adverse event report",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "agent"
+                    ],
+                    "role": "public_health_agent",
+                    "qualifiers": null,
+                    "namespace": "subject.user.public_health_agent"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "remove",
+                    "operation": "DELETE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "report"
+                ],
+                "label": "event_report",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "public",
+                    "status": null
+                },
+                "namespace": "resource.document.event_report"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "public"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[public_health_agent] ACTION[DELETE] RESOURCE[event_report]"
+        },
+        {
+            "id": 35,
+            "sentence": "The administrator can record interactions between drugs",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "administrator"
+                    ],
+                    "role": "administrator",
+                    "qualifiers": null,
+                    "namespace": "subject.user.administrator"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "record",
+                    "operation": "RECORD",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "interactions"
+                ],
+                "label": "interactions_between_drugs",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.interactions_between_drugs"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[administrator] ACTION[RECORD] RESOURCE[interactions_between_drugs]"
+        },
+        {
+            "id": 36,
+            "sentence": "The administrator can view drug interaction information",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "administrator"
+                    ],
+                    "role": "administrator",
+                    "qualifiers": null,
+                    "namespace": "subject.user.administrator"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "information"
+                ],
+                "label": "interaction_information",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.interaction_information"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[administrator] ACTION[READ] RESOURCE[interaction_information]"
+        },
+        {
+            "id": 37,
+            "sentence": "The administrator can delete drug interaction information",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "administrator"
+                    ],
+                    "role": "administrator",
+                    "qualifiers": null,
+                    "namespace": "subject.user.administrator"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "delete",
+                    "operation": "DELETE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "information"
+                ],
+                "label": "interaction_information",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.interaction_information"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[administrator] ACTION[DELETE] RESOURCE[interaction_information]"
+        },
+        {
+            "id": 38,
+            "sentence": "The administrator can set session timeout policies",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "administrator"
+                    ],
+                    "role": "administrator",
+                    "qualifiers": null,
+                    "namespace": "subject.user.administrator"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "set",
+                    "operation": "SET",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "policies"
+                ],
+                "label": "timeout_policies",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.timeout_policies"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[administrator] ACTION[SET] RESOURCE[timeout_policies]"
+        },
+        {
+            "id": 39,
+            "sentence": "A user can change their password after answering a security question correctly",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "user"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "change",
+                    "operation": "CHANGE",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "password"
+                ],
+                "label": "password",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.password"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "question"
+                    ],
+                    "label": "security_question",
+                    "qualifier": "the",
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.security_question"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[user] ACTION[CHANGE] RESOURCE[password]"
+        },
+        {
+            "id": 40,
+            "sentence": "An HCP must enter a patient MID to edit demographic information",
+            "authorization_decision": "permit",
+            "policy_modality": "must",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "enter",
+                    "operation": "ENTER",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "MID"
+                ],
+                "label": "patient_mid",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.patient_mid"
+            },
+            "additional_resources": [
+                {
+                    "entity_type": "document",
+                    "ref_tokens": [
+                        "information"
+                    ],
+                    "label": "demographic_information",
+                    "qualifier": null,
+                    "scope": null,
+                    "subject_filter": null,
+                    "attributes": null,
+                    "namespace": "resource.document.demographic_information"
+                }
+            ],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[ENTER] RESOURCE[patient_mid]"
+        },
+        {
+            "id": 41,
+            "sentence": "An HCP may upload a photo of a patient",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "HCP"
+                    ],
+                    "role": "hcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.hcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "upload",
+                    "operation": "UPLOAD",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "photo"
+                ],
+                "label": "photo",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.photo"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[hcp] ACTION[UPLOAD] RESOURCE[photo]"
+        },
+        {
+            "id": 42,
+            "sentence": "A patient or representative can view personal health records",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient",
+                        "representative"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.representative"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.representative"
+                }
+            ],
+            "subjects_logical_op": "OR",
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "record",
+                "ref_tokens": [
+                    "records"
+                ],
+                "label": "personal_health_records",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.record.personal_health_records"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient,representative,representative] ACTION[READ] RESOURCE[personal_health_records]"
+        },
+        {
+            "id": 43,
+            "sentence": "A patient can view access logs sorted by role and date",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "logs"
+                ],
+                "label": "access_logs",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.access_logs"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[READ] RESOURCE[access_logs]"
+        },
+        {
+            "id": 44,
+            "sentence": "A patient or personal health representative can view a list of prescriptions sorted by start date",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient",
+                        "representative"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "personal_health_representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.personal_health_representative"
+                },
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "representative"
+                    ],
+                    "role": "personal_health_representative",
+                    "qualifiers": null,
+                    "namespace": "subject.user.personal_health_representative"
+                }
+            ],
+            "subjects_logical_op": "OR",
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "list"
+                ],
+                "label": "list_of_prescriptions",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.list_of_prescriptions"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient,personal_health_representative,personal_health_representative] ACTION[READ] RESOURCE[list_of_prescriptions]"
+        },
+        {
+            "id": 45,
+            "sentence": "The LHCP can view a prescription list sorted by start date",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "LHCP"
+                    ],
+                    "role": "lhcp",
+                    "qualifiers": null,
+                    "namespace": "subject.user.lhcp"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "list"
+                ],
+                "label": "prescription_list",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.prescription_list"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[prescription_list]"
+        },
+        {
+            "id": 46,
+            "sentence": "A user can view messages sorted by timestamp with the most recent first",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "user"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "messages"
+                ],
+                "label": "messages",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.messages"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[messages]"
+        },
+        {
+            "id": 47,
+            "sentence": "A user can filter messages based on a timestamp range between a starting date and an ending date",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "user"
+                    ],
+                    "role": "user",
+                    "qualifiers": null,
+                    "namespace": "subject.user.user"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "filter",
+                    "operation": "FILTER",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "messages"
+                ],
+                "label": "messages",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.messages"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "on a timestamp range",
+                    "trigger_word": "on",
+                    "systems": null,
+                    "time_range": null
+                },
+                {
+                    "id": "env_2",
+                    "env_type": "temporal",
+                    "trigger_phrase": "between a starting date and an ending date",
+                    "trigger_word": "between",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[user] ACTION[FILTER] RESOURCE[messages]"
+        },
+        {
+            "id": 48,
+            "sentence": "A patient can report adverse events for drugs taken in the last months",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "report",
+                    "operation": "REPORT",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "events"
+                ],
+                "label": "adverse_events",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.adverse_events"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "the last months",
+                    "trigger_word": "NER:DATE",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events]"
+        },
+        {
+            "id": 49,
+            "sentence": "A patient can report adverse events for immunizations received in the last months",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "report",
+                    "operation": "REPORT",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "events"
+                ],
+                "label": "adverse_events",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.adverse_events"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "the last months",
+                    "trigger_word": "NER:DATE",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events]"
+        },
+        {
+            "id": 50,
+            "sentence": "A public health agent can view adverse event reports within a given time period",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "agent"
+                    ],
+                    "role": "public_health_agent",
+                    "qualifiers": null,
+                    "namespace": "subject.user.public_health_agent"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "reports"
+                ],
+                "label": "adverse_event_reports",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": {
+                    "sensitivity": "public",
+                    "status": null
+                },
+                "namespace": "resource.document.adverse_event_reports"
+            },
+            "additional_resources": [],
+            "environments": [
+                {
+                    "id": "env_1",
+                    "env_type": "temporal",
+                    "trigger_phrase": "within a given time period",
+                    "trigger_word": "within",
+                    "systems": null,
+                    "time_range": null
+                }
+            ],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "attribute",
+                    "attribute": "sensitivity",
+                    "value": "public"
+                },
+                {
+                    "entity": "action",
+                    "rel_type": "attribute",
+                    "attribute": "negated",
+                    "value": "true"
+                }
+            ],
+            "abac_policy": "PERMIT subject[public_health_agent] ACTION[READ] RESOURCE[adverse_event_reports]"
+        },
+        {
+            "id": 51,
+            "sentence": "The administrator can set the session timeout period",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "administrator"
+                    ],
+                    "role": "administrator",
+                    "qualifiers": null,
+                    "namespace": "subject.user.administrator"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "set",
+                    "operation": "SET",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "period"
+                ],
+                "label": "timeout_period",
+                "qualifier": "the",
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.timeout_period"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[administrator] ACTION[SET] RESOURCE[timeout_period]"
+        },
+        {
+            "id": 52,
+            "sentence": "A patient can view access logs sorted by date with the most recent access first",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "logs"
+                ],
+                "label": "access_logs",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.access_logs"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[READ] RESOURCE[access_logs]"
+        },
+        {
+            "id": 53,
+            "sentence": "A patient can view access logs sorted by role and by date for each role with the most recent first",
+            "authorization_decision": "permit",
+            "policy_modality": "can",
+            "priority": null,
+            "subjects": [
+                {
+                    "entity_type": "user",
+                    "ref_tokens": [
+                        "patient"
+                    ],
+                    "role": "patient",
+                    "qualifiers": null,
+                    "namespace": "subject.user.patient"
+                }
+            ],
+            "subjects_logical_op": null,
+            "actions": [
+                {
+                    "verb": "view",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
+            "actions_logical_op": null,
+            "resource": {
+                "entity_type": "document",
+                "ref_tokens": [
+                    "logs"
+                ],
+                "label": "access_logs",
+                "qualifier": null,
+                "scope": null,
+                "subject_filter": null,
+                "attributes": null,
+                "namespace": "resource.document.access_logs"
+            },
+            "additional_resources": [],
+            "environments": [],
+            "context": [],
+            "conditions_logical_op": null,
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[patient] ACTION[READ] RESOURCE[access_logs]"
+        }
+    ]
+}

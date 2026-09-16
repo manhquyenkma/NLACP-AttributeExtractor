@@ -259,11 +259,13 @@ def compute_hierarchy(element_attrs):
                     if ns2 not in hierarchy[ns1]["children"]:
                         hierarchy[ns1]["children"].append(ns2)
 
-    # Thêm root namespace "subject"/"object" cho các node không có parent
+    # Thêm root namespace cho các node không có parent
     roots = {"subject": [], "object": []}
     for elem, info in hierarchy.items():
         if not info["parents"]:
             cat = info["category"]
+            if cat not in roots:
+                roots[cat] = []
             roots[cat].append(elem)
 
     # Tính assigned_attributes cho mỗi namespace

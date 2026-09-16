@@ -29,15 +29,15 @@ SUBJECT_ROLE_KEYWORDS = {
     "lecturer": "lecturer",
     "instructor": "instructor",
     "professor": "professor",
-    "academic_coordinator": "academic_coordinator",
+    "academic coordinator": "academic_coordinator",
     "coordinator": "academic_coordinator",
-    "department_chair": "department_chair",
+    "department chair": "department_chair",
     "chair": "department_chair",
     "head": "head",
-    "office_user": "office_user",
+    "office user": "office_user",
     "user": "user",
     "applicant": "applicant",
-    "visiting_lecturer": "visiting_lecturer",
+    "visiting lecturer": "visiting_lecturer",
     "teacher": "lecturer",
 }
 
@@ -87,25 +87,36 @@ def _get_conjuncts(token) -> List:
     return conjs
 
 
-def _get_full_noun(token) -> Optional[str]:
-    """Get full noun phrase including compound modifiers."""
-    if not token:
+def _get_full_subject_span(nsubj_token, doc=None) -> Optional[str]:
+    """Get full noun phrase including amod, compound, and prepositional phrases."""
+    if not nsubj_token:
         return None
-    tokens = [token]
-    for child in token.children:
-        if child.dep_ == "compound" and child.pos_ in ("NOUN", "PROPN"):
-            tokens.append(child)
-        elif child.dep_ == "amod":
-            tokens.append(child)
-    tokens.sort(key=lambda x: x.i)
-    text = " ".join([t.text for t in tokens])
+        
+    span_tokens = [nsubj_token]
+    
+    def collect_children(token):
+        for child in token.children:
+            if child.dep_ in {"amod", "compound", "nummod"}:
+                span_tokens.append(child)
+                collect_children(child)
+            elif child.dep_ == "prep":
+                if child.text.lower() in {"in", "on", "at", "during", "before", "after", "from", "to"}:
+                    continue
+                span_tokens.append(child)
+                for pobj in child.children:
+                    if pobj.dep_ in {"pobj", "pcomp"}:
+                        span_tokens.append(pobj)
+                        collect_children(pobj)
+
+    collect_children(nsubj_token)
+    span_tokens.sort(key=lambda x: x.i)
+    text = " ".join([t.text for t in span_tokens])
     return text.strip()
 
 
 def _extract_subject_tokens(doc) -> List:
     """Extract subject tokens from dependency tree."""
     subject_tokens = []
-    # Prefer subjects of the main clause (whose head is the root verb)
     root = None
     for t in doc:
         if t.dep_ == "ROOT":
@@ -113,11 +124,65 @@ def _extract_subject_tokens(doc) -> List:
             break
 
     for token in doc:
-        # Only consider subjects that attach to the main/root verb
+        # Case 1: nsubj directly attached to ROOT
         if token.dep_ in SUBJECT_DEPS and root is not None and token.head == root:
             subject_tokens.append(token)
             subject_tokens.extend(_get_conjuncts(token))
+        # Case 2: nsubj attached to an aux of ROOT (spaCy quirk: "can view received" -> ROOT=received, view=aux)
+        elif token.dep_ in SUBJECT_DEPS and root is not None and token.head.dep_ in {"aux", "auxpass"} and token.head.head == root:
+            subject_tokens.append(token)
+            subject_tokens.extend(_get_conjuncts(token))
+
+    # We determine if a token is a likely actor by checking our known roles
+    def is_known_actor(token):
+        return any(kw in token.lemma_.lower() for kw in SUBJECT_ROLE_KEYWORDS.keys())
+
+    # Case 3 & 4 (NEW): Passive "by" agent and Possessive subjects
+    # If the grammatical nsubj is NOT a known actor, but there is an agent or possessor
+    # that IS a known actor, we assume the agent/possessor is the true ABAC subject.
+    if subject_tokens and not any(is_known_actor(t) for t in subject_tokens):
+        new_subjects = []
+        for st in subject_tokens:
+            # Check for possessor (Case 4: "Students' schedules")
+            poss = next((c for c in st.children if c.dep_ == "poss"), None)
+            if poss and is_known_actor(poss):
+                new_subjects.append(poss)
+                continue
+            
+            # Check for "by" agent modifying the nsubj directly (e.g., in an acl "done by User")
+            agent_found = False
+            for child in st.children:
+                if child.dep_ == "agent":
+                    pobj = next((c for c in child.children if c.dep_ == "pobj"), None)
+                    if pobj and is_known_actor(pobj):
+                        new_subjects.append(pobj)
+                        agent_found = True
+                        break
+            if agent_found:
+                continue
+                
+            # Check for "by" agent modifying the root/passive verb
+            for token in doc:
+                if token.dep_ == "agent" or (token.dep_ == "prep" and token.text.lower() == "by"):
+                    if token.head.dep_ in SUBJECT_DEPS or token.head.dep_ in {"ROOT", "auxpass"}:
+                        pobj = next((c for c in token.children if c.dep_ == "pobj"), None)
+                        if pobj and is_known_actor(pobj):
+                            new_subjects.append(pobj)
+                            agent_found = True
+                            break
+            if not agent_found:
+                # Fallback to the original grammatical subject if no actor agent/possessor is found
+                new_subjects.append(st)
+        
+        # Extend conjuncts for any new subjects we found
+        final_subjects = []
+        for ns in new_subjects:
+            final_subjects.append(ns)
+            final_subjects.extend(_get_conjuncts(ns))
+        subject_tokens = final_subjects
+
     return subject_tokens
+
 
 
 def _detect_negation(sentence: str, subject_phrase: str) -> bool:
@@ -150,37 +215,19 @@ def _identify_role(subject_phrase: str) -> Tuple[Optional[str], Dict]:
     """
     phrase_lower = subject_phrase.lower()
     
-    # Check for multi-word patterns first
-    patterns = [
-        ("academic coordinator", "academic_coordinator"),
-        ("department chair", "department_chair"),
-        ("department's chair", "department_chair"),
-        ("visiting lecturer", "visiting_lecturer"),
-        ("office user", "office_user"),
-        ("civilian student", "student"),
-        ("civilian students", "student"),
-        ("applicant", "applicant"),
-        ("applicants", "applicant"),
-    ]
-    
     qualifiers = {}
     role = None
     
-    for pattern, role_name in patterns:
-        if pattern in phrase_lower:
-            role = role_name
-            # Extract qualifiers from pattern
-            if "civilian" in pattern:
-                qualifiers["type"] = "civilian"
-            elif "visiting" in pattern:
-                qualifiers["type"] = "visiting"
-            break
+    # Phase F3: Closed-class pronouns -> user (generic)
+    PRONOUNS = {"he", "she", "they", "one", "someone", "no one"}
+    if phrase_lower in PRONOUNS:
+        role = "user"
     
-    # If no pattern matched, try single words
     if not role:
-        for keyword, role_name in SUBJECT_ROLE_KEYWORDS.items():
+        # Sort keywords by length descending to match multi-word phrases first
+        for keyword in sorted(SUBJECT_ROLE_KEYWORDS.keys(), key=len, reverse=True):
             if keyword in phrase_lower:
-                role = role_name
+                role = SUBJECT_ROLE_KEYWORDS[keyword]
                 break
     
     # Extract type qualifiers
@@ -212,7 +259,7 @@ def _identify_role(subject_phrase: str) -> Tuple[Optional[str], Dict]:
         qualifiers["department"] = "any"
     
     if not role:
-        role = "user"  # default role
+        role = phrase_lower.replace(" ", "_")
     
     # Flatten office list if needed
     if "office" in qualifiers and len(qualifiers["office"]) == 1:
@@ -253,7 +300,7 @@ def extract_subjects(sentence: str, doc=None) -> List[Subject]:
     subjects = []
     for token in subject_tokens:
         # Get full noun phrase
-        subject_phrase = _get_full_noun(token)
+        subject_phrase = _get_full_subject_span(token, doc)
         if not subject_phrase:
             subject_phrase = token.text
         

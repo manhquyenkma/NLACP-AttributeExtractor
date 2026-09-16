@@ -1,3 +1,4 @@
+from nlacp.utils.nlp_utils import get_spacy_model
 """
 ABAC Policy v2.0 Pipeline
 
@@ -19,7 +20,7 @@ from nlacp.preprocessing import preprocess_sentence
 from nlacp.extraction.effect_detector import detect_effect_and_modality
 from nlacp.extraction.subject_extractor import extract_subjects_with_logical_op
 from nlacp.extraction.action_extractor import extract_actions_with_logical_op
-from nlacp.extraction.resource_extractor import extract_resource
+from nlacp.extraction.resource_extractor import extract_resources
 from nlacp.extraction.env_extractor import extract_env_attributes
 from nlacp.extraction.condition_extractor import extract_conditions_with_logical_op
 from nlacp.normalization.policy_formatter import format_policy_to_json
@@ -34,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 nlp = None  # Lazy load
 
-def _get_nlp():
+def get_spacy_model():
     global nlp
     if nlp is None:
         try:
@@ -54,18 +55,18 @@ class AcpParser:
         Args:
             strict_validation: If True, raise exception on validation errors
         """
-        self.nlp = _get_nlp()
+        self.nlp = get_spacy_model()
         self.validator = PolicyValidator(strict_mode=strict_validation)
         self.strict_validation = strict_validation
     
     def parse_sentence(self, sentence: str, policy_id: int = 1,
-                      preprocess: bool = True) -> Tuple[Optional[Policy], List[str]]:
+                       preprocess: bool = True) -> Tuple[Optional[Policy], List[str]]:
         """
-        Parse single ACP sentence into Policy object.
+        Parse a single sentence into a Policy object.
         
         Args:
-            sentence: Natural language policy sentence
-            policy_id: Policy ID
+            sentence: Raw ACP text
+            policy_id: ID to assign to policy
             preprocess: Whether to preprocess text first
         
         Returns:
@@ -95,17 +96,19 @@ class AcpParser:
             
             # Step 4: Extract actions
             actions, actions_logical_op = extract_actions_with_logical_op(sentence, doc)
+
+
             if not actions:
                 warnings.append("No actions detected")
                 if self.strict_validation:
                     return None, warnings
             
             # Step 5: Extract resource
-            resource = extract_resource(sentence, doc)
-            if not resource:
+            resources = extract_resources(sentence, doc)
+            if not resources:
                 warnings.append("No resource detected")
-                if self.strict_validation:
-                    return None, warnings
+            resource = resources[0] if resources else None
+            additional_resources = resources[1:] if len(resources) > 1 else []
             
             # Step 6: Extract environments
             env_attrs = extract_env_attributes(sentence)
@@ -155,7 +158,8 @@ class AcpParser:
                             env_type = EnvironmentType.LOCATION
 
                         trigger_word = env_attr.get('trigger')
-                        trigger_phrase = env_attr.get('phrase') or env_attr.get('full_value')
+                        
+                        trigger_phrase = env_attr.get('full_value') or env_attr.get('phrase')
 
                         systems = None
                         if env_type == EnvironmentType.SYSTEM:
@@ -205,6 +209,7 @@ class AcpParser:
                 subjects=subjects,
                 actions=actions,
                 resource=resource,
+                additional_resources=additional_resources,
                 environments=environments,
                 context=conditions,
                 subjects_logical_op=subjects_logical_op,

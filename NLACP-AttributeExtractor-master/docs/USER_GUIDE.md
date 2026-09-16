@@ -68,7 +68,7 @@ python -c "import pydantic; print('pydantic ok')"
 
 - `outputs/` — thư mục đầu ra (được tạo khi chạy):
   - `outputs/policies/policy_dataset.json` — RAW extraction
-  - `outputs/policies/policy_dataset_gold.json` — Gold (sau verify)
+  - `outputs/policies/vact_gold.json` — Gold (sau verify)
   - `outputs/clusters/policy_bundles.json`, `env_context_clusters.json`, `aggregate_policy_bundles.json` — kết quả Module 2
 
 - `test_isolation.py` — script demo nhanh, đã chỉnh để gọi `parse_acp_sentence` từ `pipeline_v2`.

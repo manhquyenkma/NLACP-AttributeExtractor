@@ -13,7 +13,7 @@ RELATION_CANDIDATE_PATH = os.path.join(DATASET_DIR, "relation_candidate.json")
 
 # Outputs
 POLICY_DATASET_PATH      = os.path.join(BASE_DIR, "outputs", "policies", "policy_dataset.json")
-POLICY_DATASET_GOLD_PATH = os.path.join(BASE_DIR, "outputs", "policies", "policy_dataset_gold.json")
+POLICY_DATASET_GOLD_PATH = os.path.join(BASE_DIR, "outputs", "policies", "vact_gold.json")
 ATTRIBUTE_CLUSTERS_PATH = os.path.join(BASE_DIR, "outputs", "clusters",  "attribute_clusters.json")
 NAMESPACE_HIERARCHY_PATH = os.path.join(BASE_DIR, "outputs", "hierarchy", "namespace_hierarchy.json")
 POLICY_BUNDLES_PATH = os.path.join(BASE_DIR, "outputs", "clusters", "policy_bundles.json")

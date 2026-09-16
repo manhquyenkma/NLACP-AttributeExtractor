@@ -16,7 +16,7 @@ Common CLI commands
 
 | Mục đích | Lệnh |
 |---|---|
-| Chạy pipeline tổng hợp (Khuyên dùng)| `python scripts/run_pipeline.py VACT_final.txt` |
+| Chạy pipeline tổng hợp (Khuyên dùng)| `python scripts/run_pipeline.py vact_acp.txt` |
 | Chạy trích xuất thô (Bước 1) | `python scripts/auto_extraction.py input_policies.txt` |
 | Chạy Attribute Clustering (Bước 2&3)| `python scripts/att_extractor.py` |
 | Tương tác verify (Gold) | `python scripts/interactive_verification.py` |
@@ -32,7 +32,7 @@ flowchart TD
 	D --> E[Clustering & Hierarchy: scripts/att_extractor.py]
 	E --> F[outputs/clusters/attribute_clusters.json & namespace_hierarchy.json]
 	F --> G[Interactive verification (scripts/interactive_verification.py)]
-	G --> H[outputs/policies/policy_dataset_gold.json]
+	G --> H[outputs/policies/vact_gold.json]
 	H --> I[Compute F-score (scripts/compute_fscore.py)]
 	style A fill:#f9f,stroke:#333,stroke-width:1px
 	style B fill:#bbf,stroke:#333
@@ -107,7 +107,7 @@ python -c "import pydantic; print('pydantic ok')"
 
 - `outputs/` — thư mục đầu ra (được tạo khi chạy):
 	- `outputs/policies/policy_dataset.json` — RAW extraction
-	- `outputs/policies/policy_dataset_gold.json` — Gold (sau verify)
+	- `outputs/policies/vact_gold.json` — Gold (sau verify)
 	- `outputs/clusters/attribute_clusters.json` — Kết quả DBSCAN Clustering
 	- `outputs/hierarchy/namespace_hierarchy.json` — Kết quả phân cấp Namespace
 
@@ -154,7 +154,7 @@ python scripts/auto_extraction.py input_policies.txt
 5.3. Chạy Pipeline Tổng hợp (Tự động hóa hoàn toàn)
 
 ```bash
-python scripts/run_pipeline.py VACT_final.txt
+python scripts/run_pipeline.py vact_acp.txt
 # Sẽ tự động chạy Bước 1 (auto_extraction) và Bước 2+3 (att_extractor)
 ```
 
@@ -238,15 +238,21 @@ Nếu bạn muốn, tôi có thể:
 Hãy cho biết bạn muốn bước tiếp theo nào: `commit` / `run-sample` / `add-FAQ`.
 
 
-### Ph�t h�nh Giai do?n C & D (Final)
-3. **Ho�n thi?n t?p d? li?u University (Phase C)**:
-   - Thay th? DBSCAN b?ng thu?t to�n ph�n lo?i Rule-based, x? l� th�nh c�ng to�n b? c�c m?nh d? kh� nhu \only when it is pending approval\, \efore the semester starts\.
-   - Tr�ch xu?t t? d?ng v� t?o th�nh c�ng \university_gold_draft.json\ v?i F1 d?t 1.0000 tr�n t?p d? li?u University.
-4. **��nh gi� Baseline Cu?i c�ng tr�n VACT (Phase D)**:
-   - H? th?ng du?c x�c th?c kh�ng b? regression. C�c ch? s? cu?i c�ng:
-     - **Subject F1**: 0.9005
-     - **Actions F1**: 0.9734
-     - **Object F1**: 0.7300
-     - **Environment F1**: 1.0000
-     - **Overall F1**: 0.9085
-
+### Phát hành Giai đoạn C & D (Final Canonical Run)
+3. **Hoàn thiện tập dữ liệu University (Phase C)**:
+   - Thay thế DBSCAN bằng thuật toán phân loại Rule-based (classify_env_phrase) dựa trên từ khóa và confidence scoring, không sử dụng model học máy. Đã xử lý thành công toàn bộ các mệnh đề khó như "only when it is pending approval", "before the semester starts".
+   - **Tạo University Gold Standard**: Đã trích xuất và tạo file `university_gold_draft.json` nhưng hiện đang chờ con người đánh giá (pending human annotation) cho 28 câu REVIEW. F1 evaluation sẽ được cung cấp sau khi quá trình annotation hoàn tất.
+4. **Đánh giá Baseline Cuối cùng (Phase D)**:
+   - Hệ thống được xác thực không bị regression. Các chỉ số cuối cùng (sau khi fix dataset contamination và multi-object resource):
+     - **VACT Dataset (100 câu)**:
+       - **Subject F1**: 0.9378
+       - **Actions F1**: 0.9572
+       - **Object F1**: 0.9100
+       - **Environment F1**: 0.9821
+       - **Overall F1**: 0.9483 (Micro-avg)
+     - **iTrust Dataset (53 câu)**:
+       - **Subject F1**: 0.9825
+       - **Actions F1**: 0.9310
+       - **Object F1**: 0.9821
+       - **Environment F1**: 0.8889
+       - **Overall F1**: 0.9611 (Micro-avg)

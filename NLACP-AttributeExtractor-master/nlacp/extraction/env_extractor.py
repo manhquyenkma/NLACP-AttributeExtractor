@@ -1,3 +1,4 @@
+GERUND_NOUN_MISTAGS = {"learning", "housing", "training", "marketing", "advertising", "engineering", "planning"}
 """
 env_extractor.py — Thuật toán 3 tầng trích xuất Environment Attributes
 
@@ -22,7 +23,7 @@ import spacy
 
 nlp = None  # Lazy load
 
-def _get_nlp():
+def get_spacy_model():
     global nlp
     if nlp is None:
         try:
@@ -33,15 +34,39 @@ def _get_nlp():
 
 # Regex patterns cho numeric detection
 _NUM_PATTERN  = re.compile(r'\d')
-_TIME_PATTERN = re.compile(r'\d+(am|pm|:\d+)', re.IGNORECASE)
+_TIME_PATTERN = re.compile(r'\d+(am|pm|:\d+|h\d+)', re.IGNORECASE)
 
 # ─────────────────────────────────────────────────────────────────────
 # GAZETTEERS — Tầng 1 & Tầng 3
 # ─────────────────────────────────────────────────────────────────────
 
+CONDITIONAL_ONLY = {
+    "only when", "only if", "only after", "only from",
+    "only while", "only during", "only until", "unless",
+    "only within", "only between", "provided that", "except", "if"
+}
+
+TEMPORAL_PERIODS = {
+    "enrollment period", "grading period", "admission cycle",
+    "academic year", "semester", "registration deadline",
+    "grade submission deadline", "course planning period",
+    "spring admission cycle", "exam period", 
+    "active course period", "retention period",
+    "grading window", "scheduling period"
+}
+
+SPATIAL_CAMPUS = {
+    "on campus", "while on campus", "from any location",
+    "department lab", "faculty lounge", "records room",
+    "secure terminal", "main campus", "admissions building",
+    "department office", "administrative network",
+    "secure VPN", "university network", "campus Wi-Fi",
+    "university-managed device"
+}
+
 # Temporal trigger prepositions (phải gắn với VERB qua dep=prep/advmod)
 TEMPORAL_PREPS = {"during", "between", "after", "before", "within",
-                  "throughout", "until", "at", "on"}
+                  "throughout", "until", "at", "on", "for"}
 
 # Duration units — dùng để nhận diện time constraint có số lượng
 DURATION_UNITS = {
@@ -54,26 +79,30 @@ DURATION_UNITS = {
 DURATION_MODIFIERS = {"last", "past", "next", "previous", "coming", "recent", "first"}
 
 # Temporal hint words (head noun của PP phải chứa ít nhất 1 từ này)
-TEMPORAL_HINTS = {
+CORE_TEMPORAL_HINTS = {
     "hours", "hour", "shift", "night", "morning", "evening", "day", "days",
     "weekday", "weekend", "period", "schedule", "time", "pm", "am",
     "daytime", "nighttime", "business", "working", "deadline",
-    "month", "months", "year", "years", "session", "semester", "date", "duration",
-    "minute", "minutes", "second", "seconds", "week", "weeks",
+    "month", "months", "year",    "date", "deadline", "schedule", "duration", "interval", "time", "start", "end",
+    "business", "working", "office", "holiday", "holidays", "weekend", "weekday",
     "quarter", "term", "interval",
-    # University domain temporal terms
+} | DURATION_UNITS
+
+DOMAIN_TEMPORAL_HINTS = {
     "meeting", "meetings", "conference", "window", "enrollment", "registration",
     "examination", "exam", "exams", "review", "admission", "orientation",
     "graduation", "commencement", "break", "recess", "holiday", "holidays",
     "lecture", "class", "classes", "office", "consultation",
-} | DURATION_UNITS
+} | TEMPORAL_PERIODS
+
+TEMPORAL_HINTS = CORE_TEMPORAL_HINTS | DOMAIN_TEMPORAL_HINTS
 
 # Spatial trigger prepositions
 SPATIAL_PREPS = {"from", "at", "within", "inside", "outside", "through",
                  "via", "on", "in"}
 
 # Spatial hint words (word-level matching)
-SPATIAL_HINTS = {
+CORE_SPATIAL_HINTS = {
     "network", "ward", "department", "hospital", "building", "floor",
     "site", "premises", "location", "intranet", "vpn", "system",
     "workstation", "workstations", "device", "devices", "terminal",
@@ -82,14 +111,28 @@ SPATIAL_HINTS = {
     "headquarters", "facility", "unit", "zone", "area", "section",
     "branch", "icu", "er", "or", "icu", "nicu", "picu",
     "center", "centre", "institute", "outpatient", "inpatient",
-    # University domain spatial terms
+}
+
+DOMAIN_SPATIAL_HINTS = {
     "library", "classroom", "auditorium", "gymnasium", "dormitory", "dorm",
     "lounge", "computer", "computers", "laboratory", "laboratories",
     "portal", "managed", "university", "faculty", "college", "hall",
     "cafeteria", "canteen", "studio", "archive", "archives", "server",
     "servers", "kiosk", "kiosks", "station", "stations", "printer", "printers",
-    "approved", "authorized", "registered"
-}
+    "approved", "authorized", "registered", "information"
+} | SPATIAL_CAMPUS
+
+SPATIAL_HINTS = CORE_SPATIAL_HINTS | DOMAIN_SPATIAL_HINTS
+
+def set_core_only(core_only: bool):
+    """Enable or disable domain-specific gazetteer hints."""
+    global TEMPORAL_HINTS, SPATIAL_HINTS
+    if core_only:
+        TEMPORAL_HINTS = CORE_TEMPORAL_HINTS.copy()
+        SPATIAL_HINTS = CORE_SPATIAL_HINTS.copy()
+    else:
+        TEMPORAL_HINTS = CORE_TEMPORAL_HINTS | DOMAIN_TEMPORAL_HINTS
+        SPATIAL_HINTS = CORE_SPATIAL_HINTS | DOMAIN_SPATIAL_HINTS
 
 # Conditional trigger phrases (multi-word)
 CONDITIONAL_TRIGGERS = {
@@ -110,7 +153,8 @@ NETWORK_DEVICE_HINTS = {
 PERSON_NOUNS = {
     "nurse", "doctor", "staff", "manager", "student", "user",
     "physician", "technician", "administrator", "reviewer", "employee",
-    "patient", "provider", "clinician", "researcher", "officer"
+    "patient", "provider", "clinician", "researcher", "officer",
+    "instructor", "registrar", "officer"
 }
 
 # Words that signal event sequences (not environment)
@@ -219,7 +263,7 @@ def _is_network_device_trigger(token) -> bool:
     return token.text.lower() in NETWORK_DEVICE_TRIGGERS
 
 
-CONDITIONAL_TRIGGERS = {"when", "if", "unless", "once", "whether", "provided", "assuming", "case"}
+CONDITIONAL_TRIGGERS = {"when", "if", "unless", "once", "whether", "provided", "assuming", "case", "except", "except for"}
 
 def _is_in_conditional_clause(token):
     """Kiểm tra token có thuộc mệnh đề điều kiện (conditional advcl) không."""
@@ -316,17 +360,39 @@ def _extract_noun_phrase(prep_token) -> str:
     Lấy noun phrase ngay sau giới từ.
     Dừng traversal khi gặp prep boundary tiếp theo để tránh over-reach.
     """
+    pobj = None
     for child in prep_token.children:
-        if child.pos_ in ("NOUN", "PROPN", "ADJ", "NUM"):
-            tokens = []
-            for t in child.subtree:
-                # Dừng khi gặp prep mới (boundary)
-                if t.dep_ == "prep" and t != child:
-                    break
-                if t.is_punct:
-                    break
-                tokens.append(t.text)
-            return " ".join(tokens)
+        if child.dep_ in ("pobj", "pcomp"):
+            pobj = child
+            break
+            
+    children_to_check = [pobj] if pobj else []
+    if not pobj:
+        for child in prep_token.children:
+            if child.pos_ in ("NOUN", "PROPN", "ADJ", "NUM") and child.dep_ != "npadvmod":
+                children_to_check.append(child)
+                
+    for child in children_to_check:
+        tokens = []
+        for t in child.subtree:
+            # Dừng khi gặp prep mới (boundary)
+            if t.dep_ == "prep" and t != child:
+                break
+            if t.is_punct and t.text not in (',', '-', 'and', 'or'):
+                break
+            tokens.append(t)
+            
+        # Xử lý coordination bị spaCy tag sai (gerund-as-verb)
+        cc_child = next((c for c in child.children if c.dep_ == "cc"), None)
+        if cc_child:
+            doc = child.doc
+            second_conjunct = doc[cc_child.i + 1] if cc_child.i + 1 < len(doc) else None
+            if second_conjunct and (second_conjunct.lemma_.lower() in GERUND_NOUN_MISTAGS or second_conjunct.text.lower() in GERUND_NOUN_MISTAGS):
+                tokens.append(cc_child)
+                tokens.extend(second_conjunct.subtree)
+                
+        tokens = sorted(set(tokens), key=lambda t: t.i)
+        return " ".join(t.text for t in tokens)
     return ""
 
 
@@ -418,27 +484,38 @@ def _parse_env_name(prep_token):
       "between 8am and 5pm"             → None  (pobj chứa số ngoài ngoặc)
       "within the hospital"             → "the hospital"
     """
+    pobj = None
     for child in prep_token.children:
-        if child.dep_ == "pobj" or child.pos_ in ("NOUN", "PROPN", "ADJ"):
-            # Duyệt subtree nhưng DỪNG tại "(" (parenthetical boundary)
-            # Chỉ kiểm tra numeric cho phần NGOÀI ngoặc đơn
-            tokens = []
-            has_num_outside_parens = False
-            for t in child.subtree:
-                if t.text == "(":
-                    break  # dừng — phần sau là parenthetical clarification
-                if t.dep_ == "prep" and t != child:
-                    break
-                if t.is_punct:
-                    break
-                if t.like_num or t.pos_ == "NUM" or _NUM_PATTERN.search(t.text):
-                    has_num_outside_parens = True
-                tokens.append(t.text)
+        if child.dep_ in ("pobj", "pcomp"):
+            pobj = child
+            break
+            
+    children_to_check = [pobj] if pobj else []
+    if not pobj:
+        for child in prep_token.children:
+            if child.pos_ in ("NOUN", "PROPN", "ADJ") and child.dep_ != "npadvmod":
+                children_to_check.append(child)
+                
+    for child in children_to_check:
+        # Duyệt subtree nhưng DỪNG tại "(" (parenthetical boundary)
+        # Chỉ kiểm tra numeric cho phần NGOÀI ngoặc đơn
+        tokens = []
+        has_num_outside_parens = False
+        for t in child.subtree:
+            if t.text == "(":
+                break  # dừng — phần sau là parenthetical clarification
+            if t.dep_ == "prep" and t != child:
+                break
+            if t.is_punct:
+                break
+            if t.like_num or t.pos_ == "NUM" or _NUM_PATTERN.search(t.text):
+                has_num_outside_parens = True
+            tokens.append(t.text)
 
-            # Nếu phần ngoài ngoặc có số → đây là value phrase, không phải name
-            if has_num_outside_parens:
-                return None
-            return " ".join(tokens) if tokens else None
+        # Nếu phần ngoài ngoặc có số → đây là value phrase, không phải name
+        if has_num_outside_parens:
+            return None
+        return " ".join(tokens) if tokens else None
     return None
 
 
@@ -769,25 +846,62 @@ def _detect_trigger_phrases(doc, subject_tokens: set, object_tokens: set) -> lis
     for token in doc:
         tl = token.text.lower()
 
-        # ── Conditional clauses (WHEN/IF + advcl) — xử lý trước ─────
-        if token.dep_ == "advcl" and token.head.pos_ in ("VERB", "AUX"):
+        # ── Conditional clauses (WHEN/IF + advcl / prep + provided/except) ─────
+        is_advcl_cond = token.dep_ == "advcl" and token.head.pos_ in ("VERB", "AUX")
+        is_prep_cond = token.dep_ == "prep" and token.text.lower() in ("provided", "except")
+        if is_advcl_cond or is_prep_cond:
+            sorted_sub = sorted(list(token.subtree), key=lambda x: x.i)
+            full_text = " ".join(t.text for t in sorted_sub).lower()
+            
             trigger_text = ""
-            for c in token.children:
-                if c.text.lower() in {"when", "if", "unless", "once",
-                                      "whether", "provided", "assuming"}:
-                    trigger_text = c.text
+            for trig in sorted(list(CONDITIONAL_ONLY) + list(CONDITIONAL_TRIGGERS), key=len, reverse=True):
+                if full_text.startswith(trig):
+                    trigger_text = trig
                     break
-                if c.text.lower() == "in":
-                    for gc in c.children:
-                        if gc.text.lower() == "case":
-                            trigger_text = "in case"
-                            break
+            
+            if not trigger_text:
+                # fallback to original logic
+                for c in token.children:
+                    if c.text.lower() in {"when", "if", "unless", "once",
+                                          "whether", "provided", "assuming"}:
+                        trigger_text = c.text.lower()
+                        break
+                    if c.text.lower() == "in":
+                        for gc in c.children:
+                            if gc.text.lower() == "case":
+                                trigger_text = "in case"
+            if not trigger_text:
+                if full_text.startswith("before ") or full_text.startswith("after "):
+                    trigger_text = full_text.split()[0]
+                    cl_phrase = full_text[len(trigger_text):].strip()
+                    cl_full_value = " ".join(t.text for t in sorted_sub)
+                    key = ("temporal", cl_phrase.lower()[:30])
+                    if key not in seen_keys:
+                        seen_keys.add(key)
+                        candidates.append({
+                            "trigger":      trigger_text,
+                            "trigger_type": "temporal",
+                            "phrase":       cl_phrase,
+                            "env_name":     None,
+                            "env_value":    None,
+                            "full_value":   cl_full_value.strip(),
+                            "ner_type":     "",
+                            "token":        token
+                        })
+                    continue
 
             if trigger_text:
                 c_subject, c_pred, c_object, c_negated = "", token.lemma_, "", False
-                sorted_sub = sorted(list(token.subtree), key=lambda x: x.i)
-                cl_phrase = " ".join(t.text for t in sorted_sub
-                                     if t.text.lower() != trigger_text)
+                
+                # full_value is exactly the subtree text
+                cl_full_value = " ".join(t.text for t in sorted_sub)
+                
+                # phrase is full_value without the trigger_text
+                # we just do a simple replace or slice
+                if cl_full_value.lower().startswith(trigger_text):
+                    cl_phrase = cl_full_value[len(trigger_text):].strip()
+                else:
+                    cl_phrase = " ".join(t.text for t in sorted_sub if t.text.lower() not in trigger_text.split())
 
                 for c in token.children:
                     if c.dep_ in ("nsubj", "nsubjpass", "csubj"):
@@ -825,7 +939,7 @@ def _detect_trigger_phrases(doc, subject_tokens: set, object_tokens: set) -> lis
                         "phrase":       cl_phrase.strip(),
                         "env_name":     None,
                         "env_value":    None,
-                        "full_value":   f"{trigger_text} {cl_phrase}".strip(),
+                        "full_value":   cl_full_value.strip(),
                         "ner_type":     "",
                         "token":        token,
                         "condition": {
@@ -840,9 +954,21 @@ def _detect_trigger_phrases(doc, subject_tokens: set, object_tokens: set) -> lis
         # ── Chỉ xử lý prep tokens gắn với verb ───────────────────────
         if token.dep_ != "prep":
             continue
+        
         if not _is_attached_to_verb(token):
             continue
-
+            
+        trigger_text = token.text
+        npadv_tokens = []
+        for child in token.children:
+            if child.dep_ == "advmod" and child.text.lower() == "only":
+                trigger_text = f"only {token.text}"
+            elif child.dep_ == "npadvmod" and child.i < token.i:
+                npadv_tokens = [t.text for t in sorted(child.subtree, key=lambda x: x.i)]
+        
+        if npadv_tokens:
+            trigger_text = " ".join(npadv_tokens) + " " + trigger_text
+            
         # ── Chạy hai parser song song ─────────────────────────────────
         env_name  = _parse_env_name(token)
         env_value = _parse_env_value(token)
@@ -860,7 +986,8 @@ def _detect_trigger_phrases(doc, subject_tokens: set, object_tokens: set) -> lis
         phrase_words_set  = set(phrase_words_list)
 
         if any(p in phrase_words_list for p in PERSON_NOUNS):
-            continue
+            if not any(h in phrase_words_list for h in SPATIAL_HINTS):
+                continue
             
         # Chỉ reject nếu pobj chính (head noun) nằm trong subject_tokens
         # Tránh việc "admissions office" bị reject vì subject có từ "admissions"
@@ -881,19 +1008,23 @@ def _detect_trigger_phrases(doc, subject_tokens: set, object_tokens: set) -> lis
             is_temporal = (_has_hint(phrase, TEMPORAL_HINTS)
                            or _looks_like_time_value(env_value))
             if is_temporal:
+                if token.text == 'before':
+                    pass
                 key = ("temporal", phrase.lower()[:30])
                 if key not in seen_keys:
                     seen_keys.add(key)
                     candidates.append({
-                        "trigger":      token.text,
+                        "trigger":      trigger_text,
                         "trigger_type": "temporal",
                         "phrase":       phrase,
                         "env_name":     env_name,
                         "env_value":    env_value,
-                        "full_value":   f"{token.text} {phrase}",
+                        "full_value":   f"{trigger_text} {phrase}",
                         "ner_type":     ner_type,
                         "token":        token
                     })
+            elif token.text == 'before':
+                pass
             # Nếu đã xử lý là temporal duration → không cần check spatial nữa
             if is_duration_temporal:
                 continue
@@ -907,12 +1038,12 @@ def _detect_trigger_phrases(doc, subject_tokens: set, object_tokens: set) -> lis
                 if key not in seen_keys:
                     seen_keys.add(key)
                     candidates.append({
-                        "trigger":      token.text,
+                        "trigger":      trigger_text,
                         "trigger_type": "spatial",
                         "phrase":       phrase,
                         "env_name":     env_name,
                         "env_value":    env_value,
-                        "full_value":   f"{token.text} {phrase}",
+                        "full_value":   f"{trigger_text} {phrase}",
                         "ner_type":     ner_type,
                         "token":        token
                     })
@@ -1045,14 +1176,16 @@ def _disambiguate(candidates: list, subject_tokens: set, object_tokens: set) -> 
             continue
 
         # Loại bỏ event sequences (after reviewing, at meeting, ...)
-        if any(e in phrase_lower for e in EVENT_SEQUENCE_WORDS):
+        if cand["trigger_type"] != "conditional" and any(e in phrase_lower for e in EVENT_SEQUENCE_WORDS):
             # Ngoại lệ: nếu là temporal NER hợp lệ, vẫn giữ
             if cand["ner_type"] not in ("TIME", "DATE"):
                 continue
 
         # Loại bỏ "from nurses/doctors ..." → subject-att
         if cand["trigger"].lower() == "from" and any(p in phrase_lower for p in PERSON_NOUNS):
-            continue
+            # Exception: if it contains spatial hints like 'office', 'building', keep it
+            if not any(h in phrase_lower for h in SPATIAL_HINTS):
+                continue
 
         # Loại bỏ "after reviewing/submitting/..." → action sequence
         action_gerunds = {"reviewing", "submitting", "approving", "processing",
@@ -1190,12 +1323,28 @@ def _classify_and_enrich(candidates: list) -> list:
 # ─────────────────────────────────────────────────────────────────────
 
 def _deduplicate(results: list) -> list:
-    seen = set()
-    out  = []
+    out = []
     for r in results:
-        key = (r["env_type"], r["full_value"].lower()[:40])
-        if key not in seen:
-            seen.add(key)
+        phrase = r.get("full_value", "").strip().lower()
+        env_type = r.get("env_type", "")
+        
+        is_dup = False
+        for kept in out:
+            kept_phrase = kept.get("full_value", "").strip().lower()
+            kept_type = kept.get("env_type", "")
+            
+            phrase_nospace = phrase.replace(" ", "")
+            kept_nospace = kept_phrase.replace(" ", "")
+            
+            if (phrase_nospace in kept_nospace or kept_nospace in phrase_nospace) and env_type == kept_type:
+                # Keep the longer one
+                if len(phrase) > len(kept_phrase):
+                    out.remove(kept)
+                    out.append(r)
+                is_dup = True
+                break
+        
+        if not is_dup:
             out.append(r)
     return out
 
@@ -1285,7 +1434,7 @@ def extract_env_attributes(sentence: str) -> list:
       { category, env_type, subcategory, trigger, phrase, full_value,
         ner_type, normalized, namespace, data_type, method }
     """
-    doc = _get_nlp()(sentence)
+    doc = get_spacy_model()(sentence)
 
     # Tầng 0: Chuẩn bị — xác định subject/object NP tokens
     subject_tokens = _get_subject_tokens(doc)
@@ -1319,7 +1468,7 @@ def extract_env_candidates(sentence: str) -> list:
       { action, env_phrase, env_type, ner_type, valid, method }
     valid = True vì đây là positive instances từ rule-based detection.
     """
-    doc  = _get_nlp()(sentence)
+    doc  = get_spacy_model()(sentence)
     envs = extract_env_attributes(sentence)
 
     candidates = []

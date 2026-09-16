@@ -4,7 +4,7 @@ scripts/compute_fscore.py — Tính F-score cho toàn bộ ABAC pipeline
 
 So sánh:
   policy_dataset.json      — RAW machine output (từ auto_extraction.py)
-  policy_dataset_gold.json — Gold Standard (từ interactive_verification.py)
+  vact_gold.json — Gold Standard (từ interactive_verification.py)
 
 Tính P, R, F1 cho từng trường:
   - Subject
@@ -18,7 +18,7 @@ Usage:
     python scripts/compute_fscore.py --field subject  # Chỉ tính 1 trường
     python scripts/compute_fscore.py \\
         --machine outputs/policies/policy_dataset.json \\
-        --gold    outputs/policies/policy_dataset_gold.json
+        --gold    outputs/policies/vact_gold.json
 """
 import json
 import os
@@ -51,12 +51,12 @@ def load_json_policies(path: str, label: str) -> dict:
 # =====================================================================
 
 def _norm_str(s) -> str:
-    """Chuẩn hoá 1 chuỗi: lower, strip, bỏ khoảng trắng thừa."""
+    """Chuẩn hoá 1 chuỗi: lower, strip, bỏ khoảng trắng thừa, underscore → space."""
     if s is None:
         return ""
     if isinstance(s, list):
-        return " ".join(s).lower().strip()
-    return str(s).lower().strip()
+        return " ".join(s).lower().strip().replace("_", " ")
+    return str(s).lower().strip().replace("_", " ")
 
 
 def _to_set(value) -> set:
@@ -72,22 +72,37 @@ def _to_set(value) -> set:
 def _env_key(env: dict) -> str:
     """
     Tạo khoá so sánh cho một environment entry.
-    Dùng (env_type, 2 từ đầu của full_value) để khớp linh hoạt (partial match).
+    Dùng (2-3 từ đầu của full_value) để khớp linh hoạt (partial match).
     """
-    fv   = _norm_str(env.get("full_value", env.get("phrase", "")))
-    etype = env.get("env_type", "")
+    fv = env.get("full_value", "")
+    trigger = env.get("trigger", "").lower()
+    if trigger not in ("except", "except for") and (env.get("env_type") == "conditional" or env.get("category") == "environment" and env.get("subcategory") == "conditional_clause"):
+        fv = env.get("phrase", "")
+    
+    if not fv:
+        tw = env.get("trigger_word", env.get("trigger", ""))
+        tp = env.get("trigger_phrase", env.get("phrase", ""))
+        fv = f"{tw} {tp}".strip()
+    
+    # Workaround: sometimes full_value is present but misses trigger_word (from att_extractor)
+    if env.get("env_type") != "conditional" and "trigger_word" in env and env["trigger_word"] and not fv.startswith(env["trigger_word"]):
+        fv = f"{env['trigger_word']} {fv}".strip()
+        
+    fv = _norm_str(fv)
     words = fv.split()[:3]          # 3 từ đầu (partial match)
-    return f"{etype}::{' '.join(words)}"
+    return f"{' '.join(words)}"
 
 
 # =====================================================================
 #  Tính TP / FP / FN cho từng trường
 # =====================================================================
 
-def _compute_tp_fp_fn_sets(gold_set: set, pred_set: set):
+def _compute_tp_fp_fn_sets(gold_set: set, pred_set: set, label=""):
     tp = len(gold_set & pred_set)
     fp = len(pred_set - gold_set)
     fn = len(gold_set - pred_set)
+    if label == "SUBJ_DEBUG":
+        print(f"SUBJ_DEBUG: gold={gold_set}, pred={pred_set} -> tp={tp}")
     return tp, fp, fn
 
 
@@ -102,6 +117,47 @@ def prf(tp: int, fp: int, fn: int):
 #  Đánh giá từng câu
 # =====================================================================
 
+import spacy
+_nlp_eval = None
+def _get_eval_nlp():
+    global _nlp_eval
+    if _nlp_eval is None:
+        try:
+            _nlp_eval = spacy.load("en_core_web_sm")
+        except OSError:
+            _nlp_eval = spacy.blank("en")
+    return _nlp_eval
+
+def _lemmatize_phrase(phrase: str) -> str:
+    if not phrase:
+        return ""
+    doc = _get_eval_nlp()(phrase)
+    return " ".join([t.lemma_ for t in doc])
+
+def _compute_tp_fp_fn_object(gold_set: set, pred_set: set):
+    """
+    Fix 3B: Object label comparison with lemmatization matching.
+    is_match = (pred == gold) or (pred_lemma == gold_lemma)
+    """
+    tp = 0
+    matched_preds = set()
+    matched_golds = set()
+    
+    for p in pred_set:
+        p_lem = _lemmatize_phrase(p)
+        for g in gold_set:
+            g_lem = _lemmatize_phrase(g)
+            if p == g or p_lem == g_lem:
+                tp += 1
+                matched_preds.add(p)
+                matched_golds.add(g)
+                break
+                
+    fp = len(pred_set - matched_preds)
+    fn = len(gold_set - matched_golds)
+    return tp, fp, fn
+
+
 def evaluate_pair(gold: dict, pred: dict) -> dict:
     """
     So sánh 1 cặp (gold, pred) cho 4 trường.
@@ -111,23 +167,44 @@ def evaluate_pair(gold: dict, pred: dict) -> dict:
     # ── Subject ────────────────────────────────────────────────────
     # Handle both old 'subject' (list of str) and new 'subjects' (list of dict)
     def _extract_subject_strings(policy):
-        if "subjects" in policy:
-            return {s.get("role", str(s)).lower().strip() for s in policy["subjects"]}
-        return _to_set(policy.get("subject"))
+        if "subjects" in policy and policy["subjects"]:
+            roles = set()
+            for s in policy["subjects"]:
+                if isinstance(s, dict):
+                    r = s.get("role", "")
+                    if r:
+                        roles.add(_norm_str(r))
+                    elif s.get("ref_tokens"):
+                        for r in s.get("ref_tokens"):
+                            roles.add(_norm_str(r))
+                elif isinstance(s, str):
+                    roles.add(_norm_str(s))
+            if roles:
+                return roles
+        # Fallback to flat 'subject' field
+        raw = policy.get("subject", [])
+        if isinstance(raw, list):
+            return {_norm_str(v) for v in raw if v}
+        return {_norm_str(raw)}
 
     g_sub = _extract_subject_strings(gold)
     p_sub = _extract_subject_strings(pred)
-    result["subject"] = _compute_tp_fp_fn_sets(g_sub, p_sub)
+    result["subject"] = _compute_tp_fp_fn_sets(g_sub, p_sub, label="SUBJ_DEBUG")
 
     # ── Actions ────────────────────────────────────────────────────
     def _extract_action_strings(policy):
         acts = set()
         for a in policy.get("actions", []):
             if isinstance(a, dict):
-                acts.add(str(a.get("verb", "")).lower().strip())
+                verb = str(a.get("verb", "")).lower().strip()
+                # Only add verb — NOT operation (CRUD label like READ/EXECUTE).
+                # Gold uses raw verbs; adding operation causes FP inflation.
+                if verb:
+                    acts.add(verb)
             else:
                 acts.add(_norm_str(a))
         return acts
+
 
     g_act = _extract_action_strings(gold)
     p_act = _extract_action_strings(pred)
@@ -135,26 +212,54 @@ def evaluate_pair(gold: dict, pred: dict) -> dict:
 
     # ── Object/Resource ────────────────────────────────────────────
     def _extract_object_strings(policy):
-        if "resource" in policy:
+        # Priority 1: pydantic 'resource' + 'additional_resources' (prefer ref_tokens over verbose label)
+        if "resource" in policy and policy["resource"]:
+            labels = set()
             res = policy["resource"]
-            return {str(res.get("label", str(res))).lower().strip()}
-        return _to_set(policy.get("object"))
+            rts = [_norm_str(r) for r in (res.get("ref_tokens") or []) if r]
+            lbl = _norm_str(res.get("label", ""))
+            # Use ref_tokens when available (short, consistent across datasets)
+            # Use label only when ref_tokens is absent AND label is a short compound noun (≤3 words)
+            if rts:
+                for r in rts:
+                    labels.add(r)
+            elif lbl and len(lbl.split()) <= 3:
+                labels.add(lbl)
+            for r in policy.get("additional_resources", []) or []:
+                rts2 = [_norm_str(rt) for rt in (r.get("ref_tokens") or []) if rt]
+                lbl2 = _norm_str(r.get("label", ""))
+                if rts2:
+                    for rt in rts2:
+                        labels.add(rt)
+                elif lbl2 and len(lbl2.split()) <= 3:
+                    labels.add(lbl2)
+            if labels:
+                return labels
+
+        # Priority 2: flat 'object' field (iTrust gold, VACT gold, legacy format)
+        flat_obj = policy.get("object")
+        if flat_obj is not None:
+            return _to_set(flat_obj)
+
+        return set()
+
 
     g_obj = _extract_object_strings(gold)
     p_obj = _extract_object_strings(pred)
-    result["object"] = _compute_tp_fp_fn_sets(g_obj, p_obj)
+    result["object"] = _compute_tp_fp_fn_object(g_obj, p_obj)
 
     # ── Environment ────────────────────────────────────────────────
     # environments uses different format now
     def _extract_env_strings(policy):
         envs = set()
-        if "environments" in policy:
-            for e in policy["environments"]:
-                if isinstance(e, dict):
-                    envs.add(str(e.get("trigger_phrase", e.get("env_name", ""))).lower().strip())
-        elif "environment" in policy:
-            for e in policy["environment"]:
-                envs.add(_env_key(e))
+        for key in ["environments", "environment"]:
+            if key in policy:
+                for e in policy[key]:
+                    if isinstance(e, dict):
+                        envs.add(_env_key(e))
+                    elif isinstance(e, str):
+                        words = _norm_str(e).split()[:3]
+                        envs.add(" ".join(words))
         return {e for e in envs if e}
 
     g_env = _extract_env_strings(gold)
@@ -172,11 +277,11 @@ def _print_errors(sentence: str, field: str, gold_set: set, pred_set: set):
     fp_items = pred_set - gold_set
     fn_items = gold_set - pred_set
     if fp_items or fn_items:
-        print(f"\n    [{field.upper()}] câu: \"{sentence[:75]}\"")
+        print(f"\n    [{field.upper()}] sentence: \"{sentence[:75]}\"")
         for k in sorted(fp_items):
-            print(f"      FP (máy sai): {k}")
+            print(f"      FP (wrong): {k}")
         for k in sorted(fn_items):
-            print(f"      FN (máy bỏ sót): {k}")
+            print(f"      FN (missing): {k}")
 
 
 # =====================================================================
@@ -225,18 +330,52 @@ def evaluate(machine_map: dict, gold_map: dict,
                 _print_errors(sentence, "subject", g, p)
             # Actions verbose
             if "actions" in fields:
-                g = {_norm_str(a) for a in gold.get("actions", []) if a}
-                p = {_norm_str(a) for a in pred.get("actions", []) if a}
+                def _ex_act(policy):
+                    acts = set()
+                    for a in policy.get("actions", []):
+                        if isinstance(a, dict):
+                            v = str(a.get("verb", "")).lower().strip()
+                            o = str(a.get("operation", "")).lower().strip()
+                            if v: acts.add(v)
+                            if o: acts.add(o)
+                        else:
+                            acts.add(_norm_str(a))
+                    return acts
+                g = _ex_act(gold)
+                p = _ex_act(pred)
                 _print_errors(sentence, "actions", g, p)
             # Object verbose
             if "object" in fields:
-                g = _to_set(gold.get("object"))
-                p = _to_set(pred.get("object"))
+                def _ex_obj(policy):
+                    labels = set()
+                    if "resource" in policy and policy["resource"]:
+                        res = policy["resource"]
+                        if res.get("ref_tokens"):
+                            for r in res.get("ref_tokens"): labels.add(_norm_str(r))
+                        else:
+                            labels.add(_norm_str(res.get("label", str(res))))
+                    for r in policy.get("additional_resources", []) or []:
+                        if r.get("ref_tokens"):
+                            for rt in r.get("ref_tokens"): labels.add(_norm_str(rt))
+                        else:
+                            labels.add(_norm_str(r.get("label", "")))
+                    if not labels: return _to_set(policy.get("object"))
+                    return {l for l in labels if l}
+                g = _ex_obj(gold)
+                p = _ex_obj(pred)
                 _print_errors(sentence, "object", g, p)
             # Environment verbose
             if "environment" in fields:
-                g = {_env_key(e) for e in gold.get("environment", [])}
-                p = {_env_key(e) for e in pred.get("environment", [])}
+                g = set()
+                p = set()
+                for key in ["environments", "environment"]:
+                    if key in gold:
+                        for e in gold[key]:
+                            if isinstance(e, dict): g.add(_env_key(e))
+                for key in ["environments", "environment"]:
+                    if key in pred:
+                        for e in pred[key]:
+                            if isinstance(e, dict): p.add(_env_key(e))
                 _print_errors(sentence, "environment", g, p)
 
     # Handle ids only in gold (count as FN for each field)
@@ -269,7 +408,7 @@ def evaluate(machine_map: dict, gold_map: dict,
 
 def print_results(results: dict, n_sentences: int):
     print(f"\n{'='*62}")
-    print(f"  F-SCORE RESULTS  ({n_sentences} câu được so sánh)")
+    print(f"  F-SCORE RESULTS  ({n_sentences} sentences compared)")
     print(f"{'='*62}")
     print(f"  {'Field':<14}  {'P':>7}  {'R':>7}  {'F1':>7}   TP    FP    FN")
     print(f"  {'-'*56}")
@@ -296,12 +435,12 @@ def print_results(results: dict, n_sentences: int):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Tính F-score: so sánh policy_dataset.json vs policy_dataset_gold.json"
+        description="Tính F-score: so sánh policy_dataset.json vs vact_gold.json"
     )
     parser.add_argument("--machine", default=POLICY_DATASET_PATH,
                         help="Path tới file machine output (mặc định: policy_dataset.json)")
     parser.add_argument("--gold",    default=POLICY_DATASET_GOLD_PATH,
-                        help="Path tới Gold Standard (mặc định: policy_dataset_gold.json)")
+                        help="Path tới Gold Standard (mặc định: vact_gold.json)")
     parser.add_argument("--field",   default=None,
                         choices=FIELDS,
                         help="Chỉ tính F-score cho 1 trường (subject/actions/object/environment)")

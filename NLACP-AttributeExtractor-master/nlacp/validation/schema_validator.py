@@ -155,7 +155,7 @@ class Subject(BaseModel):
 class Action(BaseModel):
     """Action/operation in policy"""
     verb: str = Field(..., description="Original verb from sentence")
-    operation: Operation = Field(..., description="Normalized operation type")
+    operation: Union[Operation, str] = Field(..., description="Normalized operation type")
     negated: bool = Field(False, description="True if action is negated")
 
     class Config:
@@ -284,11 +284,12 @@ class Policy(BaseModel):
     authorization_decision: PolicyEffect = Field(..., description="Authorization decision (permit/deny)")
     policy_modality: PolicyModality = Field(..., description="Policy modality")
     priority: Optional[int] = Field(None, description="Policy priority")
-    subjects: List[Subject] = Field(..., min_items=1, description="Subject entities")
+    subjects: List[Subject] = Field(default_factory=list, description="Subject entities")
     subjects_logical_op: Optional[LogicalOperator] = Field(None, description="Logical operator between subjects")
-    actions: List[Action] = Field(..., min_items=1, description="Actions")
+    actions: List[Action] = Field(default_factory=list, description="Actions")
     actions_logical_op: Optional[LogicalOperator] = Field(None, description="Logical operator between actions")
-    resource: Resource = Field(..., description="Resource/object")
+    resource: Optional[Resource] = Field(None, description="Resource/object")
+    additional_resources: Optional[List[Resource]] = Field(None, description="Additional resources if multiple objects exist")
     environments: List[Environment] = Field(default_factory=list, description="Environmental constraints")
     context: List[Condition] = Field(default_factory=list, description="Policy context / conditions")
     conditions_logical_op: Optional[LogicalOperator] = Field(None, description="Logical operator between context items")
@@ -301,6 +302,12 @@ class Policy(BaseModel):
     @model_validator(mode="after")
     def validate_policy_consistency(self):
         """Validate overall policy consistency"""
+        if not self.subjects:
+            logger.warning(f"Policy id={self.id} is missing subjects")
+        
+        if not self.actions:
+            logger.warning(f"Policy id={self.id} is missing actions")
+
         # If multiple subjects, subjects_logical_op should be set
         if len(self.subjects) > 1 and not self.subjects_logical_op:
             logger.warning("Multiple subjects without subjects_logical_op specified")

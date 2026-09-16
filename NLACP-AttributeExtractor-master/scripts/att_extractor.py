@@ -120,21 +120,29 @@ def process_sa_oa_attributes(policy: dict) -> list:
     """
     # Lấy env tokens để loại overlap
     env_tokens = set()
-    for env in policy.get("environment", []):
-        for word in (env.get("full_value") or "").lower().split():
+    for env in policy.get("environments", policy.get("environment", [])):
+        for word in (env.get("full_value") or env.get("trigger_phrase") or "").lower().split():
             if word not in {"a", "an", "the"}:
                 env_tokens.add(word)
         trigger = (env.get("trigger") or "").lower()
         if trigger and not trigger.startswith("ner:"):
             env_tokens.add(trigger)
 
-    subjects = policy.get("subject", [])
+    subjects = policy.get("subjects", policy.get("subject", [])) or []
     if isinstance(subjects, str): subjects = [subjects]
-    sub_names = [s.lower() for s in subjects]
+    sub_names = [(s.get("role") or str(s)) if isinstance(s, dict) else str(s) for s in subjects]
+    sub_names = [s.lower() for s in sub_names if s]
     
-    objects = policy.get("object", [])
+    objects = []
+    res = policy.get("resource")
+    if res:
+        objects.append((res.get("label") or str(res)) if isinstance(res, dict) else str(res))
+    for r in policy.get("additional_resources", []) or []:
+        objects.append((r.get("label") or str(r)) if isinstance(r, dict) else str(r))
+    if not objects:
+        objects = policy.get("object", []) or []
     if isinstance(objects, str): objects = [objects]
-    obj_names = [o.lower() for o in objects]
+    obj_names = [o.lower() for o in objects if o]
 
     # Build raw attrs từ relation_pairs
     ENV_PREPS = {"during", "within", "after", "before", "between", "via",
@@ -142,9 +150,15 @@ def process_sa_oa_attributes(policy: dict) -> list:
                  "throughout", "until"}
 
     raw_attrs = []
-    for pair in policy.get("relation_pairs", []):
-        val  = pair[0] if len(pair) > 0 else ""
-        name = pair[1] if len(pair) > 1 else ""
+    for pair in policy.get("relation_pairs", []) or []:
+        if isinstance(pair, dict):
+            val = str(pair.get("value", ""))
+            name = str(pair.get("attribute", ""))
+        elif isinstance(pair, (list, tuple)):
+            val  = str(pair[0]) if len(pair) > 0 else ""
+            name = str(pair[1]) if len(pair) > 1 else ""
+        else:
+            continue
         if not val or not name:
             continue
         if name.lower() in ENV_PREPS:
@@ -194,43 +208,124 @@ def process_env_namespace(policy: dict) -> list:
     """
     Từ environment entries trong policy (đã verified),
     đảm bảo namespace đúng chuẩn phân cấp environment.*.
+    Sử dụng rule-based classify_env_phrase_with_confidence để phân loại.
     """
     updated = []
-    for env in policy.get("environment", []):
-        # Nếu chưa có namespace hoặc namespace format cũ → build lại
-        ns = env.get("namespace", "")
-        if not ns or not ns.startswith("environment."):
-            ns = _build_env_namespace(env)
-        env["namespace"] = ns
+    for env in policy.get("environments", policy.get("environment", [])):
+        phrase = env.get("full_value", env.get("trigger_phrase", ""))
+        if not phrase:
+            phrase = env.get("phrase", "")
+            
+        env_type, namespace, score = classify_env_phrase_with_confidence(phrase)
+        
+        env["env_type"] = env_type
+        env["namespace"] = namespace
+        env["subcategory"] = env_type
+        env["confidence"] = score
+
+        # Ensure full_value exists for downstream
+        if "full_value" not in env:
+            env["full_value"] = phrase
+
         updated.append(env)
     return updated
 
 
-# =====================================================================
-#  DBSCAN Clustering
-# =====================================================================
+import re
+
+def classify_env_phrase_with_confidence(phrase, token=None, doc=None):
+    phrase_lower = phrase.lower().strip()
+    scores = {}
+    
+    # Score for each category based on evidence strength
+    
+    # TEMPORAL — time range (highest confidence: explicit times)
+    if re.search(r'\d+\s*(?:am|pm|:\d{2})', phrase_lower):
+        scores['time_range'] = 1.0  # explicit clock time
+    
+    # TEMPORAL — named periods (medium confidence)
+    WORK_PERIOD = ["business hours", "working hours", "office hours"]
+    ACADEMIC_PERIOD = ["enrollment period", "grading period", 
+                       "semester", "academic year", "deadline"]
+    if any(w in phrase_lower for w in WORK_PERIOD):
+        scores['working_period'] = 0.9
+    if any(w in phrase_lower for w in ACADEMIC_PERIOD):
+        scores['academic_period'] = 0.85
+        
+    # TEMPORAL — generic temporal (lower confidence)
+    TEMPORAL = ["during", "before", "after", "between", 
+                "until", "night shift", "weekday"]
+    temporal_matches = sum(1 for w in TEMPORAL if w in phrase_lower)
+    if temporal_matches > 0:
+        scores['temporal'] = 0.6 + (0.1 * min(temporal_matches, 3))
+    
+    # NETWORK
+    NETWORK = ["vpn", "intranet", "network", "wi-fi", 
+               "wifi", "campus wi", "university network"]
+    network_matches = sum(1 for w in NETWORK if w in phrase_lower)
+    if network_matches > 0:
+        scores['spatial_network'] = 0.7 + (0.1 * min(network_matches, 2))
+    
+    # SYSTEM
+    SYSTEM = ["management system", "information system",
+              "registration system", "portal", "platform"]
+    if any(w in phrase_lower for w in SYSTEM):
+        scores['academic_system'] = 0.95
+    
+    # SPATIAL — physical
+    SPATIAL = ["campus", "office", "lab", "building",
+               "room", "terminal", "lounge", "on campus",
+               "in the", "from the", "within the", "at the"]
+    spatial_matches = sum(1 for w in SPATIAL if w in phrase_lower)
+    if spatial_matches > 0:
+        scores['spatial_physical'] = 0.65 + (0.1 * min(spatial_matches, 2))
+    
+    # CONDITIONAL
+    CONDITIONAL = ["only if", "only when", "unless", 
+                   "is active", "is open", "is pending",
+                   "is archived", "in good standing",
+                   "is under review", "is activated"]
+    cond_matches = sum(1 for w in CONDITIONAL if w in phrase_lower)
+    if cond_matches > 0:
+        scores['conditional'] = 0.75 + (0.1 * min(cond_matches, 2))
+    
+    # Add syntactic evidence bonus if token/doc available
+    if token is not None and doc is not None:
+        # Bonus if phrase is in advcl (high confidence it's ENV)
+        if token.dep_ in ['advcl', 'prep', 'advmod']:
+            for key in scores:
+                scores[key] = min(1.0, scores[key] + 0.1)
+    
+    if not scores:
+        return 'other', 'environment.other', 0.0
+    
+    best_type = max(scores, key=scores.get)
+    best_score = scores[best_type]
+    
+    NAMESPACE_MAP = {
+        'time_range': 'environment.time.time_range',
+        'working_period': 'environment.time.working_period',
+        'academic_period': 'environment.time.academic_period',
+        'temporal': 'environment.time.temporal',
+        'spatial_network': 'environment.network.access_channel',
+        'academic_system': 'environment.system.platform',
+        'spatial_physical': 'environment.location.physical',
+        'conditional': 'environment.state.condition',
+        'other': 'environment.other'
+    }
+    
+    return best_type, NAMESPACE_MAP[best_type], round(best_score, 4)
+
+
+def classify_env_phrase(phrase):
+    env_type, namespace, score = classify_env_phrase_with_confidence(phrase)
+    return env_type, namespace
 
 def run_clustering(dataset: dict):
-    """Chạy attribute clustering (DBSCAN) và lưu kết quả."""
-    try:
-        from nlacp.mining.attribute_cluster import main as run_cluster_main
-        print("\n[INFO] Đang chạy DBSCAN attribute clustering...")
-        run_cluster_main()
-        print(f"  [OK] Clusters → {ATTRIBUTE_CLUSTERS_PATH}")
-    except Exception as e:
-        print(f"  [WARN] Clustering thất bại: {e}")
-
+    print("\n[INFO] Bypassing DBSCAN attribute clustering (using rule-based instead).")
 
 def run_hierarchy():
-    """Chạy namespace hierarchy."""
-    try:
-        from nlacp.mining.namespace_hierarchy import main as run_hier_main
-        print("\n[INFO] Đang chạy namespace hierarchy...")
-        run_hier_main()
-        print(f"  [OK] Hierarchy → {NAMESPACE_HIERARCHY_PATH}")
-    except Exception as e:
-        print(f"  [WARN] Hierarchy thất bại: {e}")
-
+    print("\n[INFO] Bypassing namespace hierarchy.")
 
 # =====================================================================
 #  REPORT ENV NAMESPACES
@@ -246,7 +341,7 @@ def print_env_namespace_report(all_policies: list):
     ns_usage = defaultdict(list)
 
     for p in all_policies:
-        for env in p.get("environment", []):
+        for env in p.get("environments", p.get("environment", [])):
             ns = env.get("namespace", "")
             if ns:
                 ns_usage[ns].append(p.get("id"))
@@ -290,10 +385,11 @@ def main(run_cluster: bool = True):
         print(f"  Policy #{pid}: {sentence[:65]}...")
 
         # B1: Fix-up ENV namespaces
-        policy["environment"] = process_env_namespace(policy)
-        env_count = len(policy["environment"])
+        env_key = "environments" if "environments" in policy else "environment"
+        policy[env_key] = process_env_namespace(policy)
+        env_count = len(policy[env_key])
         print(f"    ENV: {env_count} entry(ies)")
-        for e in policy["environment"]:
+        for e in policy[env_key]:
             print(f"      [{e['env_type']:16s}|{e['subcategory']:14s}]"
                   f" \"{e.get('full_value', e.get('phrase','?'))}\"")
             print(f"         → {e['namespace']}")

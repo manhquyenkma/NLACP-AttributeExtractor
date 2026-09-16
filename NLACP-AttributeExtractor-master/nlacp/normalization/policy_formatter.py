@@ -197,7 +197,8 @@ def format_policy_to_json(
     modality: PolicyModality,
     subjects: List[Subject],
     actions: List[Action],
-    resource: Resource,
+    resource: Optional[Resource] = None,
+    additional_resources: Optional[List[Resource]] = None,
     environments: Optional[List[Environment]] = None,
     context: Optional[List[Condition]] = None,
     subjects_logical_op: Optional[str] = None,
@@ -216,6 +217,7 @@ def format_policy_to_json(
         subjects: List of subjects
         actions: List of actions
         resource: Resource
+        additional_resources: Optional additional resources
         environments: Optional environments
         conditions: Optional conditions
         subjects_logical_op: Optional AND/OR between subjects
@@ -248,6 +250,7 @@ def format_policy_to_json(
         actions=actions,
         actions_logical_op=actions_logical_op,
         resource=resource,
+        additional_resources=additional_resources,
         environments=environments or [],
         context=context or [],
         conditions_logical_op=conditions_logical_op,

@@ -1,3 +1,4 @@
+from nlacp.utils.nlp_utils import get_spacy_model
 """
 Preprocessing module for ABAC Policy v2.0
 
@@ -17,7 +18,7 @@ except ImportError:
 
 nlp = None  # Lazy load
 
-def _get_nlp():
+def get_spacy_model():
     global nlp
     if nlp is None:
         try:
@@ -60,7 +61,7 @@ class Preprocessor:
             language: Language code (default: 'en' for English)
         """
         self.language = language
-        self.nlp = _get_nlp()
+        self.nlp = get_spacy_model()
     
     def normalize_text(self, text: str) -> str:
         """

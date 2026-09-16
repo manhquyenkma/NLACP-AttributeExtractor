@@ -1,3 +1,4 @@
+from nlacp.utils.nlp_utils import get_spacy_model
 """
 Condition Extractor for ABAC Policy v2.0
 
@@ -16,7 +17,7 @@ from nlacp.validation.schema_validator import (
 
 nlp = None  # Lazy load
 
-def _get_nlp():
+def get_spacy_model():
     global nlp
     if nlp is None:
         try:
@@ -275,7 +276,7 @@ def extract_conditions(sentence: str, doc=None) -> List[Condition]:
         List of Condition objects
     """
     if doc is None:
-        doc = _get_nlp()(sentence)
+        doc = get_spacy_model()(sentence)
     
     conditions = []
     sentence_lower = sentence.lower()

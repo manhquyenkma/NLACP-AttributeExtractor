@@ -1,3 +1,4 @@
+from nlacp.utils.nlp_utils import get_spacy_model
 """
 Action Extractor for ABAC Policy v2.0
 
@@ -11,7 +12,7 @@ from nlacp.validation.schema_validator import Action, Operation
 
 nlp = None  # Lazy load
 
-def _get_nlp():
+def get_spacy_model():
     global nlp
     if nlp is None:
         try:
@@ -23,94 +24,108 @@ def _get_nlp():
 # Verb to operation mapping
 VERB_TO_OPERATION = {
     # Read operations
-    "read": Operation.READ,
-    "view": Operation.READ,
-    "access": Operation.READ,
-    "see": Operation.READ,
-    "audit": Operation.READ,
-    "get": Operation.READ,
-    "check": Operation.CHECK,
-    "review": Operation.READ,
-    "examine": Operation.READ,
+    "read": "read",
+    "view": "read",
     
     # Create operations
-    "create": Operation.CREATE,
-    "make": Operation.CREATE,
-    "add": Operation.CREATE,
-    "insert": Operation.CREATE,
-    "upload": Operation.UPLOAD,
-    "new": Operation.CREATE,
-    "register": Operation.REGISTER,
-    "issue": Operation.ISSUE,
+    "create": "create",
+    "add": "create",
     
     # Update operations
-    "update": Operation.UPDATE,
-    "modify": Operation.UPDATE,
-    "change": Operation.UPDATE,
-    "edit": Operation.UPDATE,
-    "approve": Operation.APPROVE,
-    "request": Operation.UPDATE,
-    "assign": Operation.ASSIGN,
-    "number": Operation.NUMBER,
-    "export": Operation.EXPORT,
+    "update": "update",
+    "edit": "update",
     
     # Delete operations
-    "delete": Operation.DELETE,
-    "remove": Operation.DELETE,
-    "destroy": Operation.DELETE,
-    "drop": Operation.DELETE,
-    
-    # Other operations
-    "download": Operation.DOWNLOAD,
-    "comment": Operation.COMMENT,
-    "deny": Operation.DENY,
-    "assess": Operation.ASSESS,
-    "take": Operation.TAKE,
-    "execute": Operation.EXECUTE,
-    "require": Operation.REQUIRE,
-    "transfer": Operation.TRANSFER,
-    "cancel": Operation.CANCEL,
+    "delete": "delete",
+    "remove": "delete",
 }
 
-# Action dependency patterns
-ACTION_DEPS = {"ROOT", "xcomp", "advcl"}
+from nlacp.extraction.env_extractor import extract_env_attributes
+
+ACTION_BLACKLIST = {
+    "contain", "consist", "remain",
+    "become", "seem", "appear", "include", "involve",
+    "require", "need", "mean", "represent", "indicate",
+    "record", "consider"
+}
 
 # Negation indicators
 NEGATION_WORDS = {"not", "cannot", "no", "never", "neither"}
 
 
-def _extract_action_tokens(doc) -> List:
-    """Extract action tokens from dependency tree."""
+def _extract_action_tokens(doc, sentence="") -> List:
     action_tokens = []
-    
-    for token in doc:
-        # Main verb (ROOT)
-        if token.dep_ == "ROOT" and token.pos_ in ("VERB", "NOUN", "AUX"):
-            if token.pos_ == "VERB" or (token.pos_ in ("NOUN", "AUX") and token.lemma_.lower() in VERB_TO_OPERATION):
-                action_tokens.append(token)
+
+    env_attrs = extract_env_attributes(sentence) if sentence else []
+    env_tokens_lower = set()
+    for env in env_attrs:
+        fv = env.get("full_value", "").lower()
+        for w in fv.split():
+            env_tokens_lower.add(w)
+
+    SPACY_KNOWN_MISTAG_EXCEPTIONS = {
+        "learn": {
+            "reason": "gerund-as-verb mistagging trong compound noun 'learning + [materials|management]'",
+            "condition": lambda t: any(c.lemma_.lower() in {"material", "management", "system"} for c in t.children)
+        }
+    }
+
+    root = next((t for t in doc if t.dep_ == "ROOT"), None)
+    if root is None:
+        return []
+
+    frontier = [root]
+
+    # (1) ROOT
+    if root.pos_ == "VERB" or (root.pos_ in ("NOUN", "AUX") and root.lemma_.lower() in VERB_TO_OPERATION):
+        exclude = False
+        if root.lemma_.lower() in ACTION_BLACKLIST:
+            has_dobj = any(c.dep_ == "dobj" for c in root.children)
+            if not has_dobj:
+                exclude = True
         
-        # Modal verbs (aux) - usually can/cannot/must
-        elif token.pos_ == "AUX" and token.text.lower() in ("can", "cannot", "could", "could not", "might"):
-            continue  # skip modal verb as action, it's a modality indicator
-        
-        # Other verbs
-        elif token.pos_ == "VERB" and token.dep_ not in ("aux", "amod", "compound", "acl", "relcl"):
-            if token not in action_tokens:
-                action_tokens.append(token)
-    
-    # Extract conjuncts (and/or verbs)
-    conjuncts = []
-    for token in action_tokens:
-        for child in token.children:
-            if child.dep_ == "conj" and child.pos_ in ("VERB", "NOUN"):
-                conjuncts.append(child)
-    
-    action_tokens.extend(conjuncts)
+        if root.text.lower() in env_tokens_lower:
+            exclude = True
+
+        if root.lemma_.lower() in SPACY_KNOWN_MISTAG_EXCEPTIONS:
+            if SPACY_KNOWN_MISTAG_EXCEPTIONS[root.lemma_.lower()]["condition"](root):
+                exclude = True
+                
+        if not exclude:
+            action_tokens.append(root)
+    else:
+        return []
+
+    frontier = [root]
+    seen = {root}
+    while frontier:
+        current = frontier.pop()
+        for child in current.children:
+            if child.dep_ == "conj":
+                if child.pos_ == "VERB" or (child.pos_ == "NOUN" and child.lemma_.lower() in VERB_TO_OPERATION):
+                    exclude = False
+                    if child.lemma_.lower() in ACTION_BLACKLIST:
+                        has_dobj = any(c.dep_ == "dobj" for c in child.children)
+                        if not has_dobj:
+                            exclude = True
+                    
+                    if child.text.lower() in env_tokens_lower:
+                        exclude = True
+
+                    if child.lemma_.lower() in SPACY_KNOWN_MISTAG_EXCEPTIONS:
+                        if SPACY_KNOWN_MISTAG_EXCEPTIONS[child.lemma_.lower()]["condition"](child):
+                            exclude = True
+                            
+                    if not exclude:
+                        if child not in seen:
+                            action_tokens.append(child)
+                            seen.add(child)
+                            frontier.append(child)
+
     return action_tokens
 
 
 def _get_negation_before(token, window_size=5) -> bool:
-    """Check if negation words appear within window_size tokens before this token."""
     start_idx = max(0, token.i - window_size)
     for i in range(start_idx, token.i):
         if token.doc[i].text.lower() in NEGATION_WORDS:
@@ -118,72 +133,49 @@ def _get_negation_before(token, window_size=5) -> bool:
     return False
 
 
-def _map_verb_to_operation(verb: str) -> Optional[Operation]:
-    """Map natural language verb to ABAC operation."""
-    verb_lower = verb.lower()
-    
-    # Direct mapping
-    if verb_lower in VERB_TO_OPERATION:
-        return VERB_TO_OPERATION[verb_lower]
-    
-    # Lemmatized mapping (try without -ing, -ed, etc.)
-    # This is handled by spaCy lemmatization in extract_actions
-    return None
-
-
 def extract_actions(sentence: str, doc=None) -> List[Action]:
-    """
-    Extract all actions from a policy sentence.
-    
-    Args:
-        sentence: Natural language policy sentence
-        doc: spaCy Doc object (optional, will parse if not provided)
-    
-    Returns:
-        List of Action objects
-    """
     if doc is None:
-        doc = _get_nlp()(sentence)
+        doc = get_spacy_model()(sentence)
     
-    action_tokens = _extract_action_tokens(doc)
-    
-    if not action_tokens:
-        # Fallback: look for action-like words anywhere
-        for token in doc:
-            if token.lemma_.lower() in VERB_TO_OPERATION:
-                action_tokens.append(token)
+    action_tokens = _extract_action_tokens(doc, sentence)
     
     actions = []
     for token in action_tokens:
-        verb = token.lemma_.lower() if token.lemma_ else token.text.lower()
-        operation = _map_verb_to_operation(verb)
+        verb_lemma = token.lemma_.lower() if token.lemma_ else token.text.lower()
         
-        if operation is None:
-            # Try direct text mapping
-            operation = _map_verb_to_operation(token.text.lower())
+        # Apply CRUD synonym map
+        mapped_verb = VERB_TO_OPERATION.get(verb_lemma)
+        if not mapped_verb:
+            mapped_verb = VERB_TO_OPERATION.get(token.text.lower())
+            
+        operation_verb = mapped_verb if mapped_verb else verb_lemma
         
-        # Skip if no operation mapping found
-        if operation is None:
-            continue
-        
-        # Check for negation before this action
+        if verb_lemma == "have":
+            dobj = next((c for c in token.children if c.dep_ == "dobj"), None)
+            if dobj:
+                dobj_lemma = dobj.lemma_.lower()
+                # If object is person/role noun -> CREATE
+                if dobj_lemma in ["instructor", "student", "user", "lecturer", "chair", "coordinator", "officer", "person", "representative"]:
+                    operation_verb = "create"
+                else:
+                    # If object is thing -> READ
+                    operation_verb = "read"
+            else:
+                continue # Default: skip "have"
         negated = _get_negation_before(token)
         
         action = Action(
-            verb=verb,
-            operation=operation,
+            verb=verb_lemma,             # Keep the raw original verb
+            operation=operation_verb.upper(), # Store the CRUD operation
             negated=negated
         )
         
         actions.append(action)
     
-    # Remove duplicates while preserving order
     seen = set()
     unique_actions = []
     for action in actions:
-        # Handle both enum and string representations (Pydantic may convert to string)
-        op_val = action.operation if isinstance(action.operation, str) else action.operation.value
-        key = (action.verb, op_val, action.negated)
+        key = (action.verb, action.operation, action.negated)
         if key not in seen:
             seen.add(key)
             unique_actions.append(action)

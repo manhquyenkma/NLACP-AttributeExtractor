@@ -1,3 +1,4 @@
+from nlacp.utils.nlp_utils import get_spacy_model
 """
 Effect Detector for ABAC Policy v2.0
 
@@ -11,7 +12,7 @@ from nlacp.validation.schema_validator import PolicyEffect, PolicyModality
 
 nlp = None  # Lazy load on first use
 
-def _get_nlp():
+def get_spacy_model():
     global nlp
     if nlp is None:
         import spacy
@@ -150,7 +151,7 @@ def detect_effect(sentence: str, doc=None) -> PolicyEffect:
         PolicyEffect (permit or deny)
     """
     if doc is None:
-        doc = _get_nlp()(sentence)
+        doc = get_spacy_model()(sentence)
     
     sentence_lower = sentence.lower()
     
@@ -180,7 +181,7 @@ def detect_modality(sentence: str, doc=None) -> PolicyModality:
         PolicyModality
     """
     if doc is None:
-        doc = _get_nlp()(sentence)
+        doc = get_spacy_model()(sentence)
     
     modal_verb = _find_modal_verb(doc)
     
@@ -209,7 +210,7 @@ def detect_effect_and_modality(sentence: str, doc=None) -> Tuple[PolicyEffect, P
         Tuple of (effect, modality)
     """
     if doc is None:
-        doc = _get_nlp()(sentence)
+        doc = get_spacy_model()(sentence)
     
     effect = detect_effect(sentence, doc)
     modality = detect_modality(sentence, doc)

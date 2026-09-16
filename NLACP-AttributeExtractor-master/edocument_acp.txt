@@ -1,0 +1,85 @@
+An Unregistered Sender can only view documents sent to him/herself.
+A Member of a Tenant can only send a document if the credit of that tenant is sufficient.
+Every action done by a Member of a Tenant is billed to that Tenant.
+Every action done by a User is logged.
+Members of the helpdesk can search every document in the application.
+Members of the helpdesk can see meta-information of every document in the application.
+Members of the helpdesk can only read the content of documents belonging to tenants for which they are assigned responsible.
+Members of the helpdesk can only manage tenant configurations for tenants for which they are assigned responsible.
+Any member of the helpdesk assigned to a certain tenant can delegate the right to read documents of that tenant and manage the tenant's configuration to another member of the helpdesk for a maximum time of 4 weeks.
+A member of the helpdesk assigned to a certain tenant can only delegate the right to read documents of that tenant and manage the tenant's configuration to another member of the helpdesk for a maximum time of 12 weeks in a year.
+A member of the helpdesk can only read the meta-data of a document if he or she has read the contents of a conflicting document.
+Each action done by a member of the helpdesk is logged.
+Application admins can create new tenants and manage tenant configurations.
+An application admin can only read the meta-data of a document if he or she has read the contents of a conflicting document.
+No one can read the content of documents labeled confidential by a member of the owning tenant.
+Every authenticated user can send documents and receive.
+A supervisor can read documents sent by its supervisees.
+A supervisee cannot read documents sent by its supervisors.
+A project member can read all sent documents regarding the project.
+Members of a subtenant can only send documents to customers of that subtenant.
+Only members of the sales department can send invoices.
+Only members of the sales department can view or search invoices.
+Every member of the sales department can view or search invoices sent by a member of the sales department.
+Only automated services of the ICT department can send banking notes.
+Only members of the ICT department responsible for banking notes can view the status of a sent banking note.
+Every member of the ICT department responsible for banking notes can view the status of a sent banking note.
+Only employees which are responsible for payrolling can send paychecks and only to members of their department.
+Employees which are responsible for payrolling can only send paychecks between the 20th and 25th of each month.
+Only employees which are responsible for payrolling and receivers of the paychecks can read paycheck documents.
+Every access to a paycheck should be logged.
+Only members of the sales department can send sales offers.
+Only senior members of the sales department can send sales offers to all customers at once.
+Sales offers regarding insurances can only be sent to insurance customers.
+Sales offers regarding savings accounts can only be sent to customers who own a savings account.
+Sales offers can only be sent on weekdays between 07h00 and 19h00.
+Only the bank office manager responsible for a certain bank office can send documents to that office.
+Only senior bank office managers can send documents to all bank offices at once.
+Only members of the HR department can create users.
+Only members of the IT departments which are part of the Senior Management can create subtenants in the application.
+Users can only be created on weekdays between 08h00 and 02h00.
+The Large Bank Audit department can read any document sent by any member of Large Bank except for the paychecks and banking notes.
+Members of Large Bank Leasing can only send documents to customers of Large Bank Leasing.
+Only members of the customer care office can view traffic fines.
+Only users of the sales office can send invoices.
+Only members of the Customer Care Office can manually bill a customer.
+Only the secretary and the office director of a bank office can read documents sent to the bank office.
+Members of a bank office can only send documents to external customers whose main office is that bank office.
+Insurance agents of a bank office can only send documents to insurance customers of that bank office.
+Any member of the Accounting department can receive and read invoices.
+Only members of the Accounting department can receive and read invoices unless every member of the Accounting department is set to be unavailable.
+Only members of a certain office can read documents sent to that office.
+Any member of a certain office can read documents sent to that office.
+Any member of a certain office can read all documents sent by any member of that office.
+Only members of the secretary can read invoices.
+Only members of the ICT group can create, delete or manage users or groups in the application.
+Members of the Audit department can read all invoices, offers and contracts.
+All document read attempts by a member of the Audit department should be logged.
+Members of the Audit department can read all paychecks of all employees which are responsible for payrolling and their supervisors.
+Only members of the IT department which are part of the Senior Management group and responsible for the software partner management can create subtenants.
+Members of the IT department which are responsible for user management can change the access rights to documents.
+Any Member of the IT department which is part of the Senior Management group and responsible for the software partner management can create subtenants.
+Only Members of the IT department which are part of the Senior Management group and responsible for the software partner management can delegate the right to create new subtenants to its subtenants.
+Any member of the Human Resource department can send contracts to potential future employees.
+Only members of the Human Resource department can send contracts to potential future employees.
+Members of the Human Resources department can send contracts to freelance members which collaborate with a project only after two weeks before the start of the project and not after one month after the end of the project.
+Only members of the Audit department and members of the Human Resources department can read the contracts sent out for a project.
+Any member of the sales department can send invoices.
+Only members of the sales department can send invoices.
+Any member of the sales department can read all invoices sent by the department.
+Any member of the sales department can delegate the right to send invoices to a member of the Secretary for a duration of maximum 6 weeks.
+Any member of the Sales department can create a new subtenant.
+Only members of the Sales department can create new subtenants.
+Any member of the Customer department can modify access rights of the documents sent by a subtenant which he or she has been assigned to.
+Any member of the Customer department can add properties to sent documents to help classify them for the subtenant.
+Only members of the Customer department can modify access rights of the documents sent by a subtenant.
+Any member of the Customer department can send documents on behalf of the subtenant he or she has been assigned to.
+Only members of the Customer department can send documents on behalf of the subtenants.
+Only members of the Customer department that is assigned to a subtenant can read the documents of that tenant.
+Any member of the Customer department that is assigned to a subtenant can read the documents of that tenant provided that he or she is not involved in a conflict of interest situation.
+Any member of the Accounting department can send invoices to customers.
+A member of the reseller can read the meta-data of a document if he or she has read the contents of a conflicting document.
+Registered Private Receivers can only read documents.
+Registered Private Receivers can only read documents they received.
+Registered Private Receivers can allow another Registered Private Receiver to read a certain document.
+Registered Private Receivers can allow another Registered Private Receiver to read all received documents.
