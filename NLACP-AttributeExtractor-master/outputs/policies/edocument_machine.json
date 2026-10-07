@@ -88,7 +88,7 @@
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "if the credit of that tenant is sufficient",
+                    "trigger_phrase": "the credit of that tenant is sufficient",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -109,18 +109,18 @@
                 {
                     "entity_type": "user",
                     "ref_tokens": [
-                        "action"
+                        "Member"
                     ],
-                    "role": "action",
+                    "role": "member_of_tenant",
                     "qualifiers": null,
-                    "namespace": "subject.user.action"
+                    "namespace": "subject.user.member_of_tenant"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "bill",
-                    "operation": "BILL",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -149,7 +149,7 @@
                     "value": "every"
                 }
             ],
-            "abac_policy": "PERMIT subject[action] ACTION[BILL] RESOURCE[action]"
+            "abac_policy": "PERMIT subject[member_of_tenant] ACTION[UPDATE] RESOURCE[action]"
         },
         {
             "id": 4,
@@ -161,18 +161,18 @@
                 {
                     "entity_type": "user",
                     "ref_tokens": [
-                        "action"
+                        "User"
                     ],
-                    "role": "action",
+                    "role": "user",
                     "qualifiers": null,
-                    "namespace": "subject.user.action"
+                    "namespace": "subject.user.user"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "log",
-                    "operation": "LOG",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -201,7 +201,7 @@
                     "value": "every"
                 }
             ],
-            "abac_policy": "PERMIT subject[action] ACTION[LOG] RESOURCE[action]"
+            "abac_policy": "PERMIT subject[user] ACTION[CREATE] RESOURCE[action]"
         },
         {
             "id": 5,
@@ -215,16 +215,16 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_helpdesk",
+                    "role": "member_of_helpdesk",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_helpdesk"
+                    "namespace": "subject.user.member_of_helpdesk"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "search",
-                    "operation": "SEARCH",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -253,7 +253,7 @@
                     "value": "every"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[SEARCH] RESOURCE[document]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[READ] RESOURCE[document]"
         },
         {
             "id": 6,
@@ -267,38 +267,38 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_helpdesk",
+                    "role": "member_of_helpdesk",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_helpdesk"
+                    "namespace": "subject.user.member_of_helpdesk"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "see",
-                    "operation": "SEE",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "information"
                 ],
-                "label": "meta_information_of_document",
+                "label": "meta_-_information",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.meta_information_of_document"
+                "namespace": "resource.data.meta_-_information"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[SEE] RESOURCE[meta_information_of_document]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[READ] RESOURCE[meta_-_information]"
         },
         {
             "id": 7,
@@ -312,9 +312,9 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_helpdesk",
+                    "role": "member_of_helpdesk",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_helpdesk"
+                    "namespace": "subject.user.member_of_helpdesk"
                 }
             ],
             "subjects_logical_op": null,
@@ -331,12 +331,12 @@
                 "ref_tokens": [
                     "content"
                 ],
-                "label": "content_of_documents",
+                "label": "document_content",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.content_of_documents"
+                "namespace": "resource.document.document_content"
             },
             "additional_resources": [],
             "environments": [],
@@ -350,7 +350,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[READ] RESOURCE[content_of_documents]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[READ] RESOURCE[document_content]"
         },
         {
             "id": 8,
@@ -364,16 +364,16 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_helpdesk",
+                    "role": "member_of_helpdesk",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_helpdesk"
+                    "namespace": "subject.user.member_of_helpdesk"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "manage",
-                    "operation": "MANAGE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -402,7 +402,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_helpdesk] ACTION[MANAGE] RESOURCE[tenant_configurations]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[UPDATE] RESOURCE[tenant_configurations]"
         },
         {
             "id": 9,
@@ -425,13 +425,13 @@
             "actions": [
                 {
                     "verb": "delegate",
-                    "operation": "DELEGATE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "right"
                 ],
@@ -440,7 +440,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.right"
+                "namespace": "resource.attribute.right"
             },
             "additional_resources": [
                 {
@@ -460,7 +460,7 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for a maximum time",
+                    "trigger_phrase": "a maximum time of 4 weeks",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -476,7 +476,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[DELEGATE] RESOURCE[right]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[UPDATE] RESOURCE[right]"
         },
         {
             "id": 10,
@@ -499,13 +499,13 @@
             "actions": [
                 {
                     "verb": "delegate",
-                    "operation": "DELEGATE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "right"
                 ],
@@ -514,7 +514,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.right"
+                "namespace": "resource.attribute.right"
             },
             "additional_resources": [
                 {
@@ -534,7 +534,7 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for a maximum time",
+                    "trigger_phrase": "a maximum time of 12 weeks",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -558,7 +558,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[DELEGATE] RESOURCE[right]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[UPDATE] RESOURCE[right]"
         },
         {
             "id": 11,
@@ -578,26 +578,32 @@
                 }
             ],
             "subjects_logical_op": null,
-            "actions": [],
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "data"
                 ],
-                "label": "meta_data_of_document",
+                "label": "meta_-_data",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.meta_data_of_document"
+                "namespace": "resource.data.meta_-_data"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "if he or she has read the contents of a conflicting document",
+                    "trigger_phrase": "he or she has read the contents of a conflicting document",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -606,7 +612,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[] RESOURCE[meta_data_of_document]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[READ] RESOURCE[meta_-_data]"
         },
         {
             "id": 12,
@@ -618,18 +624,18 @@
                 {
                     "entity_type": "user",
                     "ref_tokens": [
-                        "action"
+                        "member"
                     ],
-                    "role": "action",
+                    "role": "member_of_helpdesk",
                     "qualifiers": null,
-                    "namespace": "subject.user.action"
+                    "namespace": "subject.user.member_of_helpdesk"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "log",
-                    "operation": "LOG",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -639,19 +645,19 @@
                 "ref_tokens": [
                     "member"
                 ],
-                "label": "member_of_helpdesk",
+                "label": "member",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.member_of_helpdesk"
+                "namespace": "resource.document.member"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[action] ACTION[LOG] RESOURCE[member_of_helpdesk]"
+            "abac_policy": "PERMIT subject[member_of_helpdesk] ACTION[CREATE] RESOURCE[member]"
         },
         {
             "id": 13,
@@ -665,9 +671,9 @@
                     "ref_tokens": [
                         "admins"
                     ],
-                    "role": "application_admins",
+                    "role": "application_admin",
                     "qualifiers": null,
-                    "namespace": "subject.user.application_admins"
+                    "namespace": "subject.user.application_admin"
                 }
             ],
             "subjects_logical_op": null,
@@ -679,7 +685,7 @@
                 },
                 {
                     "verb": "manage",
-                    "operation": "MANAGE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -714,7 +720,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[application_admins] ACTION[CREATE,MANAGE] RESOURCE[tenants]"
+            "abac_policy": "PERMIT subject[application_admin] ACTION[CREATE,UPDATE] RESOURCE[tenants]"
         },
         {
             "id": 14,
@@ -734,26 +740,32 @@
                 }
             ],
             "subjects_logical_op": null,
-            "actions": [],
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "data"
                 ],
-                "label": "meta_data_of_document",
+                "label": "meta_-_data",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.meta_data_of_document"
+                "namespace": "resource.data.meta_-_data"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "if he or she has read the contents of a conflicting document",
+                    "trigger_phrase": "he or she has read the contents of a conflicting document",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -762,7 +774,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[application_admin] ACTION[] RESOURCE[meta_data_of_document]"
+            "abac_policy": "PERMIT subject[application_admin] ACTION[READ] RESOURCE[meta_-_data]"
         },
         {
             "id": 15,
@@ -774,11 +786,11 @@
                 {
                     "entity_type": "user",
                     "ref_tokens": [
-                        "one"
+                        "member"
                     ],
-                    "role": "user",
+                    "role": "member_of_owning_tenant",
                     "qualifiers": null,
-                    "namespace": "subject.user.user"
+                    "namespace": "subject.user.member_of_owning_tenant"
                 }
             ],
             "subjects_logical_op": null,
@@ -795,7 +807,7 @@
                 "ref_tokens": [
                     "content"
                 ],
-                "label": "content_of_documents",
+                "label": "document_content",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
@@ -803,7 +815,7 @@
                     "sensitivity": "confidential",
                     "status": null
                 },
-                "namespace": "resource.document.content_of_documents"
+                "namespace": "resource.document.document_content"
             },
             "additional_resources": [],
             "environments": [],
@@ -829,7 +841,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[content_of_documents]"
+            "abac_policy": "PERMIT subject[member_of_owning_tenant] ACTION[READ] RESOURCE[document_content]"
         },
         {
             "id": 16,
@@ -843,9 +855,9 @@
                     "ref_tokens": [
                         "user"
                     ],
-                    "role": "user",
+                    "role": "authenticated_user",
                     "qualifiers": null,
-                    "namespace": "subject.user.user"
+                    "namespace": "subject.user.authenticated_user"
                 }
             ],
             "subjects_logical_op": null,
@@ -886,7 +898,7 @@
                     "value": "every"
                 }
             ],
-            "abac_policy": "PERMIT subject[user] ACTION[SEND,RECEIVE] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[authenticated_user] ACTION[SEND,RECEIVE] RESOURCE[documents]"
         },
         {
             "id": 17,
@@ -1049,9 +1061,9 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_subtenant",
+                    "role": "member_of_subtenant",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_subtenant"
+                    "namespace": "subject.user.member_of_subtenant"
                 }
             ],
             "subjects_logical_op": null,
@@ -1080,7 +1092,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_subtenant] ACTION[SEND] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[member_of_subtenant] ACTION[SEND] RESOURCE[documents]"
         },
         {
             "id": 21,
@@ -1094,9 +1106,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -1113,12 +1125,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -1132,7 +1144,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[SEND] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[SEND] RESOURCE[invoice]"
         },
         {
             "id": 22,
@@ -1146,9 +1158,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -1157,21 +1169,26 @@
                     "verb": "view",
                     "operation": "READ",
                     "negated": false
+                },
+                {
+                    "verb": "search",
+                    "operation": "READ",
+                    "negated": false
                 }
             ],
-            "actions_logical_op": null,
+            "actions_logical_op": "OR",
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
                     "invoices",
                     "view"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -1185,7 +1202,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[READ] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[READ,READ] RESOURCE[invoice]"
         },
         {
             "id": 23,
@@ -1199,9 +1216,9 @@
                     "ref_tokens": [
                         "member"
                     ],
-                    "role": "member_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.member_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -1210,21 +1227,26 @@
                     "verb": "view",
                     "operation": "READ",
                     "negated": false
+                },
+                {
+                    "verb": "search",
+                    "operation": "READ",
+                    "negated": false
                 }
             ],
-            "actions_logical_op": null,
+            "actions_logical_op": "OR",
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
                     "invoices",
                     "view"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -1238,7 +1260,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[READ] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[READ,READ] RESOURCE[invoice]"
         },
         {
             "id": 24,
@@ -1252,9 +1274,9 @@
                     "ref_tokens": [
                         "services"
                     ],
-                    "role": "automated_services_of_ict_department",
+                    "role": "automated_service_of_ict_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.automated_services_of_ict_department"
+                    "namespace": "subject.user.automated_service_of_ict_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -1290,7 +1312,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[automated_services_of_ict_department] ACTION[SEND] RESOURCE[banking_notes]"
+            "abac_policy": "PERMIT subject[automated_service_of_ict_department] ACTION[SEND] RESOURCE[banking_notes]"
         },
         {
             "id": 25,
@@ -1304,9 +1326,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_ict_department_responsible_for_banking_notes",
+                    "role": "member_of_ict_department_responsible_for_banking_note",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_ict_department_responsible_for_banking_notes"
+                    "namespace": "subject.user.member_of_ict_department_responsible_for_banking_note"
                 }
             ],
             "subjects_logical_op": null,
@@ -1323,19 +1345,19 @@
                 "ref_tokens": [
                     "status"
                 ],
-                "label": "status_of_note",
+                "label": "banking_note_status",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.status_of_note"
+                "namespace": "resource.document.banking_note_status"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_ict_department_responsible_for_banking_notes] ACTION[READ] RESOURCE[status_of_note]"
+            "abac_policy": "PERMIT subject[member_of_ict_department_responsible_for_banking_note] ACTION[READ] RESOURCE[banking_note_status]"
         },
         {
             "id": 26,
@@ -1349,9 +1371,9 @@
                     "ref_tokens": [
                         "member"
                     ],
-                    "role": "member_of_ict_department_responsible_for_banking_notes",
+                    "role": "member_of_ict_department_responsible_for_banking_note",
                     "qualifiers": null,
-                    "namespace": "subject.user.member_of_ict_department_responsible_for_banking_notes"
+                    "namespace": "subject.user.member_of_ict_department_responsible_for_banking_note"
                 }
             ],
             "subjects_logical_op": null,
@@ -1368,19 +1390,19 @@
                 "ref_tokens": [
                     "status"
                 ],
-                "label": "status_of_note",
+                "label": "banking_note_status",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.status_of_note"
+                "namespace": "resource.document.banking_note_status"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[member_of_ict_department_responsible_for_banking_notes] ACTION[READ] RESOURCE[status_of_note]"
+            "abac_policy": "PERMIT subject[member_of_ict_department_responsible_for_banking_note] ACTION[READ] RESOURCE[banking_note_status]"
         },
         {
             "id": 27,
@@ -1394,9 +1416,9 @@
                     "ref_tokens": [
                         "employees"
                     ],
-                    "role": "employees",
+                    "role": "employee",
                     "qualifiers": null,
-                    "namespace": "subject.user.employees"
+                    "namespace": "subject.user.employee"
                 }
             ],
             "subjects_logical_op": null,
@@ -1425,7 +1447,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[employees] ACTION[SEND] RESOURCE[paychecks]"
+            "abac_policy": "PERMIT subject[employee] ACTION[SEND] RESOURCE[paychecks]"
         },
         {
             "id": 28,
@@ -1439,9 +1461,9 @@
                     "ref_tokens": [
                         "Employees"
                     ],
-                    "role": "employees",
+                    "role": "employee",
                     "qualifiers": null,
-                    "namespace": "subject.user.employees"
+                    "namespace": "subject.user.employee"
                 }
             ],
             "subjects_logical_op": null,
@@ -1470,7 +1492,7 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "between the 20th and 25th of each month",
+                    "trigger_phrase": "the 20th and 25th of each month",
                     "trigger_word": "NER:DATE",
                     "systems": null,
                     "time_range": null
@@ -1479,7 +1501,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[employees] ACTION[SEND] RESOURCE[paychecks]"
+            "abac_policy": "PERMIT subject[employee] ACTION[SEND] RESOURCE[paychecks]"
         },
         {
             "id": 29,
@@ -1493,9 +1515,9 @@
                     "ref_tokens": [
                         "employees"
                     ],
-                    "role": "employees",
+                    "role": "employee",
                     "qualifiers": null,
-                    "namespace": "subject.user.employees"
+                    "namespace": "subject.user.employee"
                 },
                 {
                     "entity_type": "user",
@@ -1540,7 +1562,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[employees,receivers_of_paychecks] ACTION[READ] RESOURCE[paycheck_documents]"
+            "abac_policy": "PERMIT subject[employee,receivers_of_paychecks] ACTION[READ] RESOURCE[paycheck_documents]"
         },
         {
             "id": 30,
@@ -1563,7 +1585,7 @@
             "actions": [
                 {
                     "verb": "log",
-                    "operation": "LOG",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -1573,12 +1595,12 @@
                 "ref_tokens": [
                     "access"
                 ],
-                "label": "access_to_a_paycheck",
+                "label": "access",
                 "qualifier": "every",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.access_to_a_paycheck"
+                "namespace": "resource.document.access"
             },
             "additional_resources": [],
             "environments": [],
@@ -1592,7 +1614,7 @@
                     "value": "every"
                 }
             ],
-            "abac_policy": "PERMIT subject[access] ACTION[LOG] RESOURCE[access_to_a_paycheck]"
+            "abac_policy": "PERMIT subject[access] ACTION[CREATE] RESOURCE[access]"
         },
         {
             "id": 31,
@@ -1606,9 +1628,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -1621,7 +1643,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "offering",
                 "ref_tokens": [
                     "offers"
                 ],
@@ -1630,7 +1652,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.sales_offers"
+                "namespace": "resource.offering.sales_offers"
             },
             "additional_resources": [],
             "environments": [],
@@ -1644,7 +1666,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[SEND] RESOURCE[sales_offers]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[SEND] RESOURCE[sales_offers]"
         },
         {
             "id": 32,
@@ -1680,7 +1702,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "offering",
                 "ref_tokens": [
                     "offers"
                 ],
@@ -1689,7 +1711,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.sales_offers"
+                "namespace": "resource.offering.sales_offers"
             },
             "additional_resources": [],
             "environments": [],
@@ -1738,7 +1760,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "offering",
                 "ref_tokens": [
                     "offers"
                 ],
@@ -1747,7 +1769,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.offers"
+                "namespace": "resource.offering.offers"
             },
             "additional_resources": [],
             "environments": [],
@@ -1783,7 +1805,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "offering",
                 "ref_tokens": [
                     "offers"
                 ],
@@ -1792,7 +1814,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.offers"
+                "namespace": "resource.offering.offers"
             },
             "additional_resources": [],
             "environments": [],
@@ -1828,7 +1850,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "offering",
                 "ref_tokens": [
                     "offers"
                 ],
@@ -1837,23 +1859,15 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.sales_offers"
+                "namespace": "resource.offering.sales_offers"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "on weekdays",
+                    "trigger_phrase": "weekdays between 07h00 and 19h00",
                     "trigger_word": "on",
-                    "systems": null,
-                    "time_range": null
-                },
-                {
-                    "id": "env_2",
-                    "env_type": "temporal",
-                    "trigger_phrase": "between 07h00 and 19h00",
-                    "trigger_word": "between",
                     "systems": null,
                     "time_range": null
                 }
@@ -1875,9 +1889,9 @@
                     "ref_tokens": [
                         "manager"
                     ],
-                    "role": "bank_office_manager_responsible_for_certain_bank_office",
+                    "role": "bank_office_manager",
                     "qualifiers": null,
-                    "namespace": "subject.user.bank_office_manager_responsible_for_certain_bank_office"
+                    "namespace": "subject.user.bank_office_manager"
                 }
             ],
             "subjects_logical_op": null,
@@ -1906,7 +1920,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[bank_office_manager_responsible_for_certain_bank_office] ACTION[SEND] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[bank_office_manager] ACTION[SEND] RESOURCE[documents]"
         },
         {
             "id": 37,
@@ -1920,7 +1934,7 @@
                     "ref_tokens": [
                         "managers"
                     ],
-                    "role": "senior_bank_office_managers",
+                    "role": "senior_bank_office_manager",
                     "qualifiers": {
                         "type": null,
                         "rank": "senior",
@@ -1929,7 +1943,7 @@
                         "department": null,
                         "negated": false
                     },
-                    "namespace": "subject.user.senior_bank_office_managers"
+                    "namespace": "subject.user.senior_bank_office_manager"
                 }
             ],
             "subjects_logical_op": null,
@@ -1965,7 +1979,7 @@
                     "value": "senior"
                 }
             ],
-            "abac_policy": "PERMIT subject[senior_bank_office_managers] ACTION[SEND] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[senior_bank_office_manager] ACTION[SEND] RESOURCE[documents]"
         },
         {
             "id": 38,
@@ -1979,9 +1993,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_hr_department",
+                    "role": "member_of_hr_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_hr_department"
+                    "namespace": "subject.user.member_of_hr_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -2017,7 +2031,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_hr_department] ACTION[CREATE] RESOURCE[users]"
+            "abac_policy": "PERMIT subject[member_of_hr_department] ACTION[CREATE] RESOURCE[users]"
         },
         {
             "id": 39,
@@ -2031,9 +2045,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_it_departments",
+                    "role": "member_of_it_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_it_departments"
+                    "namespace": "subject.user.member_of_it_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -2069,7 +2083,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_it_departments] ACTION[CREATE] RESOURCE[subtenants]"
+            "abac_policy": "PERMIT subject[member_of_it_department] ACTION[CREATE] RESOURCE[subtenants]"
         },
         {
             "id": 40,
@@ -2114,16 +2128,8 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "on weekdays",
+                    "trigger_phrase": "weekdays between 08h00 and 02h00",
                     "trigger_word": "on",
-                    "systems": null,
-                    "time_range": null
-                },
-                {
-                    "id": "env_2",
-                    "env_type": "temporal",
-                    "trigger_phrase": "between 08h00 and 02h00",
-                    "trigger_word": "between",
                     "systems": null,
                     "time_range": null
                 }
@@ -2172,16 +2178,7 @@
                 "namespace": "resource.document.document"
             },
             "additional_resources": [],
-            "environments": [
-                {
-                    "id": "env_1",
-                    "env_type": "location",
-                    "trigger_phrase": "except for the paychecks and banking notes",
-                    "trigger_word": "except for",
-                    "systems": null,
-                    "time_range": null
-                }
-            ],
+            "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": [
@@ -2206,9 +2203,9 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_large_bank_leasing",
+                    "role": "member_of_large_bank_leasing",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_large_bank_leasing"
+                    "namespace": "subject.user.member_of_large_bank_leasing"
                 }
             ],
             "subjects_logical_op": null,
@@ -2237,7 +2234,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_large_bank_leasing] ACTION[SEND] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[member_of_large_bank_leasing] ACTION[SEND] RESOURCE[documents]"
         },
         {
             "id": 43,
@@ -2251,9 +2248,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_customer_care_office",
+                    "role": "member_of_customer_care_office",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_customer_care_office"
+                    "namespace": "subject.user.member_of_customer_care_office"
                 }
             ],
             "subjects_logical_op": null,
@@ -2289,7 +2286,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_customer_care_office] ACTION[READ] RESOURCE[traffic_fines]"
+            "abac_policy": "PERMIT subject[member_of_customer_care_office] ACTION[READ] RESOURCE[traffic_fines]"
         },
         {
             "id": 44,
@@ -2303,9 +2300,9 @@
                     "ref_tokens": [
                         "users"
                     ],
-                    "role": "user",
+                    "role": "users_of_sales_office",
                     "qualifiers": null,
-                    "namespace": "subject.user.user"
+                    "namespace": "subject.user.users_of_sales_office"
                 }
             ],
             "subjects_logical_op": null,
@@ -2322,12 +2319,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -2341,7 +2338,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[user] ACTION[SEND] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[users_of_sales_office] ACTION[SEND] RESOURCE[invoice]"
         },
         {
             "id": 45,
@@ -2355,16 +2352,16 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_customer_care_office",
+                    "role": "member_of_customer_care_office",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_customer_care_office"
+                    "namespace": "subject.user.member_of_customer_care_office"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "bill",
-                    "operation": "BILL",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -2393,7 +2390,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_customer_care_office] ACTION[BILL] RESOURCE[customer]"
+            "abac_policy": "PERMIT subject[member_of_customer_care_office] ACTION[UPDATE] RESOURCE[customer]"
         },
         {
             "id": 46,
@@ -2411,15 +2408,6 @@
                     "role": "secretary",
                     "qualifiers": null,
                     "namespace": "subject.user.secretary"
-                },
-                {
-                    "entity_type": "user",
-                    "ref_tokens": [
-                        "director"
-                    ],
-                    "role": "office_director_of_bank_office",
-                    "qualifiers": null,
-                    "namespace": "subject.user.office_director_of_bank_office"
                 },
                 {
                     "entity_type": "user",
@@ -2479,7 +2467,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[secretary,office_director_of_bank_office,office_director_of_bank_office] ACTION[READ] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[secretary,office_director_of_bank_office] ACTION[READ] RESOURCE[documents]"
         },
         {
             "id": 47,
@@ -2493,9 +2481,9 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_bank_office",
+                    "role": "member_of_bank_office",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_bank_office"
+                    "namespace": "subject.user.member_of_bank_office"
                 }
             ],
             "subjects_logical_op": null,
@@ -2524,7 +2512,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_bank_office] ACTION[SEND] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[member_of_bank_office] ACTION[SEND] RESOURCE[documents]"
         },
         {
             "id": 48,
@@ -2607,12 +2595,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -2626,7 +2614,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_accounting_department] ACTION[RECEIVE,READ] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_accounting_department] ACTION[RECEIVE,READ] RESOURCE[invoice]"
         },
         {
             "id": 50,
@@ -2640,9 +2628,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_accounting_department",
+                    "role": "member_of_accounting_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_accounting_department"
+                    "namespace": "subject.user.member_of_accounting_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -2664,12 +2652,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [
@@ -2692,7 +2680,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_accounting_department] ACTION[RECEIVE,READ] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_accounting_department] ACTION[RECEIVE,READ] RESOURCE[invoice]"
         },
         {
             "id": 51,
@@ -2706,9 +2694,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_certain_office",
+                    "role": "member_of_certain_office",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_certain_office"
+                    "namespace": "subject.user.member_of_certain_office"
                 }
             ],
             "subjects_logical_op": null,
@@ -2737,7 +2725,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_certain_office] ACTION[READ] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[member_of_certain_office] ACTION[READ] RESOURCE[documents]"
         },
         {
             "id": 52,
@@ -2848,9 +2836,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_secretary",
+                    "role": "member_of_secretary",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_secretary"
+                    "namespace": "subject.user.member_of_secretary"
                 }
             ],
             "subjects_logical_op": null,
@@ -2867,7 +2855,7 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
@@ -2875,7 +2863,7 @@
                     "sensitivity": "secret",
                     "status": null
                 },
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -2901,7 +2889,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_secretary] ACTION[READ] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_secretary] ACTION[READ] RESOURCE[invoice]"
         },
         {
             "id": 55,
@@ -2915,9 +2903,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_ict_group",
+                    "role": "member_of_ict_group",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_ict_group"
+                    "namespace": "subject.user.member_of_ict_group"
                 }
             ],
             "subjects_logical_op": null,
@@ -2926,9 +2914,19 @@
                     "verb": "create",
                     "operation": "CREATE",
                     "negated": false
+                },
+                {
+                    "verb": "delete",
+                    "operation": "DELETE",
+                    "negated": false
+                },
+                {
+                    "verb": "manage",
+                    "operation": "UPDATE",
+                    "negated": false
                 }
             ],
-            "actions_logical_op": null,
+            "actions_logical_op": "OR",
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
@@ -2968,7 +2966,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_ict_group] ACTION[CREATE] RESOURCE[users]"
+            "abac_policy": "PERMIT subject[member_of_ict_group] ACTION[CREATE,DELETE,UPDATE] RESOURCE[users]"
         },
         {
             "id": 56,
@@ -2982,9 +2980,9 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_audit_department",
+                    "role": "member_of_audit_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_audit_department"
+                    "namespace": "subject.user.member_of_audit_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3001,16 +2999,16 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "all",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [
                 {
-                    "entity_type": "document",
+                    "entity_type": "offering",
                     "ref_tokens": [
                         "offers",
                         "read",
@@ -3021,7 +3019,7 @@
                     "scope": null,
                     "subject_filter": null,
                     "attributes": null,
-                    "namespace": "resource.document.offers"
+                    "namespace": "resource.offering.offers"
                 },
                 {
                     "entity_type": "document",
@@ -3049,7 +3047,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_audit_department] ACTION[READ] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_audit_department] ACTION[READ] RESOURCE[invoice]"
         },
         {
             "id": 57,
@@ -3061,11 +3059,11 @@
                 {
                     "entity_type": "user",
                     "ref_tokens": [
-                        "document"
+                        "member"
                     ],
-                    "role": "document",
+                    "role": "member_of_audit_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.document"
+                    "namespace": "subject.user.member_of_audit_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3082,19 +3080,26 @@
                 "ref_tokens": [
                     "attempts"
                 ],
-                "label": "attempts_by_member",
-                "qualifier": null,
+                "label": "attempts",
+                "qualifier": "all",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.attempts_by_member"
+                "namespace": "resource.document.attempts"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[document] ACTION[READ] RESOURCE[attempts_by_member]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "all"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_audit_department] ACTION[READ] RESOURCE[attempts]"
         },
         {
             "id": 58,
@@ -3108,9 +3113,9 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_audit_department",
+                    "role": "member_of_audit_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_audit_department"
+                    "namespace": "subject.user.member_of_audit_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3146,7 +3151,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_audit_department] ACTION[READ] RESOURCE[paychecks]"
+            "abac_policy": "PERMIT subject[member_of_audit_department] ACTION[READ] RESOURCE[paychecks]"
         },
         {
             "id": 59,
@@ -3160,9 +3165,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_it_department",
+                    "role": "member_of_it_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_it_department"
+                    "namespace": "subject.user.member_of_it_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3198,7 +3203,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_it_department] ACTION[CREATE] RESOURCE[subtenants]"
+            "abac_policy": "PERMIT subject[member_of_it_department] ACTION[CREATE] RESOURCE[subtenants]"
         },
         {
             "id": 60,
@@ -3212,22 +3217,22 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_it_department",
+                    "role": "member_of_it_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_it_department"
+                    "namespace": "subject.user.member_of_it_department"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "change",
-                    "operation": "CHANGE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "rights"
                 ],
@@ -3236,7 +3241,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.access_rights"
+                "namespace": "resource.attribute.access_rights"
             },
             "additional_resources": [],
             "environments": [],
@@ -3250,7 +3255,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_it_department] ACTION[CHANGE] RESOURCE[access_rights]"
+            "abac_policy": "PERMIT subject[member_of_it_department] ACTION[UPDATE] RESOURCE[access_rights]"
         },
         {
             "id": 61,
@@ -3316,22 +3321,22 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_it_department",
+                    "role": "member_of_it_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_it_department"
+                    "namespace": "subject.user.member_of_it_department"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "delegate",
-                    "operation": "DELEGATE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "right"
                 ],
@@ -3340,7 +3345,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.right"
+                "namespace": "resource.attribute.right"
             },
             "additional_resources": [],
             "environments": [],
@@ -3354,7 +3359,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_it_department] ACTION[DELEGATE] RESOURCE[right]"
+            "abac_policy": "PERMIT subject[member_of_it_department] ACTION[UPDATE] RESOURCE[right]"
         },
         {
             "id": 63,
@@ -3420,9 +3425,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_human_resource_department",
+                    "role": "member_of_human_resource_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_human_resource_department"
+                    "namespace": "subject.user.member_of_human_resource_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3458,7 +3463,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_human_resource_department] ACTION[SEND] RESOURCE[contracts]"
+            "abac_policy": "PERMIT subject[member_of_human_resource_department] ACTION[SEND] RESOURCE[contracts]"
         },
         {
             "id": 65,
@@ -3472,9 +3477,9 @@
                     "ref_tokens": [
                         "Members"
                     ],
-                    "role": "members_of_human_resources_department",
+                    "role": "member_of_human_resource_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_human_resources_department"
+                    "namespace": "subject.user.member_of_human_resource_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3503,23 +3508,7 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "two weeks before the start",
-                    "trigger_word": "two weeks before",
-                    "systems": null,
-                    "time_range": null
-                },
-                {
-                    "id": "env_2",
-                    "env_type": "temporal",
-                    "trigger_phrase": "after one month",
-                    "trigger_word": "after",
-                    "systems": null,
-                    "time_range": null
-                },
-                {
-                    "id": "env_3",
-                    "env_type": "temporal",
-                    "trigger_phrase": "after the end",
+                    "trigger_phrase": "two weeks before the start of the project and not after one month after the end of the project",
                     "trigger_word": "after",
                     "systems": null,
                     "time_range": null
@@ -3535,7 +3524,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_human_resources_department] ACTION[SEND] RESOURCE[contracts]"
+            "abac_policy": "PERMIT subject[member_of_human_resource_department] ACTION[SEND] RESOURCE[contracts]"
         },
         {
             "id": 66,
@@ -3549,9 +3538,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_audit_department_of_human_resources_department",
+                    "role": "member_of_audit_department_of_human_resource_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_audit_department_of_human_resources_department"
+                    "namespace": "subject.user.member_of_audit_department_of_human_resource_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3587,7 +3576,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_audit_department_of_human_resources_department] ACTION[READ] RESOURCE[contracts]"
+            "abac_policy": "PERMIT subject[member_of_audit_department_of_human_resource_department] ACTION[READ] RESOURCE[contracts]"
         },
         {
             "id": 67,
@@ -3601,9 +3590,9 @@
                     "ref_tokens": [
                         "member"
                     ],
-                    "role": "member_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.member_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3620,12 +3609,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -3639,7 +3628,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[SEND] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[SEND] RESOURCE[invoice]"
         },
         {
             "id": 68,
@@ -3653,9 +3642,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3672,12 +3661,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -3691,7 +3680,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[SEND] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[SEND] RESOURCE[invoice]"
         },
         {
             "id": 69,
@@ -3705,9 +3694,9 @@
                     "ref_tokens": [
                         "member"
                     ],
-                    "role": "member_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.member_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3724,12 +3713,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "all",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -3743,7 +3732,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[READ] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[READ] RESOURCE[invoice]"
         },
         {
             "id": 70,
@@ -3757,22 +3746,22 @@
                     "ref_tokens": [
                         "member"
                     ],
-                    "role": "member_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.member_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "delegate",
-                    "operation": "DELEGATE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "right"
                 ],
@@ -3784,14 +3773,14 @@
                     "sensitivity": "secret",
                     "status": null
                 },
-                "namespace": "resource.document.right"
+                "namespace": "resource.attribute.right"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for a duration",
+                    "trigger_phrase": "a duration of maximum 6 weeks",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -3819,7 +3808,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[DELEGATE] RESOURCE[right]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[UPDATE] RESOURCE[right]"
         },
         {
             "id": 71,
@@ -3833,9 +3822,9 @@
                     "ref_tokens": [
                         "member"
                     ],
-                    "role": "member_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.member_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3871,7 +3860,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_sales_department] ACTION[CREATE] RESOURCE[subtenant]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[CREATE] RESOURCE[subtenant]"
         },
         {
             "id": 72,
@@ -3885,9 +3874,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_sales_department",
+                    "role": "member_of_sale_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_sales_department"
+                    "namespace": "subject.user.member_of_sale_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -3923,7 +3912,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_sales_department] ACTION[CREATE] RESOURCE[subtenants]"
+            "abac_policy": "PERMIT subject[member_of_sale_department] ACTION[CREATE] RESOURCE[subtenants]"
         },
         {
             "id": 73,
@@ -3946,29 +3935,36 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "rights"
                 ],
-                "label": "access_rights_of_documents",
-                "qualifier": null,
+                "label": "access_rights",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.access_rights_of_documents"
+                "namespace": "resource.attribute.access_rights"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[MODIFY] RESOURCE[access_rights_of_documents]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[UPDATE] RESOURCE[access_rights]"
         },
         {
             "id": 74,
@@ -4059,38 +4055,45 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_customer_department",
+                    "role": "member_of_customer_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_customer_department"
+                    "namespace": "subject.user.member_of_customer_department"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "rights"
                 ],
-                "label": "access_rights_of_documents",
-                "qualifier": null,
+                "label": "access_rights",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.access_rights_of_documents"
+                "namespace": "resource.attribute.access_rights"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_customer_department] ACTION[MODIFY] RESOURCE[access_rights_of_documents]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[UPDATE] RESOURCE[access_rights]"
         },
         {
             "id": 76,
@@ -4156,9 +4159,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_customer_department",
+                    "role": "member_of_customer_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_customer_department"
+                    "namespace": "subject.user.member_of_customer_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -4194,7 +4197,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[members_of_customer_department] ACTION[SEND] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[SEND] RESOURCE[documents]"
         },
         {
             "id": 78,
@@ -4208,9 +4211,9 @@
                     "ref_tokens": [
                         "members"
                     ],
-                    "role": "members_of_customer_department",
+                    "role": "member_of_customer_department",
                     "qualifiers": null,
-                    "namespace": "subject.user.members_of_customer_department"
+                    "namespace": "subject.user.member_of_customer_department"
                 }
             ],
             "subjects_logical_op": null,
@@ -4227,19 +4230,26 @@
                 "ref_tokens": [
                     "documents"
                 ],
-                "label": "documents_of_tenant",
-                "qualifier": null,
+                "label": "documents",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.documents_of_tenant"
+                "namespace": "resource.document.documents"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[members_of_customer_department] ACTION[READ] RESOURCE[documents_of_tenant]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[member_of_customer_department] ACTION[READ] RESOURCE[documents]"
         },
         {
             "id": 79,
@@ -4341,12 +4351,12 @@
                 "ref_tokens": [
                     "invoices"
                 ],
-                "label": "invoices",
+                "label": "invoice",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.invoices"
+                "namespace": "resource.document.invoice"
             },
             "additional_resources": [],
             "environments": [],
@@ -4360,7 +4370,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[member_of_accounting_department] ACTION[SEND] RESOURCE[invoices]"
+            "abac_policy": "PERMIT subject[member_of_accounting_department] ACTION[SEND] RESOURCE[invoice]"
         },
         {
             "id": 81,
@@ -4380,26 +4390,32 @@
                 }
             ],
             "subjects_logical_op": null,
-            "actions": [],
+            "actions": [
+                {
+                    "verb": "read",
+                    "operation": "READ",
+                    "negated": false
+                }
+            ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "data"
                 ],
-                "label": "meta_data_of_document",
+                "label": "meta_-_data",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.meta_data_of_document"
+                "namespace": "resource.data.meta_-_data"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "if he or she has read the contents of a conflicting document",
+                    "trigger_phrase": "he or she has read the contents of a conflicting document",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -4408,7 +4424,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[member_of_reseller] ACTION[] RESOURCE[meta_data_of_document]"
+            "abac_policy": "PERMIT subject[member_of_reseller] ACTION[READ] RESOURCE[meta_-_data]"
         },
         {
             "id": 82,
@@ -4422,9 +4438,9 @@
                     "ref_tokens": [
                         "Receivers"
                     ],
-                    "role": "registered_private_receivers",
+                    "role": "registered_private_receiver",
                     "qualifiers": null,
-                    "namespace": "subject.user.registered_private_receivers"
+                    "namespace": "subject.user.registered_private_receiver"
                 }
             ],
             "subjects_logical_op": null,
@@ -4453,7 +4469,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[READ] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[registered_private_receiver] ACTION[READ] RESOURCE[documents]"
         },
         {
             "id": 83,
@@ -4467,9 +4483,9 @@
                     "ref_tokens": [
                         "Receivers"
                     ],
-                    "role": "registered_private_receivers",
+                    "role": "registered_private_receiver",
                     "qualifiers": null,
-                    "namespace": "subject.user.registered_private_receivers"
+                    "namespace": "subject.user.registered_private_receiver"
                 }
             ],
             "subjects_logical_op": null,
@@ -4498,7 +4514,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[READ] RESOURCE[documents]"
+            "abac_policy": "PERMIT subject[registered_private_receiver] ACTION[READ] RESOURCE[documents]"
         },
         {
             "id": 84,
@@ -4512,7 +4528,7 @@
                     "ref_tokens": [
                         "Receivers"
                     ],
-                    "role": "registered_private_receivers",
+                    "role": "registered_private_receiver",
                     "qualifiers": {
                         "type": null,
                         "rank": null,
@@ -4521,14 +4537,14 @@
                         "department": null,
                         "negated": true
                     },
-                    "namespace": "subject.user.registered_private_receivers"
+                    "namespace": "subject.user.registered_private_receiver"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "allow",
-                    "operation": "ALLOW",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -4550,7 +4566,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[ALLOW] RESOURCE[document]"
+            "abac_policy": "PERMIT subject[registered_private_receiver] ACTION[UPDATE] RESOURCE[document]"
         },
         {
             "id": 85,
@@ -4564,7 +4580,7 @@
                     "ref_tokens": [
                         "Receivers"
                     ],
-                    "role": "registered_private_receivers",
+                    "role": "registered_private_receiver",
                     "qualifiers": {
                         "type": null,
                         "rank": null,
@@ -4573,14 +4589,14 @@
                         "department": null,
                         "negated": true
                     },
-                    "namespace": "subject.user.registered_private_receivers"
+                    "namespace": "subject.user.registered_private_receiver"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "allow",
-                    "operation": "ALLOW",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -4609,7 +4625,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[registered_private_receivers] ACTION[ALLOW] RESOURCE[received_documents]"
+            "abac_policy": "PERMIT subject[registered_private_receiver] ACTION[UPDATE] RESOURCE[received_documents]"
         }
     ]
 }

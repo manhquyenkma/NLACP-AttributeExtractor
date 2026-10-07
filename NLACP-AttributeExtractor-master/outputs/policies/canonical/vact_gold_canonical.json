@@ -1,0 +1,3740 @@
+{
+  "dataset": "VACT",
+  "policies": [
+    {
+      "id": 1,
+      "sentence": "Civilian students can view their own final grades in the academic information system for courses which they have taken.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "grade",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "sentence": "Civilian students can view their own scores in the learning management system for multiple-choice exams which they have taken.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "score",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "sentence": "Lecturers can view the scores of all civilian students in the learning management system for courses which they teach.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "score",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "sentence": "Users in the educational testing and quality assurance office can view the scores of all civilian students in the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "educational testing and quality assurance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "scores",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "sentence": "Users in the academic affairs office can view the scores of all civilian students in the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "scores",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "sentence": "The course lecturer can add and view scores in the learning management system for that course.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "add",
+          "operation": "CREATE"
+        },
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "score",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "sentence": "Course lecturers can update scores and assign final grades in the learning management system for their courses with the approval of the department chair and the head of educational testing and quality assurance.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": "UPDATE"
+        },
+        {
+          "verb": "assign",
+          "operation": "ASSIGN"
+        }
+      ],
+      "resources": [
+        {
+          "label": "score",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "sentence": "A department’s academic coordinator can view the scores of all civilian students in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "score",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "sentence": "A department chair can view the scores of all civilian students in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "score",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "sentence": "Users in the educational testing and quality assurance office can modify civilian students’ final grades in the academic information system with the approval of the head of educational testing and quality assurance.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "educational testing and quality assurance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "final_grades",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "sentence": "Civilian students can view rosters in the learning management system for courses which they are taking.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "roster",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "sentence": "The course lecturer can view and download the course roster in the learning management system for that course.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "roster",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "sentence": "A department’s academic coordinator can view and download rosters in the academic information and learning management systems for that department’s courses.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "roster",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information and",
+          "env_type": "other"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "sentence": "A department chair can view and download rosters in the academic information and learning management systems for that department’s courses.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "roster",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 15,
+      "sentence": "Users in the academic affairs office can view and modify all rosters in the academic information and learning management systems.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "rosters",
+          "qualifier": "all",
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 16,
+      "sentence": "Users in the academic affairs office can upload and download course rosters in the academic information and learning management systems.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "upload",
+          "operation": "UPLOAD"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_rosters",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 17,
+      "sentence": "Users in the academic affairs office can delete course rosters in the academic information and learning management systems.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "delete",
+          "operation": "DELETE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_rosters",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 18,
+      "sentence": "Civilian students can view and download their own transcripts in the academic information system.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "transcript",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "sentence": "A department chair can view and download the transcripts of all civilian students in the academic information system for that department.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "transcript",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "sentence": "Users in the academic affairs office can view and download the transcripts of all civilian students in the academic information system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "transcripts",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "sentence": "Users in the educational testing and quality assurance office can view and download the transcripts of all civilian students in the academic information system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "educational testing and quality assurance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "transcripts",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "sentence": "The head of academic affairs can modify a civilian student’s transcript in the academic information system with the director’s approval.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "transcript",
+          "qualifier": "a",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "sentence": "The reason for a transcript revision must be recorded in the academic information system after the head of academic affairs modifies a civilian student’s transcript.",
+      "subjects": [
+        {
+          "role": "system",
+          "entity_type": "system",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "reason_for_a_transcript_revision",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "sentence": "Applicants can check the status of their own applications in the academic information system.",
+      "subjects": [
+        {
+          "role": "applicant",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "check",
+          "operation": "CHECK"
+        }
+      ],
+      "resources": [
+        {
+          "label": "status",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "sentence": "Users in the academic affairs office can view and update the status of all applications in the academic information system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "update",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "status_of_applications",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "sentence": "Applicants can modify applications in the academic information system.",
+      "subjects": [
+        {
+          "role": "applicant",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "application",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "sentence": "Applicants can upload and download applications in the academic information system.",
+      "subjects": [
+        {
+          "role": "applicant",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "upload",
+          "operation": "UPLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "applications",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "sentence": "Applicants can delete applications in the academic information system only if the applications are currently pending.",
+      "subjects": [
+        {
+          "role": "applicant",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "delete",
+          "operation": "DELETE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "application",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "academic_system"
+        },
+        {
+          "trigger_phrase": "the applications are currently pending",
+          "env_type": "other"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "sentence": "The course lecturer can create multiple-choice exams and view their details in the learning management system.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "CREATE"
+        },
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "sentence": "The course lecturer can modify and delete multiple-choice exams in the learning management system.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "sentence": "The course lecturer can upload and download multiple-choice exams in the learning management system.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "upload",
+          "operation": "UPLOAD"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "sentence": "A department’s academic coordinator can view and download multiple-choice exams in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "sentence": "A department chair can view and assess multiple-choice exams in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "assess",
+          "operation": "ASSESS"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "sentence": "A department chair can upload and download multiple-choice exams in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "upload",
+          "operation": "UPLOAD"
+        },
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "sentence": "The head of academic affairs can view and assess multiple-choice exams in the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "assess",
+          "operation": "ASSESS"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "academic_system"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "sentence": "The head of academic affairs can download multiple-choice exams from the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "sentence": "The head of educational testing and quality assurance can view and assess multiple-choice exams in the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "educational testing and quality assurance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "assess",
+          "operation": "ASSESS"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "sentence": "The head of educational testing and quality assurance can download multiple-choice exams from the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "educational testing and quality assurance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "multiple-choice_exams",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "sentence": "The course lecturer can create and view learning materials in the learning management system for that course.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "CREATE"
+        },
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_material",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "sentence": "The course lecturer can upload and download learning materials in the learning management system.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "upload",
+          "operation": "UPLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_material",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "sentence": "The course lecturer can modify and delete learning materials in the learning management system.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_materials",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "sentence": "Civilian students can view and download learning materials in the learning management system for courses which they are taking.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_material",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "sentence": "Civilian students can comment on learning materials in the learning management system for courses which they are taking.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "comment",
+          "operation": "COMMENT"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_material",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "sentence": "A department’s academic coordinator can view and download learning materials in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_material",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "sentence": "A department chair can view and assess learning materials in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "assess",
+          "operation": "ASSESS"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_material",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "sentence": "A department chair can upload and download learning materials in the learning management system for that department’s courses.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "upload",
+          "operation": "UPLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_material",
+          "qualifier": "own",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "sentence": "The head of academic affairs can view and assess learning materials in the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "assess",
+          "operation": "ASSESS"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_materials",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "sentence": "The head of academic affairs can download learning materials from the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_materials",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "sentence": "The head of educational testing and quality assurance can view and assess learning materials in the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "educational testing and quality assurance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "assess",
+          "operation": "ASSESS"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_materials",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "sentence": "The head of educational testing and quality assurance can download learning materials from the learning management system for all courses.",
+      "subjects": [
+        {
+          "role": "head",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "head",
+            "status": null,
+            "office": "educational testing and quality assurance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "download",
+          "operation": "DOWNLOAD"
+        }
+      ],
+      "resources": [
+        {
+          "label": "learning_materials",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "sentence": "Users in the academic affairs office can create and view a course offering in the academic information system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "CREATE"
+        },
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_offering",
+          "qualifier": "a",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "sentence": "Users in the academic affairs office can modify and delete a course offering in the academic information system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        },
+        {
+          "verb": "delete",
+          "operation": "DELETE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_offering",
+          "qualifier": "a",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "sentence": "The course lecturer can view and comment on a course offering in the academic information system.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "comment",
+          "operation": "COMMENT"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_offering",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "sentence": "The course lecturer can accept or deny a course offering in the academic information system.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "deny",
+          "operation": "DENY"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_offering",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "sentence": "A department’s academic coordinator and chair can view and comment on a course offering in the academic information system.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        },
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "comment",
+          "operation": "COMMENT"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_offering",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "sentence": "Civilian students cannot register for courses in the course registration system if they owe tuition fees exceeding the prescribed limit.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "courses",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        },
+        {
+          "trigger_phrase": "they owe tuition fees exceeding the prescribed limit",
+          "env_type": "location"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "sentence": "Civilian students cannot register for a course in the course registration system if the total number of registered credits exceeds the prescribed limit.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        },
+        {
+          "trigger_phrase": "the total number of registered credits exceeds the prescribed limit",
+          "env_type": "location"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "sentence": "Civilian students cannot register for a course in the course registration system if they have not passed the prerequisites for that course.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        },
+        {
+          "trigger_phrase": "they have not passed the prerequisites for that course",
+          "env_type": "location"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "sentence": "Civilian students cannot register for two courses in the course registration system if the courses have overlapping class schedules.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "courses",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        },
+        {
+          "trigger_phrase": "the courses have overlapping class schedules",
+          "env_type": "location"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "sentence": "Civilian students can only register for courses in the course registration system which are currently open.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "courses",
+          "qualifier": null,
+          "attributes": {
+            "sensitivity": null,
+            "status": "open"
+          }
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system which are currently open",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "sentence": "Civilian students cannot register for courses in the course registration system which are currently closed.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "courses",
+          "qualifier": null,
+          "attributes": {
+            "sensitivity": null,
+            "status": "closed"
+          }
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "sentence": "Civilian students cannot register for a course in the course registration system if the number of registered civilian students reaches the prescribed capacity.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        },
+        {
+          "trigger_phrase": "the number of registered civilian students reaches the prescribed capacity",
+          "env_type": "location"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "sentence": "Civilian students can cancel their registration in the course registration system for a course which they have previously registered for successfully.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "cancel",
+          "operation": "CANCEL"
+        }
+      ],
+      "resources": [
+        {
+          "label": "registration",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "sentence": "Civilian students cannot cancel their registration in the course registration system for a course which is currently closed.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "cancel",
+          "operation": "CANCEL"
+        }
+      ],
+      "resources": [
+        {
+          "label": "registration",
+          "qualifier": "the",
+          "attributes": {
+            "sensitivity": null,
+            "status": "closed"
+          }
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "sentence": "Civilian students can view the status of registered courses in the course registration system.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "status",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "sentence": "Civilian students cannot register for courses in the course registration system if the system has not been activated.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "courses",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        },
+        {
+          "trigger_phrase": "the system has not been activated",
+          "env_type": "location"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "sentence": "Users in the academic affairs office can view the course registration results of all civilian students in the course registration system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_registration_results",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the course registration system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "sentence": "Civilian students’ class schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "allowed",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "class_schedule",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 69,
+      "sentence": "Lecturers’ teaching schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
+      "subjects": [
+        {
+          "role": "lecturer",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "allowed",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "teaching_schedule",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 70,
+      "sentence": "A department chair can view the course registration results of all civilian students in the academic information system for that department.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_registration",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "sentence": "A department’s academic coordinator can view the course registration results of all civilian students in the academic information system for that department.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course_registration",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic information system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "sentence": "Civilian students can retake a course in the course registration system even if the number of registered civilian students has reached the prescribed capacity.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "retake",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "course",
+          "qualifier": "a",
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 73,
+      "sentence": "A department’s academic coordinator and instructors can upload and view the details of suggested graduation project topics in the learning management system.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        },
+        {
+          "role": "instructor",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "upload",
+          "operation": "UPLOAD"
+        },
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details_of_suggested_graduation_project_topics",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "sentence": "Civilian students can register for graduation project topics only when the system is activated.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "graduation_project_topics",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the system is activated",
+          "env_type": "conditional"
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "sentence": "A graduation project can have at most two instructors.",
+      "subjects": [
+        {
+          "role": "graduation_project",
+          "entity_type": "academic",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "have",
+          "operation": "CREATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "instructor",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 76,
+      "sentence": "A civilian student can register for at most one graduation project topic in the learning management system from the list of suggested topics uploaded by an instructor.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "graduation_project_topic",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "sentence": "A civilian student can register for up to three preferred instructors in the learning management system.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "preferred_instructors",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "sentence": "Instructors can accept or deny civilian students’ applications for graduation project topics in the learning management system.",
+      "subjects": [
+        {
+          "role": "instructor",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "deny",
+          "operation": "DENY"
+        }
+      ],
+      "resources": [
+        {
+          "label": "application",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "sentence": "Civilian students can view the details of graduation project topics in the learning management system which have been uploaded by instructors.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details_of_graduation_project_topics",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system which have been uploaded by instructors",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "sentence": "A department chair can view the details of all graduation project topics in the learning management system for that department.",
+      "subjects": [
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details_of_graduation_project_topics",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "sentence": "Users in the academic affairs office can view the details of all graduation project topics in the learning management system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details_of_graduation_project_topics",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "sentence": "A department’s academic coordinator and chair can view the list of civilian students in the learning management system who have successfully registered for graduation project topics in that department.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        },
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "list_of_civilian_students",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system who have successfully registered",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "sentence": "A department’s academic coordinator and chair can view the list of civilian students in the learning management system who belong to that department and have not yet registered for a graduation project topic.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        },
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        },
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "list_of_civilian_students",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system who belong",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "sentence": "Instructors can modify the details of their suggested graduation project topics in the learning management system.",
+      "subjects": [
+        {
+          "role": "instructor",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details_of_suggested_graduation_project_topics",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "sentence": "Instructors can delete their suggested graduation project topics in the learning management system.",
+      "subjects": [
+        {
+          "role": "instructor",
+          "entity_type": "user",
+          "qualifiers": null
+        }
+      ],
+      "actions": [
+        {
+          "verb": "delete",
+          "operation": "DELETE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "suggested_graduation_project_topics",
+          "qualifier": "their",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the learning management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "sentence": "Civilian students cannot register for graduation project topics until the system is activated.",
+      "subjects": [
+        {
+          "role": "student",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "civilian",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "register",
+          "operation": "REGISTER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "graduation_project_topics",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 87,
+      "sentence": "Users in the academic affairs or finance office can view the details of visiting lecturer agreements in the visiting lecturer management system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs or finance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details_of_visiting_lecturer_agreements",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "sentence": "Users who are not in the academic affairs office cannot number visiting lecturer agreements in the visiting lecturer management system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs",
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "number",
+          "operation": "NUMBER"
+        }
+      ],
+      "resources": [
+        {
+          "label": "visiting_lecturer_agreements",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic affairs office",
+          "env_type": "location"
+        },
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "sentence": "Users who are not in the academic affairs or finance office cannot export entire visiting lecturer agreements in the visiting lecturer management system.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "academic affairs or finance",
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "export",
+          "operation": "EXPORT"
+        }
+      ],
+      "resources": [
+        {
+          "label": "entire_visiting_lecturer_agreements",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the academic affairs or finance office",
+          "env_type": "location"
+        },
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "sentence": "A department’s academic coordinator and chair can view the details of visiting lecturer agreements in the visiting lecturer management system.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        },
+        {
+          "role": "department_chair",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "chair",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details_of_visiting_lecturer_agreements",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "sentence": "A department’s academic coordinator can export visiting lecturer agreements in the visiting lecturer management system only for that department.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "export",
+          "operation": "EXPORT"
+        }
+      ],
+      "resources": [
+        {
+          "label": "agreement",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "sentence": "Visiting lecturer agreements for classes are considered valid only after approval by the finance office.",
+      "subjects": [
+        {
+          "role": "system",
+          "entity_type": "system",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "considered valid",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "visiting_lecturer_agreement",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 93,
+      "sentence": "A visiting lecturer agreement can only be issued in the visiting lecturer management system if it has been numbered, validated, and exported.",
+      "subjects": [
+        {
+          "role": "system",
+          "entity_type": "system",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "issue",
+          "operation": "ISSUE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "visiting_lecturer_agreement",
+          "qualifier": "A",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        },
+        {
+          "trigger_phrase": "it has been numbered , validated , and exported",
+          "env_type": "location"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "sentence": "The finance office can approve visiting lecturer classes in the visiting lecturer management system only if the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": null,
+            "status": null,
+            "office": "finance",
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "approve",
+          "operation": "APPROVE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "visiting_lecturer_class",
+          "qualifier": "the",
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "academic_system"
+        },
+        {
+          "trigger_phrase": "the year",
+          "env_type": "other"
+        },
+        {
+          "trigger_phrase": "the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit",
+          "env_type": "spatial_physical"
+        },
+        {
+          "trigger_phrase": "hours",
+          "env_type": "other"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "sentence": "A visiting lecturer who has not yet retired cannot teach more than 280 hours per year.",
+      "subjects": [
+        {
+          "role": "visiting_lecturer",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "visiting",
+            "rank": null,
+            "status": "not_retired",
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "teach",
+          "operation": "EXECUTE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "teaching_hours",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 96,
+      "sentence": "A retired visiting lecturer cannot teach more than 560 hours per year.",
+      "subjects": [
+        {
+          "role": "visiting_lecturer",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "visiting",
+            "rank": null,
+            "status": "retired",
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "teach",
+          "operation": "EXECUTE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "teaching_hours",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 97,
+      "sentence": "A department’s academic coordinator cannot modify visiting lecturer agreement information in the visiting lecturer management system after approval by the academic affairs office or finance office.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": true
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "visiting_lecturer_agreement_information",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "sentence": "A department’s academic coordinator can modify a visiting lecturer agreement in the visiting lecturer management system only if the board of directors has rejected its approval.",
+      "subjects": [
+        {
+          "role": "academic_coordinator",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": null,
+            "rank": "coordinator",
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "modify",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "visiting_lecturer_agreement",
+          "qualifier": null,
+          "attributes": null
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "sentence": "A valid visiting lecturer agreement must have a contract number in the visiting lecturer management system.",
+      "subjects": [
+        {
+          "role": "visiting_lecturer_agreement",
+          "entity_type": "agreement",
+          "qualifiers": {
+            "type": "valid",
+            "rank": null,
+            "status": "valid",
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "have",
+          "operation": "UPDATE"
+        }
+      ],
+      "resources": [
+        {
+          "label": "contract_number",
+          "qualifier": "a",
+          "attributes": null
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 100,
+      "sentence": "Visiting lecturers can view their issued visiting lecturer agreements in the visiting lecturer management system.",
+      "subjects": [
+        {
+          "role": "visiting_lecturer",
+          "entity_type": "user",
+          "qualifiers": {
+            "type": "visiting",
+            "rank": null,
+            "status": null,
+            "office": null,
+            "department": null,
+            "negated": false
+          }
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "READ"
+        }
+      ],
+      "resources": [
+        {
+          "label": "agreement",
+          "qualifier": "the",
+          "attributes": {
+            "sensitivity": null,
+            "status": "issued"
+          }
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the visiting lecturer management system",
+          "env_type": "system"
+        }
+      ]
+    }
+  ]
+}

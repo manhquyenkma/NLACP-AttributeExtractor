@@ -1,0 +1,2238 @@
+{
+  "dataset": "eDocument",
+  "policies": [
+    {
+      "id": 1,
+      "sentence": "An Unregistered Sender can only view documents sent to him/herself.",
+      "subjects": [
+        {
+          "role": "unregistered_sender",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 2,
+      "sentence": "A Member of a Tenant can only send a document if the credit of that tenant is sufficient.",
+      "subjects": [
+        {
+          "role": "member_of_a_tenant",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the credit of that tenant is sufficient",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "sentence": "Every action done by a Member of a Tenant is billed to that Tenant.",
+      "subjects": [
+        {
+          "role": "member_of_a_tenant",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "bill",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "action",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 4,
+      "sentence": "Every action done by a User is logged.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "log",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "action",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 5,
+      "sentence": "Members of the helpdesk can search every document in the application.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "search",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 6,
+      "sentence": "Members of the helpdesk can see meta-information of every document in the application.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document_meta-information",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 7,
+      "sentence": "Members of the helpdesk can only read the content of documents belonging to tenants for which they are assigned responsible.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document_content",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 8,
+      "sentence": "Members of the helpdesk can only manage tenant configurations for tenants for which they are assigned responsible.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "tenant_configuration",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 9,
+      "sentence": "Any member of the helpdesk assigned to a certain tenant can delegate the right to read documents of that tenant and manage the tenant's configuration to another member of the helpdesk for a maximum time of 4 weeks.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "delegate",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "right_to_read_and_manage",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "a maximum time of 4 weeks",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "sentence": "A member of the helpdesk assigned to a certain tenant can only delegate the right to read documents of that tenant and manage the tenant's configuration to another member of the helpdesk for a maximum time of 12 weeks in a year.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "delegate",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "right_to_read_and_manage",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "a maximum time of 12 weeks in a year",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "sentence": "A member of the helpdesk can only read the meta-data of a document if he or she has read the contents of a conflicting document.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document_meta-data",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "he or she has read the contents of a conflicting document",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "sentence": "Each action done by a member of the helpdesk is logged.",
+      "subjects": [
+        {
+          "role": "member_of_the_helpdesk",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "log",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "action",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 13,
+      "sentence": "Application admins can create new tenants and manage tenant configurations.",
+      "subjects": [
+        {
+          "role": "application_admin",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        },
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "tenant",
+          "qualifier": "",
+          "attributes": {}
+        },
+        {
+          "label": "tenant_configuration",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 14,
+      "sentence": "An application admin can only read the meta-data of a document if he or she has read the contents of a conflicting document.",
+      "subjects": [
+        {
+          "role": "application_admin",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document_meta-data",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "he or she has read the contents of a conflicting document",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "sentence": "No one can read the content of documents labeled confidential by a member of the owning tenant.",
+      "subjects": [
+        {
+          "role": "one",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document_content",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 16,
+      "sentence": "Every authenticated user can send documents and receive.",
+      "subjects": [
+        {
+          "role": "authenticated_user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        },
+        {
+          "verb": "receive",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 17,
+      "sentence": "A supervisor can read documents sent by its supervisees.",
+      "subjects": [
+        {
+          "role": "supervisor",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 18,
+      "sentence": "A supervisee cannot read documents sent by its supervisors.",
+      "subjects": [
+        {
+          "role": "supervisee",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 19,
+      "sentence": "A project member can read all sent documents regarding the project.",
+      "subjects": [
+        {
+          "role": "project_member",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 20,
+      "sentence": "Members of a subtenant can only send documents to customers of that subtenant.",
+      "subjects": [
+        {
+          "role": "member_of_a_subtenant",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 21,
+      "sentence": "Only members of the sales department can send invoices.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 22,
+      "sentence": "Only members of the sales department can view or search invoices.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "read"
+        },
+        {
+          "verb": "search",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 23,
+      "sentence": "Every member of the sales department can view or search invoices sent by a member of the sales department.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "read"
+        },
+        {
+          "verb": "search",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 24,
+      "sentence": "Only automated services of the ICT department can send banking notes.",
+      "subjects": [
+        {
+          "role": "automated_services_of_the_ict_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "banking_note",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 25,
+      "sentence": "Only members of the ICT department responsible for banking notes can view the status of a sent banking note.",
+      "subjects": [
+        {
+          "role": "member_of_the_ict_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "banking_note_status",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 26,
+      "sentence": "Every member of the ICT department responsible for banking notes can view the status of a sent banking note.",
+      "subjects": [
+        {
+          "role": "member_of_the_ict_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "banking_note_status",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 27,
+      "sentence": "Only employees which are responsible for payrolling can send paychecks and only to members of their department.",
+      "subjects": [
+        {
+          "role": "employee",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "paycheck",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 28,
+      "sentence": "Employees which are responsible for payrolling can only send paychecks between the 20th and 25th of each month.",
+      "subjects": [
+        {
+          "role": "employee",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "paycheck",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the 20th and 25th of each month",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "sentence": "Only employees which are responsible for payrolling and receivers of the paychecks can read paycheck documents.",
+      "subjects": [
+        {
+          "role": "employee",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "receiver",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "paycheck_document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 30,
+      "sentence": "Every access to a paycheck should be logged.",
+      "subjects": [
+        {
+          "role": "access",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "log",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "paycheck",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 31,
+      "sentence": "Only members of the sales department can send sales offers.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "sales_offer",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 32,
+      "sentence": "Only senior members of the sales department can send sales offers to all customers at once.",
+      "subjects": [
+        {
+          "role": "senior_member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "sales_offer",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 33,
+      "sentence": "Sales offers regarding insurances can only be sent to insurance customers.",
+      "subjects": [],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "sales_offer",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 34,
+      "sentence": "Sales offers regarding savings accounts can only be sent to customers who own a savings account.",
+      "subjects": [],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "sales_offer",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 35,
+      "sentence": "Sales offers can only be sent on weekdays between 07h00 and 19h00.",
+      "subjects": [],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "sales_offer",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "weekdays between 07h00 and 19h00",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "sentence": "Only the bank office manager responsible for a certain bank office can send documents to that office.",
+      "subjects": [
+        {
+          "role": "bank_office_manager",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 37,
+      "sentence": "Only senior bank office managers can send documents to all bank offices at once.",
+      "subjects": [
+        {
+          "role": "senior_bank_office_manager",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 38,
+      "sentence": "Only members of the HR department can create users.",
+      "subjects": [
+        {
+          "role": "member_of_the_hr_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "user",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 39,
+      "sentence": "Only members of the IT departments which are part of the Senior Management can create subtenants in the application.",
+      "subjects": [
+        {
+          "role": "member_of_the_it_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "subtenant",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 40,
+      "sentence": "Users can only be created on weekdays between 08h00 and 02h00.",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        }
+      ],
+      "resources": [],
+      "environments": [
+        {
+          "trigger_phrase": "weekdays between 08h00 and 02h00",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "sentence": "The Large Bank Audit department can read any document sent by any member of Large Bank except for the paychecks and banking notes.",
+      "subjects": [
+        {
+          "role": "large_bank_audit_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 42,
+      "sentence": "Members of Large Bank Leasing can only send documents to customers of Large Bank Leasing.",
+      "subjects": [
+        {
+          "role": "member_of_large_bank_leasing",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 43,
+      "sentence": "Only members of the customer care office can view traffic fines.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_care_office",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "view",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "traffic_fine",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 44,
+      "sentence": "Only users of the sales office can send invoices.",
+      "subjects": [
+        {
+          "role": "users_of_the_sales_office",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 45,
+      "sentence": "Only members of the Customer Care Office can manually bill a customer.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_care_office",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "bill",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "customer",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 46,
+      "sentence": "Only the secretary and the office director of a bank office can read documents sent to the bank office.",
+      "subjects": [
+        {
+          "role": "secretary",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "office_director",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 47,
+      "sentence": "Members of a bank office can only send documents to external customers whose main office is that bank office.",
+      "subjects": [
+        {
+          "role": "member_of_a_bank_office",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 48,
+      "sentence": "Insurance agents of a bank office can only send documents to insurance customers of that bank office.",
+      "subjects": [
+        {
+          "role": "insurance_agent",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 49,
+      "sentence": "Any member of the Accounting department can receive and read invoices.",
+      "subjects": [
+        {
+          "role": "member_of_the_accounting_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "receive",
+          "operation": ""
+        },
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 50,
+      "sentence": "Only members of the Accounting department can receive and read invoices unless every member of the Accounting department is set to be unavailable.",
+      "subjects": [
+        {
+          "role": "member_of_the_accounting_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "receive",
+          "operation": ""
+        },
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "unless every member of the Accounting department is set to be unavailable",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "sentence": "Only members of a certain office can read documents sent to that office.",
+      "subjects": [
+        {
+          "role": "member_of_a_certain_office",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 52,
+      "sentence": "Any member of a certain office can read documents sent to that office.",
+      "subjects": [
+        {
+          "role": "member_of_a_certain_office",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 53,
+      "sentence": "Any member of a certain office can read all documents sent by any member of that office.",
+      "subjects": [
+        {
+          "role": "member_of_a_certain_office",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 54,
+      "sentence": "Only members of the secretary can read invoices.",
+      "subjects": [
+        {
+          "role": "member_of_the_secretary",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 55,
+      "sentence": "Only members of the ICT group can create, delete or manage users or groups in the application.",
+      "subjects": [
+        {
+          "role": "member_of_the_ict_group",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        },
+        {
+          "verb": "delete",
+          "operation": ""
+        },
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "user",
+          "qualifier": "",
+          "attributes": {}
+        },
+        {
+          "label": "group",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 56,
+      "sentence": "Members of the Audit department can read all invoices, offers and contracts.",
+      "subjects": [
+        {
+          "role": "member_of_the_audit_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        },
+        {
+          "label": "offer",
+          "qualifier": "",
+          "attributes": {}
+        },
+        {
+          "label": "contract",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 57,
+      "sentence": "All document read attempts by a member of the Audit department should be logged.",
+      "subjects": [
+        {
+          "role": "member_of_the_audit_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "log",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "document_read_attempt",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 58,
+      "sentence": "Members of the Audit department can read all paychecks of all employees which are responsible for payrolling and their supervisors.",
+      "subjects": [
+        {
+          "role": "member_of_the_audit_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "paycheck",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 59,
+      "sentence": "Only members of the IT department which are part of the Senior Management group and responsible for the software partner management can create subtenants.",
+      "subjects": [
+        {
+          "role": "member_of_the_it_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "subtenant",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 60,
+      "sentence": "Members of the IT department which are responsible for user management can change the access rights to documents.",
+      "subjects": [
+        {
+          "role": "member_of_the_it_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "access_right",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 61,
+      "sentence": "Any Member of the IT department which is part of the Senior Management group and responsible for the software partner management can create subtenants.",
+      "subjects": [
+        {
+          "role": "member_of_the_it_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "subtenant",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 62,
+      "sentence": "Only Members of the IT department which are part of the Senior Management group and responsible for the software partner management can delegate the right to create new subtenants to its subtenants.",
+      "subjects": [
+        {
+          "role": "member_of_the_it_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "delegate",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "right_to_create",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 63,
+      "sentence": "Any member of the Human Resource department can send contracts to potential future employees.",
+      "subjects": [
+        {
+          "role": "member_of_the_human_resource_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "contract",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 64,
+      "sentence": "Only members of the Human Resource department can send contracts to potential future employees.",
+      "subjects": [
+        {
+          "role": "member_of_the_human_resource_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "contract",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 65,
+      "sentence": "Members of the Human Resources department can send contracts to freelance members which collaborate with a project only after two weeks before the start of the project and not after one month after the end of the project.",
+      "subjects": [
+        {
+          "role": "member_of_the_human_resources_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "contract",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "after two weeks before the start of the project and not after one month after the end of the project",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "sentence": "Only members of the Audit department and members of the Human Resources department can read the contracts sent out for a project.",
+      "subjects": [
+        {
+          "role": "member_of_the_audit_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "member_of_the_human_resources_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "contract",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 67,
+      "sentence": "Any member of the sales department can send invoices.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 68,
+      "sentence": "Only members of the sales department can send invoices.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 69,
+      "sentence": "Any member of the sales department can read all invoices sent by the department.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 70,
+      "sentence": "Any member of the sales department can delegate the right to send invoices to a member of the Secretary for a duration of maximum 6 weeks.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "delegate",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "right_to_send_invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "a duration of maximum 6 weeks",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "sentence": "Any member of the Sales department can create a new subtenant.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "subtenant",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 72,
+      "sentence": "Only members of the Sales department can create new subtenants.",
+      "subjects": [
+        {
+          "role": "member_of_the_sales_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "create",
+          "operation": "create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "subtenant",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 73,
+      "sentence": "Any member of the Customer department can modify access rights of the documents sent by a subtenant which he or she has been assigned to.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "access_right",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 74,
+      "sentence": "Any member of the Customer department can add properties to sent documents to help classify them for the subtenant.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "property",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 75,
+      "sentence": "Only members of the Customer department can modify access rights of the documents sent by a subtenant.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "access_right",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 76,
+      "sentence": "Any member of the Customer department can send documents on behalf of the subtenant he or she has been assigned to.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 77,
+      "sentence": "Only members of the Customer department can send documents on behalf of the subtenants.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 78,
+      "sentence": "Only members of the Customer department that is assigned to a subtenant can read the documents of that tenant.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 79,
+      "sentence": "Any member of the Customer department that is assigned to a subtenant can read the documents of that tenant provided that he or she is not involved in a conflict of interest situation.",
+      "subjects": [
+        {
+          "role": "member_of_the_customer_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "provided that he or she is not involved in a conflict of interest situation",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "sentence": "Any member of the Accounting department can send invoices to customers.",
+      "subjects": [
+        {
+          "role": "member_of_the_accounting_department",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "execute"
+        }
+      ],
+      "resources": [
+        {
+          "label": "invoice",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 81,
+      "sentence": "A member of the reseller can read the meta-data of a document if he or she has read the contents of a conflicting document.",
+      "subjects": [
+        {
+          "role": "member_of_the_reseller",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document_meta-data",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "he or she has read the contents of a conflicting document",
+          "env_type": "general"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "sentence": "Registered Private Receivers can only read documents.",
+      "subjects": [
+        {
+          "role": "registered_private_receiver",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 83,
+      "sentence": "Registered Private Receivers can only read documents they received.",
+      "subjects": [
+        {
+          "role": "registered_private_receiver",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "read",
+          "operation": "read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "document",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 84,
+      "sentence": "Registered Private Receivers can allow another Registered Private Receiver to read a certain document.",
+      "subjects": [
+        {
+          "role": "registered_private_receiver",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "access_right",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 85,
+      "sentence": "Registered Private Receivers can allow another Registered Private Receiver to read all received documents.",
+      "subjects": [
+        {
+          "role": "registered_private_receiver",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "update",
+          "operation": ""
+        }
+      ],
+      "resources": [
+        {
+          "label": "access_right",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    }
+  ]
+}

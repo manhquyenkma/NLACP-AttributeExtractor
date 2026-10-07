@@ -242,17 +242,14 @@ Hãy cho biết bạn muốn bước tiếp theo nào: `commit` / `run-sample` /
 3. **Hoàn thiện tập dữ liệu University (Phase C)**:
    - Thay thế DBSCAN bằng thuật toán phân loại Rule-based (classify_env_phrase) dựa trên từ khóa và confidence scoring, không sử dụng model học máy. Đã xử lý thành công toàn bộ các mệnh đề khó như "only when it is pending approval", "before the semester starts".
    - **Tạo University Gold Standard**: Đã trích xuất và tạo file `university_gold_draft.json` nhưng hiện đang chờ con người đánh giá (pending human annotation) cho 28 câu REVIEW. F1 evaluation sẽ được cung cấp sau khi quá trình annotation hoàn tất.
-4. **Đánh giá Baseline Cuối cùng (Phase D)**:
-   - Hệ thống được xác thực không bị regression. Các chỉ số cuối cùng (sau khi fix dataset contamination và multi-object resource):
-     - **VACT Dataset (100 câu)**:
-       - **Subject F1**: 0.9378
-       - **Actions F1**: 0.9572
-       - **Object F1**: 0.9100
-       - **Environment F1**: 0.9821
-       - **Overall F1**: 0.9483 (Micro-avg)
-     - **iTrust Dataset (53 câu)**:
-       - **Subject F1**: 0.9825
-       - **Actions F1**: 0.9310
-       - **Object F1**: 0.9821
-       - **Environment F1**: 0.8889
-       - **Overall F1**: 0.9611 (Micro-avg)
+4. **Đánh giá Cuối cùng (CHÍNH THỨC — unified_eval.py 2026-10-05)**:
+   - Hệ thống được xác thực trên phiên bản code cuối cùng, đã regenerate machine outputs:
+     - **STRICT EVALUATION (Exact-Match)**:
+       - **VACT (100 câu)**: Subj=0.9665, Action=0.9535, Object=0.8060, Env=0.9000, **Overall=0.8852**
+       - **iTrust (53 câu)**: Subj=1.0000, Action=0.9907, Object=0.7156, Env=0.8421, **Overall=0.9003**
+       - **eDocument (85 câu)**: Subj=0.8953, Action=0.8817, Object=0.7861, Env=0.8148, **Overall=0.8530**
+     - **RELAXED EVALUATION (Token IoU >= 0.6 + Action Synonyms)**:
+       - **VACT**: Subj=0.9665, Action=0.9535, Object=0.8557, Env=0.9000, **Overall=0.8944**
+       - **iTrust**: Subj=1.0000, Action=0.9907, Object=0.7706, Env=0.8421, **Overall=0.9174**
+       - **eDocument**: Subj=0.9070, Action=0.9247, Object=0.8324, Env=0.9630, **Overall=0.8925**
+

@@ -48,16 +48,21 @@ def get_spacy_model():
 class AcpParser:
     """Parser for Access Control Policy sentences."""
     
-    def __init__(self, strict_validation: bool = False):
+    def __init__(self, strict_validation: bool = False, core_only: bool = False):
         """
         Initialize parser.
         
         Args:
             strict_validation: If True, raise exception on validation errors
+            core_only: If True, use only core gazetteer terms for environment extraction
         """
         self.nlp = get_spacy_model()
         self.validator = PolicyValidator(strict_mode=strict_validation)
         self.strict_validation = strict_validation
+        
+        # Configure environment extractor
+        import nlacp.extraction.env_extractor as env_ext
+        env_ext.set_core_only(core_only)
     
     def parse_sentence(self, sentence: str, policy_id: int = 1,
                        preprocess: bool = True) -> Tuple[Optional[Policy], List[str]]:
@@ -159,7 +164,15 @@ class AcpParser:
 
                         trigger_word = env_attr.get('trigger')
                         
-                        trigger_phrase = env_attr.get('full_value') or env_attr.get('phrase')
+                        trig_lower = str(env_attr.get('trigger', '')).lower()
+                        if trig_lower in ('unless', 'provided that', 'provided'):
+                            raw_phrase = env_attr.get('full_value') or env_attr.get('phrase') or ""
+                        else:
+                            raw_phrase = env_attr.get('phrase') or env_attr.get('full_value') or ""
+                        _tokens = raw_phrase.strip().split()
+                        while _tokens and _tokens[0].lower() in {"in", "on", "at", "during", "from", "within", "between", "for", "if", "only", "even"}:
+                            _tokens = _tokens[1:]
+                        trigger_phrase = " ".join(_tokens) if _tokens else raw_phrase
 
                         systems = None
                         if env_type == EnvironmentType.SYSTEM:
@@ -339,4 +352,4 @@ def parse_acp_json_batch(domain: str, sentences: List[str],
         JSON string representation of PolicyDataset
     """
     dataset = parse_acp_batch(domain, sentences, preprocess=preprocess)
-    return dataset.json(exclude_none=True, indent=2)
+    return dataset.model_dump_json(exclude_none=True, indent=2)

@@ -59,6 +59,7 @@ class ResourceEntityType(str, Enum):
     OFFERING = "offering"
     REGISTRATION = "registration"
     ATTRIBUTE = "attribute"
+    SYSTEM = "system"
 
 
 class Operation(str, Enum):

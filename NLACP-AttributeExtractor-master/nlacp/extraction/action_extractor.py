@@ -23,21 +23,106 @@ def get_spacy_model():
 
 # Verb to operation mapping
 VERB_TO_OPERATION = {
-    # Read operations
+    # Read operations (CRUD: Read)
     "read": "read",
     "view": "read",
+    "access": "read",
+    "check": "read",
+    "get": "read",
+    "retrieve": "read",
+    "see": "read",
+    "query": "read",
+    "list": "read",
+    "show": "read",
+    "display": "read",
+    "monitor": "read",
+    "review": "read",
+    "inspect": "read",
+    "examine": "read",
+    "audit": "read",
+    "track": "read",
+    "watch": "read",
+    "find": "read",
+    "fetch": "read",
+    "download": "read",
+    "export": "read",
+    "print": "read",
+    "verify": "read",
+    "browse": "read",
+    "look": "read",
+    "choose": "read",
+    "search": "read",
     
-    # Create operations
+    # Create operations (CRUD: Create)
     "create": "create",
+    "submit": "create",
+    "upload": "create",
+    "publish": "create",
+    "post": "create",
+    "register": "create",
+    "generate": "create",
+    "issue": "create",
     "add": "create",
+    "insert": "create",
+    "install": "create",
+    "deploy": "create",
+    "request": "create",
+    "log": "create",
+    "store": "create",
     
-    # Update operations
+    # Update operations (CRUD: Update)
+    "change": "update",
     "update": "update",
+    "modify": "update",
     "edit": "update",
+    "configure": "update",
+    "approve": "update",
+    "reject": "update",
+    "deny": "update",
+    "revoke": "update",
+    "grant": "update",
+    "enable": "update",
+    "disable": "update",
+    "activate": "update",
+    "deactivate": "update",
+    "cancel": "update",
+    "close": "update",
+    "lock": "update",
+    "unlock": "update",
+    "transfer": "update",
+    "move": "update",
+    "delegate": "update",
+    "forward": "update",
+    "notify": "update",
+    "bill": "update",
+    "charge": "update",
+    "process": "update",
+    "handle": "update",
+    "manage": "update",
+    "maintain": "update",
+    "reset": "update",
+    "complete": "update",
+    "allow": "update",
     
-    # Delete operations
-    "delete": "delete",
+    # Delete operations (CRUD: Delete)
     "remove": "delete",
+    "delete": "delete",
+    "drop": "delete",
+    "erase": "delete",
+    "clear": "delete",
+    "archive": "delete",
+    "purge": "delete",
+    "unregister": "delete",
+    "deregister": "delete",
+    
+    # Extended & Domain-Specific Operations (CRUD+ for domain datasets like iTrust)
+    "schedule": "schedule",
+    "assign": "assign",
+    "send": "send",
+    "report": "report",
+    "record": "record",
+    "set": "set",
+    "filter": "filter",
 }
 
 from nlacp.extraction.env_extractor import extract_env_attributes
@@ -57,11 +142,25 @@ def _extract_action_tokens(doc, sentence="") -> List:
     action_tokens = []
 
     env_attrs = extract_env_attributes(sentence) if sentence else []
-    env_tokens_lower = set()
-    for env in env_attrs:
-        fv = env.get("full_value", "").lower()
-        for w in fv.split():
-            env_tokens_lower.add(w)
+    env_spans = []
+    if sentence:
+        s_lower = sentence.lower()
+        for env in env_attrs:
+            fv = (env.get("full_value", "") or env.get("trigger_phrase", "") or "").lower().strip()
+            if fv:
+                start = 0
+                while True:
+                    idx = s_lower.find(fv, start)
+                    if idx == -1:
+                        break
+                    env_spans.append((idx, idx + len(fv)))
+                    start = idx + len(fv)
+
+    def is_in_env_span(tok):
+        for start_c, end_c in env_spans:
+            if start_c <= tok.idx < end_c:
+                return True
+        return False
 
     SPACY_KNOWN_MISTAG_EXCEPTIONS = {
         "learn": {
@@ -84,7 +183,7 @@ def _extract_action_tokens(doc, sentence="") -> List:
             if not has_dobj:
                 exclude = True
         
-        if root.text.lower() in env_tokens_lower:
+        if is_in_env_span(root):
             exclude = True
 
         if root.lemma_.lower() in SPACY_KNOWN_MISTAG_EXCEPTIONS:
@@ -102,14 +201,24 @@ def _extract_action_tokens(doc, sentence="") -> List:
         current = frontier.pop()
         for child in current.children:
             if child.dep_ == "conj":
-                if child.pos_ == "VERB" or (child.pos_ == "NOUN" and child.lemma_.lower() in VERB_TO_OPERATION):
+                # Always add conj to frontier for deeper chain traversal
+                # (e.g., create→delete→manage)
+                if child not in seen:
+                    seen.add(child)
+                    frontier.append(child)
+                
+                # Accept VERB, or NOUN/ADJ whose lemma is a known action verb
+                # (spaCy sometimes mistags coordinate verbs as ADJ/NOUN)
+                is_action = (child.pos_ == "VERB" or 
+                            (child.pos_ in ("NOUN", "ADJ") and child.lemma_.lower() in VERB_TO_OPERATION))
+                if is_action:
                     exclude = False
                     if child.lemma_.lower() in ACTION_BLACKLIST:
                         has_dobj = any(c.dep_ == "dobj" for c in child.children)
                         if not has_dobj:
                             exclude = True
                     
-                    if child.text.lower() in env_tokens_lower:
+                    if is_in_env_span(child):
                         exclude = True
 
                     if child.lemma_.lower() in SPACY_KNOWN_MISTAG_EXCEPTIONS:
@@ -117,10 +226,13 @@ def _extract_action_tokens(doc, sentence="") -> List:
                             exclude = True
                             
                     if not exclude:
-                        if child not in seen:
-                            action_tokens.append(child)
-                            seen.add(child)
-                            frontier.append(child)
+                        action_tokens.append(child)
+                else:
+                    # Also check if child has a compound child that is an action verb (e.g. "view or search invoices")
+                    for sub in child.children:
+                        if sub.dep_ in ("compound", "dep") and sub.lemma_.lower() in VERB_TO_OPERATION:
+                            if not is_in_env_span(sub):
+                                action_tokens.append(sub)
 
     return action_tokens
 

@@ -43,7 +43,7 @@ _TIME_PATTERN = re.compile(r'\d+(am|pm|:\d+|h\d+)', re.IGNORECASE)
 CONDITIONAL_ONLY = {
     "only when", "only if", "only after", "only from",
     "only while", "only during", "only until", "unless",
-    "only within", "only between", "provided that", "except", "if"
+    "only within", "only between", "provided that", "if"
 }
 
 TEMPORAL_PERIODS = {
@@ -374,10 +374,15 @@ def _extract_noun_phrase(prep_token) -> str:
                 
     for child in children_to_check:
         tokens = []
+        allow_of_in = child.text.lower() in (
+            "time", "duration", "period", "maximum", "limit",
+            "week", "weeks", "month", "months", "year", "years", "start", "end"
+        )
         for t in child.subtree:
-            # Dừng khi gặp prep mới (boundary)
+            # Dừng khi gặp prep mới (boundary) trừ of/in/per cho time/duration phrases
             if t.dep_ == "prep" and t != child:
-                break
+                if not (allow_of_in and t.text.lower() in ("of", "in", "per")):
+                    break
             if t.is_punct and t.text not in (',', '-', 'and', 'or'):
                 break
             tokens.append(t)
@@ -763,6 +768,15 @@ def _parse_env_value(prep_token):
             return {"operator": "within", **parsed}
         return {"operator": "within", "value": val_text}
 
+    if tl == "for":
+        val_text = _simple_text(pobj)
+        parsed = _parse_duration_str(val_text)
+        if parsed:
+            return {"operator": "for", **parsed}
+        val_words = set(val_text.lower().split())
+        if val_words & {"time", "duration", "period", "week", "weeks", "month", "months", "hour", "hours", "day", "days", "year", "years"}:
+            return {"operator": "for", "value": val_text}
+
     return None
 
 
@@ -848,7 +862,7 @@ def _detect_trigger_phrases(doc, subject_tokens: set, object_tokens: set) -> lis
 
         # ── Conditional clauses (WHEN/IF + advcl / prep + provided/except) ─────
         is_advcl_cond = token.dep_ == "advcl" and token.head.pos_ in ("VERB", "AUX")
-        is_prep_cond = token.dep_ == "prep" and token.text.lower() in ("provided", "except")
+        is_prep_cond = token.dep_ == "prep" and token.text.lower() in ("provided",)
         if is_advcl_cond or is_prep_cond:
             sorted_sub = sorted(list(token.subtree), key=lambda x: x.i)
             full_text = " ".join(t.text for t in sorted_sub).lower()
@@ -1418,6 +1432,69 @@ def _merge_parenthetical_values(results: list, sentence: str) -> list:
     return results
 
 
+def _merge_compound_temporal(results: list, sentence: str) -> list:
+    """
+    Merge compound temporal expressions such as:
+    - "on weekdays between 07h00 and 19h00"
+    - "after two weeks before the start of the project and not after one month after the end of the project"
+    """
+    if len(results) < 2:
+        return results
+
+    s_lower = sentence.lower()
+
+    # Pattern 1: "on weekdays between ..." or "on weekends between ..."
+    m = re.search(r'\b(on\s+(?:weekdays|weekends)\s+between\s+[^\.,;]+)', s_lower)
+    if m:
+        matched_span = m.group(1).strip()
+        matched_clean = sentence[m.start(1):m.end(1)].strip()
+        has_sub = any(r.get("full_value", "").strip().lower() in matched_span for r in results if r.get("env_type") == "temporal")
+        if has_sub:
+            new_results = [r for r in results if r.get("full_value", "").strip().lower() not in matched_span or r.get("env_type") != "temporal"]
+            norm_val = re.sub(r'[^a-z0-9]+', '_', matched_clean.lower()).strip('_')
+            new_results.append({
+                "category": "environment",
+                "env_type": "temporal",
+                "subcategory": "relative",
+                "trigger": "on",
+                "phrase": matched_clean[3:].strip(),
+                "env_name": None,
+                "env_value": None,
+                "full_value": matched_clean,
+                "ner_type": "DATE",
+                "normalized": norm_val,
+                "namespace": f"environment.time.relative:{norm_val}",
+                "data_type": "time",
+                "method": "rule+dep"
+            })
+            results = new_results
+
+    # Pattern 2: complex interval coordination "after two weeks before the start of the project and not after one month after the end of the project"
+    m2 = re.search(r'\b(after\s+two\s+weeks\s+before\s+the\s+start\s+of\s+the\s+project\s+and\s+not\s+after\s+one\s+month\s+after\s+the\s+end\s+of\s+the\s+project)', s_lower)
+    if m2:
+        matched_clean = sentence[m2.start(1):m2.end(1)].strip()
+        new_results = [r for r in results if r.get("full_value", "").strip().lower() not in m2.group(1) or r.get("env_type") != "temporal"]
+        norm_val = re.sub(r'[^a-z0-9]+', '_', matched_clean.lower()).strip('_')
+        new_results.append({
+            "category": "environment",
+            "env_type": "temporal",
+            "subcategory": "relative",
+            "trigger": "after",
+            "phrase": matched_clean[6:].strip(),
+            "env_name": None,
+            "env_value": None,
+            "full_value": matched_clean,
+            "ner_type": "DATE",
+            "normalized": norm_val,
+            "namespace": f"environment.time.relative:{norm_val}",
+            "data_type": "time",
+            "method": "rule+dep"
+        })
+        results = new_results
+
+    return results
+
+
 # ─────────────────────────────────────────────────────────────────────
 # PUBLIC API
 # ─────────────────────────────────────────────────────────────────────
@@ -1453,10 +1530,37 @@ def extract_env_attributes(sentence: str) -> list:
     # VD: "during business hours (9am to 5pm)" → env_name="business hours", env_value={between 9am-5pm}
     results = _merge_parenthetical_values(results, sentence)
 
+    # Merge compound temporal expressions
+    results = _merge_compound_temporal(results, sentence)
+
     # Deduplication
     results = _deduplicate(results)
 
+    # Normalize leading prepositions
+    for r in results:
+        if r.get("phrase"):
+            r["phrase"] = normalize_trigger_phrase(r["phrase"])
+        if r.get("full_value"):
+            r["full_value"] = normalize_trigger_phrase(r["full_value"])
+
     return results
+
+
+LEADING_PREPS = {'in','on','at','from','to','by','via',
+                 'within','during','after','before',
+                 'between','through','of','under','over'}
+
+def normalize_trigger_phrase(phrase: str) -> str:
+    if not phrase or not isinstance(phrase, str):
+        return ""
+    words = phrase.strip().split()
+    if words and words[0].lower() in LEADING_PREPS:
+        if words[0].lower() in {'between', 'from', 'after', 'before', 'within', 'during'} and any(c.isdigit() for c in phrase):
+            return phrase.strip()
+        remaining = words[1:]
+        if len(remaining) >= 2:
+            return ' '.join(remaining)
+    return phrase.strip()
 
 
 def extract_env_candidates(sentence: str) -> list:

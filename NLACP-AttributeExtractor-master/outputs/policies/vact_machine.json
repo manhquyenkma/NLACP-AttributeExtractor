@@ -50,7 +50,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -144,7 +144,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -157,7 +157,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "for multiple - choice exams which they have taken",
+                    "trigger_phrase": "multiple - choice exams which they have taken",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -224,7 +224,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -293,7 +293,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -383,7 +383,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -478,7 +478,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -583,7 +583,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -616,7 +616,7 @@
         },
         {
             "id": 8,
-            "sentence": "A department\u2019s academic coordinator can view the scores of all civilian students in the learning management system for that department\u2019s courses.",
+            "sentence": "A department’s academic coordinator can view the scores of all civilian students in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -667,7 +667,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -719,7 +719,7 @@
         },
         {
             "id": 9,
-            "sentence": "A department chair can view the scores of all civilian students in the learning management system for that department\u2019s courses.",
+            "sentence": "A department chair can view the scores of all civilian students in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -770,7 +770,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -822,7 +822,7 @@
         },
         {
             "id": 10,
-            "sentence": "Users in the educational testing and quality assurance office can modify civilian students\u2019 final grades in the academic information system with the approval of the head of educational testing and quality assurance.",
+            "sentence": "Users in the educational testing and quality assurance office can modify civilian students’ final grades in the academic information system with the approval of the head of educational testing and quality assurance.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -841,7 +841,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -863,7 +863,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -892,7 +892,7 @@
             ],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[user] ACTION[MODIFY] RESOURCE[final_grades] ENV[the academic information system] IF resource.approver IN (unknown)"
+            "abac_policy": "PERMIT subject[user] ACTION[UPDATE] RESOURCE[final_grades] ENV[the academic information system] IF resource.approver IN (unknown)"
         },
         {
             "id": 11,
@@ -933,7 +933,7 @@
                     "rosters"
                 ],
                 "label": "roster",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
@@ -944,7 +944,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -978,6 +978,12 @@
                     "rel_type": "attribute",
                     "attribute": "type",
                     "value": "civilian"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
                 }
             ],
             "abac_policy": "PERMIT subject[student,civilian] ACTION[READ] RESOURCE[roster] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
@@ -1008,7 +1014,7 @@
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1018,7 +1024,7 @@
                 "ref_tokens": [
                     "roster"
                 ],
-                "label": "roster",
+                "label": "course_roster",
                 "qualifier": "the",
                 "scope": {
                     "level": "course",
@@ -1026,14 +1032,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.roster"
+                "namespace": "resource.document.course_roster"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1075,11 +1081,11 @@
                     "value": "course"
                 }
             ],
-            "abac_policy": "PERMIT subject[lecturer] ACTION[READ,DOWNLOAD] RESOURCE[roster] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[lecturer] ACTION[READ,READ] RESOURCE[course_roster] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 13,
-            "sentence": "A department\u2019s academic coordinator can view and download rosters in the academic information and learning management systems for that department\u2019s courses.",
+            "sentence": "A department’s academic coordinator can view and download rosters in the academic information and learning management systems for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -1107,9 +1113,14 @@
                     "verb": "view",
                     "operation": "READ",
                     "negated": false
+                },
+                {
+                    "verb": "download",
+                    "operation": "READ",
+                    "negated": false
                 }
             ],
-            "actions_logical_op": null,
+            "actions_logical_op": "AND",
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
@@ -1117,7 +1128,7 @@
                     "view"
                 ],
                 "label": "download",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": {
                     "level": "department",
                     "ref": "that department"
@@ -1131,12 +1142,12 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information and learning management systems for that department \u2019s courses",
+                    "trigger_phrase": "the academic information and learning management systems for that department ’s courses",
                     "trigger_word": "in",
                     "systems": [
                         {
                             "label": "the academic information and",
-                            "namespace": "environment.device.device_type:academic_information_and_learning_management_systems_for_department_\u2019s_courses"
+                            "namespace": "environment.device.device_type:academic_information_and_learning_management_systems_for_department_’s_courses"
                         }
                     ],
                     "time_range": null
@@ -1168,16 +1179,22 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "scope",
                     "attribute": "level",
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[READ] RESOURCE[download] ENV[the academic information and] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[READ,READ] RESOURCE[download] ENV[the academic information and] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 14,
-            "sentence": "A department chair can view and download rosters in the academic information and learning management systems for that department\u2019s courses.",
+            "sentence": "A department chair can view and download rosters in the academic information and learning management systems for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -1208,7 +1225,7 @@
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1219,7 +1236,7 @@
                     "rosters"
                 ],
                 "label": "roster",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": {
                     "level": "department",
                     "ref": "that department"
@@ -1233,12 +1250,12 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information and learning management systems for that department \u2019s courses",
+                    "trigger_phrase": "the academic information and learning management systems for that department ’s courses",
                     "trigger_word": "in",
                     "systems": [
                         {
                             "label": "the academic information and",
-                            "namespace": "environment.device.device_type:academic_information_and_learning_management_systems_for_department_\u2019s_courses"
+                            "namespace": "environment.device.device_type:academic_information_and_learning_management_systems_for_department_’s_courses"
                         }
                     ],
                     "time_range": null
@@ -1270,12 +1287,18 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "scope",
                     "attribute": "level",
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[department_chair] ACTION[READ,DOWNLOAD] RESOURCE[roster] ENV[the academic information and] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[department_chair] ACTION[READ,READ] RESOURCE[roster] ENV[the academic information and] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 15,
@@ -1303,7 +1326,7 @@
                 },
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -1325,7 +1348,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information and learning management systems",
+                    "trigger_phrase": "the academic information and learning management systems",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1346,7 +1369,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[user] ACTION[READ,MODIFY] RESOURCE[roster] ENV[the academic information and]"
+            "abac_policy": "PERMIT subject[user] ACTION[READ,UPDATE] RESOURCE[roster] ENV[the academic information and]"
         },
         {
             "id": 16,
@@ -1369,12 +1392,12 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
                     "negated": false
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1396,7 +1419,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information and learning management systems",
+                    "trigger_phrase": "the academic information and learning management systems",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1410,7 +1433,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[user] ACTION[UPLOAD,DOWNLOAD] RESOURCE[course_rosters] ENV[the academic information and]"
+            "abac_policy": "PERMIT subject[user] ACTION[CREATE,READ] RESOURCE[course_rosters] ENV[the academic information and]"
         },
         {
             "id": 17,
@@ -1455,7 +1478,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information and learning management systems",
+                    "trigger_phrase": "the academic information and learning management systems",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1511,7 +1534,7 @@
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1533,7 +1556,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1560,7 +1583,7 @@
                     "value": "own"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[READ,DOWNLOAD] RESOURCE[transcript] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[READ,READ] RESOURCE[transcript] ENV[the academic information system]"
         },
         {
             "id": 19,
@@ -1595,7 +1618,7 @@
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1620,7 +1643,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1668,7 +1691,7 @@
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[department_chair] ACTION[READ,DOWNLOAD] RESOURCE[transcript] ENV[the academic information system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[department_chair] ACTION[READ,READ] RESOURCE[transcript] ENV[the academic information system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 20,
@@ -1696,7 +1719,7 @@
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1718,7 +1741,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1739,7 +1762,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[user] ACTION[READ,DOWNLOAD] RESOURCE[transcript] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[user] ACTION[READ,READ] RESOURCE[transcript] ENV[the academic information system]"
         },
         {
             "id": 21,
@@ -1767,7 +1790,7 @@
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1789,7 +1812,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1810,11 +1833,11 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[user] ACTION[READ,DOWNLOAD] RESOURCE[transcript] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[user] ACTION[READ,READ] RESOURCE[transcript] ENV[the academic information system]"
         },
         {
             "id": 22,
-            "sentence": "The head of academic affairs can modify a civilian student\u2019s transcript in the academic information system with the director\u2019s approval.",
+            "sentence": "The head of academic affairs can modify a civilian student’s transcript in the academic information system with the director’s approval.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -1840,7 +1863,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -1850,19 +1873,19 @@
                 "ref_tokens": [
                     "transcript"
                 ],
-                "label": "transcript_with_approval",
+                "label": "transcript",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
-                "namespace": "resource.document.transcript_with_approval"
+                "namespace": "resource.document.transcript"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1883,11 +1906,11 @@
                     "value": "head"
                 }
             ],
-            "abac_policy": "PERMIT subject[head] ACTION[MODIFY] RESOURCE[transcript_with_approval] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[head] ACTION[UPDATE] RESOURCE[transcript] ENV[the academic information system]"
         },
         {
             "id": 23,
-            "sentence": "The reason for a transcript revision must be recorded in the academic information system after the head of academic affairs modifies a civilian student\u2019s transcript.",
+            "sentence": "The reason for a transcript revision must be recorded in the academic information system after the head of academic affairs modifies a civilian student’s transcript.",
             "authorization_decision": "permit",
             "policy_modality": "must",
             "priority": null,
@@ -1910,19 +1933,19 @@
                 "ref_tokens": [
                     "reason"
                 ],
-                "label": "reason_for_revision",
-                "qualifier": null,
+                "label": "reason_for_a_transcript_revision",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
-                "namespace": "resource.document.reason_for_revision"
+                "namespace": "resource.document.reason_for_a_transcript_revision"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -1935,7 +1958,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "after the head of academic affairs modifies a civilian student \u2019s transcript",
+                    "trigger_phrase": "the head of academic affairs modifies a civilian student ’s transcript",
                     "trigger_word": "after",
                     "systems": null,
                     "time_range": null
@@ -1958,8 +1981,15 @@
                 }
             ],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[reason_for_transcript_revision] ACTION[] RESOURCE[reason_for_revision] ENV[the academic information system] IF resource.contract_number IS NOT NULL"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[reason_for_transcript_revision] ACTION[] RESOURCE[reason_for_a_transcript_revision] ENV[the academic information system] IF resource.contract_number IS NOT NULL"
         },
         {
             "id": 24,
@@ -1982,7 +2012,7 @@
             "actions": [
                 {
                     "verb": "check",
-                    "operation": "CHECK",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -1992,19 +2022,19 @@
                 "ref_tokens": [
                     "status"
                 ],
-                "label": "status_of_applications",
+                "label": "status_of_own_applications",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.status_of_applications"
+                "namespace": "resource.document.status_of_own_applications"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2018,7 +2048,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[applicant] ACTION[CHECK] RESOURCE[status_of_applications] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[applicant] ACTION[READ] RESOURCE[status_of_own_applications] ENV[the academic information system]"
         },
         {
             "id": 25,
@@ -2068,7 +2098,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2105,7 +2135,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -2127,7 +2157,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2141,7 +2171,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[applicant] ACTION[MODIFY] RESOURCE[application] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[applicant] ACTION[UPDATE] RESOURCE[application] ENV[the academic information system]"
         },
         {
             "id": 27,
@@ -2164,11 +2194,16 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
+                    "negated": false
+                },
+                {
+                    "verb": "download",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
-            "actions_logical_op": null,
+            "actions_logical_op": "AND",
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
@@ -2187,7 +2222,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2201,7 +2236,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[applicant] ACTION[UPLOAD] RESOURCE[application] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[applicant] ACTION[CREATE,READ] RESOURCE[application] ENV[the academic information system]"
         },
         {
             "id": 28,
@@ -2246,7 +2281,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2259,7 +2294,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "only if the applications are currently pending",
+                    "trigger_phrase": "the applications are currently pending",
                     "trigger_word": "only if",
                     "systems": null,
                     "time_range": null
@@ -2321,32 +2356,32 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
-                "qualifier": "the",
+                "label": "multiple_-_choice_exams",
+                "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [
                 {
-                    "entity_type": "document",
+                    "entity_type": "data",
                     "ref_tokens": [
                         "details"
                     ],
                     "label": "details",
-                    "qualifier": null,
+                    "qualifier": "their",
                     "scope": null,
                     "subject_filter": null,
                     "attributes": null,
-                    "namespace": "resource.document.details"
+                    "namespace": "resource.data.details"
                 }
             ],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2359,15 +2394,8 @@
             ],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": [
-                {
-                    "entity": "resource",
-                    "rel_type": "possession",
-                    "attribute": "qualifier",
-                    "value": "the"
-                }
-            ],
-            "abac_policy": "PERMIT subject[lecturer] ACTION[CREATE,READ] RESOURCE[choice_exams] ENV[the learning management system]"
+            "relation_pairs": null,
+            "abac_policy": "PERMIT subject[lecturer] ACTION[CREATE,READ] RESOURCE[multiple_-_choice_exams] ENV[the learning management system]"
         },
         {
             "id": 30,
@@ -2390,7 +2418,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -2401,19 +2429,19 @@
                     "exams",
                     "modify"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2427,7 +2455,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lecturer] ACTION[MODIFY] RESOURCE[choice_exams] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[lecturer] ACTION[UPDATE] RESOURCE[multiple_-_choice_exams] ENV[the learning management system]"
         },
         {
             "id": 31,
@@ -2450,12 +2478,12 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
                     "negated": false
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -2465,19 +2493,19 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2491,11 +2519,11 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lecturer] ACTION[UPLOAD,DOWNLOAD] RESOURCE[choice_exams] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[lecturer] ACTION[CREATE,READ] RESOURCE[multiple_-_choice_exams] ENV[the learning management system]"
         },
         {
             "id": 32,
-            "sentence": "A department\u2019s academic coordinator can view and download multiple-choice exams in the learning management system for that department\u2019s courses.",
+            "sentence": "A department’s academic coordinator can view and download multiple-choice exams in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -2526,7 +2554,7 @@
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -2536,7 +2564,7 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": {
                     "level": "department",
@@ -2544,14 +2572,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2593,11 +2621,11 @@
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[READ,DOWNLOAD] RESOURCE[choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[READ,READ] RESOURCE[multiple_-_choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 33,
-            "sentence": "A department chair can view and assess multiple-choice exams in the learning management system for that department\u2019s courses.",
+            "sentence": "A department chair can view and assess multiple-choice exams in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -2638,7 +2666,7 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": {
                     "level": "department",
@@ -2646,14 +2674,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2695,11 +2723,11 @@
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[department_chair] ACTION[READ,ASSESS] RESOURCE[choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[department_chair] ACTION[READ,ASSESS] RESOURCE[multiple_-_choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 34,
-            "sentence": "A department chair can upload and download multiple-choice exams in the learning management system for that department\u2019s courses.",
+            "sentence": "A department chair can upload and download multiple-choice exams in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -2725,12 +2753,12 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
                     "negated": false
                 },
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -2740,7 +2768,7 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": {
                     "level": "department",
@@ -2748,14 +2776,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2797,7 +2825,7 @@
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[department_chair] ACTION[UPLOAD,DOWNLOAD] RESOURCE[choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[department_chair] ACTION[CREATE,READ] RESOURCE[multiple_-_choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 35,
@@ -2842,7 +2870,7 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": {
                     "level": "all",
@@ -2850,14 +2878,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -2899,7 +2927,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[head] ACTION[READ,ASSESS] RESOURCE[choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[head] ACTION[READ,ASSESS] RESOURCE[multiple_-_choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 36,
@@ -2929,7 +2957,7 @@
             "actions": [
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -2939,7 +2967,7 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": {
                     "level": "all",
@@ -2947,14 +2975,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "from the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "from",
                     "systems": [
                         {
@@ -2996,7 +3024,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[head] ACTION[DOWNLOAD] RESOURCE[choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[head] ACTION[READ] RESOURCE[multiple_-_choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 37,
@@ -3041,7 +3069,7 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": {
                     "level": "all",
@@ -3049,14 +3077,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3098,7 +3126,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[head] ACTION[READ,ASSESS] RESOURCE[choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[head] ACTION[READ,ASSESS] RESOURCE[multiple_-_choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 38,
@@ -3128,7 +3156,7 @@
             "actions": [
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -3138,7 +3166,7 @@
                 "ref_tokens": [
                     "exams"
                 ],
-                "label": "choice_exams",
+                "label": "multiple_-_choice_exams",
                 "qualifier": null,
                 "scope": {
                     "level": "all",
@@ -3146,14 +3174,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.choice_exams"
+                "namespace": "resource.document.multiple_-_choice_exams"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "from the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "from",
                     "systems": [
                         {
@@ -3195,7 +3223,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[head] ACTION[DOWNLOAD] RESOURCE[choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[head] ACTION[READ] RESOURCE[multiple_-_choice_exams] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 39,
@@ -3248,7 +3276,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3313,7 +3341,7 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -3335,7 +3363,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3349,7 +3377,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lecturer] ACTION[UPLOAD] RESOURCE[learning_material] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[lecturer] ACTION[CREATE] RESOURCE[learning_material] ENV[the learning management system]"
         },
         {
             "id": 41,
@@ -3372,7 +3400,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -3395,7 +3423,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3416,7 +3444,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[lecturer] ACTION[MODIFY] RESOURCE[learning_material] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[lecturer] ACTION[UPDATE] RESOURCE[learning_material] ENV[the learning management system]"
         },
         {
             "id": 42,
@@ -3457,7 +3485,7 @@
                     "materials"
                 ],
                 "label": "learning_material",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
@@ -3468,7 +3496,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3502,6 +3530,12 @@
                     "rel_type": "attribute",
                     "attribute": "type",
                     "value": "civilian"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
                 }
             ],
             "abac_policy": "PERMIT subject[student,civilian] ACTION[READ] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
@@ -3545,7 +3579,7 @@
                     "materials"
                 ],
                 "label": "learning_material",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
@@ -3556,7 +3590,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3590,13 +3624,19 @@
                     "rel_type": "attribute",
                     "attribute": "type",
                     "value": "civilian"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
                 }
             ],
             "abac_policy": "PERMIT subject[student,civilian] ACTION[COMMENT] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 44,
-            "sentence": "A department\u2019s academic coordinator can view and download learning materials in the learning management system for that department\u2019s courses.",
+            "sentence": "A department’s academic coordinator can view and download learning materials in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -3633,7 +3673,7 @@
                     "materials"
                 ],
                 "label": "learning_material",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": {
                     "level": "department",
                     "ref": "that department"
@@ -3647,7 +3687,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3684,6 +3724,12 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "scope",
                     "attribute": "level",
                     "value": "department"
@@ -3693,7 +3739,7 @@
         },
         {
             "id": 45,
-            "sentence": "A department chair can view and assess learning materials in the learning management system for that department\u2019s courses.",
+            "sentence": "A department chair can view and assess learning materials in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -3735,7 +3781,7 @@
                     "materials"
                 ],
                 "label": "learning_material",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": {
                     "level": "department",
                     "ref": "that department"
@@ -3749,7 +3795,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3786,6 +3832,12 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "scope",
                     "attribute": "level",
                     "value": "department"
@@ -3795,7 +3847,7 @@
         },
         {
             "id": 46,
-            "sentence": "A department chair can upload and download learning materials in the learning management system for that department\u2019s courses.",
+            "sentence": "A department chair can upload and download learning materials in the learning management system for that department’s courses.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -3821,7 +3873,7 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -3832,7 +3884,7 @@
                     "materials"
                 ],
                 "label": "learning_material",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": {
                     "level": "department",
                     "ref": "that department"
@@ -3846,7 +3898,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -3883,12 +3935,18 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "scope",
                     "attribute": "level",
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[department_chair] ACTION[UPLOAD] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[department_chair] ACTION[CREATE] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 47,
@@ -3948,7 +4006,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4026,7 +4084,7 @@
             "actions": [
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -4051,7 +4109,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "from the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "from",
                     "systems": [
                         {
@@ -4093,7 +4151,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[head] ACTION[DOWNLOAD] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[head] ACTION[READ] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 49,
@@ -4153,7 +4211,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4225,7 +4283,7 @@
             "actions": [
                 {
                     "verb": "download",
-                    "operation": "DOWNLOAD",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -4250,7 +4308,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "from the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "from",
                     "systems": [
                         {
@@ -4292,7 +4350,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "PERMIT subject[head] ACTION[DOWNLOAD] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[head] ACTION[READ] RESOURCE[learning_material] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 51,
@@ -4342,7 +4400,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4386,7 +4444,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 },
                 {
@@ -4413,7 +4471,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4427,7 +4485,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[user] ACTION[MODIFY,DELETE] RESOURCE[course_offering] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[user] ACTION[UPDATE,DELETE] RESOURCE[course_offering] ENV[the academic information system]"
         },
         {
             "id": 53,
@@ -4477,7 +4535,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4526,7 +4584,7 @@
                 },
                 {
                     "verb": "deny",
-                    "operation": "DENY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -4548,7 +4606,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4569,11 +4627,11 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[lecturer] ACTION[ACCEPT,DENY] RESOURCE[course_offering] ENV[the academic information system]"
+            "abac_policy": "PERMIT subject[lecturer] ACTION[ACCEPT,UPDATE] RESOURCE[course_offering] ENV[the academic information system]"
         },
         {
             "id": 55,
-            "sentence": "A department\u2019s academic coordinator and chair can view and comment on a course offering in the academic information system.",
+            "sentence": "A department’s academic coordinator and chair can view and comment on a course offering in the academic information system.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -4643,7 +4701,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4700,7 +4758,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -4722,7 +4780,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4735,7 +4793,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "if they owe tuition fees exceeding the prescribed limit",
+                    "trigger_phrase": "they owe tuition fees exceeding the prescribed limit",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -4751,7 +4809,7 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[courses] ENV[the course registration system]"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[courses] ENV[the course registration system]"
         },
         {
             "id": 57,
@@ -4781,7 +4839,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -4803,7 +4861,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4816,7 +4874,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "if the total number of registered credits exceeds the prescribed limit",
+                    "trigger_phrase": "the total number of registered credits exceeds the prescribed limit",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -4832,7 +4890,7 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[course] ENV[the course registration system]"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[course] ENV[the course registration system]"
         },
         {
             "id": 58,
@@ -4862,7 +4920,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -4873,7 +4931,7 @@
                     "course"
                 ],
                 "label": "course",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": {
                     "level": "course",
                     "ref": "that course"
@@ -4887,7 +4945,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -4900,7 +4958,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "if they have not passed the prerequisites for that course",
+                    "trigger_phrase": "they have not passed the prerequisites for that course",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -4960,12 +5018,18 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "scope",
                     "attribute": "level",
                     "value": "course"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[course] ENV[the course registration system] IF resource.course_id IN subject.enrolled_courses AND subject.completed_courses CONTAINS resource.prerequisite_course_ids AND subject.completed_courses CONTAINS resource.prerequisite_course_ids"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[course] ENV[the course registration system] IF resource.course_id IN subject.enrolled_courses AND subject.completed_courses CONTAINS resource.prerequisite_course_ids AND subject.completed_courses CONTAINS resource.prerequisite_course_ids"
         },
         {
             "id": 59,
@@ -4995,7 +5059,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -5017,7 +5081,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5030,7 +5094,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "if the courses have overlapping class schedules",
+                    "trigger_phrase": "the courses have overlapping class schedules",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -5061,7 +5125,7 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[courses] ENV[the course registration system] IF NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[courses] ENV[the course registration system] IF NOT (resource.course_A.schedule OVERLAPS resource.course_B.schedule)"
         },
         {
             "id": 60,
@@ -5091,7 +5155,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -5116,7 +5180,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system which are currently open",
+                    "trigger_phrase": "the course registration system which are currently open",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5149,7 +5213,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[REGISTER] RESOURCE[courses,open] ENV[the course registration system which are currently open]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[CREATE] RESOURCE[courses,open] ENV[the course registration system which are currently open]"
         },
         {
             "id": 61,
@@ -5179,7 +5243,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -5204,7 +5268,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5237,7 +5301,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[courses,closed] ENV[the course registration system]"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[courses,closed] ENV[the course registration system]"
         },
         {
             "id": 62,
@@ -5267,7 +5331,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -5289,7 +5353,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5302,7 +5366,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "if the number of registered civilian students reaches the prescribed capacity",
+                    "trigger_phrase": "the number of registered civilian students reaches the prescribed capacity",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -5318,7 +5382,7 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[course] ENV[the course registration system]"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[course] ENV[the course registration system]"
         },
         {
             "id": 63,
@@ -5348,7 +5412,7 @@
             "actions": [
                 {
                     "verb": "cancel",
-                    "operation": "CANCEL",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -5359,7 +5423,7 @@
                     "registration"
                 ],
                 "label": "registration",
-                "qualifier": null,
+                "qualifier": "their",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
@@ -5370,7 +5434,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5389,9 +5453,15 @@
                     "rel_type": "attribute",
                     "attribute": "type",
                     "value": "civilian"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "their"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[CANCEL] RESOURCE[registration] ENV[the course registration system]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[UPDATE] RESOURCE[registration] ENV[the course registration system]"
         },
         {
             "id": 64,
@@ -5421,12 +5491,12 @@
             "actions": [
                 {
                     "verb": "cancel",
-                    "operation": "CANCEL",
+                    "operation": "UPDATE",
                     "negated": true
                 },
                 {
                     "verb": "close",
-                    "operation": "CLOSE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -5437,7 +5507,7 @@
                     "registration"
                 ],
                 "label": "registration",
-                "qualifier": null,
+                "qualifier": "their",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": {
@@ -5451,7 +5521,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5473,6 +5543,12 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "their"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "status",
                     "attribute": "status",
                     "value": "closed"
@@ -5484,7 +5560,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[CANCEL,CLOSE] RESOURCE[registration,closed] ENV[the course registration system]"
+            "abac_policy": "DENY subject[student,civilian] ACTION[UPDATE,UPDATE] RESOURCE[registration,closed] ENV[the course registration system]"
         },
         {
             "id": 65,
@@ -5520,23 +5596,23 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "attribute",
                 "ref_tokens": [
                     "status"
                 ],
-                "label": "status_of_courses",
-                "qualifier": null,
+                "label": "status_of_registered_courses",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
-                "namespace": "resource.document.status_of_courses"
+                "namespace": "resource.attribute.status_of_registered_courses"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5555,9 +5631,15 @@
                     "rel_type": "attribute",
                     "attribute": "type",
                     "value": "civilian"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[READ] RESOURCE[status_of_courses] ENV[the course registration system]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[READ] RESOURCE[status_of_registered_courses] ENV[the course registration system]"
         },
         {
             "id": 66,
@@ -5587,7 +5669,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -5609,7 +5691,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5622,7 +5704,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "if the system has not been activated",
+                    "trigger_phrase": "the system has not been activated",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -5638,7 +5720,7 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[courses] ENV[the course registration system]"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[courses] ENV[the course registration system]"
         },
         {
             "id": 67,
@@ -5683,7 +5765,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5708,7 +5790,7 @@
         },
         {
             "id": 68,
-            "sentence": "Civilian students\u2019 class schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
+            "sentence": "Civilian students’ class schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
             "authorization_decision": "permit",
             "policy_modality": "only_allowed",
             "priority": null,
@@ -5734,7 +5816,7 @@
             "actions": [
                 {
                     "verb": "allow",
-                    "operation": "ALLOW",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -5756,7 +5838,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5769,7 +5851,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "between 7:00 am and 5:25 pm",
+                    "trigger_phrase": "7:00 am and 5:25 pm",
                     "trigger_word": "between",
                     "systems": null,
                     "time_range": {
@@ -5803,11 +5885,11 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[ALLOW] RESOURCE[class_schedule] ENV[the academic information system] IF environment.current_time IN [07:00, 17:25]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[UPDATE] RESOURCE[class_schedule] ENV[the academic information system] IF environment.current_time IN [07:00, 17:25]"
         },
         {
             "id": 69,
-            "sentence": "Lecturers\u2019 teaching schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
+            "sentence": "Lecturers’ teaching schedules are only allowed in the academic information system between 7:00 am and 5:25 pm.",
             "authorization_decision": "permit",
             "policy_modality": "only_allowed",
             "priority": null,
@@ -5826,7 +5908,7 @@
             "actions": [
                 {
                     "verb": "allow",
-                    "operation": "ALLOW",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -5848,7 +5930,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5861,7 +5943,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "between 7:00 am and 5:25 pm",
+                    "trigger_phrase": "7:00 am and 5:25 pm",
                     "trigger_word": "between",
                     "systems": null,
                     "time_range": {
@@ -5888,7 +5970,7 @@
             ],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lecturer] ACTION[ALLOW] RESOURCE[teaching_schedule] ENV[the academic information system] IF environment.current_time IN [07:00, 17:25]"
+            "abac_policy": "PERMIT subject[lecturer] ACTION[UPDATE] RESOURCE[teaching_schedule] ENV[the academic information system] IF environment.current_time IN [07:00, 17:25]"
         },
         {
             "id": 70,
@@ -5943,7 +6025,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -5995,7 +6077,7 @@
         },
         {
             "id": 71,
-            "sentence": "A department\u2019s academic coordinator can view the course registration results of all civilian students in the academic information system for that department.",
+            "sentence": "A department’s academic coordinator can view the course registration results of all civilian students in the academic information system for that department.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -6046,7 +6128,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the academic information system",
+                    "trigger_phrase": "the academic information system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6146,7 +6228,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the course registration system",
+                    "trigger_phrase": "the course registration system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6159,7 +6241,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "even if the number of registered civilian students has reached the prescribed capacity",
+                    "trigger_phrase": "the number of registered civilian students has reached the prescribed capacity",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -6179,7 +6261,7 @@
         },
         {
             "id": 73,
-            "sentence": "A department\u2019s academic coordinator and instructors can upload and view the details of suggested graduation project topics in the learning management system.",
+            "sentence": "A department’s academic coordinator and instructors can upload and view the details of suggested graduation project topics in the learning management system.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -6215,7 +6297,7 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
                     "negated": false
                 },
                 {
@@ -6226,23 +6308,23 @@
             ],
             "actions_logical_op": "AND",
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_topics",
+                "label": "details_of_suggested_project_topics",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.details_of_topics"
+                "namespace": "resource.data.details_of_suggested_project_topics"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6263,7 +6345,7 @@
                     "value": "coordinator"
                 }
             ],
-            "abac_policy": "PERMIT subject[academic_coordinator,instructor] ACTION[UPLOAD,READ] RESOURCE[details_of_topics] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[academic_coordinator,instructor] ACTION[CREATE,READ] RESOURCE[details_of_suggested_project_topics] ENV[the learning management system]"
         },
         {
             "id": 74,
@@ -6293,13 +6375,13 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "system",
                 "ref_tokens": [
                     "system"
                 ],
@@ -6308,14 +6390,14 @@
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
-                "namespace": "resource.document.system"
+                "namespace": "resource.system.system"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for graduation project topics",
+                    "trigger_phrase": "graduation project topics",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -6323,7 +6405,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "only when the system is activated",
+                    "trigger_phrase": "the system is activated",
                     "trigger_word": "only when",
                     "systems": null,
                     "time_range": null
@@ -6345,7 +6427,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[REGISTER] RESOURCE[system]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[CREATE] RESOURCE[system]"
         },
         {
             "id": 75,
@@ -6414,7 +6496,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -6424,19 +6506,19 @@
                 "ref_tokens": [
                     "topic"
                 ],
-                "label": "project_topic",
+                "label": "graduation_project_topic",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
-                "namespace": "resource.document.project_topic"
+                "namespace": "resource.document.graduation_project_topic"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6457,7 +6539,7 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[REGISTER] RESOURCE[project_topic] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[CREATE] RESOURCE[graduation_project_topic] ENV[the learning management system]"
         },
         {
             "id": 77,
@@ -6487,7 +6569,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -6509,7 +6591,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6530,11 +6612,11 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[REGISTER] RESOURCE[preferred_instructors] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[CREATE] RESOURCE[preferred_instructors] ENV[the learning management system]"
         },
         {
             "id": 78,
-            "sentence": "Instructors can accept or deny civilian students\u2019 applications for graduation project topics in the learning management system.",
+            "sentence": "Instructors can accept or deny civilian students’ applications for graduation project topics in the learning management system.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -6558,7 +6640,7 @@
                 },
                 {
                     "verb": "deny",
-                    "operation": "DENY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -6568,19 +6650,19 @@
                 "ref_tokens": [
                     "applications"
                 ],
-                "label": "applications_for_topics",
+                "label": "application",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
-                "namespace": "resource.document.applications_for_topics"
+                "namespace": "resource.document.application"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for graduation project topics",
+                    "trigger_phrase": "graduation project topics",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -6588,7 +6670,7 @@
                 {
                     "id": "env_2",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6602,7 +6684,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[instructor] ACTION[ACCEPT,DENY] RESOURCE[applications_for_topics] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[instructor] ACTION[ACCEPT,UPDATE] RESOURCE[application] ENV[the learning management system]"
         },
         {
             "id": 79,
@@ -6638,23 +6720,23 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_topics",
-                "qualifier": null,
+                "label": "details_of_graduation_project_topics",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": "civilian_student",
                 "attributes": null,
-                "namespace": "resource.document.details_of_topics"
+                "namespace": "resource.data.details_of_graduation_project_topics"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system which have been uploaded by instructors",
+                    "trigger_phrase": "the learning management system which have been uploaded by instructors",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6673,9 +6755,15 @@
                     "rel_type": "attribute",
                     "attribute": "type",
                     "value": "civilian"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[student,civilian] ACTION[READ] RESOURCE[details_of_topics] ENV[the learning management system which have been uploaded by instructors]"
+            "abac_policy": "PERMIT subject[student,civilian] ACTION[READ] RESOURCE[details_of_graduation_project_topics] ENV[the learning management system which have been uploaded by instructors]"
         },
         {
             "id": 80,
@@ -6711,11 +6799,11 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_topics",
+                "label": "details_of_graduation_project_topics",
                 "qualifier": null,
                 "scope": {
                     "level": "department",
@@ -6723,14 +6811,14 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.details_of_topics"
+                "namespace": "resource.data.details_of_graduation_project_topics"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6772,7 +6860,7 @@
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[department_chair] ACTION[READ] RESOURCE[details_of_topics] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[department_chair] ACTION[READ] RESOURCE[details_of_graduation_project_topics] ENV[the learning management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 81,
@@ -6801,23 +6889,23 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_topics",
+                "label": "details_of_graduation_project_topics",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.details_of_topics"
+                "namespace": "resource.data.details_of_graduation_project_topics"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6831,11 +6919,11 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[details_of_topics] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[details_of_graduation_project_topics] ENV[the learning management system]"
         },
         {
             "id": 82,
-            "sentence": "A department\u2019s academic coordinator and chair can view the list of civilian students in the learning management system who have successfully registered for graduation project topics in that department.",
+            "sentence": "A department’s academic coordinator and chair can view the list of civilian students in the learning management system who have successfully registered for graduation project topics in that department.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -6903,7 +6991,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system who have successfully registered",
+                    "trigger_phrase": "the learning management system who have successfully registered",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -6916,7 +7004,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "for graduation project topics",
+                    "trigger_phrase": "graduation project topics",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -6954,7 +7042,7 @@
         },
         {
             "id": 83,
-            "sentence": "A department\u2019s academic coordinator and chair can view the list of civilian students in the learning management system who belong to that department and have not yet registered for a graduation project topic.",
+            "sentence": "A department’s academic coordinator and chair can view the list of civilian students in the learning management system who belong to that department and have not yet registered for a graduation project topic.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -7022,7 +7110,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system who belong",
+                    "trigger_phrase": "the learning management system who belong",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7035,7 +7123,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "for a graduation project topic",
+                    "trigger_phrase": "a graduation project topic",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -7092,29 +7180,29 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_topics",
+                "label": "details_of_suggested_project_topics",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.details_of_topics"
+                "namespace": "resource.data.details_of_suggested_project_topics"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7128,7 +7216,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[instructor] ACTION[MODIFY] RESOURCE[details_of_topics] ENV[the learning management system]"
+            "abac_policy": "PERMIT subject[instructor] ACTION[UPDATE] RESOURCE[details_of_suggested_project_topics] ENV[the learning management system]"
         },
         {
             "id": 85,
@@ -7161,19 +7249,19 @@
                 "ref_tokens": [
                     "topics"
                 ],
-                "label": "suggested_project_topics",
-                "qualifier": null,
+                "label": "suggested_graduation_project_topics",
+                "qualifier": "their",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.suggested_project_topics"
+                "namespace": "resource.document.suggested_graduation_project_topics"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the learning management system",
+                    "trigger_phrase": "the learning management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7186,8 +7274,15 @@
             ],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[instructor] ACTION[DELETE] RESOURCE[suggested_project_topics] ENV[the learning management system]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "their"
+                }
+            ],
+            "abac_policy": "PERMIT subject[instructor] ACTION[DELETE] RESOURCE[suggested_graduation_project_topics] ENV[the learning management system]"
         },
         {
             "id": 86,
@@ -7217,7 +7312,7 @@
             "actions": [
                 {
                     "verb": "register",
-                    "operation": "REGISTER",
+                    "operation": "CREATE",
                     "negated": true
                 }
             ],
@@ -7239,7 +7334,7 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for graduation project topics",
+                    "trigger_phrase": "graduation project topics",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -7255,7 +7350,7 @@
                     "value": "civilian"
                 }
             ],
-            "abac_policy": "DENY subject[student,civilian] ACTION[REGISTER] RESOURCE[graduation_project_topics]"
+            "abac_policy": "DENY subject[student,civilian] ACTION[CREATE] RESOURCE[graduation_project_topics]"
         },
         {
             "id": 87,
@@ -7288,19 +7383,19 @@
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_agreements",
-                "qualifier": null,
+                "label": "details_of_visiting_lecturer_agreements",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.agreement.details_of_agreements"
+                "namespace": "resource.agreement.details_of_visiting_lecturer_agreements"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7313,8 +7408,15 @@
             ],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[details_of_agreements] ENV[the visiting lecturer management system]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[user] ACTION[READ] RESOURCE[details_of_visiting_lecturer_agreements] ENV[the visiting lecturer management system]"
         },
         {
             "id": 88,
@@ -7366,7 +7468,7 @@
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "in the academic affairs office",
+                    "trigger_phrase": "the academic affairs office",
                     "trigger_word": "in",
                     "systems": null,
                     "time_range": null
@@ -7374,7 +7476,7 @@
                 {
                     "id": "env_2",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7418,7 +7520,7 @@
             "actions": [
                 {
                     "verb": "export",
-                    "operation": "EXPORT",
+                    "operation": "READ",
                     "negated": true
                 }
             ],
@@ -7440,7 +7542,7 @@
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "in the academic affairs or finance office",
+                    "trigger_phrase": "the academic affairs or finance office",
                     "trigger_word": "in",
                     "systems": null,
                     "time_range": null
@@ -7448,7 +7550,7 @@
                 {
                     "id": "env_2",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7462,11 +7564,11 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "DENY subject[user] ACTION[EXPORT] RESOURCE[entire_visiting_lecturer_agreements] ENV[the visiting lecturer management system]"
+            "abac_policy": "DENY subject[user] ACTION[READ] RESOURCE[entire_visiting_lecturer_agreements] ENV[the visiting lecturer management system]"
         },
         {
             "id": 90,
-            "sentence": "A department\u2019s academic coordinator and chair can view the details of visiting lecturer agreements in the visiting lecturer management system.",
+            "sentence": "A department’s academic coordinator and chair can view the details of visiting lecturer agreements in the visiting lecturer management system.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -7519,19 +7621,19 @@
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_agreements",
-                "qualifier": null,
+                "label": "details_of_visiting_lecturer_agreements",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.agreement.details_of_agreements"
+                "namespace": "resource.agreement.details_of_visiting_lecturer_agreements"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7556,13 +7658,19 @@
                     "rel_type": "attribute",
                     "attribute": "rank",
                     "value": "chair"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[academic_coordinator,department_chair] ACTION[READ] RESOURCE[details_of_agreements] ENV[the visiting lecturer management system]"
+            "abac_policy": "PERMIT subject[academic_coordinator,department_chair] ACTION[READ] RESOURCE[details_of_visiting_lecturer_agreements] ENV[the visiting lecturer management system]"
         },
         {
             "id": 91,
-            "sentence": "A department\u2019s academic coordinator can export visiting lecturer agreements in the visiting lecturer management system only for that department.",
+            "sentence": "A department’s academic coordinator can export visiting lecturer agreements in the visiting lecturer management system only for that department.",
             "authorization_decision": "permit",
             "policy_modality": "can",
             "priority": null,
@@ -7588,7 +7696,7 @@
             "actions": [
                 {
                     "verb": "export",
-                    "operation": "EXPORT",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -7599,7 +7707,7 @@
                     "agreements"
                 ],
                 "label": "visiting_lecturer_agreement",
-                "qualifier": null,
+                "qualifier": "own",
                 "scope": {
                     "level": "department",
                     "ref": "that department"
@@ -7613,7 +7721,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7650,12 +7758,18 @@
                 },
                 {
                     "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                },
+                {
+                    "entity": "resource",
                     "rel_type": "scope",
                     "attribute": "level",
                     "value": "department"
                 }
             ],
-            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[EXPORT] RESOURCE[visiting_lecturer_agreement] ENV[the visiting lecturer management system] IF resource.course_id IN subject.enrolled_courses"
+            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[READ] RESOURCE[visiting_lecturer_agreement] ENV[the visiting lecturer management system] IF resource.course_id IN subject.enrolled_courses"
         },
         {
             "id": 92,
@@ -7672,19 +7786,19 @@
                 "ref_tokens": [
                     "agreements"
                 ],
-                "label": "lecturer_agreements_for_classes",
+                "label": "visiting_lecturer_agreement",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.agreement.lecturer_agreements_for_classes"
+                "namespace": "resource.agreement.visiting_lecturer_agreement"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for classes",
+                    "trigger_phrase": "classes",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -7693,7 +7807,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject ACTION[] RESOURCE[lecturer_agreements_for_classes]"
+            "abac_policy": "PERMIT subject ACTION[] RESOURCE[visiting_lecturer_agreement]"
         },
         {
             "id": 93,
@@ -7703,11 +7817,11 @@
             "priority": null,
             "subjects": [
                 {
-                    "entity_type": "user",
+                    "entity_type": "agreement",
                     "ref_tokens": [
                         "agreement"
                     ],
-                    "role": "visiting_lecturer",
+                    "role": "visiting_lecturer_agreement",
                     "qualifiers": {
                         "type": "visiting",
                         "rank": null,
@@ -7716,14 +7830,14 @@
                         "department": null,
                         "negated": false
                     },
-                    "namespace": "subject.user.visiting_lecturer.visiting"
+                    "namespace": "subject.agreement.visiting_lecturer_agreement.visiting"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "issue",
-                    "operation": "ISSUE",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -7748,7 +7862,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7761,7 +7875,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "if it has been numbered , validated , and exported",
+                    "trigger_phrase": "it has been numbered , validated , and exported",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -7804,7 +7918,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[visiting_lecturer,visiting] ACTION[ISSUE] RESOURCE[visiting_lecturer_agreement,issued] ENV[the visiting lecturer management system] IF resource.contract_number IS NOT NULL"
+            "abac_policy": "PERMIT subject[visiting_lecturer_agreement,visiting] ACTION[CREATE] RESOURCE[visiting_lecturer_agreement,issued] ENV[the visiting lecturer management system] IF resource.contract_number IS NOT NULL"
         },
         {
             "id": 94,
@@ -7818,7 +7932,7 @@
                     "ref_tokens": [
                         "office"
                     ],
-                    "role": "finance_office",
+                    "role": "office",
                     "qualifiers": {
                         "type": null,
                         "rank": null,
@@ -7827,14 +7941,14 @@
                         "department": null,
                         "negated": false
                     },
-                    "namespace": "subject.user.finance_office"
+                    "namespace": "subject.user.office"
                 }
             ],
             "subjects_logical_op": null,
             "actions": [
                 {
                     "verb": "approve",
-                    "operation": "APPROVE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -7856,7 +7970,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -7869,7 +7983,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "within the year",
+                    "trigger_phrase": "the year",
                     "trigger_word": "within",
                     "systems": null,
                     "time_range": null
@@ -7877,7 +7991,7 @@
                 {
                     "id": "env_3",
                     "env_type": "location",
-                    "trigger_phrase": "only if the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit",
+                    "trigger_phrase": "the total teaching hours of a visiting lecturer within the year do not exceed the prescribed limit",
                     "trigger_word": "only if",
                     "systems": null,
                     "time_range": null
@@ -7922,7 +8036,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[finance_office] ACTION[APPROVE] RESOURCE[visiting_lecturer_class] ENV[the visiting lecturer management system] IF resource.approver IN (unknown)"
+            "abac_policy": "PERMIT subject[office] ACTION[UPDATE] RESOURCE[visiting_lecturer_class] ENV[the visiting lecturer management system] IF resource.approver IN (unknown)"
         },
         {
             "id": 95,
@@ -7962,7 +8076,7 @@
                 "ref_tokens": [
                     "hours"
                 ],
-                "label": "hours_per_year",
+                "label": "teaching_hours",
                 "qualifier": null,
                 "scope": {
                     "level": "all",
@@ -7970,7 +8084,7 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.hours_per_year"
+                "namespace": "resource.document.teaching_hours"
             },
             "additional_resources": [],
             "environments": [],
@@ -8019,7 +8133,7 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "DENY subject[visiting_lecturer,visiting] ACTION[TEACH] RESOURCE[hours_per_year] IF subject.teaching_hours > 280.0 AND subject.teaching_hours > 280.0"
+            "abac_policy": "DENY subject[visiting_lecturer,visiting] ACTION[TEACH] RESOURCE[teaching_hours] IF subject.teaching_hours > 280.0 AND subject.teaching_hours > 280.0"
         },
         {
             "id": 96,
@@ -8059,7 +8173,7 @@
                 "ref_tokens": [
                     "hours"
                 ],
-                "label": "hours_per_year",
+                "label": "teaching_hours",
                 "qualifier": null,
                 "scope": {
                     "level": "all",
@@ -8067,7 +8181,7 @@
                 },
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.hours_per_year"
+                "namespace": "resource.document.teaching_hours"
             },
             "additional_resources": [],
             "environments": [],
@@ -8116,11 +8230,11 @@
                     "value": "all"
                 }
             ],
-            "abac_policy": "DENY subject[visiting_lecturer,retired] ACTION[TEACH] RESOURCE[hours_per_year] IF subject.teaching_hours > 560.0 AND subject.teaching_hours > 560.0"
+            "abac_policy": "DENY subject[visiting_lecturer,retired] ACTION[TEACH] RESOURCE[teaching_hours] IF subject.teaching_hours > 560.0 AND subject.teaching_hours > 560.0"
         },
         {
             "id": 97,
-            "sentence": "A department\u2019s academic coordinator cannot modify visiting lecturer agreement information in the visiting lecturer management system after approval by the academic affairs office or finance office.",
+            "sentence": "A department’s academic coordinator cannot modify visiting lecturer agreement information in the visiting lecturer management system after approval by the academic affairs office or finance office.",
             "authorization_decision": "deny",
             "policy_modality": "cannot",
             "priority": null,
@@ -8146,7 +8260,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": true
                 }
             ],
@@ -8156,19 +8270,19 @@
                 "ref_tokens": [
                     "information"
                 ],
-                "label": "agreement_information",
+                "label": "visiting_lecturer_agreement_information",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.agreement.agreement_information"
+                "namespace": "resource.agreement.visiting_lecturer_agreement_information"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -8189,11 +8303,11 @@
                     "value": "coordinator"
                 }
             ],
-            "abac_policy": "DENY subject[academic_coordinator] ACTION[MODIFY] RESOURCE[agreement_information] ENV[the visiting lecturer management system]"
+            "abac_policy": "DENY subject[academic_coordinator] ACTION[UPDATE] RESOURCE[visiting_lecturer_agreement_information] ENV[the visiting lecturer management system]"
         },
         {
             "id": 98,
-            "sentence": "A department\u2019s academic coordinator can modify a visiting lecturer agreement in the visiting lecturer management system only if the board of directors has rejected its approval.",
+            "sentence": "A department’s academic coordinator can modify a visiting lecturer agreement in the visiting lecturer management system only if the board of directors has rejected its approval.",
             "authorization_decision": "permit",
             "policy_modality": "only_if",
             "priority": null,
@@ -8219,7 +8333,7 @@
             "actions": [
                 {
                     "verb": "modify",
-                    "operation": "MODIFY",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -8241,7 +8355,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -8254,7 +8368,7 @@
                 {
                     "id": "env_2",
                     "env_type": "location",
-                    "trigger_phrase": "only if the board of directors has rejected its approval",
+                    "trigger_phrase": "the board of directors has rejected its approval",
                     "trigger_word": "only if",
                     "systems": null,
                     "time_range": null
@@ -8305,7 +8419,7 @@
                     "value": "coordinator"
                 }
             ],
-            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[MODIFY] RESOURCE[visiting_lecturer_agreement] ENV[the visiting lecturer management system] IF resource.approver IN (director, board_of_directors) AND resource.approver IN (director, board_of_directors)"
+            "abac_policy": "PERMIT subject[academic_coordinator] ACTION[UPDATE] RESOURCE[visiting_lecturer_agreement] ENV[the visiting lecturer management system] IF resource.approver IN (director, board_of_directors) AND resource.approver IN (director, board_of_directors)"
         },
         {
             "id": 99,
@@ -8315,11 +8429,11 @@
             "priority": null,
             "subjects": [
                 {
-                    "entity_type": "user",
+                    "entity_type": "agreement",
                     "ref_tokens": [
                         "agreement"
                     ],
-                    "role": "visiting_lecturer",
+                    "role": "visiting_lecturer_agreement",
                     "qualifiers": {
                         "type": "visiting",
                         "rank": null,
@@ -8328,7 +8442,7 @@
                         "department": null,
                         "negated": false
                     },
-                    "namespace": "subject.user.visiting_lecturer.visiting"
+                    "namespace": "subject.agreement.visiting_lecturer_agreement.visiting"
                 }
             ],
             "subjects_logical_op": null,
@@ -8357,7 +8471,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -8393,7 +8507,7 @@
                     "value": "visiting"
                 }
             ],
-            "abac_policy": "PERMIT subject[visiting_lecturer,visiting] ACTION[READ] RESOURCE[contract_number] ENV[the visiting lecturer management system] IF resource.contract_number IS NOT NULL"
+            "abac_policy": "PERMIT subject[visiting_lecturer_agreement,visiting] ACTION[READ] RESOURCE[contract_number] ENV[the visiting lecturer management system] IF resource.contract_number IS NOT NULL"
         },
         {
             "id": 100,
@@ -8434,7 +8548,7 @@
                     "agreements"
                 ],
                 "label": "issued_visiting_lecturer_agreements",
-                "qualifier": null,
+                "qualifier": "their",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": {
@@ -8448,7 +8562,7 @@
                 {
                     "id": "env_1",
                     "env_type": "system",
-                    "trigger_phrase": "in the visiting lecturer management system",
+                    "trigger_phrase": "the visiting lecturer management system",
                     "trigger_word": "in",
                     "systems": [
                         {
@@ -8467,6 +8581,12 @@
                     "rel_type": "attribute",
                     "attribute": "type",
                     "value": "visiting"
+                },
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "their"
                 },
                 {
                     "entity": "resource",

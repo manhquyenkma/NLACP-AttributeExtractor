@@ -141,25 +141,16 @@
                     "ref_tokens": [
                         "representative"
                     ],
-                    "role": "personal_health_representative",
+                    "role": "health_representative",
                     "qualifiers": null,
-                    "namespace": "subject.user.personal_health_representative"
-                },
-                {
-                    "entity_type": "user",
-                    "ref_tokens": [
-                        "representative"
-                    ],
-                    "role": "personal_health_representative",
-                    "qualifiers": null,
-                    "namespace": "subject.user.personal_health_representative"
+                    "namespace": "subject.user.health_representative"
                 }
             ],
             "subjects_logical_op": "OR",
             "actions": [
                 {
                     "verb": "choose",
-                    "operation": "CHOOSE",
+                    "operation": "READ",
                     "negated": false
                 }
             ],
@@ -167,21 +158,28 @@
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
-                    "list"
+                    "prescriptions"
                 ],
-                "label": "list_of_prescriptions",
-                "qualifier": null,
+                "label": "prescription",
+                "qualifier": "own",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.list_of_prescriptions"
+                "namespace": "resource.document.prescription"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[patient,personal_health_representative,personal_health_representative] ACTION[CHOOSE] RESOURCE[list_of_prescriptions]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "own"
+                }
+            ],
+            "abac_policy": "PERMIT subject[patient,health_representative] ACTION[READ] RESOURCE[prescription]"
         },
         {
             "id": 4,
@@ -262,7 +260,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "information"
                 ],
@@ -271,7 +269,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.patient_information"
+                "namespace": "resource.data.patient_information"
             },
             "additional_resources": [],
             "environments": [],
@@ -368,21 +366,28 @@
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
-                    "list"
+                    "appointments"
                 ],
-                "label": "list_of_appointments",
-                "qualifier": null,
+                "label": "upcoming_appointments",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.list_of_appointments"
+                "namespace": "resource.document.upcoming_appointments"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[list_of_appointments]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[upcoming_appointments]"
         },
         {
             "id": 8,
@@ -411,7 +416,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "details"
                 ],
@@ -420,7 +425,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.appointment_details"
+                "namespace": "resource.data.appointment_details"
             },
             "additional_resources": [],
             "environments": [],
@@ -517,21 +522,28 @@
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
-                    "list"
+                    "reports"
                 ],
-                "label": "list_of_reports",
-                "qualifier": null,
+                "label": "requested_reports",
+                "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.list_of_reports"
+                "namespace": "resource.document.requested_reports"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
-            "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[list_of_reports]"
+            "relation_pairs": [
+                {
+                    "entity": "resource",
+                    "rel_type": "possession",
+                    "attribute": "qualifier",
+                    "value": "the"
+                }
+            ],
+            "abac_policy": "PERMIT subject[lhcp] ACTION[READ] RESOURCE[requested_reports]"
         },
         {
             "id": 11,
@@ -576,7 +588,7 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "for a given office visit",
+                    "trigger_phrase": "a given office visit",
                     "trigger_word": "for",
                     "systems": null,
                     "time_range": null
@@ -682,7 +694,7 @@
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "if it is not in the testing state",
+                    "trigger_phrase": "it is not in the testing state",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -736,7 +748,7 @@
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "if its status is in transit or received",
+                    "trigger_phrase": "its status is in transit or received",
                     "trigger_word": "if",
                     "systems": null,
                     "time_range": null
@@ -869,15 +881,6 @@
                     "role": "representative",
                     "qualifiers": null,
                     "namespace": "subject.user.representative"
-                },
-                {
-                    "entity_type": "user",
-                    "ref_tokens": [
-                        "representative"
-                    ],
-                    "role": "representative",
-                    "qualifiers": null,
-                    "namespace": "subject.user.representative"
                 }
             ],
             "subjects_logical_op": "OR",
@@ -906,7 +909,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[patient,representative,representative] ACTION[SEND] RESOURCE[message]"
+            "abac_policy": "PERMIT subject[patient,representative] ACTION[SEND] RESOURCE[message]"
         },
         {
             "id": 18,
@@ -978,15 +981,6 @@
                     "role": "representative",
                     "qualifiers": null,
                     "namespace": "subject.user.representative"
-                },
-                {
-                    "entity_type": "user",
-                    "ref_tokens": [
-                        "representative"
-                    ],
-                    "role": "representative",
-                    "qualifiers": null,
-                    "namespace": "subject.user.representative"
                 }
             ],
             "subjects_logical_op": "OR",
@@ -1015,7 +1009,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[patient,representative,representative] ACTION[REPLY] RESOURCE[message]"
+            "abac_policy": "PERMIT subject[patient,representative] ACTION[REPLY] RESOURCE[message]"
         },
         {
             "id": 20,
@@ -1105,7 +1099,7 @@
                 {
                     "id": "env_1",
                     "env_type": "location",
-                    "trigger_phrase": "from the inbox or outbox",
+                    "trigger_phrase": "the inbox or outbox",
                     "trigger_word": "from",
                     "systems": null,
                     "time_range": null
@@ -1154,19 +1148,19 @@
                 "ref_tokens": [
                     "patient"
                 ],
-                "label": "patient_to_another_hcp",
+                "label": "patient",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.patient_to_another_hcp"
+                "namespace": "resource.document.patient"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lhcp] ACTION[REFER] RESOURCE[patient_to_another_hcp]"
+            "abac_policy": "PERMIT subject[lhcp] ACTION[REFER] RESOURCE[patient]"
         },
         {
             "id": 23,
@@ -1289,19 +1283,19 @@
                 "ref_tokens": [
                     "patient"
                 ],
-                "label": "patient_from_list",
+                "label": "patient",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.patient_from_list"
+                "namespace": "resource.document.patient"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[lhcp] ACTION[DELETE] RESOURCE[patient_from_list]"
+            "abac_policy": "PERMIT subject[lhcp] ACTION[DELETE] RESOURCE[patient]"
         },
         {
             "id": 26,
@@ -1330,7 +1324,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "record",
                 "ref_tokens": [
                     "measurements"
                 ],
@@ -1339,7 +1333,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.physiological_measurements"
+                "namespace": "resource.record.physiological_measurements"
             },
             "additional_resources": [],
             "environments": [],
@@ -1375,7 +1369,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "record",
                 "ref_tokens": [
                     "data"
                 ],
@@ -1384,7 +1378,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.physiological_monitoring_data"
+                "namespace": "resource.record.physiological_monitoring_data"
             },
             "additional_resources": [],
             "environments": [],
@@ -1420,7 +1414,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "record",
                 "ref_tokens": [
                     "measurements"
                 ],
@@ -1429,7 +1423,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.physiological_measurements"
+                "namespace": "resource.record.physiological_measurements"
             },
             "additional_resources": [],
             "environments": [],
@@ -1465,7 +1459,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "record",
                 "ref_tokens": [
                     "measurements"
                 ],
@@ -1474,7 +1468,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.physiological_measurements"
+                "namespace": "resource.record.physiological_measurements"
             },
             "additional_resources": [],
             "environments": [],
@@ -1514,19 +1508,19 @@
                 "ref_tokens": [
                     "events"
                 ],
-                "label": "adverse_events_for_medications",
+                "label": "adverse_events",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.adverse_events_for_medications"
+                "namespace": "resource.document.adverse_events"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events_for_medications]"
+            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events]"
         },
         {
             "id": 31,
@@ -1559,19 +1553,19 @@
                 "ref_tokens": [
                     "events"
                 ],
-                "label": "adverse_events_for_immunizations",
+                "label": "adverse_events",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.adverse_events_for_immunizations"
+                "namespace": "resource.document.adverse_events"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events_for_immunizations]"
+            "abac_policy": "PERMIT subject[patient] ACTION[REPORT] RESOURCE[adverse_events]"
         },
         {
             "id": 32,
@@ -1585,9 +1579,9 @@
                     "ref_tokens": [
                         "agent"
                     ],
-                    "role": "public_health_agent",
+                    "role": "health_agent",
                     "qualifiers": null,
-                    "namespace": "subject.user.public_health_agent"
+                    "namespace": "subject.user.health_agent"
                 }
             ],
             "subjects_logical_op": null,
@@ -1620,7 +1614,7 @@
                     "ref_tokens": [
                         "reports"
                     ],
-                    "label": "reports",
+                    "label": "report",
                     "qualifier": null,
                     "scope": null,
                     "subject_filter": null,
@@ -1628,7 +1622,7 @@
                         "sensitivity": "public",
                         "status": null
                     },
-                    "namespace": "resource.document.reports"
+                    "namespace": "resource.document.report"
                 }
             ],
             "environments": [],
@@ -1648,7 +1642,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[public_health_agent] ACTION[READ] RESOURCE[adverse_event]"
+            "abac_policy": "PERMIT subject[health_agent] ACTION[READ] RESOURCE[adverse_event]"
         },
         {
             "id": 33,
@@ -1662,9 +1656,9 @@
                     "ref_tokens": [
                         "agent"
                     ],
-                    "role": "public_health_agent",
+                    "role": "health_agent",
                     "qualifiers": null,
-                    "namespace": "subject.user.public_health_agent"
+                    "namespace": "subject.user.health_agent"
                 }
             ],
             "subjects_logical_op": null,
@@ -1681,7 +1675,7 @@
                 "ref_tokens": [
                     "details"
                 ],
-                "label": "details_of_report",
+                "label": "details_of_specific_report",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
@@ -1689,7 +1683,7 @@
                     "sensitivity": "public",
                     "status": null
                 },
-                "namespace": "resource.document.details_of_report"
+                "namespace": "resource.document.details_of_specific_report"
             },
             "additional_resources": [],
             "environments": [],
@@ -1709,7 +1703,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[public_health_agent] ACTION[READ] RESOURCE[details_of_report]"
+            "abac_policy": "PERMIT subject[health_agent] ACTION[READ] RESOURCE[details_of_specific_report]"
         },
         {
             "id": 34,
@@ -1723,9 +1717,9 @@
                     "ref_tokens": [
                         "agent"
                     ],
-                    "role": "public_health_agent",
+                    "role": "health_agent",
                     "qualifiers": null,
-                    "namespace": "subject.user.public_health_agent"
+                    "namespace": "subject.user.health_agent"
                 }
             ],
             "subjects_logical_op": null,
@@ -1770,7 +1764,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[public_health_agent] ACTION[DELETE] RESOURCE[event_report]"
+            "abac_policy": "PERMIT subject[health_agent] ACTION[DELETE] RESOURCE[event_report]"
         },
         {
             "id": 35,
@@ -1803,12 +1797,12 @@
                 "ref_tokens": [
                     "interactions"
                 ],
-                "label": "interactions_between_drugs",
+                "label": "interactions",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.interactions_between_drugs"
+                "namespace": "resource.document.interactions"
             },
             "additional_resources": [],
             "environments": [],
@@ -1822,7 +1816,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[administrator] ACTION[RECORD] RESOURCE[interactions_between_drugs]"
+            "abac_policy": "PERMIT subject[administrator] ACTION[RECORD] RESOURCE[interactions]"
         },
         {
             "id": 36,
@@ -1851,7 +1845,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "information"
                 ],
@@ -1860,7 +1854,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.interaction_information"
+                "namespace": "resource.data.interaction_information"
             },
             "additional_resources": [],
             "environments": [],
@@ -1903,7 +1897,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "data",
                 "ref_tokens": [
                     "information"
                 ],
@@ -1912,7 +1906,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.interaction_information"
+                "namespace": "resource.data.interaction_information"
             },
             "additional_resources": [],
             "environments": [],
@@ -1959,12 +1953,12 @@
                 "ref_tokens": [
                     "policies"
                 ],
-                "label": "timeout_policies",
+                "label": "timeout_policy",
                 "qualifier": "the",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.timeout_policies"
+                "namespace": "resource.document.timeout_policy"
             },
             "additional_resources": [],
             "environments": [],
@@ -1978,7 +1972,7 @@
                     "value": "the"
                 }
             ],
-            "abac_policy": "PERMIT subject[administrator] ACTION[SET] RESOURCE[timeout_policies]"
+            "abac_policy": "PERMIT subject[administrator] ACTION[SET] RESOURCE[timeout_policy]"
         },
         {
             "id": 39,
@@ -2001,7 +1995,7 @@
             "actions": [
                 {
                     "verb": "change",
-                    "operation": "CHANGE",
+                    "operation": "UPDATE",
                     "negated": false
                 }
             ],
@@ -2012,7 +2006,7 @@
                     "password"
                 ],
                 "label": "password",
-                "qualifier": "the",
+                "qualifier": "their",
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
@@ -2025,7 +2019,7 @@
                         "question"
                     ],
                     "label": "security_question",
-                    "qualifier": "the",
+                    "qualifier": "their",
                     "scope": null,
                     "subject_filter": null,
                     "attributes": null,
@@ -2040,10 +2034,10 @@
                     "entity": "resource",
                     "rel_type": "possession",
                     "attribute": "qualifier",
-                    "value": "the"
+                    "value": "their"
                 }
             ],
-            "abac_policy": "PERMIT subject[user] ACTION[CHANGE] RESOURCE[password]"
+            "abac_policy": "PERMIT subject[user] ACTION[UPDATE] RESOURCE[password]"
         },
         {
             "id": 40,
@@ -2085,7 +2079,7 @@
             },
             "additional_resources": [
                 {
-                    "entity_type": "document",
+                    "entity_type": "data",
                     "ref_tokens": [
                         "information"
                     ],
@@ -2094,7 +2088,7 @@
                     "scope": null,
                     "subject_filter": null,
                     "attributes": null,
-                    "namespace": "resource.document.demographic_information"
+                    "namespace": "resource.data.demographic_information"
                 }
             ],
             "environments": [],
@@ -2124,7 +2118,7 @@
             "actions": [
                 {
                     "verb": "upload",
-                    "operation": "UPLOAD",
+                    "operation": "CREATE",
                     "negated": false
                 }
             ],
@@ -2146,7 +2140,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[hcp] ACTION[UPLOAD] RESOURCE[photo]"
+            "abac_policy": "PERMIT subject[hcp] ACTION[CREATE] RESOURCE[photo]"
         },
         {
             "id": 42,
@@ -2164,15 +2158,6 @@
                     "role": "patient",
                     "qualifiers": null,
                     "namespace": "subject.user.patient"
-                },
-                {
-                    "entity_type": "user",
-                    "ref_tokens": [
-                        "representative"
-                    ],
-                    "role": "representative",
-                    "qualifiers": null,
-                    "namespace": "subject.user.representative"
                 },
                 {
                     "entity_type": "user",
@@ -2210,7 +2195,7 @@
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[patient,representative,representative] ACTION[READ] RESOURCE[personal_health_records]"
+            "abac_policy": "PERMIT subject[patient,representative] ACTION[READ] RESOURCE[personal_health_records]"
         },
         {
             "id": 43,
@@ -2239,7 +2224,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "record",
                 "ref_tokens": [
                     "logs"
                 ],
@@ -2248,7 +2233,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.access_logs"
+                "namespace": "resource.record.access_logs"
             },
             "additional_resources": [],
             "environments": [],
@@ -2279,18 +2264,9 @@
                     "ref_tokens": [
                         "representative"
                     ],
-                    "role": "personal_health_representative",
+                    "role": "health_representative",
                     "qualifiers": null,
-                    "namespace": "subject.user.personal_health_representative"
-                },
-                {
-                    "entity_type": "user",
-                    "ref_tokens": [
-                        "representative"
-                    ],
-                    "role": "personal_health_representative",
-                    "qualifiers": null,
-                    "namespace": "subject.user.personal_health_representative"
+                    "namespace": "subject.user.health_representative"
                 }
             ],
             "subjects_logical_op": "OR",
@@ -2305,21 +2281,21 @@
             "resource": {
                 "entity_type": "document",
                 "ref_tokens": [
-                    "list"
+                    "prescriptions"
                 ],
-                "label": "list_of_prescriptions",
+                "label": "prescription",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.list_of_prescriptions"
+                "namespace": "resource.document.prescription"
             },
             "additional_resources": [],
             "environments": [],
             "context": [],
             "conditions_logical_op": null,
             "relation_pairs": null,
-            "abac_policy": "PERMIT subject[patient,personal_health_representative,personal_health_representative] ACTION[READ] RESOURCE[list_of_prescriptions]"
+            "abac_policy": "PERMIT subject[patient,health_representative] ACTION[READ] RESOURCE[prescription]"
         },
         {
             "id": 45,
@@ -2461,7 +2437,7 @@
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "on a timestamp range",
+                    "trigger_phrase": "a timestamp range",
                     "trigger_word": "on",
                     "systems": null,
                     "time_range": null
@@ -2469,7 +2445,7 @@
                 {
                     "id": "env_2",
                     "env_type": "temporal",
-                    "trigger_phrase": "between a starting date and an ending date",
+                    "trigger_phrase": "a starting date and an ending date",
                     "trigger_word": "between",
                     "systems": null,
                     "time_range": null
@@ -2600,9 +2576,9 @@
                     "ref_tokens": [
                         "agent"
                     ],
-                    "role": "public_health_agent",
+                    "role": "health_agent",
                     "qualifiers": null,
-                    "namespace": "subject.user.public_health_agent"
+                    "namespace": "subject.user.health_agent"
                 }
             ],
             "subjects_logical_op": null,
@@ -2619,7 +2595,7 @@
                 "ref_tokens": [
                     "reports"
                 ],
-                "label": "adverse_event_reports",
+                "label": "event_report",
                 "qualifier": null,
                 "scope": null,
                 "subject_filter": null,
@@ -2627,14 +2603,14 @@
                     "sensitivity": "public",
                     "status": null
                 },
-                "namespace": "resource.document.adverse_event_reports"
+                "namespace": "resource.document.event_report"
             },
             "additional_resources": [],
             "environments": [
                 {
                     "id": "env_1",
                     "env_type": "temporal",
-                    "trigger_phrase": "within a given time period",
+                    "trigger_phrase": "a given time period",
                     "trigger_word": "within",
                     "systems": null,
                     "time_range": null
@@ -2656,7 +2632,7 @@
                     "value": "true"
                 }
             ],
-            "abac_policy": "PERMIT subject[public_health_agent] ACTION[READ] RESOURCE[adverse_event_reports]"
+            "abac_policy": "PERMIT subject[health_agent] ACTION[READ] RESOURCE[event_report]"
         },
         {
             "id": 51,
@@ -2737,7 +2713,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "record",
                 "ref_tokens": [
                     "logs"
                 ],
@@ -2746,7 +2722,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.access_logs"
+                "namespace": "resource.record.access_logs"
             },
             "additional_resources": [],
             "environments": [],
@@ -2782,7 +2758,7 @@
             ],
             "actions_logical_op": null,
             "resource": {
-                "entity_type": "document",
+                "entity_type": "record",
                 "ref_tokens": [
                     "logs"
                 ],
@@ -2791,7 +2767,7 @@
                 "scope": null,
                 "subject_filter": null,
                 "attributes": null,
-                "namespace": "resource.document.access_logs"
+                "namespace": "resource.record.access_logs"
             },
             "additional_resources": [],
             "environments": [],

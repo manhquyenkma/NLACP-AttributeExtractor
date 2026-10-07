@@ -1,0 +1,1423 @@
+{
+  "dataset": "iTrust",
+  "policies": [
+    {
+      "id": 1,
+      "sentence": "The HCP can graph the height or weight of the patient over the last calendar years",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "graph",
+          "operation": "graph"
+        }
+      ],
+      "resources": [
+        {
+          "label": "height",
+          "qualifier": "",
+          "attributes": {}
+        },
+        {
+          "label": "weight",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "over the last calendar years",
+          "env_type": "temporal"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "sentence": "The HCP may also add a patient referral",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Create",
+          "operation": "Create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "patient referral",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 3,
+      "sentence": "A patient or personal health representative can choose to view a list of their own prescriptions",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "health representative",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "prescriptions",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 4,
+      "sentence": "The LHCP can view a prescription list for a selected patient",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "prescription list",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 5,
+      "sentence": "The HCP can edit patient information according to data format",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Update",
+          "operation": "Update"
+        }
+      ],
+      "resources": [
+        {
+          "label": "patient information",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 6,
+      "sentence": "The LHCP can schedule an appointment with a patient",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "schedule",
+          "operation": "schedule"
+        }
+      ],
+      "resources": [
+        {
+          "label": "appointment",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 7,
+      "sentence": "The LHCP can view a list of upcoming appointments",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "appointments",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 8,
+      "sentence": "The user can view appointment details",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "appointment details",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 9,
+      "sentence": "The LHCP can view a comprehensive patient report",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "patient report",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 10,
+      "sentence": "The LHCP can view a list of requested reports",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "reports",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 11,
+      "sentence": "An HCP can create a lab procedure for a given office visit",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Create",
+          "operation": "Create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "lab procedure",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 12,
+      "sentence": "An HCP can view a previously created lab procedure",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "lab procedure",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 13,
+      "sentence": "An HCP can reassign a lab procedure to another lab technician if it is not in the testing state",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "reassign",
+          "operation": "reassign"
+        }
+      ],
+      "resources": [
+        {
+          "label": "lab procedure",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "it is not in the testing state",
+          "env_type": "conditional"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "sentence": "An HCP can remove a lab procedure if its status is in transit or received",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Delete",
+          "operation": "Delete"
+        }
+      ],
+      "resources": [
+        {
+          "label": "lab procedure",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "its status is in transit or received",
+          "env_type": "conditional"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "sentence": "The administrator can assign a healthcare provider to hospitals",
+      "subjects": [
+        {
+          "role": "administrator",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "assign",
+          "operation": "assign"
+        }
+      ],
+      "resources": [
+        {
+          "label": "healthcare provider",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 16,
+      "sentence": "An LHCP can enter a user as part of the system",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "enter",
+          "operation": "enter"
+        }
+      ],
+      "resources": [
+        {
+          "label": "user",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 17,
+      "sentence": "A patient or representative can send a message to an LHCP",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "representative",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "send"
+        }
+      ],
+      "resources": [
+        {
+          "label": "message",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 18,
+      "sentence": "An LHCP can send a message to a patient or representative",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "send"
+        }
+      ],
+      "resources": [
+        {
+          "label": "message",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 19,
+      "sentence": "A patient or representative can reply to a message",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "representative",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "reply",
+          "operation": "reply"
+        }
+      ],
+      "resources": [
+        {
+          "label": "message",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 20,
+      "sentence": "An LHCP can reply to a message",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "reply",
+          "operation": "reply"
+        }
+      ],
+      "resources": [
+        {
+          "label": "message",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 21,
+      "sentence": "A user can read messages from the inbox or outbox",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "messages",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the inbox or outbox",
+          "env_type": "spatial_physical"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "sentence": "An LHCP can refer a patient to another HCP",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "refer",
+          "operation": "refer"
+        }
+      ],
+      "resources": [
+        {
+          "label": "patient",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 23,
+      "sentence": "An HCP can view received referrals",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "receive",
+          "operation": "receive"
+        }
+      ],
+      "resources": [
+        {
+          "label": "referrals",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 24,
+      "sentence": "An HCP can view previously sent referrals",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "send",
+          "operation": "send"
+        }
+      ],
+      "resources": [
+        {
+          "label": "referrals",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 25,
+      "sentence": "An LHCP can delete a patient from the monitoring list",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Delete",
+          "operation": "Delete"
+        }
+      ],
+      "resources": [
+        {
+          "label": "patient",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 26,
+      "sentence": "A patient can report physiological measurements",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "report",
+          "operation": "report"
+        }
+      ],
+      "resources": [
+        {
+          "label": "measurements",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 27,
+      "sentence": "An LHCP can view physiological monitoring data",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "monitoring data",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 28,
+      "sentence": "A UAP can report physiological measurements for patients",
+      "subjects": [
+        {
+          "role": "UAP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "report",
+          "operation": "report"
+        }
+      ],
+      "resources": [
+        {
+          "label": "measurements",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 29,
+      "sentence": "A patient representative can report physiological measurements",
+      "subjects": [
+        {
+          "role": "patient representative",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "report",
+          "operation": "report"
+        }
+      ],
+      "resources": [
+        {
+          "label": "measurements",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 30,
+      "sentence": "A patient can report adverse events for medications",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "report",
+          "operation": "report"
+        }
+      ],
+      "resources": [
+        {
+          "label": "events",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 31,
+      "sentence": "A patient can report adverse events for immunizations",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "report",
+          "operation": "report"
+        }
+      ],
+      "resources": [
+        {
+          "label": "events",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 32,
+      "sentence": "A public health agent can view adverse event reports",
+      "subjects": [
+        {
+          "role": "health agent",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "event",
+          "qualifier": "",
+          "attributes": {}
+        },
+        {
+          "label": "reports",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 33,
+      "sentence": "A public health agent can view details of a specific report",
+      "subjects": [
+        {
+          "role": "health agent",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "details",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 34,
+      "sentence": "A public health agent can remove an adverse event report",
+      "subjects": [
+        {
+          "role": "health agent",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Delete",
+          "operation": "Delete"
+        }
+      ],
+      "resources": [
+        {
+          "label": "event report",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 35,
+      "sentence": "The administrator can record interactions between drugs",
+      "subjects": [
+        {
+          "role": "administrator",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "record",
+          "operation": "record"
+        }
+      ],
+      "resources": [
+        {
+          "label": "interactions",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 36,
+      "sentence": "The administrator can view drug interaction information",
+      "subjects": [
+        {
+          "role": "administrator",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "interaction information",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 37,
+      "sentence": "The administrator can delete drug interaction information",
+      "subjects": [
+        {
+          "role": "administrator",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Delete",
+          "operation": "Delete"
+        }
+      ],
+      "resources": [
+        {
+          "label": "interaction information",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 38,
+      "sentence": "The administrator can set session timeout policies",
+      "subjects": [
+        {
+          "role": "administrator",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "set",
+          "operation": "set"
+        }
+      ],
+      "resources": [
+        {
+          "label": "timeout policies",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 39,
+      "sentence": "A user can change their password after answering a security question correctly",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Update",
+          "operation": "Update"
+        }
+      ],
+      "resources": [
+        {
+          "label": "password",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "after answering a security question correctly",
+          "env_type": "conditional"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "sentence": "An HCP must enter a patient MID to edit demographic information",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "enter",
+          "operation": "enter"
+        },
+        {
+          "verb": "Update",
+          "operation": "Update"
+        }
+      ],
+      "resources": [
+        {
+          "label": "patient MID",
+          "qualifier": "",
+          "attributes": {}
+        },
+        {
+          "label": "information",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 41,
+      "sentence": "An HCP may upload a photo of a patient",
+      "subjects": [
+        {
+          "role": "HCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Create",
+          "operation": "Create"
+        }
+      ],
+      "resources": [
+        {
+          "label": "photo",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 42,
+      "sentence": "A patient or representative can view personal health records",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "representative",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "health records",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 43,
+      "sentence": "A patient can view access logs sorted by role and date",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "access logs",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 44,
+      "sentence": "A patient or personal health representative can view a list of prescriptions sorted by start date",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        },
+        {
+          "role": "health representative",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "prescriptions",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 45,
+      "sentence": "The LHCP can view a prescription list sorted by start date",
+      "subjects": [
+        {
+          "role": "LHCP",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "prescription list",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 46,
+      "sentence": "A user can view messages sorted by timestamp with the most recent first",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "messages",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 47,
+      "sentence": "A user can filter messages based on a timestamp range between a starting date and an ending date",
+      "subjects": [
+        {
+          "role": "user",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "filter",
+          "operation": "filter"
+        }
+      ],
+      "resources": [
+        {
+          "label": "messages",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "a timestamp range",
+          "env_type": "temporal"
+        },
+        {
+          "trigger_phrase": "a starting date and an ending date",
+          "env_type": "temporal"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "sentence": "A patient can report adverse events for drugs taken in the last months",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "report",
+          "operation": "report"
+        }
+      ],
+      "resources": [
+        {
+          "label": "events",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the last months",
+          "env_type": "temporal"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "sentence": "A patient can report adverse events for immunizations received in the last months",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "report",
+          "operation": "report"
+        }
+      ],
+      "resources": [
+        {
+          "label": "events",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "the last months",
+          "env_type": "temporal"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "sentence": "A public health agent can view adverse event reports within a given time period",
+      "subjects": [
+        {
+          "role": "health agent",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "event reports",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": [
+        {
+          "trigger_phrase": "a given time period",
+          "env_type": "temporal"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "sentence": "The administrator can set the session timeout period",
+      "subjects": [
+        {
+          "role": "administrator",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "set",
+          "operation": "set"
+        }
+      ],
+      "resources": [
+        {
+          "label": "timeout period",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 52,
+      "sentence": "A patient can view access logs sorted by date with the most recent access first",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "access logs",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    },
+    {
+      "id": 53,
+      "sentence": "A patient can view access logs sorted by role and by date for each role with the most recent first",
+      "subjects": [
+        {
+          "role": "patient",
+          "entity_type": "user",
+          "qualifiers": {}
+        }
+      ],
+      "actions": [
+        {
+          "verb": "Read",
+          "operation": "Read"
+        }
+      ],
+      "resources": [
+        {
+          "label": "access logs",
+          "qualifier": "",
+          "attributes": {}
+        }
+      ],
+      "environments": []
+    }
+  ]
+}

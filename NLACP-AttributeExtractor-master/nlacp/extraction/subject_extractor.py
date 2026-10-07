@@ -6,6 +6,7 @@ Subjects can be: user, role, group, system, agreement, schedule.
 """
 
 import spacy
+import re
 from typing import List, Dict, Optional, Tuple
 from nlacp.validation.schema_validator import Subject, SubjectQualifier, EntityType
 
@@ -25,6 +26,7 @@ SUBJECT_DEPS = {"nsubj", "nsubjpass", "csubj"}
 
 # Subject role keywords
 SUBJECT_ROLE_KEYWORDS = {
+    # Education domain (VACT)
     "student": "student",
     "lecturer": "lecturer",
     "instructor": "instructor",
@@ -39,6 +41,57 @@ SUBJECT_ROLE_KEYWORDS = {
     "applicant": "applicant",
     "visiting lecturer": "visiting_lecturer",
     "teacher": "lecturer",
+    
+    # Medical domain (iTrust)
+    "hcp": "hcp",
+    "lhcp": "lhcp",
+    "patient": "patient",
+    "physician": "physician",
+    "nurse": "nurse",
+    "doctor": "doctor",
+    "administrator": "administrator",
+    "uap": "uap",
+    "representative": "representative",
+    "agent": "agent",
+    "technician": "technician",
+    "pharmacist": "pharmacist",
+    "specialist": "specialist",
+    "staff": "staff",
+    
+    # Financial / Corporate / Business (eDocument)
+    "member": "member",
+    "employee": "employee",
+    "sender": "sender",
+    "receiver": "receiver",
+    "tenant": "tenant",
+    "provider": "provider",
+    "reseller": "reseller",
+    "admin": "administrator",
+    "helpdesk": "helpdesk",
+    "supervisor": "supervisor",
+    "supervisee": "supervisee",
+    "manager": "manager",
+    "director": "director",
+    "officer": "officer",
+    "auditor": "auditor",
+    "accountant": "accountant",
+    "secretary": "secretary",
+    "customer": "customer",
+    "department": "department",
+    "office": "office",
+    "team": "team",
+    "personnel": "personnel",
+    "clerk": "clerk",
+    "analyst": "analyst",
+    
+    # System management
+    "superuser": "superuser",
+    "operator": "operator",
+    "service": "service",
+    "system": "system",
+    "application": "application",
+    "automated_service": "automated_service",
+    "print_house": "print_house",
 }
 
 # Subject type qualifiers
@@ -75,6 +128,28 @@ OFFICE_QUALIFIERS = {
 
 # Negation indicators
 NEGATION_TRIGGERS = {"not", "who are not", "who are no", "no longer"}
+
+SECURITY_QUALIFIERS = {
+    'authenticated', 'unauthenticated', 'registered',
+    'unregistered', 'authorized', 'unauthorized',
+    'verified', 'unverified', 'active', 'inactive',
+    'senior', 'junior', 'external', 'internal',
+    'private', 'public', 'certified', 'licensed',
+    'assigned', 'responsible', 'approved', 'health', 'patient', 'project'
+}
+
+COMPOUND_DOMAINS = {
+    'bank', 'office', 'audit', 'accounting', 'large_bank', 'large_bank_audit',
+    'ict', 'human_resource', 'customer'
+}
+
+def _clean_word(w):
+    w = w.lower().strip()
+    if len(w) > 3 and w.endswith("ies"):
+        return w[:-3] + "y"
+    if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
+        return w[:-1]
+    return w
 
 
 def _get_conjuncts(token) -> List:
@@ -149,11 +224,12 @@ def _extract_subject_tokens(doc) -> List:
                 new_subjects.append(poss)
                 continue
             
-            # Check for "by" agent modifying the nsubj directly (e.g., in an acl "done by User")
+            # Check for "by" agent modifying the nsubj directly or via participle acl (e.g., in "action done by User")
             agent_found = False
             for child in st.children:
-                if child.dep_ == "agent":
-                    pobj = next((c for c in child.children if c.dep_ == "pobj"), None)
+                agent_node = child if child.dep_ == "agent" else next((gc for gc in child.children if gc.dep_ == "agent"), None)
+                if agent_node:
+                    pobj = next((c for c in agent_node.children if c.dep_ == "pobj"), None)
                     if pobj and is_known_actor(pobj):
                         new_subjects.append(pobj)
                         agent_found = True
@@ -161,10 +237,10 @@ def _extract_subject_tokens(doc) -> List:
             if agent_found:
                 continue
                 
-            # Check for "by" agent modifying the root/passive verb
+            # Check for "by" agent modifying the root/passive verb or acl
             for token in doc:
                 if token.dep_ == "agent" or (token.dep_ == "prep" and token.text.lower() == "by"):
-                    if token.head.dep_ in SUBJECT_DEPS or token.head.dep_ in {"ROOT", "auxpass"}:
+                    if token.head.dep_ in SUBJECT_DEPS or token.head.dep_ in {"ROOT", "auxpass", "acl"}:
                         pobj = next((c for c in token.children if c.dep_ == "pobj"), None)
                         if pobj and is_known_actor(pobj):
                             new_subjects.append(pobj)
@@ -224,11 +300,52 @@ def _identify_role(subject_phrase: str) -> Tuple[Optional[str], Dict]:
         role = "user"
     
     if not role:
-        # Sort keywords by length descending to match multi-word phrases first
-        for keyword in sorted(SUBJECT_ROLE_KEYWORDS.keys(), key=len, reverse=True):
-            if keyword in phrase_lower:
-                role = SUBJECT_ROLE_KEYWORDS[keyword]
-                break
+        words = [_clean_word(w) for w in re.split(r'[^a-z0-9]+', phrase_lower) if w and w not in {"a", "an", "the", "personal", "public", "valid"}]
+        
+        # 1. Specific ABAC / VACT patterns
+        if "head" in words and "of" in words:
+            role = "head"
+        elif "visiting" in words and "lecturer" in words and "agreement" in words:
+            role = "visiting_lecturer_agreement"
+        elif "application" in words and any(w.startswith("admin") for w in words):
+            role = "application_admin"
+        elif "authenticated" in words and "user" in words:
+            role = "authenticated_user"
+        elif "unregistered" in words and "sender" in words:
+            role = "unregistered_sender"
+        elif "patient" in words and "representative" in words:
+            role = "patient_representative"
+        elif "health" in words and "representative" in words:
+            role = "health_representative"
+        elif "health" in words and "agent" in words:
+            role = "health_agent"
+        elif "project" in words and "member" in words:
+            role = "project_member"
+        elif "head of " in phrase_lower:
+            role = "head"
+        elif words and words[0] == "member" and "of" in words:
+            role = "_".join(words)
+        elif words and "of" in words and any("service" in w for w in words):
+            role = "_".join(words)
+        elif " of " in phrase_lower:
+            role = phrase_lower.replace(" ", "_")
+        else:
+            # Check if phrase ends in a known role and has security/domain modifiers
+            KNOWN_ROLES = {"user", "sender", "receiver", "representative", "agent", "manager", "member", "department", "employee", "director", "officer", "auditor", "accountant", "clerk", "supervisor", "analyst", "tenant", "provider", "admin", "administrator"}
+            matched_composite = False
+            for i in range(len(words)-1, -1, -1):
+                if words[i] in KNOWN_ROLES or words[i].startswith("admin"):
+                    base = "admin" if words[i].startswith("admin") else words[i]
+                    prefix_words = words[:i]
+                    if any(pw in SECURITY_QUALIFIERS or pw in COMPOUND_DOMAINS for pw in prefix_words):
+                        role = "_".join(prefix_words + [base])
+                        matched_composite = True
+                        break
+            if not matched_composite:
+                for keyword in sorted(SUBJECT_ROLE_KEYWORDS.keys(), key=len, reverse=True):
+                    if keyword in phrase_lower:
+                        role = SUBJECT_ROLE_KEYWORDS[keyword]
+                        break
     
     # Extract type qualifiers
     for type_q in SUBJECT_TYPE_QUALIFIERS:

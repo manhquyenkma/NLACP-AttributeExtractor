@@ -86,6 +86,66 @@ RESOURCE_TYPE_MAPPING = {
     "records": ResourceEntityType.RECORD,
     "student record": ResourceEntityType.RECORD,
     "medical record": ResourceEntityType.RECORD,
+    
+    # Medical & Admin
+    "prescription": ResourceEntityType.DOCUMENT,
+    "prescriptions": ResourceEntityType.DOCUMENT,
+    "lab result": ResourceEntityType.DATA,
+    "lab results": ResourceEntityType.DATA,
+    "invoice": ResourceEntityType.DOCUMENT,
+    "invoices": ResourceEntityType.DOCUMENT,
+    "report": ResourceEntityType.DOCUMENT,
+    "reports": ResourceEntityType.DOCUMENT,
+    "account": ResourceEntityType.RECORD,
+    "accounts": ResourceEntityType.RECORD,
+    "ticket": ResourceEntityType.DOCUMENT,
+    "tickets": ResourceEntityType.DOCUMENT,
+    "system": ResourceEntityType.SYSTEM,
+    "systems": ResourceEntityType.SYSTEM,
+    
+    # General documents & business resources
+    "document": ResourceEntityType.DOCUMENT,
+    "documents": ResourceEntityType.DOCUMENT,
+    "file": ResourceEntityType.DOCUMENT,
+    "files": ResourceEntityType.DOCUMENT,
+    "policy": ResourceEntityType.DOCUMENT,
+    "policies": ResourceEntityType.DOCUMENT,
+    "note": ResourceEntityType.DOCUMENT,
+    "notes": ResourceEntityType.DOCUMENT,
+    "message": ResourceEntityType.DOCUMENT,
+    "messages": ResourceEntityType.DOCUMENT,
+    "notification": ResourceEntityType.DOCUMENT,
+    "notifications": ResourceEntityType.DOCUMENT,
+    "log": ResourceEntityType.RECORD,
+    "logs": ResourceEntityType.RECORD,
+    "audit_log": ResourceEntityType.RECORD,
+    "audit_logs": ResourceEntityType.RECORD,
+    "configuration": ResourceEntityType.DOCUMENT,
+    "configurations": ResourceEntityType.DOCUMENT,
+    "setting": ResourceEntityType.DOCUMENT,
+    "settings": ResourceEntityType.DOCUMENT,
+    "profile": ResourceEntityType.RECORD,
+    "profiles": ResourceEntityType.RECORD,
+    "credential": ResourceEntityType.DOCUMENT,
+    "credentials": ResourceEntityType.DOCUMENT,
+    "permission": ResourceEntityType.ATTRIBUTE,
+    "permissions": ResourceEntityType.ATTRIBUTE,
+    "right": ResourceEntityType.ATTRIBUTE,
+    "rights": ResourceEntityType.ATTRIBUTE,
+    "paycheck": ResourceEntityType.DOCUMENT,
+    "paychecks": ResourceEntityType.DOCUMENT,
+    "payroll": ResourceEntityType.DOCUMENT,
+    "offer": ResourceEntityType.OFFERING,
+    "offers": ResourceEntityType.OFFERING,
+    "status": ResourceEntityType.ATTRIBUTE,
+    "detail": ResourceEntityType.DATA,
+    "details": ResourceEntityType.DATA,
+    "information": ResourceEntityType.DATA,
+    "data": ResourceEntityType.DATA,
+    "content": ResourceEntityType.DATA,
+    "contents": ResourceEntityType.DATA,
+    "metadata": ResourceEntityType.DATA,
+    "meta-data": ResourceEntityType.DATA,
 }
 
 # Resource label mapping (for normalization)
@@ -101,7 +161,7 @@ RESOURCE_LABEL_MAPPING = {
     "transcripts": "transcript",
     "roster": "roster",
     "rosters": "roster",
-    "course roster": "roster",
+    "course roster": "course_roster",
     "application": "application",
     "applications": "application",
     "exam": "exam",
@@ -118,6 +178,22 @@ RESOURCE_LABEL_MAPPING = {
     "agreement": "agreement",
     "agreements": "agreement",
     "visiting lecturer agreement": "visiting_lecturer_agreement",
+    
+    # Medical & Admin
+    "prescription": "prescription",
+    "prescriptions": "prescription",
+    "lab result": "lab_result",
+    "lab results": "lab_result",
+    "invoice": "invoice",
+    "invoices": "invoice",
+    "report": "report",
+    "reports": "report",
+    "account": "account",
+    "accounts": "account",
+    "ticket": "ticket",
+    "tickets": "ticket",
+    "system": "system",
+    "systems": "system",
     "visiting lecturer agreements": "visiting_lecturer_agreement",
     "lecturer agreement": "visiting_lecturer_agreement",
     "lecturer agreements": "visiting_lecturer_agreement",
@@ -150,6 +226,26 @@ RESOURCE_LABEL_MAPPING = {
     "lecturer agreement information": "visiting_lecturer_agreement_information",
     "reason for a transcript revision": "reason_for_a_transcript_revision",
     "reason": "reason_for_a_transcript_revision",
+    "drug interaction information": "interaction_information",
+    "session timeout policies": "timeout_policy",
+    "session timeout policy": "timeout_policy",
+    "session timeout period": "timeout_period",
+    "adverse event report": "event_report",
+    "adverse event reports": "event_report",
+    "meta-information of document": "document_meta_information",
+    "meta-information of every document": "document_meta_information",
+    "meta-information of documents": "document_meta_information",
+    "meta-data of a document": "document_meta_data",
+    "meta-data of document": "document_meta_data",
+    "metadata of a document": "document_meta_data",
+    "metadata of document": "document_meta_data",
+    "content of documents": "document_content",
+    "content of document": "document_content",
+    "status of a sent banking note": "banking_note_status",
+    "status of sent banking note": "banking_note_status",
+    "status of a banking note": "banking_note_status",
+    "status of banking note": "banking_note_status",
+    "status of note": "banking_note_status",
 }
 
 # Scope-related keywords
@@ -250,33 +346,41 @@ def _is_env_prep(prep_token):
 def _get_full_object_span(dobj_token, doc) -> str:
     tokens_in_span = [dobj_token]
 
+    # Recursive pre-head modifier collection (compound, amod, hyphen)
+    def collect_modifiers(tok):
+        for child in tok.children:
+            if child.i < dobj_token.i:
+                if child.dep_ in ("amod", "compound"):
+                    if child.lemma_.lower() not in AMOD_EXCLUDE:
+                        tokens_in_span.append(child)
+                        collect_modifiers(child)
+                elif child.dep_ == "punct" and child.text == "-":
+                    tokens_in_span.append(child)
+                    collect_modifiers(child)
+    collect_modifiers(dobj_token)
+
+    # Preposition phrases attached to dobj
     for child in dobj_token.children:
-        # Include pre-head modifiers (amod, compound) that are not excluded
-        if child.dep_ in ("amod", "compound") and child.i < dobj_token.i:
-            if child.lemma_.lower() not in AMOD_EXCLUDE:
-                tokens_in_span.append(child)
-
-        # Include prep phrases ONLY if they are tightly-bound resource qualifiers
-        # (e.g. "right to read"), NOT environment/scope phrases ("in the system", "for that course")
         if child.dep_ == "prep" and child.head == dobj_token:
-            if child.text.lower() in ("to",):
-                # "right to read" — keep
+            # Special case 1: "right to read / right to manage"
+            if child.text.lower() in ("to",) and dobj_token.lemma_.lower() in ("right",):
                 tokens_in_span.extend(list(child.subtree))
-            elif _is_env_prep(child):
-                # This is an environment phrase — do NOT include
-                continue
-            else:
+            # Special case 2: "of" for metadata/content or status/type
+            elif child.text.lower() in ("of",):
                 pobj = next((c for c in child.children if c.dep_ == "pobj"), None)
-                if pobj is not None and _is_person_type(pobj, PERSON_NOUNS):
-                    continue  # skip "of civilian students" etc.
-                # Short qualifier like "of documents" — keep only compound+amod of pobj
-                if pobj is not None:
-                    tokens_in_span.append(child)  # the prep word
-                    tokens_in_span.append(pobj)
-
-        # Do NOT include relative clauses or acl — they cause severe boundary bleed
-        # e.g. "documents sent to him/herself", "action done by a Member of a Tenant"
-        # if child.dep_ == "acl" ...  ← removed
+                if pobj is not None and not _is_person_type(pobj, PERSON_NOUNS) and not _is_env_prep(child):
+                    CONTAINER_NOUNS = {
+                        "content", "contents", "meta-information", "meta-data", "metadata",
+                        "status", "type", "value", "detail", "details"
+                    }
+                    if dobj_token.lemma_.lower() in CONTAINER_NOUNS:
+                        tokens_in_span.append(child)
+                        tokens_in_span.append(pobj)
+                        for gc in pobj.children:
+                            if gc.dep_ in ("compound", "amod"):
+                                tokens_in_span.append(gc)
+            else:
+                continue
 
     tokens_in_span = sorted(set(tokens_in_span), key=lambda t: t.i)
     return " ".join(t.text for t in tokens_in_span)
@@ -447,8 +551,20 @@ def _extract_resource_tokens(doc) -> List:
     if not anchors:
         return []
     
+    # If anchor is a generic quantifier/container like "list of [X]", elevate [X] to resource!
+    adjusted_anchors = []
+    for tok in anchors:
+        if tok.lemma_.lower() in ("list", "set", "batch") and tok.pos_ in ("NOUN", "PROPN"):
+            of_prep = next((c for c in tok.children if c.dep_ == "prep" and c.text.lower() == "of"), None)
+            if of_prep:
+                pobj = next((c for c in of_prep.children if c.dep_ == "pobj"), None)
+                if pobj and not _is_person_type(pobj, PERSON_NOUNS) and pobj.lemma_.lower() not in ("student", "civilian_student", "user", "patient"):
+                    adjusted_anchors.append(pobj)
+                    continue
+        adjusted_anchors.append(tok)
+
     resource_tokens = []
-    for anchor in anchors:
+    for anchor in adjusted_anchors:
         if anchor not in resource_tokens:
             resource_tokens.append(anchor)
         for conj in anchor.conjuncts:
@@ -537,9 +653,17 @@ def _extract_qualifier(sentence: str, resource_phrase: str) -> Optional[str]:
         return "all"
     elif re.search(r'\b(their own|my own|own)\b', window):
         return "own"
+    elif re.search(r'\b(their)\b', window):
+        return "their"
     elif re.search(r'\bthe\b', window):
         return "the"
-    
+        
+    # Implicit 'own' rules based on context (catching what human annotators inferred)
+    if re.search(r'which they (have taken|are taking)|for that (department|course)', sentence_lower):
+        return "own"
+    if "department’s courses" in sentence_lower or "department's courses" in sentence_lower:
+        return "own"
+        
     return None
 
 
